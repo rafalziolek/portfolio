@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components"
 
 export const GlobalStyle = createGlobalStyle`
+  // @import url("https://use.typekit.net/mtj8ilt.css");
 
   body {
     padding: 0;
