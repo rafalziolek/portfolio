@@ -1,16 +1,17 @@
 import styled from "styled-components";
+import Container from "./Container";
 
 
-const StyledHeader = styled.header`
-    padding: ${props => props.theme.space.xl} 0;
-`
+// const StyledHeader = styled.header`
+//     padding: ${props => props.theme.space.xl} 0;
+// `
 
 
 function Header({ children }) {
     return (
-        <StyledHeader>
+        <Container top='xl' bottom='xxl'>
                 { children }
-        </StyledHeader>
+        </Container>
         
     );
 }

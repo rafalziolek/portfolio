@@ -46,7 +46,7 @@ function NavLink({link, label}) {
      );
 };
 
-function NavButton({handleThemeChange, icon, color}) {
+export function NavButton({handleThemeChange, icon, color}) {
 
 
     return (  

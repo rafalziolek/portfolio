@@ -5,7 +5,8 @@ export const light = {
       s: '2rem',
       m: '3rem',
       l: '4rem',
-      xl: '8rem'
+      xl: '8rem',
+      xxl: '16rem'
     },
 
     color: {
@@ -40,7 +41,8 @@ export const light = {
       s: '2rem',
       m: '3rem',
       l: '4rem',
-      xl: '8rem'
+      xl: '8rem',
+      xxl: '16rem'
     },
 
     color: {

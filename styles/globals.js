@@ -21,4 +21,8 @@ export const GlobalStyle = createGlobalStyle`
   table {
     border-spacing: 0;
   }
+
+  img {
+    object-fit: cover;
+  }
 `

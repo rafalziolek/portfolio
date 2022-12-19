@@ -5,6 +5,7 @@ const StyledLayout = styled.div`
     padding: ${props => props.theme.space.m}};
     max-width: 1680px;
     margin: 0 auto;
+    padding-bottom: ${props => props.theme.space.xl};
 `
 
 

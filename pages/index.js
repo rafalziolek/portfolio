@@ -27,9 +27,9 @@ export default function Home() {
           <Text tag='h2' type='SectionHeading'>Projects I have worked on</Text>
           <Icon name='arrowAngledDown' size='64' color='black'/>
         </Stack>
-        <Project projectPath='#' projectName='Watson Design System' company='Docplanner' />
-        <Project projectPath='#' projectName='Watson Design System' company='Docplanner' />
-        <Project projectPath='#' projectName='Watson Design System' company='Docplanner' />
+        <Project projectPath='/projects/watson' projectName='Watson Design System' company='Docplanner'  cover='/../public/covers/Watson.png' backgroundColor='#3DD2BF'/>
+        <Project projectPath='/projects/semiflat' projectName='Runchise' company='Semiflat' />
+        <Project projectPath='/projects/absolvent' projectName='Absolvent.pl' company='Absolvent Group' />
       </Stack>
     </div>
   )
