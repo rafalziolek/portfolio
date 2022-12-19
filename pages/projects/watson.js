@@ -4,3 +4,5 @@ function Watson() {
         <Text tag='h1' type='MainHeading'>Watson Design System</Text>
      );
 }
+
+export default Watson;
