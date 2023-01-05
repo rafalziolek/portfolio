@@ -28,7 +28,9 @@ function TableItem({ company, title, start, end }) {
     <TableRow>
       <div>
         <Text type="body">{title}</Text>
-        <Text type="body">{company}</Text>
+        <Text type="caption" muted>
+          {company}
+        </Text>
       </div>
       <Text type="body" css={{ whiteSpace: "nowrap" }}>
         {start} / {end ? end : "Now"}
