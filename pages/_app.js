@@ -4,9 +4,11 @@ import { styled } from "../stitches.confing";
 
 export default function App({ Component, pageProps }) {
   globalStyles();
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  );
+
+  const renderWithLayout =
+    Component.getLayout ||
+    function (page) {
+      return <Layout>{page}</Layout>;
+    };
+  return renderWithLayout(<Component {...pageProps} />);
 }

@@ -2,19 +2,14 @@ import { styled } from "../stitches.confing";
 import { Text } from "./Text";
 import Image from "next/image";
 import Box from "./Box";
+import Link from "next/link";
 const ProjectWrapper = styled("div", {
   display: "flex",
   gap: "$s",
   flexDirection: "column",
-  variants: {
-    size: {
-      large: {
-        gridColumn: "span 12",
-      },
-      small: {
-        gridColumn: "span 6",
-      },
-    },
+  gridColumn: "span 6",
+  "@media (max-width: 1400px)": {
+    gridColumn: "span 12",
   },
 });
 
@@ -46,37 +41,48 @@ function Project({ title, caption, details, projectName, video, size, alt }) {
   const thumbnailPath = `/assets/${projectName}/thumbnail.${
     video ? "mp4" : "jpg"
   }`;
+  const projectPath = `/projects/${projectName}`;
   return (
     <ProjectWrapper size={size}>
-      <ThumbnailWrapper>
-        {video ? (
-          <video muted autoplay="autoplay" loop="loop">
-            <source src={thumbnailPath} type="video/mp4" />
-          </video>
-        ) : (
-          <Image height={1054} width={2720} src={thumbnailPath} alt={alt} />
-        )}
-      </ThumbnailWrapper>
-      <Box
-        css={{
+      <Link
+        style={{
+          textDecoration: "none",
           display: "flex",
-          justifyContent: "space-between",
+          flexDirection: "column",
+          gap: "var(--space-s)",
         }}
+        href={projectPath}
       >
-        <Box>
-          <Text as="h3" type="body">
-            <Text as="span" type="body" emphasis>
-              {title}
+        <ThumbnailWrapper>
+          {video ? (
+            <video muted autoplay="autoplay" loop="loop">
+              <source src={thumbnailPath} type="video/mp4" />
+            </video>
+          ) : (
+            <Image height={1054} width={2720} src={thumbnailPath} alt={alt} />
+          )}
+        </ThumbnailWrapper>
+        <Box
+          css={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box css={{ maxWidth: "90%" }}>
+            <Text as="h3" type="body">
+              <Text as="span" type="body" emphasis>
+                {title}
+              </Text>
+              {" — "}
+              {caption}
             </Text>
-            {" — "}
-            {caption}
+            <Text as="p" type="body"></Text>
+          </Box>
+          <Text as="span" type="body">
+            {details}
           </Text>
-          <Text as="p" type="body"></Text>
         </Box>
-        <Text as="span" type="body">
-          {details}
-        </Text>
-      </Box>
+      </Link>
     </ProjectWrapper>
   );
 }
