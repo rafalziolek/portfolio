@@ -32,11 +32,11 @@ export default function Home() {
         <Box
           as="header"
           css={{
-            margin: "$xl $m $s $m",
-            height: "30vh",
+            margin: "$m $m $s $m",
+            height: "55vh",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "end",
+            justifyContent: "center",
             gap: "$",
           }}
         >
