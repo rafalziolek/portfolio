@@ -32,11 +32,11 @@ export default function Home() {
         <Box
           as="header"
           css={{
-            margin: "$xl $m $m $m",
-            height: "45vh",
+            margin: "$m $m $s $m",
+            height: "55vh",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "start",
+            justifyContent: "center",
             gap: "$",
           }}
         >
@@ -68,17 +68,17 @@ export default function Home() {
             margin: "0 $m $xl $m",
             paddingTop: "$s",
             rowGap: "$s",
-            borderTop: "1px solid black",
+            // borderTop: "1px solid black",
           }}
         >
-          <Text as="h2" type="paragraph" css={{ marginBottom: "$m" }}>
+          {/* <Text as="h2" type="paragraph" css={{ marginBottom: "$m" }}>
             Selected works
-          </Text>
+          </Text> */}
           <Box
             grid
             css={{
               rowGap: "$xl",
-              columnGap: "$m",
+              columnGap: "$s",
             }}
           >
             <Project

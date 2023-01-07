@@ -84,7 +84,7 @@ export const { styled, getCssText, globalCss } = createStitches({
       6: "40px",
 
       // Semantic tokens
-      s: "$2",
+      s: "$1",
       mInner: "$3",
       m: "$4",
       l: "$5",
