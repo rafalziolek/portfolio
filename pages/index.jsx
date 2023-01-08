@@ -90,7 +90,7 @@ export default function Home() {
             />
             <Project
               video
-              projectName="Nikola-Chmiel"
+              projectName="Nikola"
               size="small"
               title="Nikola Chmiel"
               caption=" Personal website for a certified yoga teacher"
@@ -104,7 +104,7 @@ export default function Home() {
             />
             <Project
               video
-              projectName="Nikola-Chmiel"
+              projectName="Nikola"
               size="small"
               title="Nikola Chmiel"
               caption=" Personal website for a certified yoga teacher"
