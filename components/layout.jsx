@@ -2,6 +2,7 @@ import Navigation, { NavItem, NavButton } from "./Navigation";
 import { styled, globalStyles } from "../stitches.confing";
 import { useRouter } from "next/router";
 import Box from "./Box";
+import Footer from "./Footer";
 
 const StickyBar = styled("div", {
   position: "sticky",
@@ -51,6 +52,7 @@ export default function Layout({ children }) {
         </NavButton>
       </StickyBar>
       {children}
+      <Footer />
     </>
   );
 }

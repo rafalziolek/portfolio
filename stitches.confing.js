@@ -1,6 +1,6 @@
 import { createStitches } from "@stitches/react";
 
-export const { styled, getCssText, globalCss } = createStitches({
+export const { styled, getCssText, globalCss, keyframes } = createStitches({
   theme: {
     fonts: {
       neueHaasUnica: "neue-haas-unica",
@@ -120,6 +120,11 @@ export const { styled, getCssText, globalCss } = createStitches({
   },
 });
 
+export const Marquee = keyframes({
+  "0%": { transform: "translateX(100%)" },
+  "100%": { transform: "translateX(-100%)" },
+});
+
 export const globalStyles = globalCss({
   "*": {
     margin: 0,
@@ -130,7 +135,7 @@ export const globalStyles = globalCss({
 
   body: {
     background: "$primaryBg",
-    // backgroundImage: 'url(./assets/noise.svg)',
+    // backgroundImage: "url(./assets/noise.svg)",
   },
 
   ul: {
