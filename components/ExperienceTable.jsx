@@ -28,7 +28,7 @@ function TableItem({ company, title, start, end }) {
     <TableRow>
       <div>
         <Text type="body">{title}</Text>
-        <Text type="caption" muted>
+        <Text type="caption" secondary>
           {company}
         </Text>
       </div>

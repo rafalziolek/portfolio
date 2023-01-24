@@ -5,7 +5,6 @@ const Box = styled("div", {
     grid: {
       true: {
         display: "grid",
-        gridTemplateColumns: "repeat(12, 1fr)",
         columnGap: "$m",
         rowGap: "$m",
       },

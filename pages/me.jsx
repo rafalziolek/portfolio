@@ -4,40 +4,9 @@ import { Text } from "../components/Text";
 import { ExperienceTable, TableItem } from "../components/ExperienceTable";
 import Image from "next/image";
 
-const experience = {
-  rows: [
-    {
-      position: "Product Designer",
-      company: "Docplanner",
-      period: "2018  →  Now",
-    },
-    {
-      position: "Freelance Product Designer",
-      company: "Semiflat",
-      period: "2021  →  2022",
-    },
-    {
-      position: "UI/UX Designer",
-      company: "Absolvent Group",
-      period: "2018  →  2018",
-    },
-    {
-      position: "UI Designer",
-      company: "INVO",
-      period: "2018  →  2018",
-    },
-  ],
-};
-
 function me() {
   return (
-    <Box
-      container
-      css={{
-        // backgroundImage: 'url(../assets/noise.svg)',
-        backgroundRepeat: "repeat",
-      }}
-    >
+    <Box>
       {/* Header */}
       <Box
         grid
@@ -48,7 +17,7 @@ function me() {
         }}
       >
         <Text
-          type="heading"
+          type="mainHeading"
           as="h1"
           css={{ marginBottom: "$l", maxWidth: "45ch", gridColumn: "span 8" }}
         >
@@ -106,14 +75,15 @@ function me() {
       <Box
         grid
         css={{
+          gridTemplateColumns: "repeat(12, 1fr)",
           padding: "$m 0 $xl 0",
           margin: "0 $m",
-          borderTop: "2px solid black",
+          borderTop: "3px solid black",
         }}
       >
         <Text
           as="h3"
-          type="heading"
+          type="mainHeading"
           css={{ marginBottom: "$m", gridColumn: "span 4" }}
         >
           Experience
@@ -147,14 +117,15 @@ function me() {
       <Box
         grid
         css={{
+          gridTemplateColumns: "repeat(12,1fr)",
           padding: "$m 0 $xl 0",
           margin: "0 $m",
-          borderTop: "2px solid black",
+          borderTop: "3px solid black",
         }}
       >
         <Text
           as="h3"
-          type="heading"
+          type="mainHeading"
           css={{ marginBottom: "$m", gridColumn: "span 4" }}
         >
           Outside of work

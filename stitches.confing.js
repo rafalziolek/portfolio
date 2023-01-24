@@ -9,20 +9,31 @@ export const { styled, getCssText, globalCss, keyframes } = createStitches({
 
     fontSizes: {
       // Core tokens
+
+      xxs: ".875",
       xs: "1rem", // 16px
-      s: "1.25rem", // 18px
+      s: "1.125rem", // 18px
       m: "1.5rem", // 24px
       l: "2rem", // 32px
-      xl: "3rem", // 48px
-      xxl: "4rem", // 64px
+      xl: "2.5rem", // 40px
+      xxl: "3.5rem", // 48px
 
       // Semantic tokens
+
+      // @bp1
       caption: "$xs",
       body: "$s",
-      paragraph: "$l",
       subHeading: "$m",
-      heading: "$xl",
+      heading: "$l",
       mainHeading: "$xxl",
+
+      //@bp2
+
+      // @bp3
+      captionMobile: "$xs",
+      mainHeadingMobile: "$xl",
+      subHeadingMobile: "$m",
+      headingMobile: "$l",
     },
 
     fontWeights: {
@@ -35,8 +46,7 @@ export const { styled, getCssText, globalCss, keyframes } = createStitches({
       // Semantic tokens
       body: "$regular",
       heading: "$regular",
-      headingBold: "$medium",
-      emphasis: "$bold",
+      emphasis: "$medium",
     },
 
     lineHeights: {
@@ -110,13 +120,46 @@ export const { styled, getCssText, globalCss, keyframes } = createStitches({
 
       // Semantic tokens
       primaryBg: "white",
-      secondaryBg: "$gray50",
+      primaryBgInverted: "black",
+      transparentBg: "rgba(225, 225, 225, 0.5)", //Transparent gray200
+      secondaryBg: "$gray200",
       primaryFg: "black",
       primaryFgHover: "$gray700",
       primaryFgInverted: "white",
       primaryFgInvertedHover: "$gray200",
       secondaryFg: "$gray500",
     },
+
+    filters: {
+      backdropBlur: "blur(20px)",
+    },
+  },
+
+  media: {
+    bp1: "(min-width: 480px)",
+    bp2: "(min-width: 768px)",
+    bp3: "(min-width: 1200px)",
+  },
+
+  utils: {
+    //Spacing utils
+    marginX: (value) => ({
+      marginLeft: value,
+      marginRight: value,
+    }),
+    marginY: (value) => ({
+      marginTop: value,
+      marginBottom: value,
+    }),
+
+    paddingX: (value) => ({
+      paddingLeft: value,
+      paddingRight: value,
+    }),
+    paddingY: (value) => ({
+      paddingTop: value,
+      paddingBottom: value,
+    }),
   },
 });
 
@@ -131,11 +174,13 @@ export const globalStyles = globalCss({
     padding: 0,
     fontFamily: "$neueHaasUnica, $system",
     color: "$primaryFg",
+    boxSizing: "border-box",
   },
 
   body: {
     background: "$primaryBg",
     // backgroundImage: "url(./assets/noise.svg)",
+    // margin: "$m",
   },
 
   ul: {
