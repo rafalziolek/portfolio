@@ -19,8 +19,8 @@ function Playground() {
           css={{
             marginTop: "$s",
             gridGap: "$xs",
-            gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-            gridAutoRows: "minmax(180px, auto)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+            gridAutoRows: "minmax(400px, auto)",
             gridAutoFlow: "dense",
           }}
         >

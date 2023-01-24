@@ -7,35 +7,44 @@ export const Text = styled("p", {
   fontWeight: "$body",
 
   variants: {
-    muted: {
-      true: {
-        color: "$gray400",
-      },
-    },
     secondary: {
       true: {
-        color: "gray600",
+        color: "$gray600",
       },
     },
 
     emphasis: {
       true: {
-        fontWeight: "$headingBold",
+        fontWeight: "$emphasis",
       },
     },
     type: {
       mainHeading: {
-        fontSize: "$mainHeading",
+        fontSize: "$mainHeadingMobile",
         lineHeight: "$heading",
-        fontWeight: "$headingBold",
+        fontWeight: "$heading",
         letterSpacing: "-2px",
+        "@bp1": {
+          fontSize: "$mainHeading",
+        },
       },
 
       heading: {
-        fontSize: "$heading",
+        fontSize: "$headingMobile",
         lineHeight: "$heading",
         fontWeight: "$heading",
         letterSpacing: "-1px",
+
+        "@bp3": {
+          fontSize: "$heading",
+        },
+      },
+
+      subHeading: {
+        fontSize: "$subHeading",
+        lineHeight: "$heading",
+        fontWeight: "$heading",
+        letterSpacing: "0px",
       },
 
       body: {
@@ -51,9 +60,13 @@ export const Text = styled("p", {
       },
 
       caption: {
-        fontSize: "$caption",
+        fontSize: "$captionMobile",
         lineHeight: "$body",
         maxWidth: "70ch",
+
+        "@bp1": {
+          fontSize: "$caption",
+        },
       },
     },
   },

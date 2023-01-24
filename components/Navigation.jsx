@@ -2,52 +2,46 @@ import { styled } from "../stitches.confing";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const NavWrapper = styled("nav", {
-  borderRadius: "$radius$pill",
-
-  width: "fit-content",
-
+const StyledNavigation = styled("nav", {
   "& ul": {
     display: "flex",
-    flexDirection: "row",
     listStyle: "none",
-    gap: "$s",
+    gap: "$xs",
   },
 });
 
-const NavLink = styled("a", {
-  $$Background: "$gray00",
-  $$Opacity: "0.8",
-
-  // boxShadow: "0 0 0 1px rgba(107,107,107,$$Opacity)",
-  fontSize: "$caption",
+const StyledNavItem = styled("a", {
+  fontSize: "$captionMobile",
   lineHeight: "$compact",
   fontWeight: "$heading",
-  color: "rgba(0,0,0,1)",
-  padding: "11px $4 13px $4",
-  display: "block",
+  color: "$primaryFg",
   textDecoration: "none",
-  borderRadius: "$radius$pill",
-  background: "rgba(225,225,225,0.40)",
-  backdropFilter: "blur(35px)",
+  whiteSpace: "nowrap",
+  height: "40px",
+  padding: "11px $m 13px $m",
   display: "flex",
-  gap: "$xs",
   alignItems: "center",
-  "&:hover": {
-    color: "$black",
-    background: "white",
-    boxShadow: "0 0 0 1px black",
-    "&:before": {
-      color: "black",
+  gap: "$xs",
+  borderRadius: "$radius$pill",
+  background: "$transparentBg",
+  backdropFilter: "$filters$backdropBlur",
+
+  "@media (hover: hover)": {
+    "&:hover": {
+      color: "$primaryFg",
+      background: "$primaryBg",
+      boxShadow: "0 0 0 1px $colors$primaryFg",
+      "&:before": {
+        color: "$primaryFg",
+      },
     },
   },
 
   variants: {
     active: {
       true: {
-        background: "rgba(0,0,0,1)",
-        color: "white",
-        position: "relative",
+        background: "$primaryBgInverted",
+        color: "$primaryFgInverted",
         paddingLeft: "$s",
         "&:before": {
           content: "→",
@@ -57,54 +51,28 @@ const NavLink = styled("a", {
   },
 });
 
-export function NavItem({ label, path, pathName, href }) {
+export function NavigationItem({ label, path, href }) {
+  const router = useRouter();
+
   return (
     <li>
       <Link href={path} passHref legacyBehavior>
-        <NavLink href={href} active={pathName === path ? true : false}>
+        <StyledNavItem
+          href={href}
+          active={router.pathname === path ? true : false}
+        >
           {label}
-        </NavLink>
+        </StyledNavItem>
       </Link>
     </li>
   );
 }
 
-export const NavButton = styled("button", {
-  background: "rgba(225,225,225,0.40)",
-  borderRadius: "$radius$m",
-  backdropFilter: "blur(40px)",
-  width: "fit-content",
-  padding: "$1",
-  appearance: "none",
-  border: "none",
-  fontSize: "$body",
-  lineHeight: "$body",
-  fontWeight: "$body",
-  color: "white",
-  cursor: "pointer",
-  height: "44px",
-  width: "44px",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  "& svg": {
-    fill: "black",
-  },
-  "&:hover": {
-    color: "$black",
-    background: "white",
-    boxShadow: "0 0 0 1px black",
-    "& svg": {
-      fill: "black",
-    },
-  },
-});
-
 function Navigation({ children }) {
   return (
-    <NavWrapper>
+    <StyledNavigation>
       <ul>{children}</ul>
-    </NavWrapper>
+    </StyledNavigation>
   );
 }
 

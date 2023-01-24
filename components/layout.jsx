@@ -1,40 +1,45 @@
-import Navigation, { NavItem, NavButton } from "./Navigation";
+import Navigation, { NavButton, NavigationItem } from "./Navigation";
 import { styled, globalStyles } from "../stitches.confing";
 import { useRouter } from "next/router";
 import Box from "./Box";
 import Footer from "./Footer";
+import { Button } from "./Button";
 
-const StickyBar = styled("div", {
-  position: "sticky",
-  top: "0",
-  // background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, white 40%)",
-  // background: "rgba(250,250,250,0.8)",
-  // boxShadow: "-1px 0 0 1px rgba(0,0,0,0.1)",
-  padding: "$m",
-  // backdropFilter: "blur(20px)",
+const TopBar = styled("div", {
+  background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, white 40%)",
+  bottom: "-1px",
+  position: "fixed",
+  zIndex: "999",
+  overflowY: "scroll",
+  display: "flex",
+  padding: "$s",
+  gap: "$xs",
   right: "0",
   left: "0",
-  display: "flex",
   justifyContent: "space-between",
-  zIndex: "999",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+  "@bp1": {
+    padding: "$m",
+    position: "sticky",
+    top: "0",
+    background: "none",
+  },
 });
 
 export default function Layout({ children }) {
   const router = useRouter();
   return (
     <>
-      <StickyBar>
+      <TopBar>
         {/* <Box></Box> */}
         <Navigation>
-          <NavItem pathName={router.pathname} path="/" label="Work" />
-          <NavItem pathName={router.pathname} path="/me" label="About" />
-          <NavItem
-            pathName={router.pathname}
-            path="/outside-work"
-            label="Outside work"
-          />
+          <NavigationItem path="/" label="Work" />
+          <NavigationItem path="/me" label="About" />
+          <NavigationItem path="/outside-work" label="Outside work" />
         </Navigation>
-        <NavButton icon>
+        <Button color="light">
           <svg
             width="24"
             height="24"
@@ -49,8 +54,8 @@ export default function Layout({ children }) {
               // fill="white"
             />
           </svg>
-        </NavButton>
-      </StickyBar>
+        </Button>
+      </TopBar>
       {children}
       <Footer />
     </>
