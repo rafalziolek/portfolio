@@ -1,14 +1,40 @@
 import Head from "next/head";
-import Image from "next/image";
+import React from "react";
 import { styled } from "../stitches.confing";
-import Box from "../components/Box";
-import { Text } from "../components/Text";
-import Link from "next/link";
-import Project from "../components/Project";
-import { Divider } from "../components/Divider";
-import { ExternalLink } from "../components/ExternalLink";
+import { motion, useTransform } from "framer-motion";
+import { useScroll, useInView } from "framer-motion";
+
+import Header from "../components/Header/Header";
+import SelectedWorks from "../components/SelectedWorks/SelectedWorks";
+import Footer from "../components/Footer/Footer";
+import Modal from "../components/Modal/Modal";
+import Text from "../components/Text/Text";
+// import {
+//   AccordionContainer,
+//   AccordionItem,
+//   AccordionTrigger,
+//   AccordionContent,
+// } from "../components/Accordion/AccordionTest";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const workRef = React.useRef(null);
+  const isInView = useInView(workRef, {
+    margin: "0px 0px 0px 0px",
+  });
+  const { scrollYProgress } = useScroll({
+    target: workRef,
+    offset: ["start end", "start start"],
+  });
+
+  // const scale = useTransform(scrollYProgress, [0, 1], [0.96, 1]);
+  // const opacity = useTransform(scrollYProgress, [0, 1.2], [0.0, 1]);
+  // const y = useTransform(scrollYProgress, [0, 1], ["20%", "0%"]);
+  // const blur = useTransform(
+  //   scrollYProgress,
+  //   (value) => `blur(${(1 - value) * 5}px)`
+  // );
+
   return (
     <>
       <Head>
@@ -18,103 +44,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Box>
-        {/* ---Header--- */}
-        <Box
-          as="header"
-          css={{
-            justifyContent: "end",
-            minHeight: "40vh",
-            margin: "$s",
-            display: "flex",
-            flexDirection: "column",
-            gap: "$",
+      <Header setIsOpen={setIsOpen} />
+      <motion.div
+        ref={workRef}
+        style={{
+          opacity: isInView ? 1 : 0,
+          // scale: isInView ? 1 : 0.8,
+          transform: isInView ? "translateY(0%)" : "translateY(5%)",
+          filter: isInView ? "blur(0px)" : "blur(30px)",
+          transition: "all 1s cubic-bezier(0.17, 0.55, 0.55, 1)",
+        }}
+      >
+        <SelectedWorks />
+      </motion.div>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Text>Siema siema</Text>
+      </Modal>
 
-            "@bp1": {
-              marginX: "$m",
-            },
-
-            "@bp3": {
-              height: "35vh",
-            },
-          }}
-        >
-          <Text type="mainHeading" as="h1" css={{ maxWidth: "40ch" }}>
-            I am Rafał Ziółek — Digital Product Designer.
-            <Text as="span" type="mainHeading" secondary>
-              <br />
-              Currently working on design systems at Docplanner.
-            </Text>
-          </Text>
-
-          <Box
-            css={{
-              margin: "$l 0 0 0",
-              display: "flex",
-              gap: "$m",
-            }}
-          >
-            <ExternalLink href="https://read.cv/rafalziolek">
-              read.cv
-            </ExternalLink>
-            <ExternalLink href="https://twitter.com/rafal_ziolek">
-              Twitter
-            </ExternalLink>
-            <ExternalLink href="https://github.com/rafalziolek">
-              Github
-            </ExternalLink>
-          </Box>
-        </Box>
-
-        {/* ---Projects--- */}
-        <Box
-          css={{
-            margin: "0 $m $xl $m",
-            paddingTop: "$s",
-            rowGap: "$s",
-          }}
-        >
-          <Box
-            grid
-            css={{
-              display: "grid",
-              gridTemplateColumns: "100%",
-              rowGap: "$l",
-              columnGap: "$s",
-              "@bp2": {
-                gridTemplateColumns: "repeat( 2,1fr )",
-              },
-            }}
-          >
-            <Project
-              style={{
-                backgroundColor: "#B8EFE8",
-                gridColumn: "span 2",
-              }}
-              projectName="Watson"
-              title="Watson Design System"
-              caption="Docplanner's design language for our SaaS product and digital experience."
-            />
-            <Project
-              projectName="Nikola"
-              title="Nikola Chmiel"
-              caption=" Personal website for a certified yoga teacher"
-            />
-            <Project
-              video
-              projectName="Watson"
-              title="Watson Design System"
-              caption="Docplanner's design language for our SaaS product and digital experience."
-            />
-            <Project
-              video
-              projectName="Nikola"
-              title="Nikola Chmiel"
-              caption=" Personal website for a certified yoga teacher"
-            />
-          </Box>
-        </Box>
-      </Box>
+      <Footer></Footer>
     </>
   );
 }

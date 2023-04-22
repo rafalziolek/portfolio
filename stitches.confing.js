@@ -10,30 +10,24 @@ export const { styled, getCssText, globalCss, keyframes } = createStitches({
     fontSizes: {
       // Core tokens
 
-      xxs: ".875",
-      xs: "1rem", // 16px
-      s: "1.125rem", // 18px
-      m: "1.5rem", // 24px
-      l: "2rem", // 32px
-      xl: "2.5rem", // 40px
-      xxl: "3.5rem", // 48px
+      // Major Second
+      1: "1rem",
+      2: "1.125rem",
+      3: "1.266rem",
+      4: "1.424rem",
+      5: "1.602rem",
+      6: "1.802rem",
+      7: "2.027rem",
+      8: "2.281rem",
+      9: "2.566rem",
+      10: "2.887rem",
 
-      // Semantic tokens
-
-      // @bp1
-      caption: "$xs",
-      body: "$s",
-      subHeading: "$m",
-      heading: "$l",
-      mainHeading: "$xxl",
-
-      //@bp2
-
-      // @bp3
-      captionMobile: "$xs",
-      mainHeadingMobile: "$xl",
-      subHeadingMobile: "$m",
-      headingMobile: "$l",
+      xs: "$1", // 16px
+      s: "$4", // 18px
+      m: "$6", // 28px
+      l: "$8", // 36px
+      xl: "$9", // 40px
+      xxl: "$10", // 48px
     },
 
     fontWeights: {
@@ -52,7 +46,7 @@ export const { styled, getCssText, globalCss, keyframes } = createStitches({
     lineHeights: {
       // Core tokens
       s: "1",
-      m: "1.10",
+      m: "1.25",
       l: "1.5",
 
       // Semantic tokens
@@ -133,6 +127,10 @@ export const { styled, getCssText, globalCss, keyframes } = createStitches({
     filters: {
       backdropBlur: "blur(20px)",
     },
+    underline: {
+      thickness: "4px",
+      offset: "5px",
+    },
   },
 
   media: {
@@ -163,24 +161,20 @@ export const { styled, getCssText, globalCss, keyframes } = createStitches({
   },
 });
 
-export const Marquee = keyframes({
-  "0%": { transform: "translateX(100%)" },
-  "100%": { transform: "translateX(-100%)" },
-});
-
 export const globalStyles = globalCss({
   "*": {
     margin: 0,
     padding: 0,
     fontFamily: "$neueHaasUnica, $system",
-    color: "$primaryFg",
+    color: "#fff !important",
     boxSizing: "border-box",
+    "-webkit-font-smoothing": "antialiased",
+    scrollBehavior: "smooth",
   },
 
   body: {
-    background: "$primaryBg",
-    // backgroundImage: "url(./assets/noise.svg)",
-    // margin: "$m",
+    background: "#000",
+    // background: "#FC3F00",
   },
 
   ul: {
