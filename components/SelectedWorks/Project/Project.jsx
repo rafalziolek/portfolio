@@ -41,7 +41,7 @@ function Project({ name, title, alt, desc, imgSrc, icon }) {
         },
       }}
     >
-      <Link href={`/projects/${name}`}>
+      <Link href={`/projects/${name.toLowerCase()}`}>
         <Stack Gap="l" justifyContent="between">
           <Stack
             direction="column"
