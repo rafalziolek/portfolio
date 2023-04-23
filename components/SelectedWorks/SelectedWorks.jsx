@@ -43,7 +43,7 @@ function SelectedWorks({ styles }) {
       <ProjectsGrid id="work">
         <Project
           title="Watson Design System"
-          name="watson"
+          name="Watson"
           desc="Docplanner's design language for our SaaS products and digital experience."
           icon={<WatsonIcon />}
           imgSrc={watsonThumbnail}
