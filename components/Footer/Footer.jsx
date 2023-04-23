@@ -6,7 +6,7 @@ import Stack from "../Stack/Stack";
 import TwitterIcon from "../icons/twitter";
 import InstagramIcon from "../icons/Instagram";
 import LayersIcon from "../icons/Layers";
-import LinkedInIcon from "../icons/Linkedin";
+import LinkedInIcon from "../icons/LinkedIn";
 
 const StyledFooter = styled("div", {
   paddingInline: "$s",

@@ -9,7 +9,7 @@ import Footer from "../Footer/Footer";
 import Button from "../Button/Button";
 import { StyledLink } from "../Link/Link";
 import TwitterIcon from "../icons/twitter";
-import LinkedInIcon from "../icons/Linkedin";
+import LinkedInIcon from "../icons/LinkedIn";
 import LayersIcon from "../icons/Layers";
 import InstagramIcon from "../icons/Instagram";
 const StyledHeader = styled("header", {

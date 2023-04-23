@@ -7,7 +7,7 @@ import Project from "./Project/Project";
 import WatsonIcon from "../icons/WatsonIcon";
 import NikolaIcon from "../icons/NikolaIcon";
 import watsonThumbnail from "../../public/assets/projects/Watson/watson-thumbnail.png";
-import nikolaThumbnail from "../../public/assets/projects/nikola/thumbnail.png";
+import nikolaThumbnail from "../../public/assets/projects/Nikola/thumbnail.png";
 
 Project.toString = () => ".project-thumbnail";
 export const ProjectsGrid = styled("div", {
