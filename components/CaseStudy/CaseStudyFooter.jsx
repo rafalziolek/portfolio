@@ -7,7 +7,7 @@ import { ProjectsGrid } from "../SelectedWorks/SelectedWorks";
 import WatsonIcon from "../icons/WatsonIcon";
 import NikolaIcon from "../icons/NikolaIcon";
 import watsonThumbnail from "../../public/assets/projects/Watson/watson-thumbnail.png";
-import nikolaThumbnail from "../../public/assets/projects/nikola/thumbnail.png";
+import nikolaThumbnail from "../../public/assets/projects/Nikola/thumbnail.png";
 function CaseStudyFooter() {
   return (
     <Stack direction="column" Gap="m">
