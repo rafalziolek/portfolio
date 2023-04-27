@@ -24,7 +24,7 @@ function Project({ name, title, alt, desc, imgSrc, icon }) {
       css={{
         minWidth: "650px",
         border: "2px solid  $colors$gray1000",
-        borderRadius: "$radius$m",
+        borderRadius: "$radius$2",
         padding: "$m",
         overflow: "hidden",
         "&:hover": {
@@ -49,14 +49,16 @@ function Project({ name, title, alt, desc, imgSrc, icon }) {
             css={{ padding: "$xs", width: "100%", flexGrow: "1" }}
           >
             {icon}
-            <Stack direction="column" Gap="xs">
+            <Stack direction="column">
               <Text as="h3" type="heading">
                 {title}
               </Text>
-              <Text css={{ fontSize: "24px" }}>{desc}</Text>
+              <Text type="heading" css={{ color: "$gray500" }}>
+                {desc}
+              </Text>
             </Stack>
           </Stack>
-          <Box css={{ flexGrow: "0" }}>
+          <Box css={{ flexGrow: "0", marginRight: "-150px" }}>
             <Image alt={alt} src={imgSrc} />
           </Box>
         </Stack>

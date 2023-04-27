@@ -1,7 +1,6 @@
 import React from "react";
 import { styled } from "../../stitches.confing";
 import Box from "../Box/Box";
-import ScrollLock, { TouchScrollable } from "react-scrolllock";
 
 const Overlay = styled("div", {
   width: "100%",
@@ -33,9 +32,8 @@ function Modal({ position, children, isOpen, setIsOpen }) {
     return (
       <>
         <Overlay onClick={handleClose} />
-        <ScrollLock>
-          <ModalWrapper>{children}</ModalWrapper>
-        </ScrollLock>
+
+        <ModalWrapper>{children}</ModalWrapper>
       </>
     );
   }

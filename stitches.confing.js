@@ -128,8 +128,8 @@ export const { styled, getCssText, globalCss, keyframes } = createStitches({
       backdropBlur: "blur(20px)",
     },
     underline: {
-      thickness: "4px",
-      offset: "5px",
+      thickness: "2px",
+      offset: "4px",
     },
   },
 
@@ -166,7 +166,7 @@ export const globalStyles = globalCss({
     margin: 0,
     padding: 0,
     fontFamily: "$neueHaasUnica, $system",
-    color: "#fff !important",
+    color: "#fff ",
     boxSizing: "border-box",
     "-webkit-font-smoothing": "antialiased",
     scrollBehavior: "smooth",

@@ -1,0 +1,35 @@
+import { MDXProvider } from "@mdx-js/react";
+import CaseStudyLayout from "../../components/CaseStudy/CaseStudyLayout";
+import { StyledImg } from "../../components/CaseStudy/CaseStudyLayout";
+
+# Watson is Docplanner's design language for our SaaS product and digital experience. The system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors.
+
+[Check watson live ↗](https://watson.docplanner.design)
+
+<StyledImg src="/assets/projects/Watson/thumbnail.jpg" />
+
+## The issues we faced
+
+### Lack of control
+
+Ui Kit library didn’t provide custom design directives as we relied on opinionated third-party libraries. It led to a library that is dependent on a third-party and can’t be easily adapted to the changes required by the product direction, thus creating a legacy inside it.
+
+### Accessibility
+
+Neither our foundations nor components were never created with accessibility in mind. The usage of third-party libraries was not helping the case as well. This generated debt regarding the WCAG conventions: lack of proper roles, aria-labels, keyboard navigation, or color contrast specs.
+
+### Lack of proper documentation
+
+Documentation was scattered in multiple places. We had separate documentation for developers and for designers. They presented information about components differently, with naming and UI inconsistencies across them. This generated confusion, and product teams wasted time finding the right solution or place to answer their doubts.
+
+## Why Watson
+
+After auditing an effort to fix the current solution, we realized it’s better to start with a clean slate. We proposed creating an official team in charge of the design system, providing tailored tools, and assisting our product, front-end engineers, and design peers for both Web and App environments, very much like Sherlock Holmes’ best friend, [Dr. Watson](https://en.wikipedia.org/wiki/Dr._Watson).
+
+## Laying the foundations
+
+We decided to start with the foundational design directives, such as spacing, typography, and color tokens. It allowed us to create
+
+export default ({ children }) => <CaseStudyLayout>{children}</CaseStudyLayout
+
+>

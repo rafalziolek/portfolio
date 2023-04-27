@@ -31,11 +31,11 @@ function SelectedWorks({ styles }) {
   return (
     <Stack
       direction="column"
-      Gap="m"
+      Gap="s"
       css={{
         ...styles,
         marginBottom: "$xl",
-        paddingInline: "$m",
+        paddingInline: "$s",
         marginTop: "$xl",
       }}
     >
@@ -44,15 +44,15 @@ function SelectedWorks({ styles }) {
         <Project
           title="Watson Design System"
           name="Watson"
-          desc="Docplanner's design language for our SaaS products and digital experience."
-          icon={<WatsonIcon />}
+          desc="Docplanner's design language for SaaS products"
+          icon={<WatsonIcon size="48" />}
           imgSrc={watsonThumbnail}
         />
         <Project
           title="Poza matą Studio"
           name="Nikola"
           desc="Boutique yoga studio for everyone"
-          icon={<NikolaIcon />}
+          icon={<NikolaIcon size="48" />}
           imgSrc={nikolaThumbnail}
         />
       </ProjectsGrid>

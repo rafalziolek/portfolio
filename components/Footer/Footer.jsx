@@ -45,7 +45,7 @@ function Footer() {
         </StyledLink>
       </Text> */}
       <Stack Gap="xs" alignItems="center" css={{ marginTop: "$4" }}>
-        <Text css={{ maxWidth: "none", fontSize: "36px", maxWidth: "65ch" }}>
+        <Text type="heading">
           Special thanks to my cats,{" "}
           <span
             style={{

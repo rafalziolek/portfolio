@@ -1,10 +1,10 @@
-function WatsonIcon() {
+function WatsonIcon({ size = "56" }) {
   return (
     <svg
       fill="none"
-      height="56"
+      height={size}
       viewBox="0 0 56 56"
-      width="56"
+      width={size}
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect fill="#03c3a5" height="56" rx="16" width="56" />
