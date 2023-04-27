@@ -21,9 +21,9 @@ const Text = styled("p", {
     },
     type: {
       heading: {
-        fontSize: "$l",
+        fontSize: "$5",
         lineHeight: "$m",
-        maxWidth: "70ch",
+        maxWidth: "63ch",
       },
     },
   },

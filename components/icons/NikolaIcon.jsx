@@ -1,8 +1,8 @@
-function NikolaIcon() {
+function NikolaIcon({ size = "57" }) {
   return (
     <svg
-      width="57"
-      height="56"
+      width={size}
+      height={size}
       viewBox="0 0 57 56"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

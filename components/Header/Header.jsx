@@ -13,8 +13,8 @@ import LinkedInIcon from "../icons/LinkedIn";
 import LayersIcon from "../icons/Layers";
 import InstagramIcon from "../icons/Instagram";
 const StyledHeader = styled("header", {
-  minHeight: "60vh",
-  padding: "$m",
+  minHeight: "50vh",
+  padding: "$s",
 });
 
 function Header({ setIsOpen }) {
@@ -23,16 +23,17 @@ function Header({ setIsOpen }) {
   };
   return (
     <StyledHeader>
-      <Stack direction="column" Gap="xl">
+      <Stack direction="column" Gap="m">
         <Text
-          css={{
-            fontSize: "36px",
-            maxWidth: "63ch",
-            lineHeight: "$s",
-            color: "#fff",
-            letterSpacing: "-0.5px",
-            fontWeight: "$regular",
-          }}
+          type="heading"
+          // css={{
+          //   fontSize: "36px",
+          //   maxWidth: "63ch",
+          //   lineHeight: "$s",
+          //   color: "#fff",
+          //   letterSpacing: "-0.5px",
+          //   fontWeight: "$regular",
+          // }}
         >
           I am Rafał Ziółek. Digital product designer & photographer based in
           Poland. Currently building design systems at{" "}
@@ -41,37 +42,39 @@ function Header({ setIsOpen }) {
 
         <Stack direction="column">
           <Text type="heading">
-            Connect with me on{" "}
+            Connect with me on{"  "}
             <StyledLink href="https://twitter.com/rafal_ziolek">
-              <TwitterIcon />
+              <TwitterIcon size="24" />
               Twitter
-            </StyledLink>{" "}
+            </StyledLink>
+            {"  "}
             or{" "}
             <StyledLink href="https://www.linkedin.com/in/rafal-ziolek/">
-              <LinkedInIcon size={30} />
+              <LinkedInIcon size="24" />
               LinkedIn.
             </StyledLink>
             <br />
             For design explorations follow me on{" "}
             <StyledLink href="https://layers.to/rafalziolek">
-              <LayersIcon />
+              <LayersIcon size="24" />
               Layers
             </StyledLink>
             , and for photography check my{" "}
             <StyledLink href="https://www.instagram.com/notactualphotographer/">
-              <InstagramIcon /> Instagram
+              <InstagramIcon size="24" /> Instagram
             </StyledLink>
           </Text>
         </Stack>
         <Text
-          css={{
-            fontSize: "36px",
-            maxWidth: "63ch",
-            lineHeight: "$s",
-            color: "#fff",
-            letterSpacing: "-0.5px",
-            fontWeight: "$regular",
-          }}
+          type="heading"
+          // css={{
+          //   fontSize: "36px",
+          //   maxWidth: "63ch",
+          //   lineHeight: "$s",
+          //   color: "#fff",
+          //   letterSpacing: "-0.5px",
+          //   fontWeight: "$regular",
+          // }}
         >
           You can also{" "}
           <StyledLink onClick={handleOpenModal}> read more about me</StyledLink>{" "}

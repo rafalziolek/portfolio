@@ -16,10 +16,13 @@ export const StyledLink = styled("a", {
   alignItems: "baseline",
   gap: "8px",
   "& svg": {
-    alignSelf: "inherit",
+    alignSelf: "center",
+    marginTop: "2px",
+    marginLeft: "$1",
   },
   "&:hover": {
     textDecorationColor: "white",
+    color: "#fff",
   },
 });
 
