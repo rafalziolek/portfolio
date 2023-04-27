@@ -1,9 +1,7 @@
 import React from "react";
-import CaseStudy from "../../components/CaseStudy/CaseStudy";
-import Text from "../../components/Text/Text";
-import Stack from "../../components/Stack/Stack";
-import Image from "next/image";
-import Thumbnail from "../../public/assets/projects/Watson/Thumbnail.png";
+import CaseStudy from "../../../components/CaseStudy/CaseStudy";
+import Text from "../../../components/Text/Text";
+import Stack from "../../../components/Stack/Stack";
 
 const PROJECT_INTRO =
   "Watson is Docplanner's design language for our SaaS product and digital experience. The system consists of working code, design tools and resources, human interface guidelines.";
