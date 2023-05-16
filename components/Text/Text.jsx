@@ -1,7 +1,7 @@
 import { styled } from "../../stitches.confing";
 
 const Text = styled("p", {
-  fontSize: "$s",
+  fontSize: "$4",
   fontWeight: "$regular",
   color: "#fff",
   letterSpacing: "-0.5px",
@@ -21,9 +21,13 @@ const Text = styled("p", {
     },
     type: {
       heading: {
-        fontSize: "$5",
+        fontSize: "$6",
         lineHeight: "$m",
-        maxWidth: "63ch",
+        // maxWidth: "40ch",
+      },
+      mainHeading: {
+        fontSize: "$10",
+        lineHeight: "$m",
       },
     },
   },

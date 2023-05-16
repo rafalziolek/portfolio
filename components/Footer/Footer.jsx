@@ -12,6 +12,8 @@ const StyledFooter = styled("div", {
   paddingInline: "$s",
   paddingBlock: "$m",
   // borderTop: "2px solid black",
+  // position: "fixed",
+  bottom: "0px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
@@ -78,7 +80,7 @@ function Footer() {
             />
             Newton
           </span>
-          , for providing emotional support while building this website
+          , for providing emotional support while building this website.
         </Text>
         {/* <Stack Gap="xs"></Stack> */}
       </Stack>

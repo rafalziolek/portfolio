@@ -3,10 +3,10 @@ import { styled } from "../../stitches.confing";
 
 const StyledButton = styled("button", {
   borderRadius: "999px",
-  padding: "9px 16px 12px 16px",
-  border: "2px solid $colors$gray600",
+  border: "2px solid $colors$gray800",
+  padding: "6px 16px 10px 16px",
   background: "transparent",
-  fontSize: "$s",
+  fontSize: "$5",
   // fontWeight: "$emphasis",
   color: "white",
   // border: "none",
