@@ -128,8 +128,8 @@ export const { styled, getCssText, globalCss, keyframes } = createStitches({
       backdropBlur: "blur(20px)",
     },
     underline: {
-      thickness: "2px",
-      offset: "4px",
+      thickness: "3px",
+      offset: "6px",
     },
   },
 

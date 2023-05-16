@@ -7,7 +7,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { StyledLink } from "../Link/Link";
 
 const StyledCaseStudy = styled("div", {
-  padding: "$m",
+  padding: "$s",
 });
 
 const CaseStudyContent = styled("main", {
@@ -24,13 +24,15 @@ export const StyledImg = styled("img", {
   maxWidth: "100%",
   height: "auto",
   objectFit: "cover",
+  display: "block",
+  marginY: "$xl",
 });
 
 const StyledH1 = styled("h1", {
-  fontSize: "$5",
+  fontSize: "$9",
   fontWeight: "$regular",
   lineHeight: "$heading",
-  maxWidth: "63ch",
+  // maxWidth: "63ch",
   letterSpacing: "-0.5px",
   marginBottom: "$m",
   marginTop: "$m",
@@ -41,7 +43,7 @@ const StyledH2 = styled("h2", {
   lineHeight: "$heading",
   maxWidth: "63ch",
   letterSpacing: "-0.5px",
-  marginBottom: "$m",
+  marginBottom: "$xs",
   marginTop: "$xl",
 });
 const StyledH3 = styled("h3", {
@@ -51,6 +53,7 @@ const StyledH3 = styled("h3", {
   maxWidth: "63ch",
   letterSpacing: "-0.5px",
   marginBottom: "$xs",
+  marginTop: "$m",
 });
 
 const StyledP = styled("p", {
@@ -60,7 +63,7 @@ const StyledP = styled("p", {
   lineHeight: "$heading",
   maxWidth: "63ch",
   letterSpacing: "-0.5px",
-  marginBottom: "$6",
+  marginBottom: "$l",
 });
 
 const components = {
@@ -76,7 +79,7 @@ function CaseStudyLayout({ children }) {
   return (
     <MDXProvider components={components}>
       <StyledCaseStudy>
-        <BackButton />
+        <BackButton css={{ fontSize: "$2" }} />
         {children}
       </StyledCaseStudy>
     </MDXProvider>

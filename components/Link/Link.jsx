@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "../../stitches.confing";
 import Link from "next/link";
 export const StyledLink = styled("a", {
-  color: "inherit",
+  color: "white",
   cursor: "pointer",
   textDecoration: "none",
   fontWeight: "inherit",
@@ -21,7 +21,7 @@ export const StyledLink = styled("a", {
     marginLeft: "$1",
   },
   "&:hover": {
-    textDecorationColor: "white",
+    textDecorationColor: "$gray300",
     color: "#fff",
   },
 });

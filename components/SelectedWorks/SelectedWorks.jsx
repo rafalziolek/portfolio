@@ -8,7 +8,18 @@ import WatsonIcon from "../icons/WatsonIcon";
 import NikolaIcon from "../icons/NikolaIcon";
 import watsonThumbnail from "../../public/assets/projects/Watson/watson-thumbnail.png";
 import nikolaThumbnail from "../../public/assets/projects/Nikola/thumbnail.png";
-
+import { StyledLink } from "../Link/Link";
+import ProjectsTable from "../ProjectsTable/ProjectsTable";
+const projects = [
+  {
+    title: "Watson Design System",
+    desc: "Docplanner's design language for our SaaS products and digital experience.",
+  },
+  {
+    title: "Watson Design System",
+    desc: "Docplanner's design language for our SaaS products and digital experience.",
+  },
+];
 Project.toString = () => ".project-thumbnail";
 export const ProjectsGrid = styled("div", {
   // filter: "blur(5px)",
@@ -16,14 +27,16 @@ export const ProjectsGrid = styled("div", {
   // scale: "0.95",
   $$gap: "$space$s",
   display: "flex",
+  justifyContent: "space-between",
   flexWrap: "wrap",
   gap: "$$gap",
-  rowGap: "$$gap",
+  rowGap: "$3",
   // flexDirection: "column",
   width: "100%",
+
   //
   [`& ${Project}`]: {
-    width: "calc(50% - $$gap)",
+    maxWidth: "50%",
     flexGrow: "1",
   },
 });
@@ -31,16 +44,33 @@ function SelectedWorks({ styles }) {
   return (
     <Stack
       direction="column"
-      Gap="s"
+      Gap="m"
       css={{
         ...styles,
-        marginBottom: "$xl",
+        marginBottom: "$xxl",
         paddingInline: "$s",
-        marginTop: "$xl",
+        marginTop: "$xxl",
       }}
     >
-      <Text type="heading">Selected works</Text>
+      <Text type="mainHeading" css={{ marginBottom: "$xs" }}>
+        Selected works
+      </Text>
       <ProjectsGrid id="work">
+        <Project
+          title="Watson Design System"
+          name="Watson"
+          desc="Docplanner's design language for SaaS products"
+          icon={<WatsonIcon size="48" />}
+          imgSrc={watsonThumbnail}
+        />
+        <Project
+          title="Poza matą Studio"
+          name="Nikola"
+          desc="Boutique yoga studio for everyone"
+          icon={<NikolaIcon size="48" />}
+          imgSrc={nikolaThumbnail}
+          video={true}
+        />
         <Project
           title="Watson Design System"
           name="Watson"
@@ -56,6 +86,7 @@ function SelectedWorks({ styles }) {
           imgSrc={nikolaThumbnail}
         />
       </ProjectsGrid>
+      <ProjectsTable projects={projects} />
     </Stack>
   );
 }

@@ -9,6 +9,7 @@ import SelectedWorks from "../components/SelectedWorks/SelectedWorks";
 import Footer from "../components/Footer/Footer";
 import Modal from "../components/Modal/Modal";
 import Text from "../components/Text/Text";
+import Box from "../components/Box/Box";
 // import {
 //   AccordionContainer,
 //   AccordionItem,
