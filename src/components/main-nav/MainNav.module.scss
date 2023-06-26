@@ -1,0 +1,44 @@
+.nav-link {
+  display: block;
+  font-size: var(--font-size-body);
+  color: var(--color-foreground-primary);
+  font-weight: var(--font-weight-m);
+  &:hover {
+    box-shadow: 0px 3px 0px 0px var(--color-foreground-primary);
+  }
+}
+
+.main-nav {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  // backdrop-filter: blur(15px);
+  background: linear-gradient(180deg, #000000 77.6%, rgba(0, 0, 0, 0) 100%);
+
+  padding: var(--space-xs) var(--space-s) var(--space-m);
+
+  & ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-s);
+  }
+}
+
+.nav-item {
+  border-radius: 999px;
+  font-weight: var(--font-weight-m);
+  & a {
+    mix-blend-mode: exclusion;
+  }
+}
+
+.active {
+  & a {
+    color: var(--color-foreground-primary-inverted);
+  }
+}

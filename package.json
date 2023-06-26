@@ -9,19 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mdx-js/loader": "^2.2.1",
-    "@mdx-js/react": "^2.2.1",
-    "@next/font": "13.1.0",
-    "@next/mdx": "^13.1.1",
-    "@stitches/react": "^1.2.8",
-    "eslint": "8.30.0",
-    "eslint-config-next": "13.1.0",
-    "framer-motion": "^8.4.2",
-    "next": "13.1.0",
+    "eslint": "8.42.0",
+    "eslint-config-next": "13.4.4",
+    "framer-motion": "^10.12.16",
+    "next": "13.4.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "prettier": "2.8.1"
+    "react-dom": "18.2.0",
+    "sass": "^1.62.1"
   }
 }
