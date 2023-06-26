@@ -6,7 +6,7 @@ import Project from "@/components/Project/project";
 import ExternalLink from "@/components/external-link/ExternalLink";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
-import PortraitImg from "./Potrait@2x.png";
+import portraitImg from "../../public/portrait@2x.png";
 import Asterisks from "../components/asterisks/asterisks";
 import GradientBar from "@/components/GradientBar/gradientBar";
 
@@ -91,15 +91,15 @@ export default function Home() {
             </div>
             <div className={styles["images-wrapper"]}>
               <Image
-                src={PortraitImg}
+                src={portraitImg}
                 alt="Picture of my reflection in the windows, holding a camera"
               ></Image>
               <Image
-                src={PortraitImg}
+                src={portraitImg}
                 alt="Picture of my reflection in the windows, holding a camera"
               ></Image>
               <Image
-                src={PortraitImg}
+                src={portraitImg}
                 alt="Picture of my reflection in the windows, holding a camera"
               ></Image>
             </div>
