@@ -6,7 +6,7 @@ import Project from "@/components/Project/project";
 import ExternalLink from "@/components/external-link/ExternalLink";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
-import PortraitImg from "../../public/Potrait.png";
+import PortraitImg from "../../public/Potrait@2x.png";
 import Asterisks from "../components/asterisks/asterisks";
 import GradientBar from "@/components/GradientBar/gradientBar";
 
