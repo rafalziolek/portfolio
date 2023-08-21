@@ -12,10 +12,23 @@
   }
 
   & figure {
+    & div {
+      position: relative;
+    }
+    & video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      z-index: -1;
+    }
     & img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      z-index: 1;
     }
     & figcaption {
       padding-block: var(--space-xs);

@@ -11,6 +11,7 @@ function Project({
   title,
   projectName,
   imgAlt,
+  video,
   width,
   height,
   size = "medium",
@@ -28,18 +29,34 @@ function Project({
       }`}
     >
       <figure>
-        <Image
-          width={width}
-          height={height}
-          src={`${PROJECT_PATH}/thumbnail.png`}
-          alt={imgAlt}
-        />
+        {video && (
+          <div>
+            <video autoplay="autoplay" muted loop="loop">
+              <source src={`${PROJECT_PATH}/video.mp4`} type="video/mp4" />
+            </video>
+            <Image
+              width={width}
+              height={height}
+              src={`${PROJECT_PATH}/project.png`}
+              alt={imgAlt}
+            />
+          </div>
+        )}
+        {video !== true ? (
+          <Image
+            width={width}
+            height={height}
+            src={`${PROJECT_PATH}/project.png`}
+            alt={imgAlt}
+          />
+        ) : null}
+
         <figcaption>
           <Text as="h4" type="caption" color="secondary">
             {title}
           </Text>
           <Text type="caption">{desc}</Text>
-          <Link href={PROJECT_PATH}>Case study →</Link>
+          {<Link href="javascript:;">Coming soon →</Link>}
         </figcaption>
       </figure>
     </motion.article>

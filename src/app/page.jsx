@@ -26,9 +26,9 @@ export default function Home() {
           <Text
             as="h1"
             type="main-heading"
-            style={{ marginBlockEnd: "var(--space-xl)", maxWidth: "40ch" }}
+            style={{ marginBlockEnd: "var(--space-l)", maxWidth: "40ch" }}
           >
-            Product designer* and photographer* based in Poland. Currently
+            Product designer and photographer based in Poland. Currently
             building design systems at{" "}
             <ExternalLink href="http://docplanner.com/">
               Docplanner
@@ -133,24 +133,17 @@ export default function Home() {
           title="Watson Design System"
           desc="Docplanner's design language for digital experiences"
           projectName="watson"
-          width={1656}
-          height={1202}
-        ></Project>
-        <Project
-          title="Watson Design System"
-          desc="Docplanner's design language for digital experiences"
-          projectName="watson"
-          width={1656}
-          height={1202}
-          offset={true}
-        ></Project>
-        <Project
-          title="Watson Design System"
-          desc="Docplanner's design language for digital experiences"
-          projectName="watson"
-          width={1656}
-          height={1202}
+          width={3360}
+          height={1544}
           size="large"
+        ></Project>
+        <Project
+          title="Nikola Chmiel"
+          desc="Inspiring yoga for a beautiful You"
+          projectName="pozamata"
+          video={true}
+          width={1600}
+          height={1600}
         ></Project>
       </motion.section>
     </>
