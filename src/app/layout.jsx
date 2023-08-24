@@ -40,9 +40,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={neueMontreal.className}>
       <body>
-        <MainNav navItems={NAV_ITEMS} />
-        {children}
-        <Footer />
+        <div style={{ maxWidth: "1920px", margin: "0 auto" }}>
+          <MainNav navItems={NAV_ITEMS} />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
