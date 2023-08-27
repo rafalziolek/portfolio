@@ -31,10 +31,11 @@ function Project({
       <figure>
         {video && (
           <div>
-            <video autoplay="autoplay" muted loop="loop">
+            <video autoPlay="autoplay" muted loop="loop">
               <source src={`${PROJECT_PATH}/video.mp4`} type="video/mp4" />
             </video>
             <Image
+              key={imgAlt}
               width={width}
               height={height}
               src={`${PROJECT_PATH}/project.png`}
@@ -56,7 +57,7 @@ function Project({
             {title}
           </Text>
           <Text type="caption">{desc}</Text>
-          {<Link href="javascript:;">Coming soon →</Link>}
+          {<Link href={projectName}>Coming soon →</Link>}
         </figcaption>
       </figure>
     </motion.article>
