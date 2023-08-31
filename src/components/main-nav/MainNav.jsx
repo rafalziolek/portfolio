@@ -1,19 +1,33 @@
+"use client";
+import { usePathname } from "next/navigation";
 import styles from "./MainNav.module.scss";
-import NavLink from "@/components/main-nav/NavLinks";
-import CustomLink from "@/components/custom-link/CustomLink";
 import Link from "next/link";
 
-function MainNav() {
+function MainNav({ navItems }) {
+  const pathname = usePathname();
   return (
     <nav className={styles["main-nav"]}>
-      <div>
-        <Link href="/" className={`${styles["nav-link"]}`}>
+      <div className={styles.logo}>
+        <Link className={styles["nav-link"]} href="/">
           Rafał Ziółek
         </Link>
       </div>
       <ul>
-        <NavLink href="/">Bio</NavLink>
-        <NavLink href="#Work">Work</NavLink>
+        {navItems.map(({ label, href, id }) => {
+          const isActive = pathname === href;
+          return (
+            <li
+              className={`${styles["nav-item"]} ${
+                isActive ? styles["active"] : undefined
+              }`}
+              key={id}
+            >
+              <Link className={styles["nav-link"]} href={href}>
+                {label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
