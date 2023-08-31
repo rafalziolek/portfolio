@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 
-export default async function getBlogPostList() {
+export async function getBlogPostList() {
   const fileNames = await readDirectory("/content");
 
   const blogPosts = [];
