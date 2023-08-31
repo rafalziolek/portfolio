@@ -2,7 +2,7 @@ import React from "react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { loadBlogPost } from "@/helpers/file-helpers";
 import { notFound } from "next/navigation";
-import ProjectHeader from "@/components/components/ProjectHeader/ProjectHeader";
+import ProjectHeader from "@/components/ProjectHeader/ProjectHeader";
 
 async function ProjectPage({ params }) {
   const caseStudyData = await loadBlogPost(params.projectSlug);
