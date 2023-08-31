@@ -4,7 +4,11 @@ import ProjectHeader from "./components/ProjectHeader/ProjectHeader";
 import { loadBlogPost } from "@/helpers/file-helpers";
 
 async function ProjectPage({ params }) {
-  const { frontmatter, content } = await loadBlogPost(params.projectSlug);
+  const caseStudyData = await loadBlogPost(params.projectSlug);
+  if (!caseStudyData) {
+    notFound();
+  }
+  const { frontmatter, content } = caseStudyData;
 
   return (
     <div>
