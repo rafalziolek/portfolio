@@ -1,11 +1,13 @@
+"use client";
+import { useEffect } from "react";
 import Image from "next/image";
 import styles from "./project.module.scss";
-
+import Link from "next/link";
 import React from "react";
+import { motion, useAnimate } from "framer-motion";
 import Text from "../Text/text";
-import CustomLink from "../custom-link/CustomLink";
 
-async function Project({
+function Project({
   title,
   projectName,
   imgAlt,
@@ -15,33 +17,49 @@ async function Project({
   size = "medium",
   desc,
   offset = false,
-  path,
 }) {
   const PROJECT_PATH = `/projects/${projectName}`;
 
   return (
-    <article
+    <motion.article
+      initial="initial"
+      whileHover="show"
       className={`${styles.project} ${styles[size]} ${
         offset ? styles["offset"] : ""
       }`}
     >
       <figure>
-        <Image
-          width={width}
-          height={height}
-          src={`${PROJECT_PATH}/project-small.png`}
-          alt={imgAlt}
-        />
+        {video && (
+          <div>
+            <video autoplay="autoplay" muted loop="loop">
+              <source src={`${PROJECT_PATH}/video.mp4`} type="video/mp4" />
+            </video>
+            <Image
+              width={width}
+              height={height}
+              src={`${PROJECT_PATH}/project.png`}
+              alt={imgAlt}
+            />
+          </div>
+        )}
+        {video !== true ? (
+          <Image
+            width={width}
+            height={height}
+            src={`${PROJECT_PATH}/project.png`}
+            alt={imgAlt}
+          />
+        ) : null}
 
         <figcaption>
           <Text as="h4" type="caption" color="secondary">
             {title}
           </Text>
           <Text type="caption">{desc}</Text>
-          {<CustomLink path={path}>Read more</CustomLink>}
+          {<Link href="javascript:;">Coming soon →</Link>}
         </figcaption>
       </figure>
-    </article>
+    </motion.article>
   );
 }
 
