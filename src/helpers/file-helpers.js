@@ -9,7 +9,7 @@ export async function getBlogPostList() {
   const blogPosts = [];
 
   for (let fileName of fileNames) {
-    const rawContent = await readFile(`../content/${fileName}`);
+    const rawContent = await readFile(`/content/${fileName}`);
 
     const { data: frontmatter } = matter(rawContent);
 
