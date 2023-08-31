@@ -89,7 +89,7 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.divider}>
-          <Asterisks rows={3} />
+          {/* <Asterisks rows={3} /> */}
           <GradientBar />
         </div>
       </header>
