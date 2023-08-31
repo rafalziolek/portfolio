@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectHeader from "@/components/ProjectHeader/ProjectHeader";
+import ProjectHeader from "../../components/components/ProjectHeader/ProjectHeader";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
