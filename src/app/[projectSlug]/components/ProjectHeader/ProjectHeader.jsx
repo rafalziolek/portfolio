@@ -29,7 +29,7 @@ import CustomLink from "@/components/custom-link/CustomLink";
 //     </header>
 //   );
 // }
-function ProjectHeader({ title, abstract, details }) {
+async function ProjectHeader({ title, abstract, details }) {
   return (
     <header className={styles.header}>
       <div className={`${styles["header-layout"]}`}>

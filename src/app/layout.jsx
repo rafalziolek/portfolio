@@ -1,4 +1,4 @@
-import "../globals.scss";
+import "./globals.scss";
 import MainNav from "@/components/main-nav/MainNav";
 import Footer from "./footer";
 import localFont from "next/font/local";
@@ -11,12 +11,12 @@ export const metadata = {
 const neueMontreal = localFont({
   src: [
     {
-      path: "../../fonts/PPNeueMontreal-Regular.woff2",
+      path: "../fonts/PPNeueMontreal-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../fonts/PPNeueMontreal-Medium.woff2",
+      path: "../fonts/PPNeueMontreal-Medium.woff2",
       weight: "500",
       style: "normal",
     },

@@ -3,7 +3,7 @@ import styles from "./page.module.scss";
 import Text from "@/components/Text/text";
 import Project from "@/components/Project/project";
 import CustomLink from "@/components/custom-link/CustomLink";
-import portraitImg from "../../../public/potrait@2x.png";
+import portraitImg from "../../public/potrait@2x.png";
 import Asterisks from "@/components/asterisks/asterisks";
 import GradientBar from "@/components/GradientBar/gradientBar";
 

@@ -2,25 +2,6 @@ import Link from "next/link";
 import Text from "@/components/Text/text";
 import localFont from "next/font/local";
 import "../globals.scss";
-export const metadata = {
-  title: "Rafał Ziółek * Digital Product Designer",
-  description: "",
-};
-
-const neueMontreal = localFont({
-  src: [
-    {
-      path: "../../fonts/PPNeueMontreal-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../fonts/PPNeueMontreal-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-  ],
-});
 
 function ProjectLayout({ children }) {
   return (
