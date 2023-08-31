@@ -1,6 +1,6 @@
 .header {
   padding-inline: var(--space-s);
-  padding-block: var(--space-xl) var(--space-m);
+  padding-block: var(--space-l) var(--space-m);
   top: 0;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,6 @@
   }
   & .divider {
     grid-column: span 2;
-    overflow: hidden;
   }
 }
 .header-list-wrapper {
@@ -45,26 +44,26 @@
 
 .images-wrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   position: relative;
   min-width: fit-content;
   z-index: -1;
-
+  margin-inline: var(--space-l);
   flex-grow: 1;
   max-width: 40%;
   & img {
     display: block;
-    width: 50%;
+    width: 100%;
     height: auto;
     &:last-child {
       align-self: flex-end;
-      margin-top: 40px;
+      margin-top: 150px;
     }
     &:first-child {
       align-self: flex-start;
     }
     &:not(:first-child) {
-      margin-left: -250px;
+      margin-left: -300px;
 
       &:not(:last-child) {
         align-self: center;
@@ -75,14 +74,10 @@
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(24, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
-  gap: var(--space-m);
+  gap: var(--space-xxl) var(--space-xl);
   padding-inline: var(--space-s);
-  & article:nth-child(2n) {
-    margin-block: 150px 100px;
-  }
-  // margin-bottom: 200px;
 }
 
 @media screen and (max-width: 920px) {
@@ -92,8 +87,5 @@
     grid-template-rows: auto;
     gap: var(--space-xxl) 0;
     padding-inline: var(--space-s);
-    & article:nth-child(2n) {
-      margin-block: 0;
-    }
   }
 }

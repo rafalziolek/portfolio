@@ -12,7 +12,7 @@ const underline = {
   },
 };
 
-const arrow = {
+const arrowAngled = {
   default: {
     x: "0",
     y: "0",
@@ -23,7 +23,18 @@ const arrow = {
   },
 };
 
-function CustomLink({ href, path, children, ...delegated }) {
+const arrow = {
+  default: {
+    x: "0",
+    y: "0",
+  },
+  hover: {
+    x: "4px",
+    y: "0",
+  },
+};
+
+function CustomLink({ href, path, children, icon = true, ...delegated }) {
   if (href) {
     return (
       <motion.a
@@ -36,9 +47,14 @@ function CustomLink({ href, path, children, ...delegated }) {
         target="_blank"
       >
         {children}
-        <motion.span variants={arrow} className={styles["trailing-icon"]}>
-          ↗
-        </motion.span>
+        {icon && (
+          <motion.span
+            variants={arrowAngled}
+            className={styles["trailing-icon"]}
+          >
+            ↗
+          </motion.span>
+        )}
         <motion.span
           variants={underline}
           className={styles.hover}
@@ -56,7 +72,11 @@ function CustomLink({ href, path, children, ...delegated }) {
         {...delegated}
       >
         {children}
-
+        {icon && (
+          <motion.span variants={arrow} className={styles["trailing-icon"]}>
+            →
+          </motion.span>
+        )}
         <motion.span
           variants={underline}
           className={styles.hover}

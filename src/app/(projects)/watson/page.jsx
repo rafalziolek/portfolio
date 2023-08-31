@@ -1,7 +1,6 @@
 import React from "react";
 import ProjectHeader from "../components/ProjectHeader/ProjectHeader";
 import Image from "next/image";
-Image;
 const details = [
   {
     title: "Type of work",

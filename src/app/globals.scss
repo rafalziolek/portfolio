@@ -15,8 +15,8 @@
   // font sizes
   --font-size-xs: 0.75rem;
   --font-size-xs: 0.9375rem;
-  --font-size-s: 1.0625rem;
-  --font-size-m: 1.875rem;
+  --font-size-s: 1.625rem;
+  --font-size-m: 1.75rem;
   --font-size-l: 2rem;
   --font-size-xl: 2.75rem;
 
@@ -101,7 +101,7 @@ h2,
 h3,
 h4,
 p {
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-m);
   font-weight: var(--font-weight-m);
   line-height: 100%;
   letter-spacing: -0.2px;

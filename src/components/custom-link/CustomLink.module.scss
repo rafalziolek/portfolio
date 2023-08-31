@@ -4,18 +4,16 @@
   font-size: inherit;
   font-weight: inherit;
   line-height: 110%;
-  scroll-behavior: smooth;
 }
 .hover {
-  width: 100%;
   display: block;
   height: 2px;
+  margin-top: 2px;
   background-color: white;
 }
 
 .trailing-icon {
   display: inline-flex;
   vertical-align: text-bottom;
-  margin-inline-start: 8px;
-  margin-block-end: -1px;
+  padding-inline-start: 8px;
 }

@@ -13,7 +13,7 @@ function NavLink({ children, href }) {
         isActive ? styles["active"] : undefined
       }`}
     >
-      <CustomLink path={href} className={`${styles["nav-link"]}`}>
+      <CustomLink path={href} icon={false} className={`${styles["nav-link"]}`}>
         {children}
       </CustomLink>
     </li>

@@ -1,24 +1,13 @@
-"use client";
 import Image from "next/image";
 import styles from "./page.module.scss";
 import Text from "@/components/Text/text";
 import Project from "@/components/Project/project";
 import CustomLink from "@/components/custom-link/CustomLink";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef } from "react";
 import portraitImg from "../../../public/potrait@2x.png";
 import Asterisks from "@/components/asterisks/asterisks";
 import GradientBar from "@/components/GradientBar/gradientBar";
 
 export default function Home() {
-  const { scrollY, scrollYProgress } = useScroll();
-  const ProjectsRef = useRef(null);
-  const isInView = useInView(ProjectsRef);
-  const fixedPosition = useTransform(
-    scrollYProgress,
-    [0, 100],
-    ["relative", "sticky"]
-  );
   return (
     <>
       <header className={styles.header}>
@@ -124,13 +113,15 @@ export default function Home() {
           good and bad explorations{" "}
         </Text>
       </div>
-      <motion.section ref={ProjectsRef} className={styles.projects}>
+      <section className={styles.projects}>
         <Project
           title="Watson Design System"
           desc="Docplanner's design language for digital experiences"
           projectName="watson"
           width={2628}
           height={2048}
+          path="/watson-design-system"
+          size="large"
         ></Project>
         <Project
           title="Nikola Chmiel"
@@ -138,6 +129,8 @@ export default function Home() {
           projectName="pozamata"
           width={2800}
           height={2048}
+          path="/nikola-chmiel"
+          size="small"
         ></Project>
         <Project
           title="Nikola Chmiel"
@@ -145,8 +138,17 @@ export default function Home() {
           projectName="pozamata"
           width={2800}
           height={2048}
+          path="/nikola-chmiel"
         ></Project>
-      </motion.section>
+        <Project
+          title="Nikola Chmiel"
+          desc="Inspiring yoga for a beautiful You"
+          projectName="pozamata"
+          width={2800}
+          height={2048}
+          path="/nikola-chmiel"
+        ></Project>
+      </section>
     </>
   );
 }

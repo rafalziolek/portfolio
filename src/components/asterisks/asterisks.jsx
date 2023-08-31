@@ -1,3 +1,4 @@
+"use client";
 import react from "react";
 import styles from "./asterisks.module.scss";
 function AsteriskRow({ rows }) {
