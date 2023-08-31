@@ -7,12 +7,12 @@ async function ProjectPage({ params }) {
 
   return (
     <div>
-      {/* <ProjectHeader
+      <ProjectHeader
         title={frontmatter.title}
         abstract={frontmatter.abstract}
         details={frontmatter.details}
         live={frontmatter.live}
-      ></ProjectHeader> */}
+      ></ProjectHeader>
       <MDXRemote source={content} />
     </div>
   );

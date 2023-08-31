@@ -24,31 +24,27 @@ const neueMontreal = localFont({
 
 function ProjectLayout({ children }) {
   return (
-    <html lang="en" className={neueMontreal.className}>
-      <body>
-        <div style={{ maxWidth: "1920px", margin: "0 auto" }}>
-          <div
+    <div style={{ maxWidth: "1920px", margin: "0 auto" }}>
+      <div
+        style={{
+          marginBlock: "var(--space-xs)",
+          marginInline: "var(--space-s)",
+        }}
+      >
+        <Link href="/" aria-label="Go Back">
+          <Text
+            as="span"
             style={{
-              marginBlock: "var(--space-xs)",
-              marginInline: "var(--space-s)",
+              padding: "var(--space-s)",
+              marginLeft: "calc(-1 * var(--space-s))",
             }}
           >
-            <Link href="/" aria-label="Go Back">
-              <Text
-                as="span"
-                style={{
-                  padding: "var(--space-s)",
-                  marginLeft: "calc(-1 * var(--space-s))",
-                }}
-              >
-                ←
-              </Text>
-            </Link>
-          </div>
-          {children}
-        </div>
-      </body>
-    </html>
+            ←
+          </Text>
+        </Link>
+      </div>
+      {children}
+    </div>
   );
 }
 
