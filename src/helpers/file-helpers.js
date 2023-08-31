@@ -30,7 +30,7 @@ export const loadBlogPost = React.cache(async function loadBlogPost(slug) {
   // we'll return `null`, and the caller can figure out how
   // to handle this situation.
   try {
-    rawContent = await readFile(`/content/${slug}.mdx`);
+    rawContent = await readFile(`@/content/${slug}.mdx`);
   } catch (err) {
     return null;
   }
