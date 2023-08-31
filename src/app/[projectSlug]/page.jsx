@@ -12,7 +12,7 @@ async function ProjectPage({ params }) {
   const { frontmatter, content } = caseStudyData;
 
   return (
-    <div>
+    <>
       <ProjectHeader
         title={frontmatter.title}
         abstract={frontmatter.abstract}
@@ -20,7 +20,7 @@ async function ProjectPage({ params }) {
         live={frontmatter.live}
       ></ProjectHeader>
       <MDXRemote source={content} />
-    </div>
+    </>
   );
 }
 
