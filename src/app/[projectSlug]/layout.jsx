@@ -5,7 +5,7 @@ import "../globals.scss";
 
 function ProjectLayout({ children }) {
   return (
-    <div style={{ maxWidth: "1920px", margin: "0 auto" }}>
+    <>
       <div
         style={{
           marginBlock: "var(--space-xs)",
@@ -25,7 +25,7 @@ function ProjectLayout({ children }) {
         </Link>
       </div>
       {children}
-    </div>
+    </>
   );
 }
 

@@ -1,6 +1,9 @@
 import React from "react";
-import ProjectHeader from "../components/ProjectHeader/ProjectHeader";
+import ProjectHeader from "../[projectSlug]/components/ProjectHeader/ProjectHeader";
 import Image from "next/image";
+import { MDXRemote } from "next-mdx-remote/rsc";
+
+const content = `### Hello there`;
 const details = [
   {
     title: "Type of work",
@@ -42,6 +45,7 @@ function WatsonProject() {
         width={3360}
         src="/projects/watson/project-large.png"
       ></Image>
+      <MDXRemote source={content} />
     </>
   );
 }
