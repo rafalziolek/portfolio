@@ -1,11 +1,11 @@
 import React from "react";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { loadBlogPost } from "@/helpers/file-helpers";
+import { loadCaseStudy } from "@/helpers/file-helpers";
 import { notFound } from "next/navigation";
 import ProjectHeader from "@/components/ProjectHeader/ProjectHeader";
 
 async function ProjectPage({ params }) {
-  const caseStudyData = await loadBlogPost(params.projectSlug);
+  const caseStudyData = await loadCaseStudy(params.projectSlug);
   if (!caseStudyData) {
     notFound();
   }
