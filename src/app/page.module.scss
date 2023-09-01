@@ -75,13 +75,12 @@
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(24, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
   grid-template-rows: auto;
   gap: var(--space-m);
   padding-inline: var(--space-s);
-  & article:nth-child(2n) {
-    margin-block: 150px 100px;
-  }
+
   // margin-bottom: 200px;
 }
 

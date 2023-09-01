@@ -1,29 +1,28 @@
+"use client";
 import Image from "next/image";
 import styles from "./project.module.scss";
-
-import React from "react";
+import { motion, useScroll } from "framer-motion";
 import Text from "../Text/text";
 import CustomLink from "../custom-link/CustomLink";
 
-async function Project({
+function Project({
   title,
   projectName,
   imgAlt,
-  video,
   width,
   height,
   size = "medium",
   desc,
-  offset = false,
   path,
 }) {
+  const { scrollYProgress } = useScroll();
   const PROJECT_PATH = `/projects/${projectName}`;
 
   return (
-    <article
-      className={`${styles.project} ${styles[size]} ${
-        offset ? styles["offset"] : ""
-      }`}
+    <motion.article
+      initial={{ opacity: 0, translateY: "20%" }}
+      whileInView={{ opacity: 1, translateY: "0%" }}
+      className={`${styles.project} ${styles[size]} `}
     >
       <figure>
         <Image
@@ -38,10 +37,10 @@ async function Project({
             {title}
           </Text>
           <Text type="caption">{desc}</Text>
-          {<CustomLink path={path}>Read more</CustomLink>}
+          <CustomLink path={path}>Read more</CustomLink>
         </figcaption>
       </figure>
-    </article>
+    </motion.article>
   );
 }
 
