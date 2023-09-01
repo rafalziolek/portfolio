@@ -75,10 +75,13 @@
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
   grid-template-rows: auto;
-  gap: var(--space-xxl) var(--space-xl);
+  gap: var(--space-m);
   padding-inline: var(--space-s);
+
+  // margin-bottom: 200px;
 }
 
 @media screen and (max-width: 920px) {
@@ -88,5 +91,8 @@
     grid-template-rows: auto;
     gap: var(--space-xxl) 0;
     padding-inline: var(--space-s);
+    & article:nth-child(2n) {
+      margin-block: 0;
+    }
   }
 }

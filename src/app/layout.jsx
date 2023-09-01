@@ -11,37 +11,27 @@ export const metadata = {
 const neueMontreal = localFont({
   src: [
     {
-      path: "../fonts/PPNeueMontreal-Regular.woff2",
+      path: "../../fonts/PPNeueMontreal-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../fonts/PPNeueMontreal-Medium.woff2",
+      path: "../../fonts/PPNeueMontreal-Medium.woff2",
       weight: "500",
       style: "normal",
     },
   ],
 });
 
-const NAV_ITEMS = [
-  {
-    label: "Bio",
-    href: "/Bio",
-    id: Math.random(),
-  },
-  {
-    label: "Work",
-    href: "/Work",
-    id: Math.random(),
-  },
-];
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={neueMontreal.className}>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body>
         <div style={{ maxWidth: "1920px", margin: "0 auto" }}>
-          <MainNav navItems={NAV_ITEMS} />
+          <MainNav></MainNav>
           {children}
           <Footer />
         </div>
