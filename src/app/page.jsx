@@ -1,13 +1,24 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.scss";
-import Text from "@/components/Text/text";
+import Text from "../components/Text/text";
 import Project from "@/components/Project/project";
-import CustomLink from "@/components/custom-link/CustomLink";
+import ExternalLink from "@/components/external-link/ExternalLink";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useRef } from "react";
 import portraitImg from "../../public/potrait@2x.png";
-import Asterisks from "@/components/asterisks/asterisks";
+import Asterisks from "../components/asterisks/asterisks";
 import GradientBar from "@/components/GradientBar/gradientBar";
 
 export default function Home() {
+  const { scrollY, scrollYProgress } = useScroll();
+  const ProjectsRef = useRef(null);
+  const isInView = useInView(ProjectsRef);
+  const fixedPosition = useTransform(
+    scrollYProgress,
+    [0, 100],
+    ["relative", "sticky"]
+  );
   return (
     <>
       <header className={styles.header}>
@@ -19,8 +30,10 @@ export default function Home() {
           >
             Product designer and photographer based in Poland. Currently
             building design systems at{" "}
-            <CustomLink href="http://docplanner.com/">Docplanner</CustomLink> to
-            help achieve quality and consistency at scale.
+            <ExternalLink href="http://docplanner.com/">
+              Docplanner
+            </ExternalLink>{" "}
+            to help achieve quality and consistency at scale.
           </Text>
           <div
             style={{
@@ -35,13 +48,17 @@ export default function Home() {
               {/* Previously */}
               <HeaderList title="Previously">
                 <li>
-                  <CustomLink href="https://invotech.co">INVO</CustomLink>
+                  <ExternalLink href="https://invotech.co">INVO</ExternalLink>
                 </li>
                 <li>
-                  <CustomLink href="https://absolvent.pl">Absolvent</CustomLink>
+                  <ExternalLink href="https://absolvent.pl">
+                    Absolvent
+                  </ExternalLink>
                 </li>
                 <li>
-                  <CustomLink href="https://semiflat.com">Semiflat</CustomLink>
+                  <ExternalLink href="https://semiflat.com">
+                    Semiflat
+                  </ExternalLink>
                 </li>
               </HeaderList>
               {/* Free time section */}
@@ -56,19 +73,19 @@ export default function Home() {
               {/* Find me on */}
               <HeaderList title="Find me on">
                 <li>
-                  <CustomLink href="https://www.linkedin.com/in/rafal-ziolek/">
+                  <ExternalLink href="https://www.linkedin.com/in/rafal-ziolek/">
                     LinkedIn
-                  </CustomLink>
+                  </ExternalLink>
                 </li>
                 <li>
-                  <CustomLink href="https://www.instagram.com/notactualphotographer/">
+                  <ExternalLink href="https://www.instagram.com/notactualphotographer/">
                     Instagram
-                  </CustomLink>
+                  </ExternalLink>
                 </li>
                 <li>
-                  <CustomLink href="https://twitter.com/rafal_ziolek/">
+                  <ExternalLink href="https://twitter.com/rafal_ziolek/">
                     Twitter
-                  </CustomLink>
+                  </ExternalLink>
                 </li>
               </HeaderList>
             </div>
@@ -89,15 +106,13 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.divider}>
-          {/* <Asterisks rows={3} /> */}
+          <Asterisks rows={3} />
           <GradientBar />
         </div>
       </header>
 
       <div
-        id="Work"
         style={{
-          scrollBehavior: "smooth",
           marginInline: "var(--space-s)",
           marginBlockEnd: "var(--space-xxl)",
           display: "flex",
@@ -113,42 +128,24 @@ export default function Home() {
           good and bad explorations{" "}
         </Text>
       </div>
-      <section className={styles.projects}>
+      <motion.section ref={ProjectsRef} className={styles.projects}>
         <Project
           title="Watson Design System"
           desc="Docplanner's design language for digital experiences"
           projectName="watson"
-          width={2628}
-          height={2048}
-          path="/watson-design-system"
+          width={3360}
+          height={1544}
           size="large"
         ></Project>
         <Project
           title="Nikola Chmiel"
           desc="Inspiring yoga for a beautiful You"
           projectName="pozamata"
-          width={2800}
-          height={2048}
-          path="/nikola-chmiel"
-          size="small"
+          video={true}
+          width={1600}
+          height={1600}
         ></Project>
-        <Project
-          title="Nikola Chmiel"
-          desc="Inspiring yoga for a beautiful You"
-          projectName="pozamata"
-          width={2800}
-          height={2048}
-          path="/nikola-chmiel"
-        ></Project>
-        <Project
-          title="Nikola Chmiel"
-          desc="Inspiring yoga for a beautiful You"
-          projectName="pozamata"
-          width={2800}
-          height={2048}
-          path="/nikola-chmiel"
-        ></Project>
-      </section>
+      </motion.section>
     </>
   );
 }

@@ -23,15 +23,25 @@ const neueMontreal = localFont({
   ],
 });
 
+const NAV_ITEMS = [
+  {
+    label: "Bio",
+    href: "/Bio",
+    id: Math.random(),
+  },
+  {
+    label: "Work",
+    href: "/Work",
+    id: Math.random(),
+  },
+];
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={neueMontreal.className}>
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
       <body>
         <div style={{ maxWidth: "1920px", margin: "0 auto" }}>
-          <MainNav></MainNav>
+          <MainNav navItems={NAV_ITEMS} />
           {children}
           <Footer />
         </div>
