@@ -35,40 +35,10 @@
     font-size: var(--font-size-body);
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    // gap: var(--space-xxs);
     li {
       list-style-type: none;
       font-weight: var(--font-weight-m);
-    }
-  }
-}
-
-.images-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  position: relative;
-  min-width: fit-content;
-  z-index: -1;
-
-  flex-grow: 1;
-  max-width: 40%;
-  & img {
-    display: block;
-    width: 50%;
-    height: auto;
-    &:last-child {
-      align-self: flex-end;
-      margin-top: 40px;
-    }
-    &:first-child {
-      align-self: flex-start;
-    }
-    &:not(:first-child) {
-      margin-left: -250px;
-
-      &:not(:last-child) {
-        align-self: center;
-      }
     }
   }
 }

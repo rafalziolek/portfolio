@@ -3,17 +3,22 @@
   display: inline-block;
   font-size: inherit;
   font-weight: inherit;
-  line-height: 110%;
+  line-height: inherit;
+  position: relative;
 }
 .hover {
   display: block;
   height: 2px;
-  margin-top: 2px;
+  bottom: 1px;
   background-color: white;
+  position: absolute;
+  width: 100%;
 }
 
 .trailing-icon {
-  display: inline-flex;
-  vertical-align: text-bottom;
-  padding-inline-start: 8px;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-bottom: -0.08em;
+  padding-inline: 4px;
+  line-height: inherit;
 }

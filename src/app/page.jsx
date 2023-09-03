@@ -6,11 +6,14 @@ import CustomLink from "@/components/custom-link/CustomLink";
 import portraitImg from "../../public/potrait@2x.png";
 import Asterisks from "@/components/asterisks/asterisks";
 import GradientBar from "@/components/GradientBar/gradientBar";
+import PhotoShutter from "@/components/PhotoShutter/PhotoShutter";
+import HeroSection from "@/components/HeroSection/HeroSection";
 
 export default function Home() {
   return (
     <>
-      <header className={styles.header}>
+      <HeroSection />
+      {/* <header className={styles.header}>
         <div className={styles.stack}>
           <Text
             as="h1"
@@ -26,13 +29,14 @@ export default function Home() {
             style={{
               display: "flex",
               flexDirection: "row",
-              flexWrap: "wrap",
               justifyContent: "center",
               gap: "var(--space-xl)",
+              flexGrow: "1",
+              position: "relative",
             }}
           >
             <div className={styles.stack} style={{ flexGrow: "1" }}>
-              {/* Previously */}
+
               <HeaderList title="Previously">
                 <li>
                   <CustomLink href="https://invotech.co">INVO</CustomLink>
@@ -44,7 +48,7 @@ export default function Home() {
                   <CustomLink href="https://semiflat.com">Semiflat</CustomLink>
                 </li>
               </HeaderList>
-              {/* Free time section */}
+
               <HeaderList title="In free time">
                 <li>
                   <Text as="span">Street photography</Text>
@@ -53,7 +57,7 @@ export default function Home() {
                   <Text as="span">Cooking</Text>
                 </li>
               </HeaderList>
-              {/* Find me on */}
+
               <HeaderList title="Find me on">
                 <li>
                   <CustomLink href="https://www.linkedin.com/in/rafal-ziolek/">
@@ -72,27 +76,14 @@ export default function Home() {
                 </li>
               </HeaderList>
             </div>
-            <div className={styles["images-wrapper"]}>
-              <Image
-                src={portraitImg}
-                alt="Picture of my reflection in the windows, holding a camera"
-              ></Image>
-              <Image
-                src={portraitImg}
-                alt="Picture of my reflection in the windows, holding a camera"
-              ></Image>
-              <Image
-                src={portraitImg}
-                alt="Picture of my reflection in the windows, holding a camera"
-              ></Image>
-            </div>
+            <PhotoShutter />
           </div>
         </div>
         <div className={styles.divider}>
-          {/* <Asterisks rows={3} /> */}
+          <Asterisks rows={3} />
           <GradientBar />
         </div>
-      </header>
+      </header> */}
 
       <div
         id="Work"

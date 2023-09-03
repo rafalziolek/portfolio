@@ -1,0 +1,32 @@
+.images-wrapper {
+  justify-content: flex-end;
+  position: absolute;
+  min-width: fit-content;
+  z-index: -1;
+  right: 0;
+  top: 0;
+  translate: 0%;
+
+  max-width: 50%;
+  & img {
+    display: block;
+    opacity: 0;
+    height: auto;
+    width: 399px;
+    left: 0;
+    top: 0;
+    $items: 3;
+    @for $i from 1 through $items {
+      $translate: 5.5rem;
+
+      &:nth-child(#{$i}) {
+        margin-top: -$translate * 4;
+        margin-left: ($i - 1) * $translate;
+      }
+
+      &:first-child {
+        margin: 0;
+      }
+    }
+  }
+}
