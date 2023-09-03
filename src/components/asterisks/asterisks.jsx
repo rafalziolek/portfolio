@@ -1,22 +1,9 @@
-"use client";
+// "use client";
 import react from "react";
 import styles from "./asterisks.module.scss";
 function AsteriskRow({ rows }) {
-  const [asteriskArr, setAsteriskArr] = react.useState([]);
-  const asteriskRef = react.useRef("");
-
-  // const asteriskWidth = asteriskRef.current
-  react.useEffect(() => {
-    const updateAsteriskArr = () => {
-      const asteriskNum = Math.floor((window.innerWidth - 48) / 16.5);
-      console.log(asteriskNum);
-      setAsteriskArr(Array.from(Array(asteriskNum).keys()));
-    };
-
-    updateAsteriskArr();
-    window.addEventListener("resize", updateAsteriskArr);
-    return () => window.removeEventListener("resize", updateAsteriskArr);
-  }, []);
+  const asteriskNum = Math.floor(1900 / 16.5);
+  const asteriskArr = Array.from(Array(asteriskNum).keys());
 
   return (
     <div
@@ -26,7 +13,7 @@ function AsteriskRow({ rows }) {
       }}
     >
       {asteriskArr.map((asterisk, index) => (
-        <span ref={asteriskRef} key={index} className={styles.asterisk}>
+        <span key={index} className={styles.asterisk}>
           *
         </span>
       ))}

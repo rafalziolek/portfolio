@@ -12,7 +12,7 @@ function MainNav() {
         </Link>
       </div>
       <ul>
-        <NavLink href="/">Bio</NavLink>
+        <NavLink href="/bio">Bio</NavLink>
         <NavLink href="#Work">Work</NavLink>
       </ul>
     </nav>

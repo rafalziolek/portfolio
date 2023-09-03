@@ -1,5 +1,6 @@
 .nav-link {
   display: block;
+  position: relative;
   font-size: var(--font-size-body);
   color: var(--color-foreground-primary);
   font-weight: var(--font-weight-m);
@@ -13,10 +14,7 @@
   top: 0;
   right: 0;
   z-index: 3;
-  // backdrop-filter: blur(15px);
-  // background: linear-gradient(180deg, #000000 77.6%, rgba(0, 0, 0, 0) 100%);
   mix-blend-mode: exclusion;
-
   padding: var(--space-xs) var(--space-s) var(--space-m);
 
   & ul {
@@ -33,7 +31,4 @@
     font-size: var(--font-size-body);
     mix-blend-mode: exclusion;
   }
-}
-
-.active {
 }
