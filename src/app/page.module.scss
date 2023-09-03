@@ -48,8 +48,7 @@
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   grid-template-rows: auto;
-  gap: var(--space-m);
-  padding-inline: var(--space-s);
+  gap: var(--space-xl) var(--space-m);
 
   // margin-bottom: 200px;
 }
