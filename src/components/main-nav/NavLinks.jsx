@@ -7,12 +7,11 @@ function NavLink({ children, href }) {
   //   const Id = React.useId();
   const pathname = usePathname();
   const isActive = pathname === href;
+  const navItemClasses = `${styles["nav-item"]}${
+    isActive === true ? " active" : ""
+  }`;
   return (
-    <li
-      className={`${styles["nav-item"]} ${
-        isActive ? styles["active"] : undefined
-      }`}
-    >
+    <li className={navItemClasses}>
       <CustomLink path={href} icon={false} className={`${styles["nav-link"]}`}>
         {children}
       </CustomLink>
