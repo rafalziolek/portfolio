@@ -1,10 +1,14 @@
 .project {
   position: relative;
-  margin: var(--space-xl);
-
-  &:nth-child(2n) {
-    margin-top: 300px;
-    align-self: end;
+  &[data-aspect-ratio="3/4"] {
+    & img {
+      aspect-ratio: 4/3;
+    }
+  }
+  &[data-aspect-ratio="1/1"] {
+    & img {
+      aspect-ratio: 1/1;
+    }
   }
 
   &.small {
@@ -51,8 +55,6 @@
       height: 100%;
       object-fit: cover;
       z-index: 1;
-      border-radius: 4px;
-      aspect-ratio: 8/9;
     }
     & figcaption {
       padding-block: var(--space-xs);
