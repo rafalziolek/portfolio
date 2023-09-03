@@ -25,13 +25,13 @@ function Bio() {
           }}
         >
           <Text as="h1" type="mainHeading" color="secondary">
-            Hi I'm Rafał
+            Hi I&apos;m Rafał
           </Text>
           <Text>
-            I'm a designer and photographer living in Warsaw, Poland. Currently
-            I'm building design systems at Docplanner. Before transitioning to
-            design systems I've worked on Docplanner's SaaS software for doctors
-            and clinics.
+            I&apos;m a designer and photographer living in Warsaw, Poland.
+            Currently I&apos;m building design systems at Docplanner. Before
+            transitioning to design systems I&apos;ve worked on
+            Docplanner&apos;s SaaS software for doctors and clinics.
           </Text>
         </div>
         <Text>
