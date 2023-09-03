@@ -35,8 +35,8 @@ function Bio() {
           </Text>
         </div>
         <Text>
-          Previously I've worked in Absolvent to help build a place to find a
-          job for fresh graduates, and at INVO where I was working on design
+          Previously I&apos;ve worked in Absolvent to help build a place to find
+          a job for fresh graduates, and at INVO where I was working on design
           solutions for small and medium clients.
         </Text>
       </div>
@@ -59,10 +59,10 @@ function Bio() {
             In my work
           </Text>
           <Text>
-            I work at the intersection of design and development. Wether it's a
-            design tool or code I aim to strike a balance between usability and
-            aesthetics, resulting in a product that is easy to use, but also
-            playful and aesthetically pleasing.
+            I work at the intersection of design and development. Wether
+            it&apos;s a design tool or code I aim to strike a balance between
+            usability and aesthetics, resulting in a product that is easy to
+            use, but also playful and aesthetically pleasing.
           </Text>
         </div>
       </div>
