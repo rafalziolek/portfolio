@@ -10,6 +10,7 @@ import LinkList from "@/components/LinkList/LinkList";
 function HeroSection() {
   return (
     <header className={styles.header}>
+      <PhotoShutter />
       <div className={`${styles.stack}`}>
         <div style={{ zIndex: "1" }}>
           <Text
@@ -100,7 +101,6 @@ function HeroSection() {
           </Text>
         </div>
       </div>
-      <PhotoShutter />
     </header>
   );
 }

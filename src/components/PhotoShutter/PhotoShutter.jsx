@@ -40,21 +40,25 @@ function PhotoShutter({ variants }) {
       style={{ y: scrollYProgress }}
     >
       <MotionImage
+        priority
         variants={shutter}
         src={portraitImg}
         alt="Picture of my reflection in the windows, holding a camera"
       ></MotionImage>
       <MotionImage
+        priority
         variants={shutter}
         src={portraitImg}
         alt="Picture of my reflection in the windows, holding a camera"
       ></MotionImage>
       <MotionImage
+        priority
         variants={shutter}
         src={portraitImg}
         alt="Picture of my reflection in the windows, holding a camera"
       ></MotionImage>{" "}
       <MotionImage
+        priority
         variants={shutter}
         src={portraitImg}
         alt="Picture of my reflection in the windows, holding a camera"
