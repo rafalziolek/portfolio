@@ -79,9 +79,9 @@ function Bio() {
 
       {/* in my work */}
       <div className={`${styles["photo-grid"]}`}>
-        <img src="#" alt="#" />
-        <img src="#" alt="#" />
-        <img src="#" alt="#" />
+        <Image height={400} width={400} src="#" alt="#" />
+        <Image height={400} width={400} src="#" alt="#" />
+        <Image height={400} width={400} src="#" alt="#" />
       </div>
       <section style={{ margin: "var(--space-xxl) var(--space-m)" }}>
         <div
@@ -128,7 +128,7 @@ function Bio() {
                   marginBlockEnd: "var(--space-s)",
                 }}
               ></div>
-              <Text color="secondary">What I'm learning now</Text>
+              <Text color="secondary">What I&apos;m learning now</Text>
               <li>Sewing clothes</li>
             </ul>
             <ul
