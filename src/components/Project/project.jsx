@@ -58,8 +58,8 @@ function Corner({ flip, style }) {
       fill="none"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M0 6C3.31371 6 6 3.31371 6 0V6H0Z"
         fill="black"
       />
