@@ -1,5 +1,5 @@
 import "@/app/globals.scss";
-import Footer from "@/app/footer";
+import Footer from "@/components/footer/footer";
 import localFont from "next/font/local";
 
 export const metadata = {
