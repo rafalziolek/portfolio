@@ -2,6 +2,7 @@ import Text from "@/components/Text/text";
 import styles from "./page.module.scss";
 import CustomLink from "@/components/custom-link/CustomLink";
 import LinkList from "@/components/LinkList/LinkList";
+import Image from "next/image";
 function Bio() {
   return (
     <>
@@ -79,9 +80,9 @@ function Bio() {
 
       {/* in my work */}
       <div className={`${styles["photo-grid"]}`}>
-        <Image height={400} width={400} src="#" alt="#" />
-        <Image height={400} width={400} src="#" alt="#" />
-        <Image height={400} width={400} src="#" alt="#" />
+        <div style={{ height: "400px", backgroundColor: "#ffffff20" }} />
+        <div style={{ height: "400px", backgroundColor: "#ffffff20" }} />
+        <div style={{ height: "400px", backgroundColor: "#ffffff20" }} />
       </div>
       <section style={{ margin: "var(--space-xxl) var(--space-m)" }}>
         <div
