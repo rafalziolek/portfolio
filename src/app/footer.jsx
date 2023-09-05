@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.wrapper}>
-        <div className={styles["avatar-video"]}></div>
+        {/* <div className={styles["avatar-video"]}></div> */}
         <div className={styles["footer-text"]}>
           <Text as="h3" type="main-heading" color="secondary">
             Thanks for visiting

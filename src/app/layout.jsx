@@ -1,6 +1,5 @@
-import "./globals.scss";
-import MainNav from "@/components/main-nav/MainNav";
-import Footer from "./footer";
+import "@/app/globals.scss";
+import Footer from "@/app/footer";
 import localFont from "next/font/local";
 
 export const metadata = {
@@ -30,11 +29,8 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body>
-        <div style={{ maxWidth: "1920px", margin: "0 auto" }}>
-          <MainNav></MainNav>
-          {children}
-          <Footer />
-        </div>
+        {children}
+        <Footer />
       </body>
     </html>
   );

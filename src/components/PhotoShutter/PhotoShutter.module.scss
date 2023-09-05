@@ -3,19 +3,24 @@
   position: absolute;
   min-width: fit-content;
   z-index: -1;
-  right: 0;
-  top: 0;
-  translate: 0%;
+  position: fixed;
+  // right: calc(var(--space-s));
+  opacity: 0.5;
+  // bottom: calc(var(--space-s));
+  translate: -50% -50%;
+  top: 50%;
+  left: 50%;
 
   max-width: 50%;
   & img {
     display: block;
     opacity: 0;
     height: auto;
-    width: 399px;
+    width: 50vw;
+    max-width: 400px;
     left: 0;
     top: 0;
-    $items: 3;
+    $items: 4;
     @for $i from 1 through $items {
       $translate: 5.5rem;
 

@@ -2,22 +2,29 @@
 import React from "react";
 import styles from "./PhotoShutter.module.scss";
 import Image from "next/image";
-import portraitImg from "/public/potrait@2x.png";
-import { motion, stagger, useAnimate } from "framer-motion";
+import portraitImg from "/public/portrait.png";
+import { motion, stagger, useAnimate, useScroll } from "framer-motion";
 const MotionImage = motion(Image);
 
 function PhotoShutter({ variants }) {
+  const { scrollYProgress } = useScroll({
+    offset: ["200px", "300px"],
+  });
+
   const container = {
     show: {
-      opacity: 1,
+      opacity: 0.7,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
   const shutter = {
     show: {
       opacity: 1,
+      transition: {
+        duration: 0,
+      },
     },
   };
   //   const [scope, animate] = useAnimate();
@@ -30,6 +37,7 @@ function PhotoShutter({ variants }) {
       className={styles["images-wrapper"]}
       variants={container}
       animate="show"
+      style={{ y: scrollYProgress }}
     >
       <MotionImage
         variants={shutter}
@@ -45,7 +53,12 @@ function PhotoShutter({ variants }) {
         variants={shutter}
         src={portraitImg}
         alt="Picture of my reflection in the windows, holding a camera"
-      ></MotionImage>
+      ></MotionImage>{" "}
+      <MotionImage
+        variants={shutter}
+        src={portraitImg}
+        alt="Picture of my reflection in the windows, holding a camera"
+      ></MotionImage>{" "}
     </motion.div>
   );
 }
