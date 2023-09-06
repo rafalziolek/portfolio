@@ -6,42 +6,18 @@ import CustomLink from "../custom-link/CustomLink";
 import PhotoShutter from "../PhotoShutter/PhotoShutter";
 import Asterisks from "../asterisks/asterisks";
 import GradientBar from "../GradientBar/gradientBar";
+import LinkList from "@/components/LinkList/LinkList";
 function HeroSection() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-  const variants = {
-    hidden: {
-      y: "-100px",
-      opacity: 0,
-    },
-
-    show: {
-      opacity: 1,
-      y: "0px",
-    },
-  };
   return (
     <header className={styles.header}>
-      <motion.div
-        className={styles.stack}
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        <motion.div variants={variants} style={{ zIndex: "1" }}>
+      <PhotoShutter />
+      <div className={`${styles.stack}`}>
+        <div style={{ zIndex: "1" }}>
           <Text
             className={styles.stack}
             as="h1"
             type="main-heading"
             style={{
-              marginBlockEnd: "var(--space-l)",
               maxWidth: "40ch",
             }}
           >
@@ -50,9 +26,8 @@ function HeroSection() {
             <CustomLink href="http://docplanner.com/">Docplanner</CustomLink> to
             help achieve quality and consistency at scale.
           </Text>
-        </motion.div>
-        <motion.div
-          variants={variants}
+        </div>
+        <div
           style={{
             display: "flex",
             flexDirection: "row",
@@ -63,7 +38,7 @@ function HeroSection() {
         >
           <div className={styles.stack} style={{ flexGrow: "1" }}>
             {/* Previously */}
-            <HeaderList title="Previously">
+            <LinkList title="Previously">
               <li>
                 <CustomLink href="https://invotech.co">INVO</CustomLink>
               </li>
@@ -73,18 +48,18 @@ function HeroSection() {
               <li>
                 <CustomLink href="https://semiflat.com">Semiflat</CustomLink>
               </li>
-            </HeaderList>
+            </LinkList>
             {/* Free time section */}
-            <HeaderList title="In free time">
+            <LinkList title="In free time">
               <li>
                 <Text as="span">Street photography</Text>
               </li>
               <li>
                 <Text as="span">Cooking</Text>
               </li>
-            </HeaderList>
+            </LinkList>
             {/* Find me on */}
-            <HeaderList title="Find me on">
+            <LinkList title="Find me on">
               <li>
                 <CustomLink href="https://www.linkedin.com/in/rafal-ziolek/">
                   LinkedIn
@@ -100,27 +75,33 @@ function HeroSection() {
                   Twitter
                 </CustomLink>
               </li>
-            </HeaderList>
+            </LinkList>
           </div>
-          <PhotoShutter variants={variants} />
-        </motion.div>
-      </motion.div>
-      <div className={styles.divider}>
-        <Asterisks rows={3} />
-        <GradientBar />
+        </div>
+        <div>
+          <Text as="h2" type="heading" color="secondary">
+            Design projects{" "}
+            <motion.span
+              style={{ display: "inline-block" }}
+              initial={{ y: "-1px" }}
+              animate={{ y: "4px" }}
+              transition={{
+                type: "tween",
+                repeat: Infinity,
+                repeatType: "mirror",
+                duration: 1,
+              }}
+            >
+              ↓
+            </motion.span>
+          </Text>
+          <Text as="p" type="body" style={{ maxWidth: "40ch" }}>
+            Some of my selected works. From projects for clients and companies
+            to good and bad explorations{" "}
+          </Text>
+        </div>
       </div>
     </header>
-  );
-}
-
-function HeaderList({ children, title }) {
-  return (
-    <div className={styles["header-list-wrapper"]}>
-      <Text className={styles["title"]} as="span">
-        {title}
-      </Text>
-      <ul className={styles["header-list"]}>{children}</ul>
-    </div>
   );
 }
 

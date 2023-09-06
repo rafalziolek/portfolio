@@ -1,51 +1,31 @@
 "use client";
 import Image from "next/image";
 import styles from "./project.module.scss";
-import { motion, useScroll } from "framer-motion";
 import Text from "../Text/text";
 import CustomLink from "../custom-link/CustomLink";
 import Link from "next/link";
-
-function Project({
-  title,
-  projectName,
-  imgAlt,
-  width,
-  height,
-  size = "medium",
-  desc,
-  path,
-  aspectRatio = "1/1",
-}) {
-  const { scrollYProgress } = useScroll();
-  const PROJECT_PATH = `/projects/${projectName}`;
-
+import { useRef } from "react";
+import Corner from "./Corner/Corner";
+function Project({ title, children, size = "medium", desc, path }) {
+  const ref = useRef();
   return (
-    <Link href={path} style={{ height: "fit-content" }}>
-      <motion.article
-        initial={{ opacity: 0, translateY: "20%" }}
-        whileInView={{ opacity: 1, translateY: "0%" }}
-        className={`${styles.project} ${styles[size]}`}
-        data-aspect-ratio={aspectRatio}
-      >
-        <figure>
-          <Image
-            width={width}
-            height={height}
-            src={`${PROJECT_PATH}/project-small.png`}
-            alt={imgAlt}
-          />
+    <article className={`${styles.project} ${styles[size]}`}>
+      <figure>
+        <div className={styles.grid}>{children}</div>
+        <figcaption>
+          <Corner flip className={styles["fig-caption-corner"]} />
+          <Corner className={styles["fig-caption-corner"]} />
 
-          <figcaption>
-            <Text as="h4" type="caption" color="secondary">
+          <div>
+            <Text as="h4" type="body" color="secondary">
               {title}
             </Text>
-            <Text type="caption">{desc}</Text>
-            {/* <CustomLink path={path}>Read more</CustomLink> */}
-          </figcaption>
-        </figure>
-      </motion.article>
-    </Link>
+            <Text type="body">{desc}</Text>
+          </div>
+          <CustomLink path={path}>Read more</CustomLink>
+        </figcaption>
+      </figure>
+    </article>
   );
 }
 

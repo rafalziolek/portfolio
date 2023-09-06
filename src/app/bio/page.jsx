@@ -1,72 +1,194 @@
 import Text from "@/components/Text/text";
+import styles from "./page.module.scss";
+import CustomLink from "@/components/custom-link/CustomLink";
+import LinkList from "@/components/LinkList/LinkList";
+import Image from "next/image";
 function Bio() {
   return (
-    <div
-      style={{
-        marginInline: "var(--space-s)",
-        display: "flex",
-        flexDirection: "column",
-        gap: "var(--space-xxl)",
-      }}
-    >
-      <div
+    <>
+      <header
         style={{
+          marginInline: "var(--space-s)",
           display: "flex",
-          gap: "var(--space-l)",
-          flexDirection: "column",
-          marginBlockStart: "var(--space-xl)",
+          flexDirection: "row",
+          gap: "var(--space-xxl)",
+          marginBlock: "var(--space-l)",
+          flexWrap: "wrap",
         }}
       >
         <div
           style={{
             display: "flex",
-            gap: "var(--space-xxs)",
+            gap: "var(--space-l)",
             flexDirection: "column",
+            flexGrow: "4",
           }}
         >
-          <Text as="h1" type="mainHeading" color="secondary">
-            Hi I&apos;m Rafał
-          </Text>
+          <div
+            style={{
+              display: "flex",
+              gap: "var(--space-xxs)",
+              flexDirection: "column",
+            }}
+          >
+            <Text as="h1" type="mainHeading" color="secondary">
+              Hi I&apos;m Rafał
+            </Text>
+            <Text>
+              I&apos;m a designer and photographer living in Warsaw, Poland.
+              Currently I&apos;m building design systems at Docplanner. Before
+              transitioning to design systems I&apos;ve worked on
+              Docplanner&apos;s SaaS software for doctors and clinics.
+            </Text>
+          </div>
           <Text>
-            I&apos;m a designer and photographer living in Warsaw, Poland.
-            Currently I&apos;m building design systems at Docplanner. Before
-            transitioning to design systems I&apos;ve worked on
-            Docplanner&apos;s SaaS software for doctors and clinics.
+            Previously I&apos;ve worked in Absolvent to help build a place to
+            find a job for fresh graduates, and at INVO where I was working on
+            design solutions for small and medium clients.
           </Text>
         </div>
-        <Text>
-          Previously I&apos;ve worked in Absolvent to help build a place to find
-          a job for fresh graduates, and at INVO where I was working on design
-          solutions for small and medium clients.
-        </Text>
-      </div>
+        <div className={styles.contact}>
+          <div>
+            <LinkList title="You can contact me via email">
+              <li>
+                <CustomLink href="mailto:rafal.ziolek@icloud.com">
+                  rafal.ziolek@icloud.com
+                </CustomLink>
+              </li>
+            </LinkList>
+          </div>
+          <div>
+            <LinkList title="Or via social media">
+              <li>
+                <CustomLink href="https://www.linkedin.com/in/rafal-ziolek/">
+                  LinkedIn
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink href="https://www.instagram.com/notactualphotographer/">
+                  Instagram
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink href="https://twitter.com/rafal_ziolek/">
+                  Twitter
+                </CustomLink>
+              </li>
+            </LinkList>
+          </div>
+        </div>
+      </header>
+
       {/* in my work */}
-      <div
-        style={{
-          display: "flex",
-          gap: "var(--space-l)",
-          flexDirection: "column",
-        }}
-      >
+      <div className={`${styles["photo-grid"]}`}>
+        <div style={{ height: "400px", backgroundColor: "#ffffff20" }} />
+        <div style={{ height: "400px", backgroundColor: "#ffffff20" }} />
+        <div style={{ height: "400px", backgroundColor: "#ffffff20" }} />
+      </div>
+      <section style={{ margin: "var(--space-xxl) var(--space-m)" }}>
         <div
           style={{
+            flexGrow: "2",
             display: "flex",
-            gap: "var(--space-xxs)",
+            gap: "var(--space-l)",
             flexDirection: "column",
           }}
         >
-          <Text as="h2" type="mainHeading" color="secondary">
-            In my work
-          </Text>
-          <Text>
-            I work at the intersection of design and development. Wether
-            it&apos;s a design tool or code I aim to strike a balance between
-            usability and aesthetics, resulting in a product that is easy to
-            use, but also playful and aesthetically pleasing.
-          </Text>
+          <div
+            style={{
+              display: "flex",
+              gap: "var(--space-xxs)",
+              flexDirection: "column",
+              marginBottom: "var(--space-xl)",
+            }}
+          >
+            <Text as="h2" type="mainHeading" color="secondary">
+              In my work
+            </Text>
+            <Text>
+              I work at the intersection of design and development. Wether
+              it&apos;s a design tool or code I aim to strike a balance between
+              usability and aesthetics, resulting in a product that is easy to
+              use, but also playful and aesthetically pleasing.
+            </Text>
+          </div>
+          <div
+            style={{ display: "flex", gap: "var(--space-m)", flexWrap: "wrap" }}
+          >
+            <ul
+              style={{
+                listStyle: "none",
+                fontSize: "var(--font-size-m)",
+                flexGrow: "3",
+                gap: "var(--space-xxs)",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div
+                style={{
+                  height: "1px",
+                  borderBottom: "1px dotted hsla(255, 100%, 100%, 0.6)",
+                  marginBlockEnd: "var(--space-s)",
+                }}
+              ></div>
+              <Text color="secondary">What I&apos;m learning now</Text>
+              <li>Sewing clothes</li>
+            </ul>
+            <ul
+              style={{
+                listStyle: "none",
+                fontSize: "var(--font-size-m)",
+                flexGrow: "1",
+                gap: "var(--space-xxs)",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div
+                style={{
+                  height: "1px",
+                  borderBottom: "1px dotted hsla(255, 100%, 100%, 0.6)",
+                  marginBlockEnd: "var(--space-s)",
+                }}
+              ></div>
+              <Text color="secondary">People who inspire me</Text>
+              <li>
+                <CustomLink href="https://www.youtube.com/@FaizalWestcott">
+                  Faizal Westcott
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink href="https://twitter.com/blankresident">
+                  Blank resident
+                </CustomLink>
+              </li>
+            </ul>
+            <ul
+              style={{
+                listStyle: "none",
+                fontSize: "var(--font-size-m)",
+                flexGrow: "1",
+                gap: "var(--space-xxs)",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div
+                style={{
+                  // height: "1px",
+                  borderBottom: "1px dotted hsla(255, 100%, 100%, 0.6)",
+                  marginBlockEnd: "var(--space-s)",
+                }}
+              ></div>
+              <Text color="secondary">Random things I love</Text>
+              <li>Star Wars</li>
+              <li>Tteokbokki</li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
 
