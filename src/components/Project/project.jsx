@@ -13,6 +13,9 @@ function Project({ title, children, size = "medium", desc, path }) {
       <figure>
         <div className={styles.grid}>{children}</div>
         <figcaption>
+          <Corner flip className={styles["fig-caption-corner"]} />
+          <Corner className={styles["fig-caption-corner"]} />
+
           <div>
             <Text as="h4" type="body" color="secondary">
               {title}

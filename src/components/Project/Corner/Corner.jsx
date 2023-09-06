@@ -1,4 +1,4 @@
-function Corner({ flip, style }) {
+function Corner({ flip, style, className }) {
   const styles = {
     transform: flip && "scaleX(-1)",
     position: "absolute",
@@ -10,6 +10,7 @@ function Corner({ flip, style }) {
   };
   return (
     <svg
+      className={className}
       style={styles}
       xmlns="http://www.w3.org/2000/svg"
       width="6"

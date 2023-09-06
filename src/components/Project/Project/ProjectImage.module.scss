@@ -21,3 +21,24 @@
 .small {
   grid-column: span 4;
 }
+
+@media screen and (max-width: 640px) {
+  .img-wrapper {
+    & .corner-wrapper {
+      bottom: 131px;
+    }
+  }
+  .large,
+  .medium,
+  .small {
+    grid-column: span 12;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .img-wrapper {
+    & .corner-wrapper {
+      bottom: 131px;
+    }
+  }
+}

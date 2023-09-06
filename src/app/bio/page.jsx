@@ -128,7 +128,7 @@ function Bio() {
               <div
                 style={{
                   height: "1px",
-                  borderBottom: "1px solid #383838",
+                  borderBottom: "1px dotted hsla(255, 100%, 100%, 0.6)",
                   marginBlockEnd: "var(--space-s)",
                 }}
               ></div>
@@ -148,7 +148,7 @@ function Bio() {
               <div
                 style={{
                   height: "1px",
-                  borderBottom: "1px solid #383838",
+                  borderBottom: "1px dotted hsla(255, 100%, 100%, 0.6)",
                   marginBlockEnd: "var(--space-s)",
                 }}
               ></div>
@@ -177,7 +177,7 @@ function Bio() {
               <div
                 style={{
                   // height: "1px",
-                  borderBottom: "1px solid #383838",
+                  borderBottom: "1px dotted hsla(255, 100%, 100%, 0.6)",
                   marginBlockEnd: "var(--space-s)",
                 }}
               ></div>
