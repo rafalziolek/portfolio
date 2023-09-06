@@ -13,6 +13,7 @@ function Bio() {
           flexDirection: "row",
           gap: "var(--space-xxl)",
           marginBlock: "var(--space-l)",
+          flexWrap: "wrap",
         }}
       >
         <div
@@ -111,7 +112,9 @@ function Bio() {
               use, but also playful and aesthetically pleasing.
             </Text>
           </div>
-          <div style={{ display: "flex", gap: "var(--space-m)" }}>
+          <div
+            style={{ display: "flex", gap: "var(--space-m)", flexWrap: "wrap" }}
+          >
             <ul
               style={{
                 listStyle: "none",
@@ -125,7 +128,7 @@ function Bio() {
               <div
                 style={{
                   height: "1px",
-                  borderBottom: "1px solid #fff",
+                  borderBottom: "1px solid #383838",
                   marginBlockEnd: "var(--space-s)",
                 }}
               ></div>
@@ -145,16 +148,20 @@ function Bio() {
               <div
                 style={{
                   height: "1px",
-                  borderBottom: "1px solid #fff",
+                  borderBottom: "1px solid #383838",
                   marginBlockEnd: "var(--space-s)",
                 }}
               ></div>
               <Text color="secondary">People who inspire me</Text>
               <li>
-                <CustomLink href="#">Faizal Westcott</CustomLink>
+                <CustomLink href="https://www.youtube.com/@FaizalWestcott">
+                  Faizal Westcott
+                </CustomLink>
               </li>
               <li>
-                <CustomLink href="#">Blank resident</CustomLink>
+                <CustomLink href="https://twitter.com/blankresident">
+                  Blank resident
+                </CustomLink>
               </li>
             </ul>
             <ul
@@ -170,7 +177,7 @@ function Bio() {
               <div
                 style={{
                   // height: "1px",
-                  borderBottom: "1px solid #fff",
+                  borderBottom: "1px solid #383838",
                   marginBlockEnd: "var(--space-s)",
                 }}
               ></div>

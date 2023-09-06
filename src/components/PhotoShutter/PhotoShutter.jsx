@@ -27,10 +27,7 @@ function PhotoShutter({ variants }) {
       },
     },
   };
-  //   const [scope, animate] = useAnimate();
-  //   React.useEffect(() => {
-  //     animate("img", { opacity: 1 }, { duration: "0.15", delay: stagger(0.15) });
-  //   });
+
   return (
     <motion.div
       //   ref={scope}

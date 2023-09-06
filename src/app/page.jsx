@@ -9,6 +9,7 @@ import GradientBar from "@/components/GradientBar/gradientBar";
 import PhotoShutter from "@/components/PhotoShutter/PhotoShutter";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import MainNav from "@/components/main-nav/MainNav";
+import ProjectImage from "@/components/Project/Project/ProjectImage";
 
 export default function Home() {
   return (
@@ -20,7 +21,6 @@ export default function Home() {
         style={{
           scrollBehavior: "smooth",
           marginInline: "var(--space-s)",
-          // marginBlock: "var(--space-xxl)",
           display: "flex",
           flexDirection: "column",
           gap: "var(--space-xxs)",
@@ -31,29 +31,39 @@ export default function Home() {
             title="Watson Design System"
             desc="Docplanner's design language for digital experiences"
             projectName="watson"
-            width={2628}
-            height={2048}
             path="/watson-design-system"
-            size="large"
-            aspectRatio="3/4"
           >
-            <Project.Image
+            <ProjectImage
               size="large"
-              width={2628}
-              height={2048}
+              width={1310}
+              height={1024}
               src="/projects/watson/project-large.png"
             />
-            <Project.Image
+            <ProjectImage
               size="medium"
-              width={2628}
-              height={2048}
-              src="/projects/watson/project-small.png"
+              width={900}
+              height={700}
+              src="/projects/watson/3.jpg"
             />
-            <Project.Image
+            <ProjectImage
               size="medium"
-              width={2628}
-              height={2048}
-              src="/projects/watson/project-small.png"
+              width={900}
+              height={700}
+              src="/projects/watson/2.jpg"
+            />
+          </Project>
+
+          <Project
+            title="Nikola Chmiel"
+            desc="Inspiring yoga for a beautiful You"
+            projectName="nikola"
+            path="/watson-design-system"
+          >
+            <ProjectImage
+              size="large"
+              width={1400}
+              height={701}
+              src="/projects/nikola/1.png"
             />
           </Project>
         </section>

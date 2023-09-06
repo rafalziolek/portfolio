@@ -1,48 +1,10 @@
 .project {
   position: relative;
 
-  &.small {
-    grid-column: span 3;
-    & img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-  }
-
-  &.medium {
-    grid-column: span 3;
-    & img {
-      height: 100%;
-      width: 100%;
-      border-radius: 6px;
-      object-fit: cover;
-    }
-  }
-  &.large {
-    grid-column: span 3;
-    & img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-  }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: var(--space-s);
-    & .large {
-      grid-column: span 12;
-    }
-    & .medium {
-      grid-column: span 6;
-    }
-    & .small {
-      grid-column: span 4;
-    }
+    gap: var(--space-xs);
   }
 
   & figure {

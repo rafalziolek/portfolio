@@ -3,20 +3,22 @@
   flex-direction: column;
   justify-items: center;
   grid-template-rows: auto;
-  gap: var(--space-xxl) var(--space-m);
+  gap: var(--space-xxl) var(--space-xxl);
   // padding-inline: var(--space-s);
   // margin-top: var(--space-l);
+  background-color: var(--color-background-primary);
 }
 
 @media screen and (max-width: 920px) {
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto;
-    gap: var(--space-xxl) 0;
-    padding-inline: var(--space-s);
-    & article:nth-child(2n) {
-      margin-block: 0;
-    }
-  }
+  // .projects {
+  //   display: grid;
+
+  //   grid-template-columns: repeat(12, 1fr);
+  //   grid-template-rows: auto;
+  //   gap: var(--space-xxl) 0;
+  //   padding-inline: var(--space-s);
+  //   & article:nth-child(2n) {
+  //     margin-block: 0;
+  //   }
+  // }
 }

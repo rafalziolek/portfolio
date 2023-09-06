@@ -5,18 +5,18 @@
   --breakpoint-desktop: 1400px;
 
   // font stack
-  --font-family: "suisse int'l", "Inter", sans-serif;
+  // --font-family: "suisse int'l", "Inter", sans-serif;
 
   // font weights
   --font-weight-s: 400;
-  --font-weight-m: 500;
+  --font-weight-m: 400;
   --font-weight-l: 600;
 
   // font sizes
   --font-size-xs: 0.75rem;
   --font-size-xs: 0.9375rem;
   --font-size-s: 1.125rem;
-  --font-size-m: 1.375rem;
+  --font-size-m: 1.25rem;
   --font-size-l: 2rem;
   --font-size-xl: 2.75rem;
 
@@ -59,14 +59,14 @@
   --color-background-primary-inverted: var(--color-white);
 }
 
-@media screen and (max-width: 450px) {
-  :root {
-    --font-size-main-heading: var(--font-size-m);
-    --font-size-heading: var(--font-size-l);
-    --font-size-body: var(--font-size-m);
-    --font-size-caption: var(--font-size-m);
-  }
-}
+// @media screen and (max-width: 450px) {
+//   :root {
+//     --font-size-main-heading: var(--font-size-m);
+//     --font-size-heading: var(--font-size-l);
+//     --font-size-body: var(--font-size-m);
+//     --font-size-caption: var(--font-size-m);
+//   }
+// }
 
 * {
   box-sizing: border-box;
