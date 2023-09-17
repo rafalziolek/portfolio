@@ -1,9 +1,9 @@
-.link-list-wrapper {
+.list-wrapper {
   display: flex;
   flex-direction: column;
   gap: var(--space-xxs);
 
-  & .link-list {
+  & .list {
     font-size: var(--font-size-body);
     display: flex;
     flex-direction: column;

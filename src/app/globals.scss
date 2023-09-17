@@ -57,6 +57,8 @@
   --color-foreground-primary-inverted: var(--color-black);
   --color-background-primary: var(--color-black);
   --color-background-primary-inverted: var(--color-white);
+
+  --caption-margin: 131px;
 }
 
 // @media screen and (max-width: 450px) {
@@ -89,6 +91,7 @@ body {
   background: var(--color-background-primary);
   overflow: visible;
   scroll-behavior: smooth;
+  // padding: var(--space-xs);
 }
 
 a {

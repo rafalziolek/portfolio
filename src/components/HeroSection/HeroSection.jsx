@@ -6,7 +6,7 @@ import CustomLink from "../custom-link/CustomLink";
 import PhotoShutter from "../PhotoShutter/PhotoShutter";
 import Asterisks from "../asterisks/asterisks";
 import GradientBar from "../GradientBar/gradientBar";
-import LinkList from "@/components/LinkList/LinkList";
+import List from "@/components/List/List";
 function HeroSection() {
   return (
     <header className={styles.header}>
@@ -38,7 +38,7 @@ function HeroSection() {
         >
           <div className={styles.stack} style={{ flexGrow: "1" }}>
             {/* Previously */}
-            <LinkList title="Previously">
+            <List title="Previously">
               <li>
                 <CustomLink href="https://invotech.co">INVO</CustomLink>
               </li>
@@ -48,18 +48,18 @@ function HeroSection() {
               <li>
                 <CustomLink href="https://semiflat.com">Semiflat</CustomLink>
               </li>
-            </LinkList>
+            </List>
             {/* Free time section */}
-            <LinkList title="In free time">
+            <List title="In free time">
               <li>
                 <Text as="span">Street photography</Text>
               </li>
               <li>
                 <Text as="span">Cooking</Text>
               </li>
-            </LinkList>
+            </List>
             {/* Find me on */}
-            <LinkList title="Find me on">
+            <List title="Find me on">
               <li>
                 <CustomLink href="https://www.linkedin.com/in/rafal-ziolek/">
                   LinkedIn
@@ -75,10 +75,10 @@ function HeroSection() {
                   Twitter
                 </CustomLink>
               </li>
-            </LinkList>
+            </List>
           </div>
         </div>
-        <div>
+        <div id="Work">
           <Text as="h2" type="heading" color="secondary">
             Design projects{" "}
             <motion.span

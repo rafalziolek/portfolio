@@ -26,23 +26,21 @@
       object-fit: cover;
       z-index: 1;
     }
-    & figcaption {
-      padding-block: var(--space-xs);
+    & .caption-wrapper {
       position: sticky;
       bottom: 0;
       z-index: 1;
       background-color: #000;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      & figcaption {
+        padding-block: var(--space-xs);
 
-      & > a {
-        font-size: var(--font-size-caption);
-        font-weight: var(--font-weight-m);
-      }
-
-      & .fig-caption-corner {
-        display: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        & > a {
+          font-size: var(--font-size-body);
+          font-weight: var(--font-weight-m);
+        }
       }
     }
   }
