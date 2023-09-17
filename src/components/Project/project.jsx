@@ -11,6 +11,7 @@ function Project({ title, children, size = "medium", desc, path }) {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     margin: "-200px",
+    once: true,
   });
   useEffect(() => {
     console.log("Element is in view: ", isInView);
