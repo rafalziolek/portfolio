@@ -84,6 +84,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-family: var(--font-family);
+  scroll-behavior: smooth !important;
 }
 
 body {

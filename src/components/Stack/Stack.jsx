@@ -4,17 +4,19 @@ import styles from "./Stack.module.scss";
 // Stack component
 function Stack(props) {
   const {
-    gap = "var(--space-s)",
+    gap = "s",
     direction = "row",
     alignItems = "flex-start",
     justifyContent = "flex-start",
     wrap = "nowrap",
     children,
     className,
+    style,
   } = props;
 
   const stackStyles = {
-    gap,
+    gap: `var(--space-${gap})`,
+    ...style,
   };
 
   const containerClasses = [
