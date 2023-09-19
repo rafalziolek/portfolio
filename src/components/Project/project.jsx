@@ -10,8 +10,7 @@ import Corner from "./Corner/Corner";
 function Project({ title, children, size = "medium", desc, path }) {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    margin: "0px 0px -200px 0px",
-    once: true,
+    margin: "100% 0px -20% 0px",
   });
   useEffect(() => {
     console.log("Element is in view: ", isInView);
