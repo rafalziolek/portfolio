@@ -1,5 +1,5 @@
 .link {
-  height: fit-content;
+  width: fit-content;
   display: inline-block;
   font-size: inherit;
   font-weight: inherit;
@@ -8,8 +8,8 @@
 }
 .hover {
   display: block;
-  height: 2px;
-  bottom: 1px;
+  height: 0.05em;
+
   background-color: white;
   position: absolute;
   width: 100%;
@@ -18,7 +18,7 @@
 .trailing-icon {
   display: inline-block;
   vertical-align: bottom;
-  margin-bottom: -0.08em;
+  // margin-bottom: -0.08em;
   padding-inline: 4px;
   line-height: inherit;
 }

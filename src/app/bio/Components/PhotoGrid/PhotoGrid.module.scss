@@ -1,0 +1,16 @@
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  padding-inline: var(--space-s);
+  padding-block: var(--space-xl);
+  gap: var(--space-xs);
+  & div {
+    border-radius: 6px;
+  }
+  & > img {
+    height: 600px;
+    width: auto;
+    background-color: rgba($color: #fff, $alpha: 0.3);
+  }
+}
