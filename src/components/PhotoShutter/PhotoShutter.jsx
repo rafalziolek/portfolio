@@ -14,6 +14,7 @@ function PhotoShutter({ variants }) {
   const container = {
     show: {
       opacity: 0.7,
+      once: true,
       transition: {
         staggerChildren: 0.15,
       },
@@ -22,6 +23,7 @@ function PhotoShutter({ variants }) {
   const shutter = {
     show: {
       opacity: 1,
+      once: true,
       transition: {
         duration: 0,
       },
