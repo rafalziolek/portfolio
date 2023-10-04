@@ -32,8 +32,8 @@ function ProjectList() {
           </motion.span>
         </Text>
         <Text as="p" type="body" style={{ maxWidth: "40ch" }}>
-          Some of my selected works. From projects for clients and companies to
-          good and bad explorations{" "}
+          My selected projects, including work I've done at companies, as well
+          as freelance and personal projects.
         </Text>
         <section className={styles.projects}>
           <Project
@@ -75,7 +75,20 @@ function ProjectList() {
               src="/projects/nikola/1.png"
             />
           </Project>
-        </section>{" "}
+          <Project
+            title="Docplanner IA project"
+            desc="Rethinking Docplanner's information architecture"
+            projectName="dopclanner-ai"
+            path="/docplanner-ia"
+          >
+            <ProjectImage
+              size="large"
+              width={1400}
+              height={701}
+              src="/projects/nikola/1.png"
+            />
+          </Project>
+        </section>
       </motion.div>
     </>
   );

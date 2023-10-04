@@ -16,6 +16,20 @@
     color: var(--color-foreground-primary);
     font-weight: var(--font-weight-m);
     mix-blend-mode: exclusion;
+    &.logo {
+      display: none;
+    }
+    &.logo-initials {
+      display: block;
+    }
+    @media screen and (min-width: 720px) {
+      &.logo {
+        display: block;
+      }
+      &.logo-initials {
+        display: none;
+      }
+    }
   }
 
   & ul {

@@ -31,10 +31,11 @@ function Bio() {
               In my work
             </Text>
             <Text>
-              I work at the intersection of design and development. Wether
-              it&apos;s a design tool or code I aim to strike a balance between
-              usability and aesthetics, resulting in a product that is easy to
-              use, but also playful and aesthetically pleasing.
+              Although I am first and foremost a designer, I do experiment with
+              code to give my designs an extra layer of polish. <br /> <br />
+              This hands-on approach helps me understand the possibilities and
+              limitations, ensuring that my design ideas are not just visually
+              appealing but also practically implementable.
             </Text>
           </div>
 

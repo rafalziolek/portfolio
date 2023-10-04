@@ -13,17 +13,34 @@ function BioHeader() {
             Hi I&apos;m Rafał
           </Text>
           <Text as="h1" type="mainHeading">
-            I&apos;m a designer and photographer living in Warsaw, Poland.
-            Currently I&apos;m building design systems at Docplanner. Before
-            transitioning to design systems I&apos;ve worked on
-            Docplanner&apos;s SaaS software for doctors and clinics.
+            Designer and photographer based in Warsaw, Poland. Currently, I am
+            developing design systems at Docplanner. Prior to that, I worked on
+            Docplanner's SaaS software for doctors and clinics.
           </Text>
         </div>
-        <Text>
-          Previously I&apos;ve worked in Absolvent to help build a place to find
-          a job for fresh graduates, and at INVO where I was working on design
-          solutions for small and medium clients.
-        </Text>
+        <div>
+          <Text as="h2" color="secondary" className={styles.caption}>
+            My approach
+          </Text>
+          <Text>
+            I'm a designer who loves getting into both the nitty-gritty details
+            and the big picture.
+            <br />
+            <br /> Design for me is not just about making things look good; it's
+            about crafting an experience that's intuitive, user-friendly, and
+            above all, honest. I aim for transparency, ensuring that what's good
+            for the business also benefits the person using it. <br /> <br />
+            Beyond the world of UI/UX, I draw inspiration from various
+            disciplines and arts, from photography to design as an art form. All
+            these feed into a design process that's as versatile as it is
+            focused.
+          </Text>
+        </div>
+        {/* <Text>
+          I previously worked at Absolvent, where I helped build a job platform
+          for fresh graduates. I also worked at INVO, where I designed solutions
+          for small and medium-sized clients.
+        </Text> */}
       </div>
       <div className={styles.contact}>
         <List title="You can contact me via email">

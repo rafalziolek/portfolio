@@ -20,7 +20,6 @@ function HeroSection() {
         <div className={`${styles.stack}`}>
           <div style={{ zIndex: "1" }}>
             <Text
-              className={styles.stack}
               as="h1"
               type="main-heading"
               style={{
