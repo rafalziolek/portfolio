@@ -10,8 +10,7 @@ import Corner from "./Corner/Corner";
 function Project({ title, children, size = "medium", desc, path }) {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    margin: "0px 0px -200px 0px",
-    once: true,
+    margin: "100% 0px -10% 0px",
   });
   useEffect(() => {
     console.log("Element is in view: ", isInView);
@@ -24,7 +23,7 @@ function Project({ title, children, size = "medium", desc, path }) {
           className={styles["caption-wrapper"]}
           initial={{ y: "100%" }}
           animate={{ y: isInView ? "0%" : "100%" }}
-          transition={{ duration: 0.8, type: "spring", bounce: 0 }}
+          transition={{ duration: 0.4, type: "spring", bounce: "0.01" }}
         >
           <motion.figcaption
             initial={{ filter: "blur(10px)", opacity: 0 }}
@@ -33,7 +32,7 @@ function Project({ title, children, size = "medium", desc, path }) {
                 ? { filter: "blur(0px)", opacity: 1 }
                 : { filter: "blur(10px)", opacity: 0 }
             }
-            transition={{ duration: 1, type: "spring", bounce: 0 }}
+            transition={{ duration: 0.5, type: "spring", bounce: "0.01" }}
           >
             <Corner flip className={styles["fig-caption-corner"]} />
             <Corner className={styles["fig-caption-corner"]} />
