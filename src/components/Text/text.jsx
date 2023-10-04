@@ -4,12 +4,13 @@ function Text({
   type = "body",
   children,
   color = "",
+  className,
   ...delegated
 }) {
   return (
     <Tag
       {...delegated}
-      className={`${styles.Text} ${styles[type]} ${styles[color]}`}
+      className={`${styles.Text} ${styles[type]} ${styles[color]} ${className}`}
     >
       {children}
     </Tag>
