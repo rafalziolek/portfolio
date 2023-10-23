@@ -3,7 +3,7 @@ function Text({
   as: Tag = "p",
   type = "body",
   children,
-  color = "",
+  color = "primary",
   className,
   ...delegated
 }) {

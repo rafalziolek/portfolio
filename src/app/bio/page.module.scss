@@ -11,3 +11,13 @@
     background-color: rgba($color: #fff, $alpha: 0.3);
   }
 }
+
+.contact {
+  display: flex;
+  gap: var(--space-xl);
+  margin-top: var(--space-l);
+  padding: var(--space-s);
+  flex-direction: column;
+  --color-background-primary: gray;
+  flex-grow: 2;
+}

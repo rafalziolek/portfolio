@@ -7,9 +7,33 @@ import List from "@/components/List/List";
 import { Stack, StackItem } from "@/components/Stack/Stack";
 function Bio() {
   return (
-    <>
+    <div>
       <BioHeader />
-      <PhotoGrid />
+      {/* <div className={styles.contact}>
+        <List title="Connect with me">
+          <li>
+            <CustomLink href="mailto:rafal.ziolek@icloud.com">
+              rafal.ziolek@icloud.com
+            </CustomLink>
+          </li>
+          <li>
+            <CustomLink href="https://www.linkedin.com/in/rafal-ziolek/">
+              LinkedIn
+            </CustomLink>
+          </li>
+          <li>
+            <CustomLink href="https://www.instagram.com/notactualphotographer/">
+              Instagram
+            </CustomLink>
+          </li>
+          <li>
+            <CustomLink href="https://twitter.com/rafal_ziolek/">
+              Twitter
+            </CustomLink>
+          </li>
+        </List>
+      </div> */}
+      {/* <PhotoGrid /> */}
       <section style={{ margin: "var(--space-xxl) var(--space-s)" }}>
         <div
           style={{
@@ -19,32 +43,12 @@ function Bio() {
             flexDirection: "column",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              gap: "var(--space-xxs)",
-              flexDirection: "column",
-              marginBottom: "var(--space-xl)",
-            }}
-          >
-            <Text as="h2" type="mainHeading" color="secondary">
-              In my work
-            </Text>
-            <Text>
-              Although I am first and foremost a designer, I do experiment with
-              code to give my designs an extra layer of polish. <br /> <br />
-              This hands-on approach helps me understand the possibilities and
-              limitations, ensuring that my design ideas are not just visually
-              appealing but also practically implementable.
-            </Text>
-          </div>
-
-          <Stack wrap="wrap" gap="m">
-            <StackItem flex="2">
+          <Stack wrap="wrap" gap="xl">
+            <StackItem flex="1">
               <List
                 title="Things I'm learning now"
                 style={{
-                  borderTop: "1px solid rgba(255,255,255,0.2)",
+                  borderTop: "1px solid rgba(255,255,255,0.4)",
                   paddingTop: "var(--space-m)",
                 }}
               >
@@ -55,7 +59,7 @@ function Bio() {
               <List
                 title="People who inspire me"
                 style={{
-                  borderTop: "1px solid rgba(255,255,255,0.2)",
+                  borderTop: "1px solid rgba(255,255,255,0.4)",
                   paddingTop: "var(--space-m)",
                 }}
               >
@@ -74,7 +78,7 @@ function Bio() {
               <List
                 title="Random things I love"
                 style={{
-                  borderTop: "1px solid rgba(255,255,255,0.2)",
+                  borderTop: "1px solid rgba(255,255,255,0.4)",
                   paddingTop: "var(--space-m)",
                 }}
               >
@@ -85,7 +89,7 @@ function Bio() {
           </Stack>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

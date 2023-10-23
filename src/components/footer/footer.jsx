@@ -8,7 +8,7 @@ function Footer() {
       <div className={styles.wrapper}>
         {/* <div className={styles["avatar-video"]}></div> */}
         <div className={styles["footer-text"]}>
-          <Text as="h3" type="main-heading" color="secondary">
+          <Text as="h3" color="secondary">
             Thanks for visiting
           </Text>
           <Text as="p" type="body">

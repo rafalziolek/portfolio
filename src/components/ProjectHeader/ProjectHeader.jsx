@@ -1,22 +1,42 @@
+"use client";
+import List from "../List/List";
 import styles from "./ProjectHeader.module.scss";
 import CustomLink from "@/components/custom-link/CustomLink";
+import { motion } from "framer-motion";
+import WatsonHeading from "@/app/[projectSlug]/Components/WatsonHeading";
+import Image from "next/image";
+import Text from "../Text/text";
 
-function ProjectHeader({ title, abstract, details }) {
+function ProjectHeader({
+  title,
+  abstract,
+  details,
+  live,
+  imgId,
+  titleComponent,
+}) {
+  const HeadingComponent = titleComponent;
   return (
     <header className={styles.header}>
-      <div className={`${styles["header-layout"]}`}>
+      <div className={styles["header-layout"]}>
         <div className={styles.title}>
-          <h1>{title}</h1>
+          {HeadingComponent ? (
+            <HeadingComponent style={{ paddingBlockEnd: "var(--space-l)" }} />
+          ) : (
+            ""
+          )}
         </div>
         <div className={styles.details}>
-          <p>{abstract}</p>
-          {/* <div className={`${styles["details-list-wrapper"]}`}>
+          <Text>{abstract}</Text>
+          <div className={`${styles["details-list-wrapper"]}`}>
             {details.map((item, index) => {
               return (
-                <ul key={index}>
-                  <span className={`${styles["list-title"]}`}>
-                    {item.title}
-                  </span>
+                <List
+                  inline={true}
+                  key={index}
+                  title={item.title}
+                  style={{ display: "grid", gridTemplateColumns: "1fr 3fr" }}
+                >
                   {item.items.map((item, index) => (
                     <li key={index}>
                       {typeof item.link === "string" ? (
@@ -26,11 +46,20 @@ function ProjectHeader({ title, abstract, details }) {
                       )}
                     </li>
                   ))}
-                </ul>
+                </List>
               );
             })}
-          </div> */}
+          </div>
         </div>
+      </div>
+      <div className={styles["image-wrapper"]}>
+        <Image
+          width={1310}
+          height={1024}
+          src="/projects/watson/project-large.png"
+          alt="something"
+          className={styles.image}
+        />
       </div>
     </header>
   );

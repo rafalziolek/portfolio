@@ -5,6 +5,7 @@ import ProjectImage from "../Project/ProjectImage/ProjectImage";
 
 import Text from "../Text/text";
 import { motion } from "framer-motion";
+import { Stack } from "../Stack/Stack";
 function ProjectList() {
   return (
     <>
@@ -15,26 +16,28 @@ function ProjectList() {
         animate={{ y: "0px", opacity: 1, filter: "blur(0px)" }}
         transition={{ delay: 1, duration: 1.5, type: "spring", bounce: 0.2 }}
       >
-        <Text as="h2" type="heading" color="secondary">
-          Design projects{" "}
-          <motion.span
-            style={{ display: "inline-block" }}
-            initial={{ y: "-1px" }}
-            animate={{ y: "4px" }}
-            transition={{
-              type: "tween",
-              repeat: Infinity,
-              repeatType: "mirror",
-              duration: 1,
-            }}
-          >
-            ↓
-          </motion.span>
-        </Text>
-        <Text as="p" type="body" style={{ maxWidth: "40ch" }}>
-          My selected projects, including work I've done at companies, as well
-          as freelance and personal projects.
-        </Text>
+        <Stack direction="column" gap="xxs">
+          <Text as="h2" type="body" color="secondary">
+            Design projects{" "}
+            <motion.span
+              style={{ display: "inline-block" }}
+              initial={{ y: "-1px" }}
+              animate={{ y: "4px" }}
+              transition={{
+                type: "tween",
+                repeat: Infinity,
+                repeatType: "mirror",
+                duration: 1,
+              }}
+            >
+              ↓
+            </motion.span>
+          </Text>
+          <Text as="p" type="body" style={{ maxWidth: "40ch" }}>
+            My selected projects, including work I've done at companies, as well
+            as freelance and personal projects.
+          </Text>
+        </Stack>
         <section className={styles.projects}>
           <Project
             title="Watson Design System"

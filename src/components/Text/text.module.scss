@@ -1,24 +1,24 @@
 .Text {
   &.main-heading {
     @media screen and (max-width: 600px) {
-      font-size: var(--font-size-heading);
+      font-size: var(--font-size-main-heading);
     }
     font-size: var(--font-size-main-heading);
     font-weight: var(--font-weight-m);
     // letter-spacing: -0.2px;
-    line-height: 130%;
+    line-height: 150%;
   }
   &.heading {
     font-size: var(--font-size-main-heading);
     font-weight: var(--font-weight-m);
     // letter-spacing: -0.2px;
-    line-height: 130%;
+    line-height: 150%;
   }
   &.body {
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-m);
     // letter-spacing: -0.2px;
-    line-height: 130%;
+    line-height: 150%;
   }
 
   &.caption {
