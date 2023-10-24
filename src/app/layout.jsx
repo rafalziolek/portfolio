@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body>
-        <div style={{ maxWidth: "1920px", margin: "0 auto" }}>
+        <div>
           {children}
           <Footer />
         </div>
