@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import Text from "../Text/text";
 import CustomLink from "../custom-link/CustomLink";
 import PhotoShutter from "../PhotoShutter/PhotoShutter";
-import Asterisks from "../asterisks/asterisks";
-import GradientBar from "../GradientBar/gradientBar";
+
 import List from "@/components/List/List";
 function HeroSection() {
   return (
@@ -23,7 +22,7 @@ function HeroSection() {
               as="h1"
               type="body"
               style={{
-                maxWidth: "40ch",
+                maxWidth: "45ch",
               }}
             >
               Product designer and photographer based in Poland. Currently

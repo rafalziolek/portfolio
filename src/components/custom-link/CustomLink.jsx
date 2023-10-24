@@ -6,9 +6,15 @@ import { motion } from "framer-motion";
 const underline = {
   default: {
     width: "0",
+    transition: {
+      duration: 0.15,
+    },
   },
   hover: {
     width: "100%",
+    transition: {
+      duration: 0.15,
+    },
   },
 };
 
@@ -16,10 +22,16 @@ const arrowAngled = {
   default: {
     x: "0",
     y: "0",
+    transition: {
+      duration: 0.15,
+    },
   },
   hover: {
     x: "4px",
-    y: "-4px",
+    y: "-3px",
+    transition: {
+      duration: 0.15,
+    },
   },
 };
 
@@ -27,10 +39,16 @@ const arrow = {
   default: {
     x: "0",
     y: "0",
+    transition: {
+      duration: 0.15,
+    },
   },
   hover: {
     x: "4px",
     y: "0",
+    transition: {
+      duration: 0.15,
+    },
   },
 };
 
