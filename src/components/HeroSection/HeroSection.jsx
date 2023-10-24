@@ -24,7 +24,7 @@ function HeroSection() {
               as="h1"
               type="main-heading"
               style={{
-                maxWidth: "40ch",
+                maxWidth: "45ch",
               }}
             >
               Product designer and photographer based in Poland. Currently

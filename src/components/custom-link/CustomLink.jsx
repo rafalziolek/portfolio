@@ -19,7 +19,7 @@ const arrowAngled = {
   },
   hover: {
     x: "4px",
-    y: "-4px",
+    y: "-6px",
   },
 };
 
