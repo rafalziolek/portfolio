@@ -9,7 +9,7 @@
 
   // font weights
   --font-weight-s: 450;
-  --font-weight-m: 400;
+  --font-weight-m: 500;
   --font-weight-l: 600;
 
   // font sizes
@@ -49,7 +49,7 @@
 
   --color-white: hsl(0, 0%, 100%);
   --color-gray-500: hsla(0, 0%, 100%), 0.5;
-  --color-black: hsl(0, 0%, 0%);
+  --color-black: #0f0f0f;
 
   // Semantic colors
   --color-foreground-primary: var(--color-white);
