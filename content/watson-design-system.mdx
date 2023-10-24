@@ -1,12 +1,27 @@
 ---
 title: "Watson Design System"
-abstract: Watson is Docplanner's design language for our SaaS products and digital experiences. The system consists of working code, design tools and resources, and human interface guidelines.
+abstract: "Watson is Docplanner's design language for our SaaS products and digital experiences. The system consists of working code, design tools and resources, and human interface guidelines."
+titleComponent: "WatsonHeading"
 scopeOfWork: ["User Interface Design", "Prototyping", "Documentation"]
+Company: "Docplanner"
+Year: "2022"
+images:
+  - src: ""
+    alt:
+    height: "1310"
+    width:
+
 details:
+  - title: "Year"
+    items:
+      - text: "2020 — Ongoing"
+  - title: "Company"
+    items:
+      - text: "Docplanner"
   - title: "Scope of work"
     items:
-      - text: "User Interface Design"
-      - text: "Prototyping"
+      - text: "User Interface Design, "
+      - text: "Prototyping, "
       - text: "Documentation"
   - title: "Check it live"
     items:
@@ -14,4 +29,46 @@ details:
         link: "https://watson.docplanner.design"
 ---
 
-dsadasdas
+{/* <WatsonHeading /> */}
+
+# Background
+
+In 2022 I joined a design systems team at Docplanner. This team was responsible of maintaining our existing UI library we used in our products. During the 2022 together with the team we created a new design system tailored for our SaaS product called Watson.
+
+## Initial state
+
+Before Watson, Docplanner used the UI Kit library based on Bootstrap. While this approach was fast and cost-effective initially, it began to show its disadvantages as the company scaled its products and teams.
+
+## The issues we faced
+
+### Supporting two products
+
+UI Kit library was used across two different products with different user groups and needs. SaaS for doctors, focused on efficiency and daily use, and marketplace, focused on discoverability and presenting information. Supporting these two products led to poor semantics of our directives, implementing components reusable only in one product
+
+### Lack of control
+
+Ui Kit library didn’t provide custom design directives as we relied on opinionated third-party libraries. It led to a system that is dependent on a third-party and can’t be easily adapted to the changes required by the product direction, thus creating a legacy inside it.
+
+### Accessibility
+
+Neither our foundations nor components were never created with accessibility in mind. The usage of third-party libraries was not helping the case as well. This generated debt regarding the WCAG conventions: lack of proper roles, aria-labels, keyboard navigation, or color contrast specs.
+
+### Lack of documentation and shared language
+
+Documentation was scattered in multiple places. We had separate documentation for developers and for designers. They presented information about components differently, with naming and UI inconsistencies across them. This generated confusion, and product teams wasted time finding the right solution or place to answer their doubts.
+
+## New approach
+
+After auditing an effort to fix the current solution, we realised it’s better to start with a clean slate. As our previous library was started with marketplace in mind, we proposed creating an official team in charge of the new design system tailored for SaaS. Team would be responsible for providing tailored tools, and assisting our product teams for both Web and App environments, very much like Sherlock Holmes’ best friend, [Dr. Watson](https://en.wikipedia.org/wiki/Dr._Watson).
+
+## Our goals
+
+We wanted to create a system that tackles many of our past issues at the roots. A custom solution tailored to our needs with unified language between design and development, accessibility engraved in its DNA, and clear extensive documentation.
+
+## Laying out the foundations
+
+We decided to start with the foundational design directives, such as spacing, typography, and colors. It allowed us to create solid foundations with strong emphasis on scalability and semantics.
+
+### Typography
+
+I was responsible of building our new typographic foundations. I started with an audit of our existing library and the product. My proposal included a simplified scale that would will well within our interface.

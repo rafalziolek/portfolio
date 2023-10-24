@@ -1,7 +1,5 @@
 import Link from "next/link";
 import Text from "@/components/Text/text";
-// import localFont from "next/font/local";
-// import "../globals.scss";
 
 function ProjectLayout({ children }) {
   return (
@@ -24,7 +22,7 @@ function ProjectLayout({ children }) {
           </Text>
         </Link>
       </div>
-      {children}
+      <div style={{ margin: "var(--space-s)" }}>{children}</div>
     </>
   );
 }

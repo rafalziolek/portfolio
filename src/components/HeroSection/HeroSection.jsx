@@ -20,7 +20,7 @@ function HeroSection() {
           <div style={{ zIndex: "1" }}>
             <Text
               as="h1"
-              type="main-heading"
+              type="body"
               style={{
                 maxWidth: "45ch",
               }}
