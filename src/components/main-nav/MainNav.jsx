@@ -24,7 +24,11 @@ function MainNav() {
             </MainNavItem>
           </ul>
         </GridItem>
-        <GridItem columnSpan={-3} justifySelf="end">
+        <GridItem
+          columnSpan={-3}
+          justifySelf="end"
+          style={{ display: "flex", justifyContent: "end" }}
+        >
           <a
             className={`${styles["main-nav-link"]} ${styles.mail}`}
             href="mailto://rafal.ziolek@icloud.com"

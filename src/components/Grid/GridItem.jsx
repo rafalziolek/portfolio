@@ -7,6 +7,7 @@ function GridItem({
   justifySelf = "",
   alignSelf = "",
   className = "",
+  style,
 }) {
   const getColumnSpanClass = (span) => {
     if (span < 0) {
@@ -23,6 +24,7 @@ function GridItem({
       className={`${columnSpanClass} ${styles[`justify-self-${justifySelf}`]} ${
         styles[`align-self-${alignSelf}`]
       } ${className}`}
+      style={style}
     >
       {children}
     </div>
