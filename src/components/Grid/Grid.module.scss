@@ -1,0 +1,32 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: var(--space-5);
+  width: 100%;
+}
+
+$alignments: start, end, center;
+
+@each $alignment in $alignments {
+  .\$justify-self-#{$alignment} {
+    justify-self: $alignment;
+  }
+
+  .\$align-self-#{$alignment} {
+    align-self: $alignment;
+  }
+}
+
+// Example column spans
+@for $i from 1 through 12 {
+  .colSpan#{$i} {
+    grid-column: span $i;
+  }
+}
+
+// Negative column spans (span backwards from the end)
+@for $i from 1 through 12 {
+  .colSpanEnd#{$i} {
+    grid-column: #{"#{-$i} / -1"};
+  }
+}

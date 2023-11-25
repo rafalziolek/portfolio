@@ -1,12 +1,21 @@
 .Text {
+  &.text-indent {
+    text-indent: calc((100vw / 6) - 7px);
+  }
+  &.display-heading {
+    font-size: clamp(var(--font-size-l), 2.8vw, 2.8vw);
+    font-weight: var(--font-weight-m);
+    letter-spacing: -0.5px;
+    line-height: var(--line-height-s);
+  }
   &.main-heading {
     @media screen and (max-width: 600px) {
       font-size: var(--font-size-heading);
     }
     font-size: var(--font-size-main-heading);
     font-weight: var(--font-weight-m);
-    // letter-spacing: -0.2px;
-    line-height: 140%;
+    letter-spacing: -0.5px;
+    line-height: var(--line-height-s);
   }
   &.heading {
     font-size: var(--font-size-main-heading);
@@ -18,7 +27,7 @@
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-m);
     // letter-spacing: -0.2px;
-    line-height: 140%;
+    line-height: 150%;
   }
 
   &.caption {

@@ -1,8 +1,10 @@
 .header {
   padding: var(--space-s);
   display: flex;
+  align-items: center;
   flex-direction: row;
   gap: var(--space-xxl);
+  height: 55vh;
   flex-wrap: wrap;
   & .about-me {
     display: flex;

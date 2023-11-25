@@ -1,0 +1,11 @@
+.section {
+  padding-inline: var(--space-s);
+  padding-block: var(--space-s) var(--space-xxl);
+  & a:hover {
+    text-decoration: underline;
+  }
+}
+
+.title {
+  grid-column: span 2;
+}

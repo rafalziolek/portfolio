@@ -1,16 +1,27 @@
 import styles from "./footer.module.scss";
 import Text from "@/components/Text/text";
 import Image from "next/image";
+import CustomLink from "../custom-link/CustomLink";
+import { Stack } from "../Stack/Stack";
 
 function Footer() {
   return (
     <footer className={styles.footer}>
+      <Stack gap="xxs" className={styles.circles} direction="column">
+        <Stack gap="xxs">
+          <span className={`${styles.circle} ${styles.blue}`}></span>
+          <span className={`${styles.circle} ${styles.orange}`}></span>
+        </Stack>
+        <span className={`${styles.circle} ${styles.outline}`}></span>
+      </Stack>
+      <VerticalLines />
       <div className={styles.wrapper}>
-        {/* <div className={styles["avatar-video"]}></div> */}
+        <Text type="display-heading" as="p">
+          <a href="https://twitter.com/rafal_ziolek">Twitter</a>,{" "}
+          <a href="https://www.linkedin.com/in/rafal-ziolek/">LinkedIn</a>,{" "}
+          <a href="mailto://rafal.ziolek@icloud.com">rafal.ziolek@icloud.com</a>
+        </Text>
         <div className={styles["footer-text"]}>
-          <Text as="h3" type="main-heading" color="secondary">
-            Thanks for visiting
-          </Text>
           <Text as="p" type="body">
             Special thanks to my cats,{" "}
             <span>
@@ -43,3 +54,15 @@ function Footer() {
 }
 
 export default Footer;
+
+function VerticalLines() {
+  const numOfLines = Array.from(Array(250).keys());
+
+  return (
+    <div className={styles["lines-wrapper"]}>
+      {numOfLines.map((num) => (
+        <span className={styles.line}></span>
+      ))}
+    </div>
+  );
+}

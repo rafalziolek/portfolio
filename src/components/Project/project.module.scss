@@ -4,7 +4,7 @@
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
 
   & figure {
@@ -30,7 +30,7 @@
       position: sticky;
       bottom: 0;
       z-index: 1;
-      background-color: #000;
+      background-color: var(--color-black);
       & figcaption {
         padding-block: var(--space-xs);
 
@@ -48,14 +48,6 @@
 
 .img-wrapper {
   position: relative;
-  & .corner-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: sticky;
-    bottom: 86px;
-    translate: 0 -100%;
-  }
 }
 
 @media screen and (max-width: 920px) {

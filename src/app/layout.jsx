@@ -7,24 +7,19 @@ export const metadata = {
   description: "",
 };
 
-const Suisse = localFont({
+const NeueMontreal = localFont({
   src: [
     {
-      path: "../fonts/SuisseIntl-Book.ttf",
-      weight: "400",
-      style: "normal",
+      path: "./fonts/PPNeueMontreal-Medium.woff",
+      weight: "500",
+      style: "medium",
     },
-    // {
-    //   path: "../../fonts/PPNeueMontreal-Medium.woff2",
-    //   weight: "500",
-    //   style: "normal",
-    // },
   ],
 });
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={Suisse.className}>
+    <html lang="en" className={NeueMontreal.className}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>

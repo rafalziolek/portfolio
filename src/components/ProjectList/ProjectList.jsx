@@ -15,7 +15,7 @@ function ProjectList() {
         animate={{ y: "0px", opacity: 1, filter: "blur(0px)" }}
         transition={{ delay: 1, duration: 1.5, type: "spring", bounce: 0.2 }}
       >
-        <Text as="h2" type="heading" color="secondary">
+        {/* <Text as="h2" type="heading" color="secondary">
           Design projects{" "}
           <motion.span
             style={{ display: "inline-block" }}
@@ -34,11 +34,11 @@ function ProjectList() {
         <Text as="p" type="body" style={{ maxWidth: "40ch" }}>
           My selected projects, including work I've done at companies, as well
           as freelance and personal projects.
-        </Text>
+        </Text> */}
         <section className={styles.projects}>
           <Project
             title="Watson Design System"
-            desc="Docplanner's design language for digital experiences"
+            badgeText="Docplanner"
             projectName="watson"
             path="/watson-design-system"
           >
@@ -63,8 +63,8 @@ function ProjectList() {
           </Project>
 
           <Project
+            badgeText="Freelance"
             title="Nikola Chmiel"
-            desc="Inspiring yoga for a beautiful You"
             projectName="nikola"
             path="/watson-design-system"
           >
@@ -77,7 +77,7 @@ function ProjectList() {
           </Project>
           <Project
             title="Docplanner IA project"
-            desc="Rethinking Docplanner's information architecture"
+            badgeText="Docplanner"
             projectName="dopclanner-ai"
             path="/docplanner-ia"
           >

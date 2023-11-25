@@ -6,8 +6,9 @@ import CustomLink from "../custom-link/CustomLink";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
-import Corner from "./Corner/Corner";
-function Project({ title, children, size = "medium", desc, path }) {
+import { Stack } from "../Stack/Stack";
+import Pill from "../Pill/Pill";
+function Project({ title, children, size = "medium", badgeText, path }) {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     margin: "100% 0px -10% 0px",
@@ -34,16 +35,12 @@ function Project({ title, children, size = "medium", desc, path }) {
             }
             transition={{ duration: 0.5, type: "spring", bounce: "0.01" }}
           >
-            <Corner flip className={styles["fig-caption-corner"]} />
-            <Corner className={styles["fig-caption-corner"]} />
-
-            <div>
-              <Text as="h4" type="body" color="secondary">
-                {title}
+            <Stack direction="row" gap="xs" alignItems="center">
+              <Pill>{badgeText}</Pill>
+              <Text as="h4" type="body">
+                <Link href={path}>{title} →</Link>
               </Text>
-              <Text type="body">{desc}</Text>
-            </div>
-            <CustomLink path={path}>Read more</CustomLink>
+            </Stack>
           </motion.figcaption>
         </motion.div>
       </figure>
