@@ -3,7 +3,7 @@
     text-indent: calc((100vw / 6) - 7px);
   }
   &.display-heading {
-    font-size: clamp(var(--font-size-l), 2.8vw, 2.8vw);
+    font-size: clamp(var(--font-size-xl), 2.8vw, 2.8vw);
     font-weight: var(--font-weight-m);
     letter-spacing: -0.5px;
     line-height: var(--line-height-s);
@@ -42,5 +42,13 @@
     color: var(--color-foreground-primary);
     opacity: 0.6;
     // mix-blend-mode: difference;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .Text {
+    &.text-indent {
+      text-indent: 0 !important;
+    }
   }
 }

@@ -55,19 +55,14 @@
       }
     }
   }
-  .logo {
+  div:has(> div > .logo) {
     display: none;
     font-size: var(--font-size-body);
   }
-  .logo-initials {
-    display: block;
-  }
-  @media screen and (min-width: 720px) {
-    .logo {
-      display: block;
-    }
-    .logo-initials {
-      display: none;
+
+  @media screen and (min-width: 800px) {
+    div:has(> div > .logo) {
+      display: flex;
     }
   }
 
