@@ -1,4 +1,3 @@
-"use client";
 import styles from "./ProjectList.module.scss";
 import Project from "../Project/project";
 import ProjectImage from "../Project/ProjectImage/ProjectImage";
@@ -8,16 +7,10 @@ import { motion } from "framer-motion";
 function ProjectList() {
   return (
     <>
-      <motion.div
-        id="Work"
-        className={styles.work}
-        initial={{ y: "10px", opacity: 0, filter: "blur(10px)" }}
-        animate={{ y: "0px", opacity: 1, filter: "blur(0px)" }}
-        transition={{ delay: 1, duration: 1.5, type: "spring", bounce: 0.2 }}
-      >
+      <div id="work" className={styles.work}>
         {/* <Text as="h2" type="heading" color="secondary">
           Design projects{" "}
-          <motion.span
+          <span
             style={{ display: "inline-block" }}
             initial={{ y: "-1px" }}
             animate={{ y: "4px" }}
@@ -29,7 +22,7 @@ function ProjectList() {
             }}
           >
             ↓
-          </motion.span>
+          </span>
         </Text>
         <Text as="p" type="body" style={{ maxWidth: "40ch" }}>
           My selected projects, including work I've done at companies, as well
@@ -41,55 +34,35 @@ function ProjectList() {
             badgeText="Docplanner"
             projectName="watson"
             path="/watson-design-system"
-          >
-            <ProjectImage
-              size="large"
-              width={1310}
-              height={1024}
-              src="/projects/watson/project-large.png"
-            />
-            <ProjectImage
-              size="medium"
-              width={900}
-              height={700}
-              src="/projects/watson/3.jpg"
-            />
-            <ProjectImage
-              size="medium"
-              width={900}
-              height={700}
-              src="/projects/watson/2.jpg"
-            />
-          </Project>
-
+            imgWidth={2800}
+            imgHeight={2048}
+          ></Project>
           <Project
+            title="Poza Matą Studio"
             badgeText="Freelance"
-            title="Nikola Chmiel"
             projectName="nikola"
-            path="/watson-design-system"
-          >
-            <ProjectImage
-              size="large"
-              width={1400}
-              height={701}
-              src="/projects/nikola/1.png"
-            />
-          </Project>
+            path="/nikola-chmiel"
+            imgWidth={2800}
+            imgHeight={1402}
+          ></Project>
           <Project
-            title="Docplanner IA project"
+            title="Runchise"
+            badgeText="Semiflat"
+            projectName="runchise"
+            path="/runchise"
+            imgWidth={3732}
+            imgHeight={2108}
+          ></Project>
+          <Project
+            title="Watson Design System"
             badgeText="Docplanner"
-            projectName="dopclanner-ai"
-            path="/docplanner-ia"
-          >
-            <ProjectImage
-              size="large"
-              width={1400}
-              height={701}
-              src="/projects/nikola/1.png"
-            />
-          </Project>
+            projectName="watson"
+            path="/watson-design-system"
+            imgWidth={2800}
+            imgHeight={2048}
+          ></Project>
         </section>
-      </motion.div>
+      </div>
     </>
   );
 }

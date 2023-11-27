@@ -1,10 +1,9 @@
 .project {
   position: relative;
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: var(--space-xxs);
+  &:hover {
+    & .arrow {
+      opacity: 1;
+    }
   }
 
   & figure {
@@ -26,23 +25,13 @@
       object-fit: cover;
       z-index: 1;
     }
-    & .caption-wrapper {
-      position: sticky;
-      bottom: 0;
-      z-index: 1;
-      background-color: var(--color-black);
-      & figcaption {
-        padding-block: var(--space-xs);
+  }
+}
 
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        & > a {
-          font-size: var(--font-size-body);
-          font-weight: var(--font-weight-m);
-        }
-      }
-    }
+.description {
+  padding-block: var(--space-xs);
+  & .arrow {
+    opacity: 0;
   }
 }
 

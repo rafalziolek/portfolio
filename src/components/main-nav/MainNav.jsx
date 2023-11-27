@@ -26,7 +26,7 @@ function MainNav() {
               Menu
             </Text>
             <ul>
-              <MainNavItem glyphLetter="W" href="/work" glyphColor="blue">
+              <MainNavItem glyphLetter="W" href="#work" glyphColor="blue">
                 Work,
               </MainNavItem>
               <MainNavItem glyphLetter="A" href="/about" glyphColor="orange">
