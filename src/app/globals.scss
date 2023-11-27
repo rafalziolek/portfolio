@@ -94,14 +94,15 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-family: var(--font-family);
-  scroll-behavior: smooth !important;
+  // scroll-behavior: smooth !important;
 }
 
 body {
   color: var(--color-foreground-primary);
   background: var(--color-background-primary);
   overflow: visible;
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
+
   // padding: var(--space-xs);
 }
 
