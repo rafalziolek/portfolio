@@ -3,6 +3,9 @@
   opacity: 1; // Set initial opacity for all .project elements
   &:hover {
     opacity: 1; // Set opacity to 1 when a .project element is hovered
+    & .arrow {
+      opacity: 1;
+    }
   }
   &:not(:hover) {
     opacity: 0.5; // Set opacity to 0.5 for all .project elements that are not being hovered
