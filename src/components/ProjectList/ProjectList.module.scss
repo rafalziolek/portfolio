@@ -1,11 +1,11 @@
 .work {
-  padding: 0 var(--space-s) 0 var(--space-s);
+  padding: 0 var(--space-s);
   scroll-padding-top: 300px;
 }
 .projects {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: calc(var(--space-xxl) * 2) var(--space-xl);
+  gap: calc(var(--space-xl) * 2) var(--space-l);
   grid-template-rows: auto;
   align-items: end;
 
@@ -13,5 +13,13 @@
   background-color: var(--color-background-primary);
   & article {
     grid-column: span 6;
+  }
+}
+
+@media screen and (max-width: 1170px) {
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
   }
 }

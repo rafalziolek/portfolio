@@ -35,11 +35,7 @@ function MainNav() {
             </ul>
           </Stack>
         </GridItem>
-        <GridItem
-          columnSpan={-3}
-          justifySelf="end"
-          style={{ display: "flex", justifyContent: "end" }}
-        >
+        <GridItem columnSpan={-3} justifySelf="end">
           <Stack direction="column" gap="xxs">
             {" "}
             <Text type="caption" color="secondary">

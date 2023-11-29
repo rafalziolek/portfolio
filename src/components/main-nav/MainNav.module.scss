@@ -9,6 +9,10 @@
   mix-blend-mode: exclusion;
   padding: var(--space-s);
   width: 100%;
+  div:has(> div > .mail) {
+    display: flex;
+    justify-content: end;
+  }
 
   & .main-nav-link {
     display: flex;
@@ -71,5 +75,17 @@
     display: flex;
     flex-direction: row;
     gap: var(--space-s);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-nav {
+    & > div {
+      display: flex;
+      flex-direction: row;
+    }
+    div:has(> div > .mail) {
+      display: none;
+    }
   }
 }

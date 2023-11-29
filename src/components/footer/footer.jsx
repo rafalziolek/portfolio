@@ -16,7 +16,7 @@ function Footer() {
       </Stack>
       <VerticalLines />
       <div className={styles.wrapper}>
-        <Text type="display-heading" as="p">
+        <Text type="display-heading" as="h3">
           <a href="https://twitter.com/rafal_ziolek">Twitter</a>,{" "}
           <a href="https://www.linkedin.com/in/rafal-ziolek/">LinkedIn</a>,{" "}
           <a href="mailto://rafal.ziolek@icloud.com">rafal.ziolek@icloud.com</a>

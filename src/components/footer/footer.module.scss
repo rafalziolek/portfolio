@@ -21,6 +21,7 @@
   gap: var(--space-m);
   & a {
     text-decoration: underline;
+    word-wrap: break-word;
   }
 }
 

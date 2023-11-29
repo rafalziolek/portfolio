@@ -45,8 +45,11 @@
   }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1170px) {
   .Text {
+    &.display-heading {
+      font-size: var(--font-size-xl);
+    }
     &.text-indent {
       text-indent: 0 !important;
     }
