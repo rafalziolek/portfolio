@@ -14,9 +14,9 @@
 
   // font sizes
   --font-size-xxs: 0.8125rem;
-  --font-size-xs: 0.9375rem;
+  --font-size-xs: 0.875rem;
   --font-size-s: 1rem;
-  --font-size-m: 1.125rem;
+  --font-size-m: 1rem;
   --font-size-l: 1.75rem;
   --font-size-xl: 2.75rem;
   --font-size-xxl: 3.75rem;
@@ -24,7 +24,8 @@
   --font-size-main-heading: var(--font-size-xxl);
   --font-size-heading: var(--font-size-m);
   --font-size-body: var(--font-size-m);
-  --font-size-caption: var(--font-size-xs);
+  --font-size-body-support: var(--font-size-s);
+  --font-size-caption: var(--font-size-xxs);
 
   --line-height-xs: 100%;
   --line-height-s: 110%;
@@ -114,17 +115,13 @@ a {
   text-decoration: none;
 }
 
-// h1,
-// h2,
-// h3,
-// h4,
-// p {
-//   font-size: var(--font-size-m);
-//   font-weight: var(--font-weight-m);
-//   // line-height: 100%;
-//   letter-spacing: -0.2px;
-//   max-width: 40ch;
-// }
+h1,
+h2,
+h3,
+h4,
+p {
+  font-weight: var(--font-weight-m);
+}
 
 @media (prefers-color-scheme: dark) {
   :root {

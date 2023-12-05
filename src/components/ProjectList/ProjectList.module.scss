@@ -4,7 +4,7 @@
   & .projects {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: calc(var(--space-xl) * 3) var(--space-l);
+    gap: calc(var(--space-xl) * 2) var(--space-l);
     grid-template-rows: auto;
     align-items: start;
 
@@ -17,9 +17,11 @@
 }
 
 @media screen and (max-width: 1170px) {
-  .projects {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-l);
+  .work {
+    & .projects {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xxl);
+    }
   }
 }

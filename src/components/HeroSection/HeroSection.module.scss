@@ -4,7 +4,7 @@
   flex-direction: column;
   padding: var(--space-s);
   row-gap: var(--space-xl);
-  padding-block: 150px;
+  padding-block: calc(2 * var(--space-xxl));
   justify-content: center;
 
   & > .stack {

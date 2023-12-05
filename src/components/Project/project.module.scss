@@ -42,6 +42,7 @@
   padding-block: var(--space-xs);
   & .arrow {
     opacity: 0;
+    white-space: nowrap;
   }
 }
 

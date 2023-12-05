@@ -20,14 +20,14 @@ function ProjectList() {
                 imgWidth={2800}
                 imgHeight={2048}
               ></Project>
-              <Text type='caption' style={{ maxWidth: '50ch' }}>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
                 Watson is a Docplanner's design language for SaaS products and
                 digital experiences. The system consists of working code, design
                 tools and resources, and human interface guidelines.
               </Text>
             </Stack>
           </GridItem>
-          <GridItem startColumn={8} endColumn={13}>
+          <GridItem startColumn={8} endColumn={12}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Poza Matą Studio'
@@ -37,7 +37,7 @@ function ProjectList() {
                 imgWidth={2800}
                 imgHeight={1402}
               ></Project>
-              <Text type='caption' style={{ maxWidth: '50ch' }}>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
                 Poza Matą Studio, founded by Nikola Chmiel, is a boutique yoga
                 studio emphasizing personalized experiences and wellness
                 programs. It's dedicated to building an empowering community and
@@ -46,24 +46,36 @@ function ProjectList() {
             </Stack>
           </GridItem>
           <GridItem startColumn={1} endColumn={5}>
-            <Project
-              title='Runchise'
-              badgeText='Semiflat'
-              projectName='runchise'
-              path='/runchise'
-              imgWidth={3732}
-              imgHeight={2108}
-            ></Project>
+            <Stack direction='column' gap='none'>
+              <Project
+                title='Runchise'
+                badgeText='Semiflat'
+                projectName='runchise'
+                path='/runchise'
+                imgWidth={3732}
+                imgHeight={2108}
+              ></Project>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+                Runchise offers integrated solutions for restaurant and
+                franchise management.
+              </Text>
+            </Stack>
           </GridItem>
           <GridItem startColumn={6} endColumn={11}>
-            <Project
-              title='Watson Design System'
-              badgeText='Docplanner'
-              projectName='watson'
-              path='/watson-design-system'
-              imgWidth={2800}
-              imgHeight={2048}
-            ></Project>
+            <Stack direction='column' gap='none'>
+              <Project
+                title='Rethinking Docplanner IA'
+                badgeText='Docplanner'
+                projectName='watson'
+                path='/docplanner-ia'
+                imgWidth={3026}
+                imgHeight={2090}
+              ></Project>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+                Runchise offers integrated solutions for restaurant and
+                franchise management.
+              </Text>
+            </Stack>
           </GridItem>
         </Grid>
       </div>

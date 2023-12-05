@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Text from "@/components/Text/text";
+import Link from 'next/link';
+import Text from '@/components/Text/text';
 // import localFont from "next/font/local";
 // import "../globals.scss";
 
@@ -8,23 +8,29 @@ function ProjectLayout({ children }) {
     <>
       <div
         style={{
-          marginBlock: "var(--space-xs)",
-          marginInline: "var(--space-s)",
+          marginBlock: 'var(--space-xs)',
+          marginInline: 'var(--space-s)',
         }}
       >
-        <Link href="/" aria-label="Go Back">
+        <Link href='/' aria-label='Go Back'>
           <Text
-            as="span"
+            as='span'
             style={{
-              padding: "var(--space-s)",
-              marginLeft: "calc(-1 * var(--space-s))",
+              padding: 'var(--space-s)',
+              marginLeft: 'calc(-1 * var(--space-s))',
             }}
           >
             ←
           </Text>
         </Link>
       </div>
-      {children}
+      <div
+        style={{
+          margin: 'var(--space-s)',
+        }}
+      >
+        {children}
+      </div>
     </>
   );
 }

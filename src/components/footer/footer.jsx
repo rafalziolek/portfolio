@@ -61,7 +61,6 @@ function VerticalLines() {
   return (
     <div className={styles['lines-wrapper']}>
       {numOfLines.map((num, index) => {
-        console.log(index);
         return (
           <span
             key={index}

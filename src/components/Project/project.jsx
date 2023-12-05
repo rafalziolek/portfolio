@@ -17,7 +17,7 @@ function Project({
   return (
     <article className={`${styles.project}`}>
       {' '}
-      <Link href={path}>
+      <Link href='#'>
         <figure>
           <Image
             src={`/projects/${projectName}/image.png`}
@@ -42,7 +42,7 @@ function Project({
                   {title}
                 </Text>
               </Stack>
-              <span className={styles.arrow}>→</span>
+              <span className={styles.arrow}>Case study in progress →</span>
             </Stack>
           </figcaption>
         </figure>{' '}
