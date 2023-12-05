@@ -66,14 +66,14 @@ function ProjectList() {
               <Project
                 title='Rethinking Docplanner IA'
                 badgeText='Docplanner'
-                projectName='watson'
+                projectName='docplanner-ia'
                 path='/docplanner-ia'
                 imgWidth={3026}
                 imgHeight={2090}
               ></Project>
               <Text type='body-support' style={{ maxWidth: '50ch' }}>
-                Runchise offers integrated solutions for restaurant and
-                franchise management.
+                Simplifying Docplanner's information architecture to ensure
+                smooth and easy to understand experience for doctors.
               </Text>
             </Stack>
           </GridItem>
