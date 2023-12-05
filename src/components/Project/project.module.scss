@@ -73,5 +73,10 @@
     & .fig-caption-corner {
       display: block !important;
     }
+    & .description {
+      & .arrow {
+        display: none;
+      }
+    }
   }
 }
