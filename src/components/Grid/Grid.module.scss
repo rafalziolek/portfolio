@@ -27,6 +27,6 @@ $alignments: start, end, center;
 // Negative column spans (span backwards from the end)
 @for $i from 1 through 12 {
   .colSpanEnd#{$i} {
-    grid-column: #{"#{-$i} / -1"};
+    grid-column: #{'#{-$i} / -1'};
   }
 }

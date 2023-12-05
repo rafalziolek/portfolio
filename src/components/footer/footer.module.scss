@@ -64,11 +64,21 @@
 
 .lines-wrapper {
   display: flex;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  // gap: 10px;
   overflow: hidden;
   & .line {
     display: block;
-    height: 7.5625rem;
-    border-right: 1px solid white;
+    transition: 100ms all;
+    height: 10rem;
+    min-width: 1px;
+    background-color: white;
+    margin-inline: 4px;
+
+    &:hover {
+      transition: 100ms all;
+      transform: scaleY(1.1);
+    }
   }
 }

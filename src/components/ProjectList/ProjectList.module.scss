@@ -1,18 +1,18 @@
 .work {
   padding: 0 var(--space-s);
   scroll-padding-top: 300px;
-}
-.projects {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: calc(var(--space-xl) * 2) var(--space-l);
-  grid-template-rows: auto;
-  align-items: end;
+  & .projects {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: calc(var(--space-xl) * 3) var(--space-l);
+    grid-template-rows: auto;
+    align-items: start;
 
-  margin-top: var(--space-s);
-  background-color: var(--color-background-primary);
-  & article {
-    grid-column: span 6;
+    padding-top: var(--space-xxl);
+    background-color: var(--color-background-primary);
+    & article {
+      grid-column: span 6;
+    }
   }
 }
 

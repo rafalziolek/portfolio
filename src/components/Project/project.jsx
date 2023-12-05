@@ -1,10 +1,10 @@
-import Image from "next/image";
-import styles from "./project.module.scss";
-import Text from "../Text/text";
-import Link from "next/link";
+import Image from 'next/image';
+import styles from './project.module.scss';
+import Text from '../Text/text';
+import Link from 'next/link';
 
-import { Stack } from "../Stack/Stack";
-import Pill from "../Pill/Pill";
+import { Stack } from '../Stack/Stack';
+import Pill from '../Pill/Pill';
 function Project({
   title,
   projectName,
@@ -16,37 +16,36 @@ function Project({
 }) {
   return (
     <article className={`${styles.project}`}>
-      {" "}
+      {' '}
       <Link href={path}>
         <figure>
-          {" "}
+          <Image
+            src={`/projects/${projectName}/image.png`}
+            width={imgWidth}
+            height={imgHeight}
+          />
           <figcaption className={styles.description}>
             <Stack
-              direction="row"
-              gap="xs"
-              alignItems="center"
-              justifyContent="space-between"
+              direction='row'
+              gap='xs'
+              alignItems='center'
+              justifyContent='space-between'
             >
               <Stack
-                direction="row"
-                gap="xs"
-                alignItems="center"
-                style={{ width: "100%" }}
+                direction='row'
+                gap='xs'
+                alignItems='center'
+                style={{ width: '100%' }}
               >
                 <Pill>{badgeText}</Pill>
-                <Text as="h4" type="body">
+                <Text as='h4' type='body'>
                   {title}
                 </Text>
               </Stack>
               <span className={styles.arrow}>→</span>
             </Stack>
           </figcaption>
-          <Image
-            src={`/projects/${projectName}/image.png`}
-            width={imgWidth}
-            height={imgHeight}
-          />
-        </figure>{" "}
+        </figure>{' '}
       </Link>
     </article>
   );

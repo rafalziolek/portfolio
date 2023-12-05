@@ -24,7 +24,7 @@
   --font-size-main-heading: var(--font-size-xxl);
   --font-size-heading: var(--font-size-m);
   --font-size-body: var(--font-size-m);
-  --font-size-caption: var(--font-size-xxs);
+  --font-size-caption: var(--font-size-xs);
 
   --line-height-xs: 100%;
   --line-height-s: 110%;
@@ -54,7 +54,7 @@
   // Raw colors
 
   --color-white: hsl(0, 0%, 100%);
-  --color-white-0-5: hsla(0, 0%, 100%), 0.5;
+  --color-white-0-5: rgba(255, 255, 255, 0.5);
   --color-black: #0a0a0a;
   --color-blue: #3f8ae2;
   --color-blue: color(display-p3 0.241 0.565 0.88 / 1);
@@ -63,7 +63,7 @@
 
   // Semantic colors
   --color-foreground-primary: var(--color-white);
-  --color-foreground-secondary: var(--color-gray-500);
+  --color-foreground-secondary: var(--color-white-0-5);
   --color-foreground-primary-inverted: var(--color-black);
   --color-background-primary: var(--color-black);
   --color-background-primary-inverted: var(--color-white);

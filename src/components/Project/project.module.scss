@@ -1,19 +1,16 @@
 .project {
   transition: 200ms all;
   position: relative;
-  opacity: 1; // Set initial opacity for all .project elements
+
   &:hover {
-    opacity: 1; // Set opacity to 1 when a .project element is hovered
     & .arrow {
       opacity: 1;
     }
     & img {
-      border-radius: 10px;
+      // border-radius: 10px;
       transition: 200ms all;
+      opacity: 1;
     }
-  }
-  &:not(:hover) {
-    opacity: 0.6; // Set opacity to 0.5 for all .project elements that are not being hovered
   }
 
   & figure {
@@ -34,7 +31,8 @@
       height: 100%;
       object-fit: cover;
       z-index: 1;
-      border-radius: 6px;
+      // border-radius: 6px;
+      opacity: 0.6;
       transition: 200ms all;
     }
   }
