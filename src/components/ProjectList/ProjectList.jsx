@@ -10,15 +10,15 @@ function ProjectList() {
     <>
       <div id='work' className={styles.work}>
         <Grid className={styles.projects}>
-          <GridItem startColumn={2} endColumn={7}>
+          <GridItem startColumn={1} endColumn={7}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Watson Design System'
                 badgeText='Docplanner'
                 projectName='watson'
                 path='/watson-design-system'
-                imgWidth={2800}
-                imgHeight={2048}
+                imgWidth={3360}
+                imgHeight={1544}
               ></Project>
               <Text type='body-support' style={{ maxWidth: '50ch' }}>
                 Watson is a Docplanner's design language for SaaS products and
@@ -26,7 +26,7 @@ function ProjectList() {
                 tools and resources, and human interface guidelines.
               </Text>
             </Stack>
-          </GridItem>
+          </GridItem>{' '}
           <GridItem startColumn={8} endColumn={12}>
             <Stack direction='column' gap='none'>
               <Project
@@ -40,12 +40,27 @@ function ProjectList() {
               <Text type='body-support' style={{ maxWidth: '50ch' }}>
                 Poza Matą Studio, founded by Nikola Chmiel, is a boutique yoga
                 studio emphasizing personalized experiences and wellness
-                programs. It's dedicated to building an empowering community and
-                catering to individual needs and goals.
+                programs.
               </Text>
             </Stack>
           </GridItem>
-          <GridItem startColumn={1} endColumn={5}>
+          <GridItem startColumn={2} endColumn={6}>
+            <Stack direction='column' gap='none'>
+              <Project
+                title='Docplanner IA'
+                badgeText='Docplanner'
+                projectName='docplanner-ia'
+                path='/docplanner-ia'
+                imgWidth={3026}
+                imgHeight={2090}
+              ></Project>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+                Simplifying Docplanner's information architecture to ensure
+                smooth and easy to understand experience for doctors.
+              </Text>
+            </Stack>
+          </GridItem>
+          <GridItem startColumn={7} endColumn={13}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Runchise'
@@ -58,22 +73,6 @@ function ProjectList() {
               <Text type='body-support' style={{ maxWidth: '50ch' }}>
                 Runchise offers integrated solutions for restaurant and
                 franchise management.
-              </Text>
-            </Stack>
-          </GridItem>
-          <GridItem startColumn={6} endColumn={11}>
-            <Stack direction='column' gap='none'>
-              <Project
-                title='Rethinking Docplanner IA'
-                badgeText='Docplanner'
-                projectName='docplanner-ia'
-                path='/docplanner-ia'
-                imgWidth={3026}
-                imgHeight={2090}
-              ></Project>
-              <Text type='body-support' style={{ maxWidth: '50ch' }}>
-                Simplifying Docplanner's information architecture to ensure
-                smooth and easy to understand experience for doctors.
               </Text>
             </Stack>
           </GridItem>
