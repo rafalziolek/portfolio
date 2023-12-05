@@ -1,10 +1,16 @@
 .project {
+  transition: 200ms all;
   position: relative;
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: var(--space-xs);
+  &:hover {
+    & .arrow {
+      opacity: 1;
+    }
+    & img {
+      // border-radius: 10px;
+      transition: 200ms all;
+      opacity: 1;
+    }
   }
 
   & figure {
@@ -25,37 +31,23 @@
       height: 100%;
       object-fit: cover;
       z-index: 1;
+      // border-radius: 6px;
+      opacity: 0.6;
+      transition: 200ms all;
     }
-    & .caption-wrapper {
-      position: sticky;
-      bottom: 0;
-      z-index: 1;
-      background-color: #000;
-      & figcaption {
-        padding-block: var(--space-xs);
+  }
+}
 
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        & > a {
-          font-size: var(--font-size-body);
-          font-weight: var(--font-weight-m);
-        }
-      }
-    }
+.description {
+  padding-block: var(--space-xs);
+  & .arrow {
+    opacity: 0;
+    white-space: nowrap;
   }
 }
 
 .img-wrapper {
   position: relative;
-  & .corner-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: sticky;
-    bottom: 86px;
-    translate: 0 -100%;
-  }
 }
 
 @media screen and (max-width: 920px) {

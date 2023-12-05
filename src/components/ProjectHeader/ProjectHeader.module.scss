@@ -9,7 +9,8 @@
 
 .header-layout {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: var(--space-s);
 }
 
 .details {
@@ -23,21 +24,24 @@
   }
   & .details-list-wrapper {
     display: flex;
-    flex-direction: row;
-    gap: var(--space-xxl);
-    & ul {
-      list-style: none;
+    flex-direction: column;
+    list-style: none;
+    gap: var(--space-xxs);
+    & li {
+      display: flex;
+      align-items: start;
       & .list-title {
         font-size: var(--font-size-body);
         font-weight: var(--font-weight-m);
-        color: var(--color-gray-500);
-        margin-bottom: var(--space-xs);
+        line-height: var(--line-height-l);
+        color: var(--color-foreground-secondary);
         display: block;
+        width: 30%;
       }
-      & li {
+      & span,
+      a {
         font-size: var(--font-size-body);
         font-weight: var(--font-weight-m);
-        margin-top: var(--space-xxs);
       }
     }
   }

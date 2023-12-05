@@ -8,28 +8,65 @@
   z-index: 3;
   mix-blend-mode: exclusion;
   padding: var(--space-s);
+  width: 100%;
+  div:has(> div > .mail) {
+    display: flex;
+    justify-content: end;
+  }
 
-  & .nav-link {
-    display: block;
+  & .main-nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xxs);
     position: relative;
     font-size: var(--font-size-body);
     line-height: 100%;
     color: var(--color-foreground-primary);
     font-weight: var(--font-weight-m);
-    mix-blend-mode: exclusion;
-    &.logo {
-      display: none;
-    }
-    &.logo-initials {
-      display: block;
-    }
-    @media screen and (min-width: 720px) {
-      &.logo {
-        display: block;
+
+    &.mail {
+      justify-self: end;
+      &:hover {
+        text-decoration: underline;
       }
-      &.logo-initials {
-        display: none;
+    }
+
+    & .link-glyph {
+      font-size: var(--font-size-caption);
+      line-height: 1.5rem;
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 1.5px #fff;
+      height: 1.5rem;
+      width: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      &.link-glyph-blue {
+        box-shadow: none;
+        color: #000;
+        background: var(--color-blue);
       }
+      &.link-glyph-orange {
+        box-shadow: none;
+        color: #000;
+        background: var(--color-orange);
+      }
+    }
+    &:hover,
+    &.active {
+      & .link-label {
+        text-decoration: underline;
+      }
+    }
+  }
+  div:has(> div > .logo) {
+    display: none;
+    font-size: var(--font-size-body);
+  }
+
+  @media screen and (min-width: 800px) {
+    div:has(> div > .logo) {
+      display: flex;
     }
   }
 
@@ -38,5 +75,17 @@
     display: flex;
     flex-direction: row;
     gap: var(--space-s);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-nav {
+    & > div {
+      display: flex;
+      flex-direction: row;
+    }
+    div:has(> div > .mail) {
+      display: none;
+    }
   }
 }

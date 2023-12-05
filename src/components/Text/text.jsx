@@ -4,13 +4,16 @@ function Text({
   type = "body",
   children,
   color = "",
+  indent = false,
   className,
   ...delegated
 }) {
   return (
     <Tag
       {...delegated}
-      className={`${styles.Text} ${styles[type]} ${styles[color]} ${className}`}
+      className={`${styles.Text} ${styles[type]} ${styles[color]} ${
+        indent && styles["text-indent"]
+      } ${className}`}
     >
       {children}
     </Tag>

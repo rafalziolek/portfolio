@@ -35,11 +35,10 @@ function Stack(props) {
 }
 
 // StackItem component
-function StackItem(props) {
-  const { flex = "1", children } = props;
-
+function StackItem({ flex = "1", children, style }) {
   const itemStyles = {
     flex,
+    ...style,
   };
 
   return (

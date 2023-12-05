@@ -1,8 +1,6 @@
 .img-wrapper {
   position: relative;
-  & img {
-    border-radius: 6px;
-  }
+
   & .corner-wrapper {
     display: flex;
     flex-direction: row;

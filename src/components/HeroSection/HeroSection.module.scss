@@ -4,8 +4,8 @@
   flex-direction: column;
   padding: var(--space-s);
   row-gap: var(--space-xl);
-  min-height: calc(88dvh - 77px);
-  position: relative;
+  padding-block: calc(2 * var(--space-xxl));
+  justify-content: center;
 
   & > .stack {
     @media screen and (max-width: 800px) {
@@ -23,4 +23,13 @@
   gap: var(--space-l);
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    & > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

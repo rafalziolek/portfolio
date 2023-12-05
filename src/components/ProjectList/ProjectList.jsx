@@ -1,95 +1,84 @@
-"use client";
-import styles from "./ProjectList.module.scss";
-import Project from "../Project/project";
-import ProjectImage from "../Project/ProjectImage/ProjectImage";
-
-import Text from "../Text/text";
-import { motion } from "framer-motion";
+import styles from './ProjectList.module.scss';
+import Project from '../Project/project';
+import ProjectImage from '../Project/ProjectImage/ProjectImage';
+import Grid from '../Grid/Grid';
+import GridItem from '../Grid/GridItem';
+import { Stack } from '../Stack/Stack';
+import Text from '../Text/text';
 function ProjectList() {
   return (
     <>
-      <motion.div
-        id="Work"
-        className={styles.work}
-        initial={{ y: "10px", opacity: 0, filter: "blur(10px)" }}
-        animate={{ y: "0px", opacity: 1, filter: "blur(0px)" }}
-        transition={{ delay: 1, duration: 1.5, type: "spring", bounce: 0.2 }}
-      >
-        <Text as="h2" type="heading" color="secondary">
-          Design projects{" "}
-          <motion.span
-            style={{ display: "inline-block" }}
-            initial={{ y: "-1px" }}
-            animate={{ y: "4px" }}
-            transition={{
-              type: "tween",
-              repeat: Infinity,
-              repeatType: "mirror",
-              duration: 1,
-            }}
-          >
-            ↓
-          </motion.span>
-        </Text>
-        <Text as="p" type="body" style={{ maxWidth: "40ch" }}>
-          My selected projects, including work I've done at companies, as well
-          as freelance and personal projects.
-        </Text>
-        <section className={styles.projects}>
-          <Project
-            title="Watson Design System"
-            desc="Docplanner's design language for digital experiences"
-            projectName="watson"
-            path="/watson-design-system"
-          >
-            <ProjectImage
-              size="large"
-              width={1310}
-              height={1024}
-              src="/projects/watson/project-large.png"
-            />
-            <ProjectImage
-              size="medium"
-              width={900}
-              height={700}
-              src="/projects/watson/3.jpg"
-            />
-            <ProjectImage
-              size="medium"
-              width={900}
-              height={700}
-              src="/projects/watson/2.jpg"
-            />
-          </Project>
-
-          <Project
-            title="Nikola Chmiel"
-            desc="Inspiring yoga for a beautiful You"
-            projectName="nikola"
-            path="/watson-design-system"
-          >
-            <ProjectImage
-              size="large"
-              width={1400}
-              height={701}
-              src="/projects/nikola/1.png"
-            />
-          </Project>
-          <Project
-            title="Docplanner IA project"
-            desc="Rethinking Docplanner's information architecture"
-            projectName="dopclanner-ai"
-            path="/docplanner-ia"
-          >
-            <ProjectImage
-              size="large"
-              width={1400}
-              height={701}
-              src="/projects/nikola/1.png"
-            />
-          </Project>
-        </section>
-      </motion.div>
+      <div id='work' className={styles.work}>
+        <Grid className={styles.projects}>
+          <GridItem startColumn={2} endColumn={7}>
+            <Stack direction='column' gap='none'>
+              <Project
+                title='Watson Design System'
+                badgeText='Docplanner'
+                projectName='watson'
+                path='/watson-design-system'
+                imgWidth={2800}
+                imgHeight={2048}
+              ></Project>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+                Watson is a Docplanner's design language for SaaS products and
+                digital experiences. The system consists of working code, design
+                tools and resources, and human interface guidelines.
+              </Text>
+            </Stack>
+          </GridItem>
+          <GridItem startColumn={8} endColumn={12}>
+            <Stack direction='column' gap='none'>
+              <Project
+                title='Poza Matą Studio'
+                badgeText='Freelance'
+                projectName='nikola'
+                path='/nikola-chmiel'
+                imgWidth={2800}
+                imgHeight={1402}
+              ></Project>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+                Poza Matą Studio, founded by Nikola Chmiel, is a boutique yoga
+                studio emphasizing personalized experiences and wellness
+                programs. It's dedicated to building an empowering community and
+                catering to individual needs and goals.
+              </Text>
+            </Stack>
+          </GridItem>
+          <GridItem startColumn={1} endColumn={5}>
+            <Stack direction='column' gap='none'>
+              <Project
+                title='Runchise'
+                badgeText='Semiflat'
+                projectName='runchise'
+                path='/runchise'
+                imgWidth={3732}
+                imgHeight={2108}
+              ></Project>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+                Runchise offers integrated solutions for restaurant and
+                franchise management.
+              </Text>
+            </Stack>
+          </GridItem>
+          <GridItem startColumn={6} endColumn={11}>
+            <Stack direction='column' gap='none'>
+              <Project
+                title='Rethinking Docplanner IA'
+                badgeText='Docplanner'
+                projectName='watson'
+                path='/docplanner-ia'
+                imgWidth={3026}
+                imgHeight={2090}
+              ></Project>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+                Runchise offers integrated solutions for restaurant and
+                franchise management.
+              </Text>
+            </Stack>
+          </GridItem>
+        </Grid>
+      </div>
     </>
   );
 }
