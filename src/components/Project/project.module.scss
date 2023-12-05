@@ -66,17 +66,16 @@
   // }
 }
 @media screen and (max-width: 800px) {
-  .project figcaption {
+  .project {
     flex-direction: column;
     gap: var(--space-s);
     position: relative;
     & .fig-caption-corner {
       display: block !important;
     }
-    & .description {
-      & .arrow {
-        display: none;
-      }
+
+    & .arrow {
+      display: none;
     }
   }
 }
