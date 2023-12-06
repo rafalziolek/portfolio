@@ -25,11 +25,17 @@
   flex-direction: column;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1170px) {
   .header {
     & > div {
       display: flex;
       flex-direction: column;
     }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding-top: calc(1 * var(--space-l));
   }
 }

@@ -1,5 +1,6 @@
 .header {
   padding-block: calc(2 * var(--space-xxl)) var(--space-xl);
+  padding-inline: var(--space-s);
   gap: var(--space-xxl);
   flex-wrap: wrap;
 }
@@ -10,4 +11,19 @@
   flex-direction: column;
   --color-background-primary: gray;
   flex-grow: 2;
+}
+
+@media screen and (max-width: 1170px) {
+  .header {
+    & > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding-top: calc(1 * var(--space-l));
+  }
 }
