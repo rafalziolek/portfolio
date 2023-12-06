@@ -43,7 +43,7 @@ function ProjectList() {
               </Text>
             </Stack>
           </GridItem>
-          <GridItem startColumn={3} endColumn={13}>
+          <GridItem startColumn={2} endColumn={12}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Poza Matą Studio'
