@@ -60,15 +60,9 @@
       }
     }
   }
-  div:has(> div > .logo) {
-    display: none;
-    font-size: var(--font-size-body);
-  }
 
-  @media screen and (min-width: 800px) {
-    div:has(> div > .logo) {
-      display: flex;
-    }
+  div:has(> div > .logo) {
+    display: flex;
   }
 
   & ul {
@@ -84,6 +78,7 @@
     & > div {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
     }
     div:has(> div > .mail) {
       display: none;
