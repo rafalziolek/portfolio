@@ -1,20 +1,7 @@
 .header {
-  padding: var(--space-s);
-  display: flex;
-  align-items: center;
-  flex-direction: row;
+  padding-block: calc(2 * var(--space-xxl)) var(--space-xl);
   gap: var(--space-xxl);
-  padding-block: 150px;
   flex-wrap: wrap;
-  & .about-me {
-    display: flex;
-    gap: var(--space-l);
-    flex-direction: column;
-    flex-grow: 4;
-    & .caption {
-      margin-bottom: var(--space-xxs);
-    }
-  }
 }
 
 .contact {

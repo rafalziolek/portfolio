@@ -26,17 +26,19 @@
     display: flex;
     flex-direction: column;
     list-style: none;
-    gap: var(--space-xxs);
+    gap: var(--space-2);
     & li {
       display: flex;
+      gap: var(--space-2);
       align-items: start;
       & .list-title {
-        font-size: var(--font-size-body);
-        font-weight: var(--font-weight-m);
-        line-height: var(--line-height-l);
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-);
+        line-height: var(--line-height-m);
         color: var(--color-foreground-secondary);
+        font-variant-position: super;
         display: block;
-        width: 30%;
+        width: 20%;
       }
       & span,
       a {

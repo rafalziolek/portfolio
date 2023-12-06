@@ -1,6 +1,6 @@
 .Text {
   &.text-indent {
-    text-indent: calc((100vw / 6) - 7px);
+    text-indent: calc((100vw / 12) - 7px);
   }
   &.display-heading {
     font-size: clamp(var(--font-size-xl), 2.8vw, 2.8vw);
@@ -18,7 +18,7 @@
     line-height: var(--line-height-s);
   }
   &.heading {
-    font-size: var(--font-size-main-heading);
+    font-size: var(--font-size-heading);
     font-weight: var(--font-weight-m);
     // letter-spacing: -0.2px;
     line-height: 140%;

@@ -1,21 +1,21 @@
-import React from "react";
-import styles from "./Stack.module.scss";
+import React from 'react';
+import styles from './Stack.module.scss';
 
 // Stack component
 function Stack(props) {
   const {
-    gap = "s",
-    direction = "row",
-    alignItems = "flex-start",
-    justifyContent = "flex-start",
-    wrap = "nowrap",
+    gap = 's',
+    direction = 'row',
+    alignItems = 'flex-start',
+    justifyContent = 'flex-start',
+    wrap = 'nowrap',
     children,
     className,
     style,
   } = props;
 
   const stackStyles = {
-    gap: `var(--space-${gap})`,
+    gap: typeof gap === 'number' ? `${gap}px` : `var(--space-${gap})`,
     ...style,
   };
 
@@ -25,7 +25,7 @@ function Stack(props) {
     styles[`align-items-${alignItems}`],
     styles[`justify-content-${justifyContent}`],
     styles[`wrap-${wrap}`],
-  ].join(" ");
+  ].join(' ');
 
   return (
     <div className={containerClasses} style={stackStyles}>
@@ -35,14 +35,14 @@ function Stack(props) {
 }
 
 // StackItem component
-function StackItem({ flex = "1", children, style }) {
+function StackItem({ flex = '1', children, style }) {
   const itemStyles = {
     flex,
     ...style,
   };
 
   return (
-    <div className={styles["stack-item"]} style={itemStyles}>
+    <div className={styles['stack-item']} style={itemStyles}>
       {children}
     </div>
   );
