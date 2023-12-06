@@ -3,8 +3,8 @@
   scroll-padding-top: 300px;
   & .projects {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: calc(var(--space-xl) * 2) var(--space-l);
+    grid-template-columns: repeat(24, 1fr);
+    gap: calc(var(--space-xl) * 2) var(--space-xs);
     grid-template-rows: auto;
     align-items: start;
 
