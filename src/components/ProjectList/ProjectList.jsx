@@ -10,8 +10,8 @@ function ProjectList() {
     <>
       <div id='work' className={styles.work}>
         <Grid className={styles.projects}>
-          <GridItem startColumn={1} endColumn={15}>
-            <Stack direction='column' gap='none'>
+          <GridItem startColumn={3} endColumn={8}>
+            <Stack direction='row' gap='none'>
               <Project
                 title='Watson Design System'
                 badgeText='Docplanner'
@@ -19,15 +19,14 @@ function ProjectList() {
                 path='/watson-design-system'
                 imgWidth={3360}
                 imgHeight={1544}
-              ></Project>
-              <Text type='body-support' style={{ maxWidth: '50ch' }}>
-                Watson is a Docplanner's design language for SaaS products and
-                digital experiences. The system consists of working code, design
-                tools and resources, and human interface guidelines.
-              </Text>
+              >
+                Docplanner's design language for SaaS products and digital
+                experiences. The system consists of working code, design tools
+                and resources, and human interface guidelines.
+              </Project>
             </Stack>
           </GridItem>
-          <GridItem startColumn={16} endColumn={23}>
+          <GridItem startColumn={8} endColumn={13}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Runchise'
@@ -36,14 +35,13 @@ function ProjectList() {
                 path='/runchise'
                 imgWidth={3732}
                 imgHeight={2108}
-              ></Project>
-              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+              >
                 Runchise offers integrated solutions for restaurant and
                 franchise management.
-              </Text>
+              </Project>
             </Stack>
           </GridItem>
-          <GridItem startColumn={2} endColumn={12}>
+          <GridItem startColumn={3} endColumn={8}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Poza Matą Studio'
@@ -52,15 +50,15 @@ function ProjectList() {
                 path='/nikola-chmiel'
                 imgWidth={2800}
                 imgHeight={1402}
-              ></Project>
-              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+              >
+                {' '}
                 Poza Matą Studio, founded by Nikola Chmiel, is a boutique yoga
                 studio emphasizing personalized experiences and wellness
                 programs.
-              </Text>
+              </Project>
             </Stack>
           </GridItem>
-          <GridItem startColumn={14} endColumn={24}>
+          <GridItem startColumn={8} endColumn={13}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Docplanner IA'

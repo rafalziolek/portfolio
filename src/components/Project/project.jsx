@@ -8,16 +8,17 @@ import Pill from '../Pill/Pill';
 function Project({
   title,
   projectName,
-  children,
+
   badgeText,
   path,
   imgWidth,
   imgHeight,
+  children,
 }) {
   return (
     <article className={`${styles.project}`}>
       {' '}
-      <Link href='#'>
+      <Link href={path}>
         <figure>
           <Image
             src={`/projects/${projectName}/image.png`}
@@ -33,17 +34,20 @@ function Project({
             >
               <Stack
                 direction='row'
-                gap='xs'
-                alignItems='center'
+                gap='2'
+                // alignItems='center'
                 style={{ width: '100%' }}
               >
-                <Pill>{badgeText}</Pill>
-                <Text as='h4' type='body'>
+                <Text as='h4' type='heading'>
                   {title}
                 </Text>
+                <Pill>{badgeText}</Pill>
               </Stack>
-              <span className={styles.arrow}>Case study in progress →</span>
+              <span className={styles.arrow}>→</span>
             </Stack>
+            <Text type='body-support' style={{ maxWidth: '50ch' }}>
+              {children}
+            </Text>
           </figcaption>
         </figure>{' '}
       </Link>

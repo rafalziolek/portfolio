@@ -1,24 +1,15 @@
 .footer {
-  background-color: var(--color-background-primary);
-  padding: calc(3 * var(--space-xxl)) var(--space-s) var(--space-s)
+  padding: calc(6 * var(--space-xxl)) var(--space-s) var(--space-s)
     var(--space-s);
-  gap: var(--space-m);
   display: flex;
   flex-direction: column;
-}
-
-.avatar-video {
-  width: 100px;
-  height: 100px;
-  background-color: black;
-  border-radius: 999px;
-  margin-bottom: var(--space-xs);
+  gap: var(--space-xs);
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  gap: var(--space-s);
   & a {
     text-decoration: underline;
     word-wrap: break-word;
@@ -38,8 +29,8 @@
 }
 
 .cat-avatar {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.25rem;
+  width: 1.25rem;
   object-fit: cover;
   border-radius: 999px;
   margin-right: var(--space-xxs);
@@ -66,15 +57,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // gap: 10px;
+  flex-direction: column;
+
   overflow: hidden;
   & .line {
     display: block;
     transition: 100ms all;
-    height: 10rem;
-    min-width: 1px;
-    background-color: white;
-    margin-inline: 4px;
+    width: 100%;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    margin-block: 10px;
 
     &:hover {
       transition: 100ms all;

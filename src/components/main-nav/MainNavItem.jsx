@@ -6,7 +6,6 @@ import Link from 'next/link';
 function MainNavItem({ children, glyphLetter, glyphColor, href }) {
   const pathname = usePathname();
   const isActive = pathname === href;
-  console.log(pathname);
   return (
     <Link
       href={href}
@@ -18,7 +17,7 @@ function MainNavItem({ children, glyphLetter, glyphColor, href }) {
             isActive ? styles[`link-glyph-${glyphColor}`] : ''
           }`}
         >
-          {glyphLetter}
+          {/* {glyphLetter} */}
         </span>
       ) : (
         ''
