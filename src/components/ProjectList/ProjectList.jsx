@@ -10,7 +10,7 @@ function ProjectList() {
     <>
       <div id='work' className={styles.work}>
         <Grid className={styles.projects}>
-          <GridItem startColumn={1} endColumn={7}>
+          <GridItem startColumn={1} endColumn={15}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Watson Design System'
@@ -26,8 +26,24 @@ function ProjectList() {
                 tools and resources, and human interface guidelines.
               </Text>
             </Stack>
-          </GridItem>{' '}
-          <GridItem startColumn={8} endColumn={12}>
+          </GridItem>
+          <GridItem startColumn={16} endColumn={23}>
+            <Stack direction='column' gap='none'>
+              <Project
+                title='Runchise'
+                badgeText='Semiflat'
+                projectName='runchise'
+                path='/runchise'
+                imgWidth={3732}
+                imgHeight={2108}
+              ></Project>
+              <Text type='body-support' style={{ maxWidth: '50ch' }}>
+                Runchise offers integrated solutions for restaurant and
+                franchise management.
+              </Text>
+            </Stack>
+          </GridItem>
+          <GridItem startColumn={3} endColumn={13}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Poza Matą Studio'
@@ -44,7 +60,7 @@ function ProjectList() {
               </Text>
             </Stack>
           </GridItem>
-          <GridItem startColumn={2} endColumn={6}>
+          <GridItem startColumn={14} endColumn={24}>
             <Stack direction='column' gap='none'>
               <Project
                 title='Docplanner IA'
@@ -57,22 +73,6 @@ function ProjectList() {
               <Text type='body-support' style={{ maxWidth: '50ch' }}>
                 Simplifying Docplanner's information architecture to ensure
                 smooth and easy to understand experience for doctors.
-              </Text>
-            </Stack>
-          </GridItem>
-          <GridItem startColumn={7} endColumn={13}>
-            <Stack direction='column' gap='none'>
-              <Project
-                title='Runchise'
-                badgeText='Semiflat'
-                projectName='runchise'
-                path='/runchise'
-                imgWidth={3732}
-                imgHeight={2108}
-              ></Project>
-              <Text type='body-support' style={{ maxWidth: '50ch' }}>
-                Runchise offers integrated solutions for restaurant and
-                franchise management.
               </Text>
             </Stack>
           </GridItem>
