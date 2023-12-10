@@ -6,6 +6,7 @@
 }
 
 $alignments: start, end, center;
+$breakpoints: xs, s, m, l, xl;
 
 @each $alignment in $alignments {
   .justify-self-#{$alignment} {

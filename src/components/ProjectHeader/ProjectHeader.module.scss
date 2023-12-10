@@ -1,3 +1,8 @@
+@media screen and (max-width: 1170px) {
+  .header-wrapper {
+    display: flex !important;
+  }
+}
 .header {
   margin-block: var(--space-xl) var(--space-xxl);
 }

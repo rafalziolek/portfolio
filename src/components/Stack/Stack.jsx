@@ -25,6 +25,7 @@ function Stack(props) {
     styles[`align-items-${alignItems}`],
     styles[`justify-content-${justifyContent}`],
     styles[`wrap-${wrap}`],
+    className,
   ].join(' ');
 
   return (

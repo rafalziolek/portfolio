@@ -64,8 +64,15 @@ function Bio() {
       </AboutSection>
       <AboutSection title={{ title: 'Random favs', number: '4' }}>
         <Stack direction='column' gap='xxs'>
-          <Text>Star Wars</Text>
-          <Text>To Pimp a Butterfly</Text>
+          <a href='https://en.wikipedia.org/wiki/Star_Wars' target='_blank'>
+            Star Wars ↗︎
+          </a>
+          <a
+            href='https://open.spotify.com/album/7ycBtnsMtyVbbwTfJwRjSP?si=HtPpTLE3R-Grv-fTd_RBig'
+            target='_blank'
+          >
+            To Pimp a Butterfly ↗︎
+          </a>
           <Text>Cooking</Text>
         </Stack>
       </AboutSection>

@@ -31,9 +31,9 @@ function GridItem({
 
   return (
     <div
-      className={`${columnSpanClass} ${styles[`justify-self-${justifySelf}`]} ${
-        styles[`align-self-${alignSelf}`]
-      } ${className}`}
+      className={`${columnSpanClass} ${
+        justifySelf ? styles[`justify-self-${justifySelf}`] : ''
+      } ${alignSelf ? styles[`align-self-${alignSelf}`] : ''} ${className}`}
       style={itemStyle}
     >
       {children}

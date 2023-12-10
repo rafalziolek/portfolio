@@ -57,7 +57,19 @@
       font-size: var(--font-size-xl);
     }
     &.text-indent {
-      text-indent: 0 !important;
+      text-indent: calc((100vw / 6) - 7px);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Text {
+    &.display-heading {
+      font-size: var(--font-size-l);
+      text-wrap: balance;
+    }
+    &.text-indent {
+      text-indent: unset;
     }
   }
 }
