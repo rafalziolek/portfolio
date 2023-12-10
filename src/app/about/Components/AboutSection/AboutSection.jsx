@@ -9,7 +9,7 @@ function AboutSection({ title, children }) {
     <Grid className={styles.section}>
       <GridItem columnSpan={2} justifySelf='end'>
         <Stack>
-          <Pill>{title.title}</Pill>
+          <Pill className={styles.title}>{title.title}</Pill>
         </Stack>
       </GridItem>
       <GridItem columnSpan={9}>{children}</GridItem>

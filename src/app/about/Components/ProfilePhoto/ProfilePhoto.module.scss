@@ -2,5 +2,15 @@
   position: absolute;
   z-index: -1;
   right: calc(-1 * var(--space-m));
-  top: 30vh;
+  top: 15vh;
+  width: 70%;
+}
+
+@media screen and (min-width: 800px) {
+  .profile-photo {
+    position: absolute;
+    z-index: -1;
+    right: calc(-1 * var(--space-m));
+    top: 30vh;
+  }
 }

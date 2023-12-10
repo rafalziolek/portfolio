@@ -1,7 +1,7 @@
 import styles from './footer.module.scss';
 import Text from '@/components/Text/text';
 import Image from 'next/image';
-import CustomLink from '../custom-link/CustomLink';
+
 import { Stack } from '../Stack/Stack';
 import Grid from '../Grid/Grid';
 import GridItem from '../Grid/GridItem';

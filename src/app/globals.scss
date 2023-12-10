@@ -1,8 +1,11 @@
 :root {
   // breakpoints
-  --breakpoint-mobile: 320px;
-  --breakpoint-tablet: 720px;
-  --breakpoint-desktop: 1400px;
+  --breakpoint-xs: 320px;
+  --breakpoint-s: 480px;
+  --breakpoint-m: 800px;
+  --breakpoint-l: 1170px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-xxl: 1920px;
 
   // font stack
   // --font-family: "Inter V", "suisse int'l", "Inter", sans-serif;
@@ -17,7 +20,7 @@
   --font-size-xs: 0.875rem;
   --font-size-s: 1rem;
   --font-size-m: 1.25rem;
-  --font-size-l: 1.75rem;
+  --font-size-l: 2.25rem;
   --font-size-xl: 2.75rem;
   --font-size-xxl: 3.75rem;
 

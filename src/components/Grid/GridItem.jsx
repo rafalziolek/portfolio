@@ -12,14 +12,27 @@ function GridItem({
   style,
 }) {
   const getColumnSpanClass = (span) => {
-    if (span < 0) {
-      return styles[`colSpanEnd${Math.abs(span)}`];
+    if (!span) {
+      return null;
+    }
+    if (typeof span === 'number' || typeof span === 'string') {
+      if (span > 0) {
+        return styles[`colSpan-${span}`];
+      } else {
+        return styles[`colSpanEnd${span}`];
+      }
     } else {
-      return styles[`colSpan${span}`];
+      const classNames = [];
+      for (const [size, columns] of Object.entries(span)) {
+        if (columns) {
+          classNames.push(`colSpan-${size}-${columns}`);
+        }
+      }
+      return classNames.map((className) => styles[className]).join(' ');
     }
   };
 
-  const columnSpanClass = getColumnSpanClass(columnSpan);
+  const columnSpanClass = columnSpan ? getColumnSpanClass(columnSpan) : '';
   const gridColumnStart = startColumn ? `${startColumn}` : '';
   const gridColumnEnd = endColumn ? `${endColumn}` : '';
 
@@ -31,9 +44,9 @@ function GridItem({
 
   return (
     <div
-      className={`${columnSpanClass} ${styles[`justify-self-${justifySelf}`]} ${
-        styles[`align-self-${alignSelf}`]
-      } ${className}`}
+      className={`${columnSpanClass} ${
+        justifySelf ? styles[`justify-self-${justifySelf}`] : ''
+      } ${alignSelf ? styles[`align-self-${alignSelf}`] : ''} ${className}`}
       style={itemStyle}
     >
       {children}

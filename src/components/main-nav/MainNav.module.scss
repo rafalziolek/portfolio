@@ -11,7 +11,7 @@
   width: 100%;
   div:has(> div > .mail) {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   & .main-nav-link {
@@ -25,7 +25,7 @@
     font-weight: var(--font-weight-m);
 
     &.mail {
-      justify-self: end;
+      justify-self: flex-end;
       &:hover {
         text-decoration: underline;
       }
@@ -73,7 +73,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 800px) {
   .main-nav {
     & > div {
       display: flex;

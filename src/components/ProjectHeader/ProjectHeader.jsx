@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 function ProjectHeader({ title, abstract, details }) {
   return (
-    <Grid>
+    <Grid className={styles['header-wrapper']}>
       <GridItem startColumn={3} endColumn={13}>
         <header className={styles.header}>
           <div className={`${styles['header-layout']}`}>

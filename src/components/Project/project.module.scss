@@ -82,3 +82,11 @@
     }
   }
 }
+
+@media (hover: none) and (pointer: coarse) {
+  .project {
+    & img {
+      opacity: 1 !important;
+    }
+  }
+}

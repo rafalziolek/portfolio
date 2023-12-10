@@ -1,6 +1,6 @@
 .Text {
   &.text-indent {
-    text-indent: calc((100vw / 12) - 7px);
+    text-indent: unset;
   }
   &.display-heading {
     font-size: clamp(var(--font-size-xl), 2.8vw, 2.8vw);
@@ -50,14 +50,29 @@
     // mix-blend-mode: difference;
   }
 }
-
-@media screen and (max-width: 1170px) {
+@media screen and (min-width: 800px) {
   .Text {
     &.display-heading {
       font-size: var(--font-size-xl);
     }
     &.text-indent {
-      text-indent: 0 !important;
+      text-indent: calc((100vw / 6) - 7px);
+    }
+  }
+}
+
+@media screen and (min-width: 1170px) {
+  .Text {
+    &.text-indent {
+      text-indent: calc((100vw / 12) - 7px);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Text {
+    &.display-heading {
+      font-size: var(--font-size-l);
     }
   }
 }
