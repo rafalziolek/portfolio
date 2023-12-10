@@ -5,7 +5,6 @@ import { Stack } from '../Stack/Stack';
 import Grid from '@/components/Grid/Grid';
 import GridItem from '@/components/Grid/GridItem';
 import MainNavItem from './MainNavItem';
-import CustomLink from '../custom-link/CustomLink';
 import Text from '../Text/text';
 
 function MainNav() {

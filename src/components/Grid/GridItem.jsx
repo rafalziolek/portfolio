@@ -13,7 +13,7 @@ function GridItem({
 }) {
   const getColumnSpanClass = (span) => {
     if (!span) {
-      return;
+      return null;
     }
     if (typeof span === 'number' || typeof span === 'string') {
       if (span > 0) {
@@ -24,10 +24,8 @@ function GridItem({
     } else {
       const classNames = [];
       for (const [size, columns] of Object.entries(span)) {
-        console.log(size, columns);
         if (columns) {
           classNames.push(`colSpan-${size}-${columns}`);
-          console.log('classNames', classNames);
         }
       }
       return classNames.map((className) => styles[className]).join(' ');
