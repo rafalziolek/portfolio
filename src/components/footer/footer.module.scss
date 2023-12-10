@@ -1,5 +1,5 @@
 .footer {
-  padding: calc(6 * var(--space-xxl)) var(--space-s) var(--space-s)
+  padding: calc(4 * var(--space-xxl)) var(--space-s) var(--space-s)
     var(--space-s);
   display: flex;
   flex-direction: column;
@@ -72,5 +72,11 @@
       transition: 100ms all;
       transform: scaleY(1.1);
     }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .footer {
+    padding-top: calc(2 * var(--space-xxl));
   }
 }

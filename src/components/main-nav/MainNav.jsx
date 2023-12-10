@@ -12,7 +12,7 @@ function MainNav() {
   return (
     <nav className={styles['main-nav']}>
       <Grid align='center'>
-        <GridItem columnSpan='2'>
+        <GridItem columnSpan={2}>
           <Stack direction='column' gap='2' alignItems='start'>
             <Text
               type='caption'
@@ -24,7 +24,9 @@ function MainNav() {
             <Logo />
           </Stack>
         </GridItem>
-        <GridItem columnSpan={8}>
+        <GridItem
+          columnSpan={{ xs: '8', s: '8', m: '8', l: '8', xl: '8', xxl: '8' }}
+        >
           <Stack direction='column' gap='2' alignItems='start'>
             <Text
               type='caption'

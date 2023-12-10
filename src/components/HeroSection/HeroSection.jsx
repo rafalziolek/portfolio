@@ -1,12 +1,8 @@
-'use client';
 import styles from './HeroSection.module.scss';
-import { motion } from 'framer-motion';
 import Text from '../Text/text';
-import CustomLink from '../custom-link/CustomLink';
-
 import Grid from '../Grid/Grid';
 import GridItem from '../Grid/GridItem';
-import List from '@/components/List/List';
+
 function HeroSection() {
   return (
     <>

@@ -12,14 +12,29 @@ function GridItem({
   style,
 }) {
   const getColumnSpanClass = (span) => {
-    if (span < 0) {
-      return styles[`colSpanEnd${Math.abs(span)}`];
+    if (!span) {
+      return;
+    }
+    if (typeof span === 'number' || typeof span === 'string') {
+      if (span > 0) {
+        return styles[`colSpan-${span}`];
+      } else {
+        return styles[`colSpanEnd${span}`];
+      }
     } else {
-      return styles[`colSpan${span}`];
+      const classNames = [];
+      for (const [size, columns] of Object.entries(span)) {
+        console.log(size, columns);
+        if (columns) {
+          classNames.push(`colSpan-${size}-${columns}`);
+          console.log('classNames', classNames);
+        }
+      }
+      return classNames.map((className) => styles[className]).join(' ');
     }
   };
 
-  const columnSpanClass = getColumnSpanClass(columnSpan);
+  const columnSpanClass = columnSpan ? getColumnSpanClass(columnSpan) : '';
   const gridColumnStart = startColumn ? `${startColumn}` : '';
   const gridColumnEnd = endColumn ? `${endColumn}` : '';
 

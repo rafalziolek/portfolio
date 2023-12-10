@@ -36,10 +36,10 @@ export const components = {
   h2: (props) => (
     <Text
       as='h2'
-      type='sectionHeading'
+      type='heading'
       style={{
-        paddingTop: 'var(--space-l)',
-        marginBottom: 'var(--space-m)',
+        paddingTop: 'var(--space-xl)',
+        marginBottom: 'var(--space-xs)',
         maxWidth: '50ch',
         gridColumnStart: 3,
         gridColumnEnd: 13,
@@ -51,13 +51,13 @@ export const components = {
   h3: (props) => (
     <Text
       as='h3'
-      type='sectionHeading'
+      type='heading'
       color='secondary'
       style={{
-        marginBottom: 'var(--space-xxs)',
         maxWidth: '50ch',
         gridColumnStart: 3,
         gridColumnEnd: 13,
+        marginBlock: 'var(--space-xs) var(--space-xxs)',
       }}
     >
       {props.children}
@@ -68,7 +68,7 @@ export const components = {
       as='p'
       type='body'
       style={{
-        marginBottom: 'var(--space-xxl)',
+        marginBottom: 'var(--space-l)',
         maxWidth: '50ch',
         gridColumnStart: 3,
         gridColumnEnd: 13,

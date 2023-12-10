@@ -1,12 +1,29 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-gap: var(--space-5);
+  grid-gap: 0 var(--space-5);
   width: 100%;
 }
 
 $alignments: start, end, center;
-$breakpoints: xs, s, m, l, xl;
+$breakpoints: (
+  xs: 320px,
+  s: 480px,
+  m: 800px,
+  l: 1170px,
+  xl: 1440px,
+  xxl: 1920px,
+);
+
+@each $size, $breakpoint in $breakpoints {
+  @for $i from 1 through 12 {
+    @media screen and (min-width: $breakpoint) {
+      .colSpan-#{$size}-#{$i} {
+        grid-column: span $i;
+      }
+    }
+  }
+}
 
 @each $alignment in $alignments {
   .justify-self-#{$alignment} {
@@ -20,7 +37,7 @@ $breakpoints: xs, s, m, l, xl;
 
 // Example column spans
 @for $i from 1 through 12 {
-  .colSpan#{$i} {
+  .colSpan-#{$i} {
     grid-column: span $i;
   }
 }
@@ -41,7 +58,7 @@ $breakpoints: xs, s, m, l, xl;
 
 // Negative column spans (span backwards from the end)
 @for $i from 1 through 12 {
-  .colSpanEnd#{$i} {
+  .colSpanEnd-#{$i} {
     grid-column: #{'#{-$i} / -1'};
   }
 }
