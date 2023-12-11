@@ -21,7 +21,7 @@
     position: relative;
     font-size: var(--font-size-body);
     // line-height: 100%;
-    color: var(--color-foreground-primary);
+    color: var(--color-foreground-primary-inverted);
     font-weight: var(--font-weight-m);
 
     &.mail {
@@ -44,12 +44,12 @@
       justify-content: center;
       &.link-glyph-blue {
         box-shadow: none;
-        color: #000;
+        color: var(--color-foreground-primary-inverted);
         background: var(--color-blue);
       }
       &.link-glyph-orange {
         box-shadow: none;
-        color: #000;
+        color: var(--color-foreground-primary-inverted);
         background: var(--color-orange);
       }
     }
@@ -71,6 +71,10 @@
     flex-direction: row;
     gap: var(--space-3);
   }
+}
+
+.logo a {
+  color: var(--color-foreground-primary-inverted);
 }
 
 @media screen and (max-width: 800px) {

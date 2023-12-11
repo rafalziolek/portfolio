@@ -1,7 +1,6 @@
 import styles from './AboutHeader.module.scss';
 import Text from '@/components/Text/text';
 import List from '@/components/List/List';
-
 import { Stack, StackItem } from '@/components/Stack/Stack';
 import Grid from '@/components/Grid/Grid';
 import GridItem from '@/components/Grid/GridItem';
