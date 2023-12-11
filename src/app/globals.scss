@@ -58,19 +58,22 @@
   // Raw colors
 
   --color-white: hsl(0, 0%, 100%);
-  --color-white-0-5: rgba(255, 255, 255, 0.5);
-  --color-black: #0a0a0a;
+  --color-gray: hsl(0, 0%, 90%);
+  --color-white-0-5: rgba(255, 255, 255, 0.6);
+  --color-black: #000;
+  --color-black-0-5: rgba(0, 0, 0, 0.6);
   --color-blue: #3f8ae2;
   --color-blue: color(display-p3 0.241 0.565 0.88 / 1);
   --color-orange: #e5874f;
   --color-orange: color(display-p3 0.903 0.474 0.186 / 1);
 
   // Semantic colors
-  --color-foreground-primary: var(--color-white);
-  --color-foreground-secondary: var(--color-white-0-5);
-  --color-foreground-primary-inverted: var(--color-black);
-  --color-background-primary: var(--color-black);
-  --color-background-primary-inverted: var(--color-white);
+  --color-foreground-primary: var(--color-black);
+  --color-foreground-secondary: var(--color-black-0-5);
+  --color-foreground-secondary-inverted: var(--color-white-0-5);
+  --color-foreground-primary-inverted: var(--color-white);
+  --color-background-primary: var(--color-gray);
+  --color-background-primary-inverted: var(--color-black);
 
   --caption-margin: 131px;
 }
@@ -101,16 +104,12 @@ body {
   min-height: 100%;
   overflow-x: hidden;
   font-family: var(--font-family);
-  // scroll-behavior: smooth !important;
 }
 
 body {
   color: var(--color-foreground-primary);
   background: var(--color-background-primary);
   overflow: visible;
-  // scroll-behavior: smooth;
-
-  // padding: var(--space-xs);
 }
 
 a {
@@ -128,8 +127,9 @@ p {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-forground-primary: var(--color-white);
+    --color-foreground-primary: var(--color-white);
     --color-background-primary: var(--color-black);
+    --color-foreground-secondary: var(--color-white-0-5);
   }
   html {
     color-scheme: dark;

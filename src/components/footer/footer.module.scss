@@ -65,7 +65,7 @@
     transition: 100ms all;
     width: 100%;
     border-bottom-style: solid;
-    border-bottom-color: white;
+    border-bottom-color: var(--color-foreground-primary);
     margin-block: 10px;
 
     &:hover {

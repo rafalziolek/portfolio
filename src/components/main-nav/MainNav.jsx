@@ -15,7 +15,7 @@ function MainNav() {
           <Stack direction='column' gap='2' alignItems='start'>
             <Text
               type='caption'
-              color='secondary'
+              color='secondary-inverted'
               style={{ fontVariantPosition: 'super', lineHeight: '100%' }}
             >
               Name
@@ -30,7 +30,7 @@ function MainNav() {
             <Text
               type='caption'
               as='span'
-              color='secondary'
+              color='secondary-inverted'
               style={{ fontVariantPosition: 'super', lineHeight: '100%' }}
             >
               Menu
@@ -50,7 +50,7 @@ function MainNav() {
             {' '}
             <Text
               type='caption'
-              color='secondary'
+              color='secondary-inverted'
               style={{ fontVariantPosition: 'super', lineHeight: '100%' }}
             >
               Contact

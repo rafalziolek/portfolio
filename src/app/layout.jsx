@@ -3,7 +3,7 @@ import Footer from '@/components/footer/footer';
 import localFont from 'next/font/local';
 
 export const metadata = {
-  title: 'Rafał Ziółek * Digital Product Designer',
+  title: 'Rafał Ziółek — Product Designer & Photographer',
   description: '',
 };
 

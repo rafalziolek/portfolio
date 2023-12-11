@@ -90,3 +90,16 @@
     }
   }
 }
+
+@media (prefers-color-scheme: light) {
+  .project {
+    & figure {
+      & img {
+        opacity: 0.9;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
