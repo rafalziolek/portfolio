@@ -1,8 +1,9 @@
 import Text from '../Text/text';
 import Image from 'next/image';
-// import WatsonHeading from '@/app/[projectSlug]/Components/WatsonHeading';
+import WatsonHeading from '@/app/[projectSlug]/Components/WatsonHeading';
+import { Stack } from '../Stack/Stack';
 export const components = {
-  //   WatsonHeading: () => <WatsonHeading />,
+  WatsonHeading: () => <WatsonHeading />,
   Image: (props) => {
     return (
       <Image
@@ -12,11 +13,25 @@ export const components = {
         height={props.height}
         style={{
           gridColumn: 'span 12',
+          paddingBottom: 'var(--space-l)',
           width: '100%',
           height: 'auto',
           objectFit: 'cover',
+          ...props.style,
         }}
       />
+    );
+  },
+  Stack: (props) => {
+    return (
+      <Stack
+        style={{
+          gridColumn: 'span 12',
+          width: '100%',
+        }}
+      >
+        {props.children}
+      </Stack>
     );
   },
   h1: (props) => (
@@ -68,7 +83,7 @@ export const components = {
       as='p'
       type='body'
       style={{
-        marginBottom: 'var(--space-l)',
+        paddingBottom: 'var(--space-l)',
         maxWidth: '50ch',
         gridColumnStart: 3,
         gridColumnEnd: 13,
