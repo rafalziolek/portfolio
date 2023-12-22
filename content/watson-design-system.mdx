@@ -1,6 +1,7 @@
 ---
 title: 'Watson Design System'
 abstract: Watson is Docplanner's design language for our SaaS products and digital experiences. The system consists of working code, design tools and resources, and human interface guidelines.
+heading: WatsonHeading
 details:
   - title: 'Company'
     items:
@@ -30,69 +31,118 @@ In 2022 I joined a design systems team at Docplanner. This team was responsible 
 
 ## Initial state
 
-Before Watson, Docplanner used the UI Kit library based on Bootstrap. While this approach was fast and cost-effective initially, it began to show its disadvantages as the company scaled its products and teams.
+Before Watson, Docplanner utilized the UI Kit library, which was based on Bootstrap. Although this approach proved to be fast and cost-effective in the beginning, it started revealing its drawbacks as the company expanded its products and teams.
 
 ## The issues we faced
 
 ### Supporting two products
 
-UI Kit library was used across two different products with different user groups and needs. SaaS for doctors, focused on efficiency and daily use, and marketplace, focused on discoverability and presenting information. Supporting these two products led to poor semantics of our directives, implementing components reusable only in one product
+The UI kit library served two products with different user bases. Our SaaS platform for doctors that prioritized efficiency and daily use, and the marketplace the emphasized discoverability and information presentation. This led to issues with our directives, as the components could only be reused in one product.
 
 ### Lack of control
 
-Ui Kit library didn’t provide custom design directives as we relied on opinionated third-party libraries. It led to a system that is dependent on a third-party and can’t be easily adapted to the changes required by the product direction, thus creating a legacy inside it.
+The UI Kit library depended on third-party libraries that don't allow much customization. This dependency makes our system less flexible and harder to update according to our product's evolving needs, leading to outdated components in the system.
 
 ### Accessibility
 
 Neither our foundations nor components were never created with accessibility in mind. The usage of third-party libraries was not helping the case as well. This generated debt regarding the WCAG conventions: lack of proper roles, aria-labels, keyboard navigation, or color contrast specs.
 
-### Lack of documentation and shared language
+### No shared language
 
-Documentation was scattered in multiple places. We had separate documentation for developers and for designers. They presented information about components differently, with naming and UI inconsistencies across them. This generated confusion, and product teams wasted time finding the right solution or place to answer their doubts.
+Documentation was scattered in multiple places. We had separate documentation for developers and for designers. They presented information about components differently, with naming and UI inconsistencies across them. This generated confusion, and people wasted time finding the right solution or place to answer their doubts.
 
-## New approach
+## Introducing Watson
 
-After auditing an effort to fix the current solution, we realised it’s better to start with a clean slate. As our previous library was started with marketplace in mind, we proposed creating an official team in charge of the new design system tailored for SaaS. Team would be responsible for providing tailored tools, and assisting our product teams for both Web and App environments, very much like Sherlock Holmes’ best friend, [Dr. Watson](https://en.wikipedia.org/wiki/Dr._Watson).
+After auditing an effort to fix the current solution, we realised it’s better to start with a clean slate. As our previous library was started with marketplace in mind, we proposed creating an official team in charge of the new design system tailored for SaaS.
 
 ## Our goals
 
 We wanted to create a system that tackles many of our past issues at the roots. A custom solution tailored to our needs with unified language between design and development, accessibility engraved in its DNA, and clear extensive documentation.
 
-## Laying out the foundations
-
-We decided to start with the foundational design directives, such as spacing, typography, and colors. It allowed us to create solid foundations with strong emphasis on scalability and semantics.
+## Step One: Foundations and layout
 
 ### Typography
 
-I was responsible of building our new typographic foundations. I started with an audit of our existing library and the product. My proposal included a simplified scale that would will well within our interface.
+We decided to start with the foundational design directives, such as spacing, typography, and colors. It allowed us to create solid foundations with strong emphasis on scalability and semantics. I was responsible for typography which included a new scale, styles and tokens & component definition.
 
-<aside>
-💡 Raw values scale
-
-</aside>
-
-[]()
-
-_image of new scale. Maybe with comparison to old scale._
+<Image
+  src='/projects/watson/font.png'
+  alt='Presentation of font Inter with example glyphs'
+  width={2542}
+  height={2428}
+  style={{ gridColumn: '1 / 7', width: '100%', height: '100%' }}
+></Image>
+<Image
+  src='/projects/watson/scale.png'
+  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
+  width={2542}
+  height={2428}
+  style={{ gridColumn: '7 / 13', width: '100%', height: '100%' }}
+></Image>
 
 After defining the scale I worked on design tokens that would let us define semantic styles with clear usage.
 
-<aside>
-💡 Typography styles with respective tokens
+<Image
+  src='/projects/watson/variants.png'
+  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
+  width={4383}
+  height={2073}
+  style={{ gridColumn: 'span 12', width: '100%' }}
+></Image>
 
-</aside>
-
-### Unifying layouts
+### Layout
 
 Another huge issue that our designers and developers struggled with were page layouts. We didn’t have any guidelines on the existing layouts. Designers were designing them from scratch every time, which resulted in inconsistency in terms of spacings, widths and made it impossible to implement changes.
 
-After auditing the product, I mapped all screens to find common features between the pages. I designed a proposal of a unified layout, with different variants that could cover all pages, and wrote an extensive documentation with best practices that could help designers decide what layout suits their needs best.
+After auditing the product, I mapped all screens to find common features between the pages. I designed a proposal of a unified layout that could cover all pages, and wrote an extensive documentation with best practices that could help designers decide what layout suits their needs best.
 
-<aside>
-💡 Layout image, documentation preview?
+<Image
+  src='/projects/watson/layouts.png'
+  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
+  width={3956}
+  height={2282}
+  style={{ gridColumn: '1 / 7', width: '100%' }}
+></Image>
+<Image
+  src='/projects/watson/layouts-explorations.png'
+  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
+  width={3502}
+  height={1654}
+  style={{ gridColumn: '7 / 13', width: '100%' }}
+></Image>
+<Image
+  src='/projects/watson/screen_1.png'
+  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
+  width={4112}
+  height={3028}
+  style={{ gridColumn: '1 / 7', width: '100%' }}
+></Image>
+<Image
+  src='/projects/watson/screen_2.png'
+  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
+  width={4112}
+  height={3028}
+  style={{ gridColumn: '7 / 13', width: '100%' }}
+></Image>
+<Image
+  src='/projects/watson/screen_3.png'
+  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
+  width={4112}
+  height={3028}
+  style={{ gridColumn: '1 / 7', width: '100%' }}
+></Image>
+<Image
+  src='/projects/watson/screen_4.png'
+  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
+  width={4112}
+  height={3028}
+  style={{ gridColumn: '7 / 13', width: '100%' }}
+></Image>
 
-</aside>
+## Step Two: Components
 
-## First batch of components
+After we tackled foundations and layouts, it was time to start working on individual components. Our SaaS mostly consists of two things: forms and tables.
 
-After we tackled foundations and layouts, it was time to start working on individual components. Our SaaS mostly consists of two things: forms and tables. We decided to tackle forms first. We saw an opportunity to provide a good amount of components that are used across many screen and vastly improve accessibility. I was responsible of designing and writing documentation for components such as: radio button, checkbox, toggle switch, fieldset.
+We decided to tackle forms first. We saw an opportunity to provide a good amount of components that are used across many screen and vastly improve accessibility.
+
+Every component followed the same process:

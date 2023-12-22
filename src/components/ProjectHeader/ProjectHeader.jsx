@@ -4,18 +4,24 @@ import React from 'react';
 import Grid from '../Grid/Grid';
 import GridItem from '../Grid/GridItem';
 import Link from 'next/link';
+import WatsonHeading from '@/app/[projectSlug]/Components/WatsonHeading';
 
-function ProjectHeader({ title, abstract, details }) {
+function ProjectHeader({ title, abstract, details, header }) {
   return (
     <Grid className={styles['header-wrapper']}>
       <GridItem startColumn={3} endColumn={13}>
         <header className={styles.header}>
           <div className={`${styles['header-layout']}`}>
-            <div className={styles.title}>
-              <Text as='h1' type='display-heading'>
-                {title}
-              </Text>
-            </div>
+            {header ? (
+              header
+            ) : (
+              <div className={styles.title}>
+                <Text as='h1' type='display-heading'>
+                  {title}
+                </Text>
+              </div>
+            )}
+
             <div className={styles.details}>
               <Text>{abstract}</Text>
               <ul className={`${styles['details-list-wrapper']}`}>
