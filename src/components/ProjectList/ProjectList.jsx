@@ -47,7 +47,6 @@ function ProjectList() {
                 title='Poza Matą Studio'
                 badgeText='Freelance'
                 projectName='nikola'
-                path='/nikola-chmiel'
                 imgWidth={2800}
                 imgHeight={1402}
               >
