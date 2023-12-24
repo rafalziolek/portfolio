@@ -1,6 +1,5 @@
 .profile-photo {
   position: absolute;
-  filter: brightness(3);
   z-index: -1;
   right: calc(-1 * var(--space-m));
   top: 15vh;
@@ -14,11 +13,5 @@
     right: calc(-1 * var(--space-m));
     top: 30vh;
     width: unset;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .profile-photo {
-    filter: unset;
   }
 }
