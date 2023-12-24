@@ -2,6 +2,8 @@ import Text from '../Text/text';
 import Image from 'next/image';
 import WatsonHeading from '@/app/[projectSlug]/Components/WatsonHeading';
 import { Stack } from '../Stack/Stack';
+import List from '../List/List';
+
 export const components = {
   WatsonHeading: () => <WatsonHeading />,
   Image: (props) => {
@@ -91,5 +93,17 @@ export const components = {
     >
       {props.children}
     </Text>
+  ),
+  ul: (props) => (
+    <List
+      style={{
+        paddingBottom: 'var(--space-l)',
+        maxWidth: '50ch',
+        gridColumnStart: 3,
+        gridColumnEnd: 13,
+      }}
+    >
+      {props.children}
+    </List>
   ),
 };

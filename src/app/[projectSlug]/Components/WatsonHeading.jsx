@@ -6,14 +6,14 @@ function WatsonHeading() {
   return (
     <Resizable
       minHeight={4.5}
-      defaultSize={{ width: 468, height: 56 }}
+      defaultSize={{ width: '100%' }}
+      maxWidth={456}
       style={{ marginBlock: 'var(--space-s) 120px' }}
       bounds='window'
     >
       <div
         style={{
           justifyContent: 'center',
-          border: '1px solid tomato',
           width: '100%',
           height: '100%',
           border: '1.5px solid #4762DA',

@@ -6,6 +6,10 @@
     & .arrow {
       opacity: 1;
     }
+
+    & .not-available {
+      opacity: 1;
+    }
     & img {
       // border-radius: 10px;
       transition: 200ms all;
@@ -47,6 +51,12 @@
     opacity: 0;
     white-space: nowrap;
   }
+  & .not-available {
+    font-size: var(--font-size-caption);
+    color: var(--color-foreground-secondary);
+    opacity: 0;
+    white-space: nowrap;
+  }
 }
 
 .img-wrapper {
@@ -77,7 +87,8 @@
       display: block !important;
     }
 
-    & .arrow {
+    & .arrow,
+    & .not-available {
       display: none;
     }
   }

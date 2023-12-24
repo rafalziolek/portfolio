@@ -7,11 +7,15 @@
     font-size: var(--font-size-body);
     display: flex;
     flex-direction: column;
-    gap: var(--space-xxs);
+    gap: var(--space-xs);
+    // margin-left: var(--space-xxs);
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-l);
 
     li {
-      list-style-type: none;
       font-weight: var(--font-weight-m);
+      list-style-type: disc;
+      line-height: var(--line-height-l);
     }
   }
 }

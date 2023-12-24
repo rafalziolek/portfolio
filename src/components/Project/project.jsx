@@ -8,7 +8,6 @@ import Pill from '../Pill/Pill';
 function Project({
   title,
   projectName,
-
   badgeText,
   path,
   imgWidth,
@@ -18,7 +17,7 @@ function Project({
   return (
     <article className={`${styles.project}`}>
       {' '}
-      <Link href={path}>
+      <Link href={path ? path : ''}>
         <figure>
           <Image
             src={`/projects/${projectName}/image.png`}
@@ -43,7 +42,11 @@ function Project({
                 </Text>
                 <Pill>{badgeText}</Pill>
               </Stack>
-              <span className={styles.arrow}>→</span>
+              {path ? (
+                <span className={styles.arrow}>→</span>
+              ) : (
+                <span className={styles['not-available']}>Coming soon</span>
+              )}
             </Stack>
             <Text type='body-support' style={{ maxWidth: '50ch' }}>
               {children}

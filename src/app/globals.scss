@@ -68,12 +68,12 @@
   --color-orange: color(display-p3 0.903 0.474 0.186 / 1);
 
   // Semantic colors
-  --color-foreground-primary: var(--color-black);
-  --color-foreground-secondary: var(--color-black-0-5);
-  --color-foreground-secondary-inverted: var(--color-white-0-5);
+  --color-foreground-primary: var(--color-white);
+  --color-foreground-secondary: var(--color-white-0-5);
+  --color-foreground-secondary-inverted: var(--color-black-0-5);
   --color-foreground-primary-inverted: var(--color-white);
-  --color-background-primary: var(--color-gray);
-  --color-background-primary-inverted: var(--color-black);
+  --color-background-primary: var(--color-black);
+  --color-background-primary-inverted: var(--color-white);
 
   --caption-margin: 131px;
 }
@@ -125,13 +125,13 @@ p {
   font-weight: var(--font-weight-m);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-foreground-primary: var(--color-white);
-    --color-background-primary: var(--color-black);
-    --color-foreground-secondary: var(--color-white-0-5);
-  }
-  html {
-    color-scheme: dark;
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --color-foreground-primary: var(--color-white);
+//     --color-background-primary: var(--color-black);
+//     --color-foreground-secondary: var(--color-white-0-5);
+//   }
+//   html {
+//     color-scheme: dark;
+//   }
+// }
