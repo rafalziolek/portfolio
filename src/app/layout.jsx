@@ -1,6 +1,7 @@
 import '@/app/globals.scss';
 import Footer from '@/components/footer/footer';
 import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
   title: 'Rafał Ziółek — Product Designer & Photographer',
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
         <div>
           {children}
           <Footer />
+          <Analytics />
         </div>
       </body>
     </html>
