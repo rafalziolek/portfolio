@@ -37,10 +37,13 @@ function MainNav() {
             </Text>
             <ul>
               <MainNavItem glyphLetter='W' href='/work' glyphColor='blue'>
-                Work,
+                Work
               </MainNavItem>
               <MainNavItem glyphLetter='A' href='/about' glyphColor='orange'>
                 About
+              </MainNavItem>             
+              <MainNavItem glyphLetter='A' href='https://experiments-oynqrarts-rafalzioleks-projects.vercel.app/' glyphColor='orange'>
+                Experiments ↗
               </MainNavItem>
             </ul>
           </Stack>
