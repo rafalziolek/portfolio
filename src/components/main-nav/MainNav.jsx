@@ -42,7 +42,7 @@ function MainNav() {
               <MainNavItem glyphLetter='A' href='/about' glyphColor='orange'>
                 About
               </MainNavItem>             
-              <MainNavItem glyphLetter='A' href='https://experiments-oynqrarts-rafalzioleks-projects.vercel.app/' glyphColor='orange'>
+              <MainNavItem glyphLetter='A' href='https://experiments-git-hyperspace-button-rafalzioleks-projects.vercel.app/' glyphColor='orange'>
                 Experiments ↗
               </MainNavItem>
             </ul>
