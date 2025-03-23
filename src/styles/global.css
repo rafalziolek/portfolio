@@ -1,0 +1,60 @@
+:root {
+    --space-4: 0.25rem;
+    --space-8: 0.5rem;
+    --space-12: 0.75rem;
+    --space-16: 1rem;
+    --space-20: 1.25rem;
+    --space-24: 1.5rem;
+    --space-28: 1.75rem;
+    --space-32: 2rem;
+    --space-40: 2.5rem;
+    --space-48: 3rem;
+    --space-56: 3.5rem;
+    --space-64: 4rem;
+    --space-80: 5rem;
+
+    --font-size-display: 1.625rem;
+    --font-size-heading:0.9375rem;
+    --font-size-body: 0.8125rem;
+    --font-size-body-article: 0.875rem;
+    --font-size-caption: 0.6875rem;
+    --font-size-button: 0.875rem;
+
+    --font-weight-base: 400;
+    --font-weight-emphasis: 550;
+    --font-weight-heading: 550;
+    --font-weight-article: 400;
+
+    --line-height-base: 1.5;
+    --line-height-button: 1;
+    --line-height-article: 1.6;
+
+    --color-fg: oklch(0 0 0.5);
+    --color-fg-muted: oklch(40 0 0.5);
+    --color-bg: oklch(100 0 0.5);
+
+    --font-family-mono: "Geist Mono Variable", monospace;
+    --font-family-sans: "Geist Variable", sans-serif;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 0;
+  }
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-family-mono);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  div,
+  span {
+    margin: 0;
+    padding: 0;
+  }

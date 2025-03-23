@@ -1,0 +1,141 @@
+---
+interface Props {
+  type?:
+    | "body"
+    | "body-emphasis"
+    | "body-article"
+    | "heading"
+    | "caption"
+    | "caption-emphasis"
+    | "display";
+  tag?: string;
+  class?: string;
+}
+
+const { type = "body", tag = "span", class: className, ...rest } = Astro.props;
+const classValue = `text-${type}`;
+---
+
+<>
+  {
+    tag === "h1" && (
+      <h1 class:list={[classValue, className]} {...rest}>
+        <slot />
+      </h1>
+    )
+  }
+  {
+    tag === "h2" && (
+      <h2 class:list={[classValue, className]} {...rest}>
+        <slot />
+      </h2>
+    )
+  }
+  {
+    tag === "h3" && (
+      <h3 class:list={[classValue, className]} {...rest}>
+        <slot />
+      </h3>
+    )
+  }
+  {
+    tag === "h4" && (
+      <h4 class:list={[classValue, className]} {...rest}>
+        <slot />
+      </h4>
+    )
+  }
+  {
+    tag === "h5" && (
+      <h5 class:list={[classValue, className]} {...rest}>
+        <slot />
+      </h5>
+    )
+  }
+  {
+    tag === "h6" && (
+      <h6 class:list={[classValue, className]} {...rest}>
+        <slot />
+      </h6>
+    )
+  }
+  {
+    tag === "p" && (
+      <p class:list={[classValue, className]} {...rest}>
+        <slot />
+      </p>
+    )
+  }
+  {
+    tag === "div" && (
+      <div class:list={[classValue, className]} {...rest}>
+        <slot />
+      </div>
+    )
+  }
+  {
+    tag === "span" && (
+      <span class:list={[classValue, className]} {...rest}>
+        <slot />
+      </span>
+    )
+  }
+  {
+    !["h1", "h2", "h3", "h4", "h5", "h6", "p", "div", "span"].includes(tag) && (
+      <span class:list={[classValue, className]} {...rest}>
+        <slot />
+      </span>
+    )
+  }
+</>
+<style>
+  /* Base text styles */
+  .text-body {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-base);
+    font-weight: var(--font-weight-base);
+  }
+
+  .text-body-emphasis {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-base);
+    font-weight: var(--font-weight-emphasis);
+  }
+
+  .text-body-article {
+    font-size: var(--font-size-body-article);
+    line-height: var(--line-height-article);
+    font-weight: var(--font-weight-article);
+    letter-spacing: 0.01em;
+  }
+
+  .text-heading {
+    font-size: var(--font-size-heading);
+    line-height: var(--line-height-base);
+    font-weight: var(--font-weight-heading);
+    letter-spacing: -0.01em;
+  }
+
+  .text-caption {
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-base);
+    font-weight: var(--font-weight-base);
+  }
+
+  .text-caption-emphasis {
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-base);
+    font-weight: var(--font-weight-emphasis);
+  }
+
+  .text-display {
+    font-size: var(--font-size-display);
+    line-height: var(--line-height-base);
+    font-weight: var(--font-weight-heading);
+    letter-spacing: -0.02em;
+    font-family: var(--font-family-sans);
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 0;
+  }
+</style>

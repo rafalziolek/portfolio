@@ -1,0 +1,31 @@
+---
+import Text from "./Text.astro";
+const { title } = Astro.props;
+---
+
+<div class="work-list">
+  <Text type="display" tag="h2" class="work-list__title">{title}</Text>
+  <div class="work-list__projects">
+    <slot />
+  </div>
+</div>
+<style>
+  .work-list {
+    width: 65ch;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: var(--space-12);
+    max-width: 48ch;
+  }
+
+  .work-list__title {
+    margin-inline-start: var(--space-16);
+  }
+
+  .work-list__projects {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+</style>

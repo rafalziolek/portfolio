@@ -1,0 +1,56 @@
+---
+import Text from "./Text.astro";
+import { ExternalLink } from "./EsternalLink/ExternalLink";
+import { CopyBtn } from "./CopyBtn/CopyBtn";
+import More from "./More.astro";
+---
+
+<div class="about">
+  <Text type="display" tag="h1">rafal_ziolek</Text>
+  <div class="intro">
+    <Text tag="p"
+      >I am a designer and photographer based in Poland — Currently working on
+      design systems at Docplanner to help build exceptional experience for
+      doctors.</Text
+    >
+    <div class="links">
+      <ExternalLink
+        href="https://x.com/rafal_ziolek"
+        client:load
+        label="Twitter"
+      />
+      •
+      <ExternalLink
+        href="https://github.com/rafalziolek"
+        client:load
+        label="Github"
+      />
+      •
+      <CopyBtn client:load>rafal.ziolek@icloud.com</CopyBtn>
+    </div>
+  </div>
+  <More />
+</div>
+
+<style>
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+    max-width: 48ch;
+    align-items: start;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--space-16);
+  }
+
+  .links {
+    display: flex;
+    gap: var(--space-8);
+    align-items: baseline;
+  }
+</style>
