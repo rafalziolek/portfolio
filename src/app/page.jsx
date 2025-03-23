@@ -1,13 +1,9 @@
-import HeroSection from "@/components/HeroSection/HeroSection";
-import MainNav from "@/components/main-nav/MainNav";
-import ProjectList from "@/components/ProjectList/ProjectList";
+import Intro from "@/components/Intro/Intro";
 
 export default function Home() {
   return (
     <>
-      <MainNav />
-      <HeroSection />
-      <ProjectList />
+      <Intro />
     </>
   );
 }

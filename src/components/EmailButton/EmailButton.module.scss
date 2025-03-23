@@ -1,0 +1,63 @@
+.button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-base);
+    color: var(--color-fg);
+    text-decoration: none;
+    position: relative;
+    font-family: var(--font-family-mono);
+    cursor: pointer;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #F1F0F0;
+        border-radius: 5px;
+        z-index: -1;
+        bottom: -2px;
+        left: 0;
+        transition: all 0.15s ease-out;
+    }
+    
+    &:hover::before {
+        bottom: -2px;
+        left: -4px;
+        height: 100%;
+        padding: 2px 4px;
+    }
+    
+    &:focus-visible {
+        border: none;
+        outline: none;
+        
+        &::before {
+            height: 100%;
+            bottom: -2px;
+            left: -4px;
+            padding: 2px 4px;
+            outline: 2px solid #F1F0F0;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }   
+    }
+}
+
+.tooltip {
+    position: absolute;
+    display: block;
+    z-index: 1;
+    top: 0;
+    left: calc(100% + 8px);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    white-space: nowrap;
+    
+    &.visible {
+        opacity: 1;
+    }
+}

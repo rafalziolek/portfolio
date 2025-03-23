@@ -1,23 +1,30 @@
-import styles from "./text.module.scss";
-function Text({
-  as: Tag = "p",
+import { ReactNode } from "react";
+import styles from "./Text.module.scss";
+import clsx from "clsx";
+
+const styleMap = {
+  body: styles.body,
+  "body-emphasis": styles.bodyEmphasis,
+  "body-article": styles.bodyArticle,
+  heading: styles.heading,
+  caption: styles.caption,
+  "caption-emphasis": styles.captionEmphasis,
+  display: styles.display,
+};
+
+export default function Text({
   type = "body",
-  children,
-  color = "",
-  indent = false,
+  tag = "span",
   className,
-  ...delegated
+  children,
+  ...rest
 }) {
+  const Component = tag;
+  const textClass = styleMap[type];
+
   return (
-    <Tag
-      {...delegated}
-      className={`${styles.Text} ${styles[type]} ${styles[color]} ${
-        indent && styles["text-indent"]
-      } ${className}`}
-    >
+    <Component className={clsx(textClass, className)} {...rest}>
       {children}
-    </Tag>
+    </Component>
   );
 }
-
-export default Text;
