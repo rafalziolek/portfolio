@@ -10,18 +10,20 @@
     "cc": "node scripts/create-component.js"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.1.1",
+    "@vercel/analytics": "^1.5.0",
     "clsx": "^2.1.1",
-    "eslint": "8.42.0",
-    "eslint-config-next": "13.4.4",
-    "framer-motion": "^10.12.16",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.3",
     "geist": "^1.3.1",
     "gray-matter": "^4.0.3",
-    "next": "13.4.4",
+    "lucide-react": "^0.483.0",
+    "motion": "^12.5.0",
+    "next": "^14.1.3",
     "next-mdx-remote": "^4.4.1",
-    "re-resizable": "^6.9.11",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "sass": "^1.62.1"
-  }
+    "re-resizable": "^6.11.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.71.1"
+  },
+  "packageManager": "pnpm@8.10.5+sha1.4370a069f21873a0ad83c785b8048ed8caf6e6e9"
 }

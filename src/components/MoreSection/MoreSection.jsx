@@ -1,0 +1,167 @@
+"use client";
+import React, { useContext } from "react";
+import styles from "./MoreSection.module.scss";
+import Text from "@/components/Text/Text";
+import { OverlayContext } from "@/contexts/OverlayContext";
+import { AnimatePresence, motion } from "motion/react";
+import ContactLink from "@/components/ContactLink/ContactLink";
+import ProfilePhoto from "@/components/ProfilePhoto/ProfilePhoto";
+
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    filter: "blur(6px)",
+  },
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.2,
+    },
+  },
+  exit: {
+    opacity: 0,
+    filter: "blur(4px)",
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
+const paragraphVariants = {
+  hidden: {
+    opacity: 0,
+    translateY: -10,
+  },
+  visible: {
+    opacity: 1,
+    translateY: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+    translateY: -10,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
+
+export default function MoreSection() {
+  const { isOverlayShown } = useContext(OverlayContext);
+
+  return (
+    <>
+      <AnimatePresence mode="popLayout">
+        {isOverlayShown && (
+          <motion.div
+            className={styles.moreWrapper}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <motion.div
+              className={styles.paragraph}
+              variants={paragraphVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <Text tag="p">
+                I'm a designer who loves getting into both the nitty-gritty
+                details and the big picture.
+              </Text>
+
+              <Text tag="p">
+                Design for me is not just about making things look good; it's
+                about crafting an experience that's intuitive, user-friendly,
+                and above all, honest. I aim for transparency, ensuring that
+                what's good for the business also benefits the person using it.
+              </Text>
+              <Text tag="p">
+                Beyond the world of UI/UX, I draw inspiration from various
+                disciplines and arts, from photography to design as an art form.
+                All these feed into a design process that's as versatile as it
+                is focused.
+              </Text>
+              <Text tag="p">
+                Although I am first and foremost a designer, I do experiment
+                with code to give my designs an extra layer of polish.
+              </Text>
+              <Text tag="p">
+                This hands-on approach helps me understand the possibilities and
+                limitations, ensuring that my design ideas are not just visually
+                appealing but also practically implementable.
+              </Text>
+            </motion.div>
+            <motion.div
+              className={styles.listGroup}
+              variants={paragraphVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <ul className={styles.list}>
+                <Text tag="h4" type="heading">
+                  Who inspires me
+                </Text>
+                <li>
+                  <ContactLink label="Faizal Westcott" href="#" />
+                </li>
+                <li>
+                  <ContactLink label="Gawx" href="#" />
+                </li>
+                <li>
+                  <ContactLink label="Rasmus Andersson" href="#" />
+                </li>
+                <li>
+                  <ContactLink label="Tyler The Creator" href="#" />
+                </li>
+              </ul>
+              <ul className={styles.list}>
+                <Text tag="h4" type="heading">
+                  Learning now
+                </Text>
+                <li>
+                  <Text tag="p">Vue.js</Text>
+                </li>
+                <li>
+                  <Text tag="p">Japanese</Text>
+                </li>
+              </ul>
+              <ul className={styles.list}>
+                <Text tag="h4" type="heading">
+                  Random favs
+                </Text>
+                <li>
+                  <ContactLink label="Star Wars" href="#" />
+                </li>
+                <li>
+                  <ContactLink
+                    label="What a day - Tyler The Creator"
+                    href="#"
+                  />
+                </li>
+                <li>
+                  <Text tag="span">Cooking</Text>
+                </li>
+              </ul>
+            </motion.div>
+            <motion.div
+              variants={paragraphVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <ProfilePhoto />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}

@@ -1,0 +1,9 @@
+.project-heading {
+    padding-inline: var(--space-12);
+}
+
+.project-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}

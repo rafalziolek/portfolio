@@ -3,27 +3,63 @@ import styles from "./Intro.module.scss";
 import Text from "@/components/Text/Text";
 import ContactLink from "@/components/ContactLink/ContactLink";
 import EmailButton from "@/components/EmailButton/EmailButton";
+import { Button } from "../Button/Button";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { OverlayContext } from "@/contexts/OverlayContext";
+import { useContext } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Intro() {
+  const { isOverlayShown, setIsOverlayShown } = useContext(OverlayContext);
   return (
-    <div className={styles.about}>
-      <Text type="display" tag="h1">
-        rafal_ziolek
-      </Text>
-      <div className={styles.intro}>
-        <Text tag="p">
-          I am a designer and photographer based in Poland — Currently working
-          on design systems at Docplanner to help build exceptional experience
-          for doctors.
+    <>
+      <div className={styles.about}>
+        <Text type="display" tag="h1">
+          rafal_ziolek
         </Text>
-        <div className={styles.links}>
-          <ContactLink href="https://x.com/rafal_ziolek" label="Twitter" />
-          •
-          <ContactLink href="https://github.com/rafalziolek" label="Github" />
-          •
-          <EmailButton label="rafal.ziolek@icloud.com" />
+        <div className={styles.intro}>
+          <Text tag="p">
+            I am a designer and photographer based in Poland — Currently working
+            on design systems at Docplanner to help build exceptional experience
+            for doctors.
+          </Text>
+          <div className={styles.links}>
+            <ContactLink href="https://x.com/rafal_ziolek" label="Twitter" />
+            •
+            <ContactLink href="https://github.com/rafalziolek" label="Github" />
+            •
+            <EmailButton label="rafal.ziolek@icloud.com" />
+          </div>
         </div>
+        <Button onClick={() => setIsOverlayShown(!isOverlayShown)}>
+          {isOverlayShown ? "Read less" : "Read more"}
+          <AnimatePresence mode="wait" initial={false}>
+            {isOverlayShown ? (
+              <motion.div
+                key="up"
+                initial={{ opacity: 0, y: 2 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                style={{ marginTop: "3px" }}
+              >
+                <ChevronUp size={16} strokeWidth={2.5} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="down"
+                initial={{ opacity: 0, y: -2 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                style={{ marginTop: "3px" }}
+              >
+                <ChevronDown size={16} strokeWidth={2.5} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </Button>
       </div>
-    </div>
+    </>
   );
 }

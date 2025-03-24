@@ -1,0 +1,49 @@
+.moreSection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    padding: 24px;
+}
+.moreWrapper {
+    display: flex;
+    padding-top: var(--space-24);
+    flex-direction: row;
+    gap: var(--space-80);
+    flex-wrap: wrap;
+    justify-content: stretch;
+    div {
+        flex: 1;
+    }
+
+.paragraph {
+    p {
+        width: 60ch;
+    }
+    display: flex;
+
+    flex-direction: column;
+    gap: var(--space-24);
+}
+}
+
+.listGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-64);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    list-style: none;
+    min-width: fit-content;
+    white-space: nowrap;
+    li {
+        display: flex;
+    }
+}

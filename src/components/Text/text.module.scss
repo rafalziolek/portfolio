@@ -4,6 +4,7 @@
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
+  letter-spacing: -0.01em;
 }
 
 .bodyEmphasis {
@@ -11,13 +12,14 @@
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-emphasis);
+  letter-spacing: -0.01em;
 }
 
 .bodyArticle {
   font-size: var(--font-size-body-article);
   line-height: var(--line-height-article);
   font-weight: var(--font-weight-article);
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
 }
 
 .heading {
@@ -32,21 +34,23 @@
   font-size: var(--font-size-caption);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
+  letter-spacing: -0.01em;
 }
 
 .captionEmphasis {
   font-family: var(--font-geist-mono);
   font-size: var(--font-size-caption);
   line-height: var(--line-height-base);
-  font-weight: var(--font-weight-emphasis);
+  font-weight: var(--font-weight-emphasis);  
+  letter-spacing: -0.01em;
 }
 
 .display {
   font-size: var(--font-size-display);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-heading);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   font-feature-settings:
-    "ss01" 1,
+
     "calt" 0;
 }

@@ -3,11 +3,12 @@
     border: none;
     padding: 0;
     font-size: var(--font-size-body);
+    font-weight: var(--font-weight-base);
     line-height: var(--line-height-base);
     color: var(--color-fg);
     text-decoration: none;
     position: relative;
-    font-family: var(--font-family-mono);
+    font-family: var(--font-geist-mono);
     cursor: pointer;
     
     &::before {
