@@ -1,10 +1,10 @@
 "use client";
 import React, { useContext } from "react";
-import styles from "./MoreSection.module.scss";
+import styles from "./AboutSection.module.scss";
 import Text from "@/components/Text/Text";
 import { OverlayContext } from "@/contexts/OverlayContext";
 import { AnimatePresence, motion } from "motion/react";
-import ContactLink from "@/components/ContactLink/ContactLink";
+import StyledLink from "@/components/StyledLink/StyledLink";
 import ProfilePhoto from "@/components/ProfilePhoto/ProfilePhoto";
 
 const containerVariants = {
@@ -110,16 +110,16 @@ export default function MoreSection() {
                   Who inspires me
                 </Text>
                 <li>
-                  <ContactLink label="Faizal Westcott" href="#" />
+                  <StyledLink label="Faizal Westcott" href="#" />
                 </li>
                 <li>
-                  <ContactLink label="Gawx" href="#" />
+                  <StyledLink label="Gawx" href="#" />
                 </li>
                 <li>
-                  <ContactLink label="Rasmus Andersson" href="#" />
+                  <StyledLink label="Rasmus Andersson" href="#" />
                 </li>
                 <li>
-                  <ContactLink label="Tyler The Creator" href="#" />
+                  <StyledLink label="Tyler The Creator" href="#" />
                 </li>
               </ul>
               <ul className={styles.list}>
@@ -138,13 +138,10 @@ export default function MoreSection() {
                   Random favs
                 </Text>
                 <li>
-                  <ContactLink label="Star Wars" href="#" />
+                  <StyledLink label="Star Wars" href="#" />
                 </li>
                 <li>
-                  <ContactLink
-                    label="What a day - Tyler The Creator"
-                    href="#"
-                  />
+                  <StyledLink label="What a day - Tyler The Creator" href="#" />
                 </li>
                 <li>
                   <Text tag="span">Cooking</Text>

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import styles from "./EmailButton.module.scss";
+import Tooltip from "@/components/Tooltip/Tooltip";
 
 export default function EmailButton({ label }) {
   const [isCopied, setIsCopied] = React.useState(false);
@@ -19,20 +20,21 @@ export default function EmailButton({ label }) {
   };
 
   return (
-    <button
-      className={styles.button}
-      onClick={handleClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onFocus={() => setIsHovered(true)}
-      onBlur={() => setIsHovered(false)}
+    <Tooltip
+      content={isCopied ? "Copied!" : "Click to copy "}
+      delay={300}
+      variant={isCopied ? "feedback" : "info"}
     >
-      {label}
-      {(isHovered || isCopied) && (
-        <span className={`${styles.tooltip} ${styles.visible}`}>
-          {isCopied ? "[Copied!]" : "[Click to copy]"}
-        </span>
-      )}
-    </button>
+      <button
+        className={styles.button}
+        onClick={handleClick}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={() => setIsHovered(true)}
+        onBlur={() => setIsHovered(false)}
+      >
+        <span>{label}</span>
+      </button>
+    </Tooltip>
   );
 }
