@@ -1,6 +1,6 @@
 import styles from "./StyledLink.module.scss";
 import React from "react";
-import Text from "../../components/Text/Text";
+import Text from "@/components/Text/Text";
 
 export default function StyledLink({
   href,
