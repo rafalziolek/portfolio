@@ -1,7 +1,7 @@
 import StyledLink from "@/components/StyledLink/StyledLink";
 import { ChevronLeft } from "lucide-react";
 import CaseStudyLayout from "./layout";
-import Text from "@/components/Text/Text1";
+import Text from "@/components/Text/Text";
 import styles from "./page.module.scss";
 
 export default async function CaseStudyPage({ params }) {

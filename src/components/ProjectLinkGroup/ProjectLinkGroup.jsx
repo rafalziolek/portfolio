@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import ProjectLink from "../ProjectLink/ProjectLink";
 import { LayoutGroup } from "motion/react";
-import Text from "@/components/Text/Text1";
+import Text from "@/components/Text/Text";
 import styles from "./ProjectLinkGroup.module.scss";
 
 export default function ProjectLinkGroup({ projects, groupId, title }) {
