@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Intro.module.scss";
-import Text from "@/components/Text/Text";
+import Text from "../../components/Text/Text";
 import StyledLink from "@/components/StyledLink/StyledLink";
 import EmailButton from "@/components/EmailButton/EmailButton";
 import { Button } from "../Button/Button";

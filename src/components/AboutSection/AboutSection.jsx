@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext } from "react";
 import styles from "./AboutSection.module.scss";
-import Text from "@/components/Text/Text";
+import Text from "../../components/Text/Text";
 import { OverlayContext } from "@/contexts/OverlayContext";
 import { AnimatePresence, motion } from "motion/react";
 import StyledLink from "@/components/StyledLink/StyledLink";

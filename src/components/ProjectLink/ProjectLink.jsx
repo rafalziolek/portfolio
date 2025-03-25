@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "./ProjectLink.module.scss";
 import { motion, AnimatePresence } from "motion/react";
-import Text from "@/components/Text/Text";
+import Text from "../../components/Text/Text";
 import Link from "next/link";
 
 export default function ProjectLink({
