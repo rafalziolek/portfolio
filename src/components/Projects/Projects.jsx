@@ -45,12 +45,13 @@ function ProjectsContent({ isOverlayShown }) {
             },
           }}
         >
+          {/* <hr className={styles.hr} /> */}
           <ProjectLinkGroup
             groupId="product-design"
             projects={productDesignProjects}
             title="Product Design"
           />
-
+          {/* <hr className={styles.hr} /> */}
           <ProjectLinkGroup
             groupId="other"
             projects={otherProjects}

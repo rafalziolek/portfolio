@@ -4,7 +4,7 @@
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.002em;
 }
 
 .bodyEmphasis {
@@ -50,7 +50,5 @@
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-heading);
   letter-spacing: -0.035em;
-  font-feature-settings:
 
-    "calt" 0;
 }

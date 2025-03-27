@@ -22,12 +22,12 @@
   --space-64: 4rem;
   --space-80: 5rem;
 
-  --font-size-display: 1.5rem;
-  --font-size-heading:0.9375rem;
-  --font-size-body: 0.8125rem;
-  --font-size-body-article: 0.875rem;
+  --font-size-display: 1.625rem;
+  --font-size-heading:0.90625rem;
+  --font-size-body: 0.84375rem;
+  --font-size-body-article: 0.90625rem;
   --font-size-caption: 0.6875rem;
-  --font-size-button: 0.875rem;
+  --font-size-button: 0.90625rem;
 
   --font-weight-base: 500;
   --font-weight-emphasis: 550;
@@ -40,7 +40,7 @@
 
   --color-fg: oklch(0 0 0.5);
   --color-fg-muted: oklch(40 0 0.5);
-  --color-bg: oklch(100 0 0.5);
+  --color-bg: oklch(1 0 0.5);
   --color-bg-secondary: rgba(240,240,240);
   --color-border-primary: rgb(240, 240, 240);
 --color-bg-accent: #F8EFAA;
@@ -58,11 +58,12 @@
 // }
 html * {
   box-sizing: border-box;
-  font-feature-settings:
-    "ss01" 1;
-    ::selection {
-      color: black;
-      background: var(--color-bg-accent);
+
+  ::selection {
+    color: black;
+    background: var(--color-bg-accent);
+  // font-feature-settings:
+    
     }
 }
 

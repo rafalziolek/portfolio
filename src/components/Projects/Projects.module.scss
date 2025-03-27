@@ -1,11 +1,19 @@
 .projects {
     display: flex;
+    width: fit-content;
+    align-items: flex-start;
     flex-direction: column;
     gap: var(--space-64);
-    height: 100%;
-    max-width: 40ch;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 5%);
+    height: 100%;   
+    
 
+}
+
+.hr {
+    align-self: stretch;
+    border: 0;
+    border-bottom: 2px dotted  rgb(210, 210, 210);
+    margin: 0 16px;
 }
 
 .projectThumbnail {
