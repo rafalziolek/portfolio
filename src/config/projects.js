@@ -12,21 +12,21 @@ export const productDesignProjects = [
       title: "UI experiments",
       description: "Random experiments done in free time.",
       href: "/works/ui-experiments",
-      img: "/projects/watson/thumbnail.png",
+      img: "/projects/runchise/image.png",
     },
     {
       id: "3",
       title: "Runchise",
       description: "Integrated solutions for restaurants and franchises.",
       href: "/works/runchise",
-      img: "/projects/watson/thumbnail.png",
+      img: "/projects/runchise/image.png",
     },
     {
       id: "4",
       title: "Poza Matą Studio",
       description: "Boutique yoga studio located in Poland",
       href: "/works/poza-mata",
-      img: "/projects/watson/thumbnail.png",
+      img: "/projects/nikola/image.png",
     },
   ];
   
