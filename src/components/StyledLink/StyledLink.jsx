@@ -8,6 +8,7 @@ export default function StyledLink({
   external,
   leadingVisual,
   trailingVisual,
+  bgColor,
   ...props
 }) {
   return (
@@ -16,6 +17,7 @@ export default function StyledLink({
       href={href}
       target={external ? "_blank" : null}
       className={styles.link}
+      style={{ "--bg-color": bgColor }}
       {...props}
     >
       {leadingVisual && leadingVisual}

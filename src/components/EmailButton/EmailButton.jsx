@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./EmailButton.module.scss";
 import Tooltip from "@/components/Tooltip/Tooltip";
+import Text from "@/components/Text/Text";
 
 export default function EmailButton({ label }) {
   const [isCopied, setIsCopied] = React.useState(false);
@@ -20,11 +21,7 @@ export default function EmailButton({ label }) {
   };
 
   return (
-    <Tooltip
-      content={isCopied ? "Copied!" : "Click to copy "}
-      delay={300}
-      variant={isCopied ? "feedback" : "info"}
-    >
+    <Tooltip content={isCopied ? "Copied!" : "Click to copy "} delay={300}>
       <button
         className={styles.button}
         onClick={handleClick}
@@ -33,7 +30,7 @@ export default function EmailButton({ label }) {
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
       >
-        <span>{label}</span>
+        <Text type="body">{label}</Text>
       </button>
     </Tooltip>
   );

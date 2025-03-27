@@ -6,6 +6,8 @@ import { OverlayContext } from "@/contexts/OverlayContext";
 import { AnimatePresence, motion } from "motion/react";
 import StyledLink from "@/components/StyledLink/StyledLink";
 import ProfilePhoto from "@/components/ProfilePhoto/ProfilePhoto";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { Button } from "@/components/Button/Button";
 
 const containerVariants = {
   hidden: {
@@ -51,10 +53,42 @@ const paragraphVariants = {
 };
 
 export default function MoreSection() {
-  const { isOverlayShown } = useContext(OverlayContext);
+  const { isOverlayShown, setIsOverlayShown } = useContext(OverlayContext);
 
   return (
     <>
+      <Button
+        onClick={() => setIsOverlayShown(!isOverlayShown)}
+        trailingVisual={
+          <AnimatePresence mode="wait" initial={false}>
+            {isOverlayShown ? (
+              <motion.span
+                key="up"
+                initial={{ opacity: 0, y: 2 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                style={{ marginTop: "3px" }}
+              >
+                <ChevronUp size={16} strokeWidth={2.5} />
+              </motion.span>
+            ) : (
+              <motion.span
+                key="down"
+                initial={{ opacity: 0, y: -2 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                style={{ marginTop: "3px" }}
+              >
+                <ChevronDown size={16} strokeWidth={2.5} />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        }
+      >
+        {isOverlayShown ? "Read less" : "Read more"}
+      </Button>
       <AnimatePresence mode="popLayout">
         {isOverlayShown && (
           <motion.div
@@ -148,13 +182,14 @@ export default function MoreSection() {
                 </li>
               </ul>
             </motion.div>
-            <motion.div
-              variants={paragraphVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <ProfilePhoto />
+            <motion.div>
+              <ProfilePhoto
+                variants={paragraphVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className={styles.photoWrapper}
+              />
             </motion.div>
           </motion.div>
         )}

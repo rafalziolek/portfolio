@@ -3,15 +3,15 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-24);
-    max-width: 48ch;
-    align-items: start;
+    max-width: 40ch;
+    align-items: flex-start; 
   }
 
   .intro {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    gap: var(--space-16);
+    align-items: flex-start;
+    gap: var(--space-8);
   }
 
   .links {

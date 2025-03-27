@@ -22,16 +22,16 @@
   --space-64: 4rem;
   --space-80: 5rem;
 
-  --font-size-display: 1.625rem;
+  --font-size-display: 1.5rem;
   --font-size-heading:0.9375rem;
-  --font-size-body: 0.875rem;
+  --font-size-body: 0.8125rem;
   --font-size-body-article: 0.875rem;
   --font-size-caption: 0.6875rem;
   --font-size-button: 0.875rem;
 
   --font-weight-base: 500;
   --font-weight-emphasis: 550;
-  --font-weight-heading: 600;
+  --font-weight-heading: 620;
   --font-weight-article: 400;
 
   --line-height-base: 1.5;
@@ -43,7 +43,7 @@
   --color-bg: oklch(100 0 0.5);
   --color-bg-secondary: rgba(240,240,240);
   --color-border-primary: rgb(240, 240, 240);
-
+--color-bg-accent: #F8EFAA;
   --font-family-mono: "Geist Mono Variable", monospace;
   --font-family-sans: "Geist Variable", sans-serif;
 }
@@ -59,8 +59,11 @@
 html * {
   box-sizing: border-box;
   font-feature-settings:
-    "ss01" 1,
-    "calt" 0;
+    "ss01" 1;
+    ::selection {
+      color: black;
+      background: var(--color-bg-accent);
+    }
 }
 
 * {

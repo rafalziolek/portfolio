@@ -1,0 +1,14 @@
+.thumbnail {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: -1;
+    img {
+        width:  50vw;
+        height: auto;
+        border-radius: 12px;
+    }
+}

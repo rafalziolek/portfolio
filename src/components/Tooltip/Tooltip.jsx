@@ -1,172 +1,152 @@
 "use client";
-import React, { useState, useRef, useLayoutEffect, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Tooltip.module.scss";
 
-const TooltipContent = React.memo(
-  ({ content, targetRef, isVisible, hasBeenShown, variant }) => {
-    const tooltipRef = useRef(null);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+const TooltipContent = React.memo(({ content, triggerRef, isVisible }) => {
+  const tooltipRef = useRef(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    const updatePosition = useCallback(() => {
-      if (targetRef.current && tooltipRef.current) {
-        const targetRect = targetRef.current.getBoundingClientRect();
-        const tooltipRect = tooltipRef.current.getBoundingClientRect();
-        const scrollX = window.scrollX;
-        const scrollY = window.scrollY;
+  const updatePosition = useCallback(() => {
+    if (triggerRef.current && tooltipRef.current) {
+      const triggerRect = triggerRef.current.getBoundingClientRect();
+      const tooltipRect = tooltipRef.current.getBoundingClientRect();
+      const scrollX = window.scrollX;
+      const scrollY = window.scrollY;
 
-        setPosition({
-          x: targetRect.right + scrollX + 16,
-          y:
-            targetRect.top +
-            scrollY -
-            tooltipRect.height / 2 +
-            targetRect.height / 2,
-        });
+      setPosition({
+        x: triggerRect.right + scrollX + 16,
+        y:
+          triggerRect.top +
+          scrollY -
+          tooltipRect.height / 2 +
+          triggerRect.height / 2,
+      });
+    }
+  }, [triggerRef]);
+
+  useEffect(() => {
+    if (isVisible) {
+      updatePosition();
+
+      const resizeObserver = new ResizeObserver(updatePosition);
+
+      if (triggerRef.current) {
+        resizeObserver.observe(triggerRef.current);
       }
-    }, [targetRef]);
-
-    useLayoutEffect(() => {
-      if (isVisible) {
-        updatePosition();
-
-        const resizeObserver = new ResizeObserver(updatePosition);
-
-        if (targetRef.current) {
-          resizeObserver.observe(targetRef.current);
-        }
-        if (tooltipRef.current) {
-          resizeObserver.observe(tooltipRef.current);
-        }
-
-        let scrollTimeout;
-        const handleScroll = () => {
-          if (scrollTimeout) {
-            window.cancelAnimationFrame(scrollTimeout);
-          }
-          scrollTimeout = window.requestAnimationFrame(updatePosition);
-        };
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        window.addEventListener("resize", handleScroll, { passive: true });
-
-        return () => {
-          resizeObserver.disconnect();
-          window.removeEventListener("scroll", handleScroll);
-          window.removeEventListener("resize", handleScroll);
-          if (scrollTimeout) {
-            window.cancelAnimationFrame(scrollTimeout);
-          }
-        };
+      if (tooltipRef.current) {
+        resizeObserver.observe(tooltipRef.current);
       }
-    }, [isVisible, updatePosition, targetRef]);
 
-    return typeof window !== "undefined"
-      ? createPortal(
-          <AnimatePresence mode="wait">
-            {isVisible && (
-              <motion.div
-                key={content}
-                ref={tooltipRef}
-                className={styles.tooltip}
-                initial={{ opacity: 0, translateY: 4 }}
-                animate={{
-                  opacity: 0.5,
-                  translateY: 0,
-                  transition: { duration: 0.1 },
-                }}
-                exit={{
-                  opacity: 0,
-                  translateY: 4,
-                  transition: { duration: 0.1 },
-                }}
-                style={{
-                  position: "absolute",
-                  left: position.x,
-                  top: position.y,
-                }}
-              >
-                {content}
-              </motion.div>
-            )}
-          </AnimatePresence>,
-          document.body
-        )
-      : null;
-  }
-);
+      let positionUpdateFrameId; // Better: shows it's an animation frame ID
+      const handleViewportChange = () => {
+        if (positionUpdateFrameId) {
+          window.cancelAnimationFrame(positionUpdateFrameId);
+        }
+        positionUpdateFrameId = window.requestAnimationFrame(updatePosition);
+      };
+
+      window.addEventListener("scroll", handleViewportChange, {
+        passive: true,
+      });
+      window.addEventListener("resize", handleViewportChange, {
+        passive: true,
+      });
+
+      return () => {
+        resizeObserver.disconnect();
+        window.removeEventListener("scroll", handleViewportChange);
+        window.removeEventListener("resize", handleViewportChange);
+        if (positionUpdateFrameId) {
+          window.cancelAnimationFrame(positionUpdateFrameId);
+        }
+      };
+    }
+  }, [isVisible, updatePosition, triggerRef]);
+
+  return typeof document !== "undefined"
+    ? createPortal(
+        <AnimatePresence mode="wait">
+          {isVisible && (
+            <motion.div
+              key={content}
+              ref={tooltipRef}
+              className={styles.tooltip}
+              initial={{ opacity: 0, translateY: 4 }}
+              animate={{
+                opacity: 0.5,
+                translateY: 0,
+                transition: { duration: 0.1 },
+              }}
+              exit={{
+                opacity: 0,
+                translateY: 4,
+                transition: { duration: 0.1 },
+              }}
+              style={{
+                position: "absolute",
+                left: position.x,
+                top: position.y,
+              }}
+            >
+              {content}
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )
+    : null;
+});
 
 TooltipContent.displayName = "TooltipContent";
 
-export default function Tooltip({
-  children,
-  content,
-  delay = 0,
-  variant = "info", // "info" | "feedback"
-}) {
+export default function Tooltip({ children, content, delay = 0 }) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasBeenShown, setHasBeenShown] = useState(false);
-  const targetRef = useRef(null);
-  const timeoutRef = useRef(null);
-  const resetTimeoutRef = useRef(null);
-  const previousContentRef = useRef(content);
+  const triggerRef = useRef(null);
+  const delayTimeoutRef = useRef(null);
+  const hasBeenShownResetTimeoutRef = useRef(null);
 
-  const showTooltip = useCallback(() => {
+  const showTooltip = () => {
     setIsVisible(true);
     setHasBeenShown(true);
-  }, []);
-
-  // Detect content changes to show feedback immediately
-  useLayoutEffect(() => {
-    if (
-      variant === "feedback" &&
-      previousContentRef.current !== content &&
-      previousContentRef.current !== undefined
-    ) {
-      showTooltip();
-    }
-    previousContentRef.current = content;
-  }, [content, variant, showTooltip]);
+  };
 
   const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    const shouldDelay = delay > 0 && !hasBeenShown && variant === "info";
+    const shouldDelay = delay > 0 && !hasBeenShown;
 
     if (shouldDelay) {
-      timeoutRef.current = setTimeout(showTooltip, delay);
+      delayTimeoutRef.current = setTimeout(showTooltip, delay);
     } else {
       showTooltip();
     }
   };
 
   const handleMouseLeave = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
+    if (delayTimeoutRef.current) {
+      clearTimeout(delayTimeoutRef.current);
+      delayTimeoutRef.current = null;
     }
-    if (resetTimeoutRef.current) {
-      clearTimeout(resetTimeoutRef.current);
+    if (hasBeenShownResetTimeoutRef.current) {
+      clearTimeout(hasBeenShownResetTimeoutRef.current);
     }
     setIsVisible(false);
 
-    // Reset hasBeenShown after 800ms
-    resetTimeoutRef.current = setTimeout(() => {
+    // Reset hasBeenShown after 3000ms
+    hasBeenShownResetTimeoutRef.current = setTimeout(() => {
       setHasBeenShown(false);
-      resetTimeoutRef.current = null;
-    }, 800);
+      hasBeenShownResetTimeoutRef.current = null;
+    }, 1000);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+      if (delayTimeoutRef.current) {
+        clearTimeout(delayTimeoutRef.current);
       }
-      if (resetTimeoutRef.current) {
-        clearTimeout(resetTimeoutRef.current);
+      if (hasBeenShownResetTimeoutRef.current) {
+        clearTimeout(hasBeenShownResetTimeoutRef.current);
       }
     };
   }, []);
@@ -174,7 +154,7 @@ export default function Tooltip({
   return (
     <>
       {React.cloneElement(children, {
-        ref: targetRef,
+        ref: triggerRef,
         onMouseEnter: (e) => {
           handleMouseEnter();
           children.props.onMouseEnter?.(e);
@@ -186,10 +166,9 @@ export default function Tooltip({
       })}
       <TooltipContent
         content={content}
-        targetRef={targetRef}
+        triggerRef={triggerRef}
         isVisible={isVisible}
         hasBeenShown={hasBeenShown}
-        variant={variant}
       />
     </>
   );

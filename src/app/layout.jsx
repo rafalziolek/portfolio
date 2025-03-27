@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 
 import { Analytics } from "@vercel/analytics/react";
 import { OverlayProvider } from "@/contexts/OverlayContext";
+import styles from "./layout.module.scss";
 
 export const metadata = {
   title: "Rafał Ziółek — Product Designer & Photographer",
@@ -18,10 +19,8 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body style={{ fontFamily: "var(--font-geist-sans)" }}>
-        <div style={{ padding: "var(--space-24)" }}>
-          <OverlayProvider>
-            {children}
-          </OverlayProvider>
+        <div className={styles.page}>
+          <OverlayProvider>{children}</OverlayProvider>
 
           <Analytics />
         </div>

@@ -10,8 +10,7 @@
 }
 .moreWrapper {
     display: flex;
-    padding-top: var(--space-24);
-    flex-direction: row;
+    flex-direction: column;
     gap: var(--space-80);
     flex-wrap: wrap;
     justify-content: stretch;
@@ -21,7 +20,7 @@
 
 .paragraph {
     p {
-        width: 60ch;
+        width: 49ch;
     }
     display: flex;
 
@@ -46,4 +45,9 @@
     li {
         display: flex;
     }
+}
+
+.photoWrapper {
+    position: fixed;
+
 }

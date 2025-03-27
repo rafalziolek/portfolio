@@ -1,9 +1,9 @@
 .project-heading {
-    padding-inline: var(--space-12);
+    padding-inline: var(--space-16);
+    padding-block: var(--space-4);
 }
 
 .project-group {
     display: flex;
     flex-direction: column;
-    gap: var(--space-12);
-}
+    gap: var(--space-8);}
