@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import styles from "./Intro.module.scss";
 import Text from "@/components/Text/Text";
 import StyledLink from "@/components/StyledLink/StyledLink";

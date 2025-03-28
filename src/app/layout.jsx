@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { OverlayProvider } from "@/contexts/OverlayContext";
 import styles from "./layout.module.scss";
 import Footer from "@/components/Footer/Footer";
+import { ProjectProvider } from "@/contexts/ProjectContext";
 
 export const metadata = {
   title: "Rafał Ziółek — Product Designer & Photographer",
@@ -21,7 +22,9 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ fontFamily: "var(--font-geist-sans)" }}>
         <div className={styles.page}>
-          <OverlayProvider>{children}</OverlayProvider>
+          <ProjectProvider>
+            <OverlayProvider>{children}</OverlayProvider>
+          </ProjectProvider>
           <Footer />
           <Analytics />
         </div>

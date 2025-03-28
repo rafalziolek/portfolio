@@ -11,11 +11,7 @@ import { ProjectContext, ProjectProvider } from "@/contexts/ProjectContext";
 export default function Projects() {
   const { isOverlayShown } = useContext(OverlayContext);
 
-  return (
-    <ProjectProvider>
-      <ProjectsContent isOverlayShown={isOverlayShown} />
-    </ProjectProvider>
-  );
+  return <ProjectsContent isOverlayShown={isOverlayShown} />;
 }
 
 function ProjectsContent({ isOverlayShown }) {

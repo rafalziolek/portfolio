@@ -14,10 +14,18 @@ export default function ProjectLink({
   layoutId,
   img,
 }) {
+  // Local state for this specific project link
   const [isHovered, setIsHovered] = useState(false);
-  const { setCurrentProject } = useContext(ProjectContext);
+  
+  // Global context state
+  const { setCurrentProject, setIsAnyProjectHovered } = useContext(ProjectContext);
+  
   const handleMouseEnter = () => {
+    // Update local state
     setIsHovered(true);
+    
+    // Update global states
+    setIsAnyProjectHovered(true);
     setCurrentProject({
       id,
       href,
@@ -27,10 +35,16 @@ export default function ProjectLink({
       img,
     });
   };
+  
   const handleMouseLeave = () => {
+    // Update local state
     setIsHovered(false);
+    
+    // Update global states
+    setIsAnyProjectHovered(false);
     setCurrentProject(null);
   };
+  
   return (
     <>
       <Link
@@ -38,8 +52,8 @@ export default function ProjectLink({
         className={styles.container}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onFocus={() => setIsHovered(true)}
-        onBlur={() => setIsHovered(false)}
+        onFocus={handleMouseEnter}
+        onBlur={handleMouseLeave}
       >
         <div className={styles.content}>
           <Text tag="h3" type="heading" className={styles["project-title"]}>
@@ -56,7 +70,6 @@ export default function ProjectLink({
               animate={{ opacity: 1, transition: { duration: 0.2 } }}
               exit={{
                 opacity: 0,
-
                 transition: { duration: 0.5 },
               }}
               transition={{
