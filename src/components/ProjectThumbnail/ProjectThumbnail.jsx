@@ -1,15 +1,21 @@
-import React, { useEffect, useState, useContext } from "react";
+"use client";
+
+import React, { useContext } from "react";
 import styles from "./ProjectThumbnail.module.scss";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { ProjectContext } from "@/contexts/ProjectContext";
 
+// Simple component that only renders on the client
 export default function ProjectThumbnail() {
   const { currentProject, isAnyProjectHovered } = useContext(ProjectContext);
-  if (!currentProject || !document) return null;
+
+  // Early return if we're in a server environment or no project
+  if (typeof window === "undefined") return null;
+
   // Create portal content
-  const portalContent = (
+  return createPortal(
     <AnimatePresence>
       {isAnyProjectHovered && (
         <motion.div
@@ -59,9 +65,7 @@ export default function ProjectThumbnail() {
           </AnimatePresence>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
-
-  // Render portal on client-side only
-  return createPortal(portalContent, document.body);
 }
