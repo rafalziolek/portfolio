@@ -41,8 +41,7 @@
   --color-fg: oklch(0 0 0.5);
   --color-fg-muted: oklch(40 0 0.5);
   --color-bg: oklch(1 0 0.5);
-  --color-bg-secondary: rgba(240,240,240);
-  --color-border-primary: rgb(240, 240, 240);
+  --color-bg-secondary: oklch(0.96 0 0.5);
 --color-bg-accent: #F8EFAA;
   --font-family-mono: "Geist Mono Variable", monospace;
   --font-family-sans: "Geist Variable", sans-serif;
@@ -84,8 +83,8 @@ body {
 }
 
 body {
-  color: var(--color-foreground-primary);
-  background: var(--color-background-primary);
+  color: var(--color-fg);
+  background: var(--color-bg);
   overflow: visible;
 }
 
@@ -102,13 +101,13 @@ p {
   font-weight: var(--font-weight-m);
 }
 
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --color-foreground-primary: var(--color-white);
-//     --color-background-primary: var(--color-black);
-//     --color-foreground-secondary: var(--color-white-0-5);
-//   }
-//   html {
-//     color-scheme: dark;
-//   }
-// }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fg: var(--color-white);
+    --color-bg: #141414;
+    --color-bg-secondary: oklch(0.24 0 0.5);
+  }
+  html {
+    color-scheme: dark;
+  }
+}
