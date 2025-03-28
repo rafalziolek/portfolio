@@ -14,7 +14,7 @@ export default function ProjectThumbnail({ currentThumbnail }) {
                 <motion.div
                   key={currentThumbnail.id}
                   className={styles.thumbnail}
-                  initial={{ opacity: 0, filter: "blur(10px)", scale: 0.98 }}
+                  initial={{ opacity: 0, filter: "blur(6px)", scale: 0.99 }}
                   animate={{
                     opacity: 1,
                     filter: "blur(0px)",
@@ -23,8 +23,8 @@ export default function ProjectThumbnail({ currentThumbnail }) {
                   }}
                   exit={{
                     opacity: 0,
-                    scale: 0.98,
-                    filter: "blur(10px)",
+                    scale: 0.99,
+                    filter: "blur(6px)",
                     transition: { duration: 0.2 },
                   }}
                 >
@@ -37,7 +37,7 @@ export default function ProjectThumbnail({ currentThumbnail }) {
                 </motion.div>
               )}
             </AnimatePresence>,
-            document.body
+            document.getElementById("layout-root")
           )
         : null}
     </>

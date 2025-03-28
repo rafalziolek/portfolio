@@ -20,9 +20,9 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body style={{ fontFamily: "var(--font-geist-sans)" }}>
-        <div className={styles.page}>
+        <div id="layout-root" className={styles.page}>
           <OverlayProvider>{children}</OverlayProvider>
-          <Footer />
+          {/* <Footer /> */}
           <Analytics />
         </div>
       </body>

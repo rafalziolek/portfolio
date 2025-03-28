@@ -1,19 +1,18 @@
 .thumbnail {
-    position: fixed;
-    bottom: 24px;
-    left: 24px;
-    width: 100vw;
-    height: 100vh;
     display: flex;
+    height: calc(100vh - var(--space-24) * 2);
     align-items: center;
-    justify-content:center;
-    z-index: -1;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+
+    
     img {
+        min-height: 50vh;
         width: auto;
-        max-width: 30vw;
-        min-width: 500px;
-        max-height: 70vh;
-        height: auto;
+        max-width: 40vw;
         border-radius: 12px;
+        aspect-ratio: auto;
+        object-fit: cover;
     }
 }
