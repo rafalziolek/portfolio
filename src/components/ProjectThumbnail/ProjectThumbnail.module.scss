@@ -1,7 +1,7 @@
 .thumbnail {
     position: fixed;
-    top: 0;
-    left: 0;
+    bottom: 24px;
+    left: 24px;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -12,7 +12,7 @@
         width: auto;
         max-width: 30vw;
         min-width: 500px;
-        max-height: 50vh;
+        max-height: 70vh;
         height: auto;
         border-radius: 12px;
     }
