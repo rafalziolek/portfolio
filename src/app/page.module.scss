@@ -1,9 +1,7 @@
 .container {
     display: flex;
-    justify-content: space-between;
-    position: relative;
     height: 100%;
-    flex-direction: column;
+    justify-content: space-between;
     gap: 64px;
 }
 
@@ -14,12 +12,13 @@
     gap: var(--space-32);
     flex: 1;
     height: 100%;
+    max-width: 40ch;
 }
 
 .leftColumn {
     height: 100%;
     margin-left: -16px;
-}
+    max-width: 40ch;}
 
 
 
