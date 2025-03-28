@@ -10,7 +10,8 @@
     z-index: -1;
     img {
         width: auto;
-    max-width: 30vw;
+        max-width: 30vw;
+        min-width: 500px;
         max-height: 50vh;
         height: auto;
         border-radius: 12px;
