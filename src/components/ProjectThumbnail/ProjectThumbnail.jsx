@@ -7,7 +7,7 @@ import { ProjectContext } from "@/contexts/ProjectContext";
 
 export default function ProjectThumbnail() {
   const { currentProject, isAnyProjectHovered } = useContext(ProjectContext);
-
+  if (!currentProject || !document) return null;
   // Create portal content
   const portalContent = (
     <AnimatePresence>
