@@ -1,18 +1,15 @@
 .thumbnail {
     position: fixed;
-    bottom: 24px;
-    left: 24px;
-    width: 100vw;
-    height: 100vh;
+    bottom: 0;
+    left: 5vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content:center;
-    z-index: -1;
     img {
         width: auto;
-        max-width: 30vw;
-        min-width: 500px;
-        max-height: 70vh;
+        max-width: 50vw;
+        max-height: 90vh;
         height: auto;
         border-radius: 12px;
     }

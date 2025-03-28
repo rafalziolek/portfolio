@@ -58,6 +58,7 @@ export default function MoreSection() {
   return (
     <>
       <Button
+        className={styles.readMoreButton}
         onClick={() => setIsOverlayShown(!isOverlayShown)}
         trailingVisual={
           <AnimatePresence mode="wait" initial={false}>
@@ -68,18 +69,19 @@ export default function MoreSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                style={{ marginTop: "3px" }}
+                style={{ marginTop: "4px" }}
               >
                 <ChevronUp size={16} strokeWidth={2.5} />
               </motion.span>
             ) : (
               <motion.span
+                className={styles.readMoreButtonIcon}
                 key="down"
                 initial={{ opacity: 0, y: -2 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                style={{ marginTop: "3px" }}
+                style={{ marginTop: "4px" }}
               >
                 <ChevronDown size={16} strokeWidth={2.5} />
               </motion.span>
