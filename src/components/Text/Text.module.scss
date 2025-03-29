@@ -1,19 +1,24 @@
 /* Base text styles */
+.text {
+  mix-blend-mode: difference;
+  z-index: 1;
+}
+
 .body {
   font-family: var(--font-geist-sans);
   font-size: var(--font-size-body);
-  line-height: var(--line-height-base);
+  line-height: 16px;
   font-weight: var(--font-weight-base);
-  letter-spacing: -0.002em;
-  max-width: 42ch;
+  letter-spacing: -0.015em;
+  max-width: 40ch;
 }
 
 .bodyEmphasis {
-  font-family: var(--font-geist-mono);
+  font-family: var(--font-geist-sans);
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-emphasis);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .bodyArticle {
@@ -27,7 +32,7 @@
   font-size: var(--font-size-heading);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-heading);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .caption {

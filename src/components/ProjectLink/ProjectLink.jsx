@@ -16,14 +16,15 @@ export default function ProjectLink({
 }) {
   // Local state for this specific project link
   const [isHovered, setIsHovered] = useState(false);
-  
+
   // Global context state
-  const { setCurrentProject, setIsAnyProjectHovered } = useContext(ProjectContext);
-  
+  const { setCurrentProject, setIsAnyProjectHovered } =
+    useContext(ProjectContext);
+
   const handleMouseEnter = () => {
     // Update local state
     setIsHovered(true);
-    
+
     // Update global states
     setIsAnyProjectHovered(true);
     setCurrentProject({
@@ -35,16 +36,16 @@ export default function ProjectLink({
       img,
     });
   };
-  
+
   const handleMouseLeave = () => {
     // Update local state
     setIsHovered(false);
-    
+
     // Update global states
     setIsAnyProjectHovered(false);
     setCurrentProject(null);
   };
-  
+
   return (
     <>
       <Link

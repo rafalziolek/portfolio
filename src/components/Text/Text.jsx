@@ -22,7 +22,7 @@ export default function Text({
   const textClass = styleMap[type];
 
   return (
-    <Component className={clsx(textClass, className)} {...rest}>
+    <Component className={clsx(textClass, className, "text")} {...rest}>
       {children}
     </Component>
   );
