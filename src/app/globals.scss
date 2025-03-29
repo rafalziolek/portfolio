@@ -24,7 +24,7 @@
 
   --font-size-display: 1.625rem;
   --font-size-heading:0.90625rem;
-  --font-size-body: 0.84375rem;
+  --font-size-body: 0.875rem;
   --font-size-body-article: 0.90625rem;
   --font-size-caption: 0.6875rem;
   --font-size-button: 0.90625rem;
@@ -47,21 +47,12 @@
   --font-family-sans: "Geist Variable", sans-serif;
 }
 
-// @media screen and (max-width: 450px) {
-//   :root {
-//     --font-size-main-heading: var(--font-size-m);
-//     --font-size-heading: var(--font-size-l);
-//     --font-size-body: var(--font-size-m);
-//     --font-size-caption: var(--font-size-m);
-//   }
-// }
 html * {
   box-sizing: border-box;
-
+  font-feature-settings: "ss01";
   ::selection {
     color: black;
     background: var(--color-bg-accent);
-  // font-feature-settings:
     
     }
 }
@@ -93,18 +84,11 @@ a {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-p {
-  font-weight: var(--font-weight-m);
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-fg: var(--color-white);
-    --color-bg: #141414;
+    --color-bg: #0b0b0b;
     --color-bg-secondary: oklch(0.24 0 0.5);
   }
   html {
