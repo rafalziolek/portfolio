@@ -142,7 +142,7 @@ export default function MoreSection() {
               exit="exit"
             >
               <ul className={styles.list}>
-                <Text tag="h4" type="heading">
+                <Text tag="h4" type="display" className={styles.listTitle}>
                   Who inspires me
                 </Text>
                 <li>
@@ -159,7 +159,7 @@ export default function MoreSection() {
                 </li>
               </ul>
               <ul className={styles.list}>
-                <Text tag="h4" type="heading">
+                <Text tag="h4" type="display" className={styles.listTitle}>
                   Learning now
                 </Text>
                 <li>
@@ -170,7 +170,7 @@ export default function MoreSection() {
                 </li>
               </ul>
               <ul className={styles.list}>
-                <Text tag="h4" type="heading">
+                <Text tag="h4" type="display" className={styles.listTitle}>
                   Random favs
                 </Text>
                 <li>

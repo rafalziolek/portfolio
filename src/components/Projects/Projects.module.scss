@@ -1,7 +1,7 @@
 .projects {
     display: flex;
-    width: fit-content;
-    align-items: flex-start;
+    width: 100%;
+    // align-items: flex-start;
     flex-direction: column;
     gap: var(--space-64);
     height: 100%;   

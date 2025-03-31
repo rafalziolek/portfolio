@@ -15,6 +15,7 @@ export default function Text({
   type = "body",
   tag = "span",
   className,
+  color,
   children,
   ...rest
 }) {
@@ -22,7 +23,15 @@ export default function Text({
   const textClass = styleMap[type];
 
   return (
-    <Component className={clsx(textClass, className, "text")} {...rest}>
+    <Component
+      className={clsx(
+        textClass,
+        className,
+        styles.text,
+        color && styles[`text-${color}`]
+      )}
+      {...rest}
+    >
       {children}
     </Component>
   );

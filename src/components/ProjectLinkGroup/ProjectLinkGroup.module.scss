@@ -1,10 +1,10 @@
 .project-heading {
-    padding-inline: var(--space-16);
-    padding-block:0  var(--space-8);
+    padding-inline: var(--space-8);
+    padding-block:0  var(--space-20);
 }
 
 .project-group {
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
+    // gap: 1px;
 }

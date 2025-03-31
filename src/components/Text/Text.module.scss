@@ -1,16 +1,23 @@
 /* Base text styles */
 .text {
-  mix-blend-mode: difference;
-  z-index: 1;
+  // mix-blend-mode: difference;
+  // z-index: 1;
+  &.text-primary {
+    color: var(--color-fg);
+  }
+  &.text-secondary {
+    color: var(--color-fg-muted);
+  }
 }
 
 .body {
   font-family: var(--font-geist-sans);
   font-size: var(--font-size-body);
-  line-height: 16px;
+  line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
-  letter-spacing: -0.015em;
-  max-width: 40ch;
+  max-width: 60ch;
+  letter-spacing: -0.0055em;
+  
 }
 
 .bodyEmphasis {
@@ -18,7 +25,8 @@
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-emphasis);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.0055em;
+
 }
 
 .bodyArticle {
@@ -29,10 +37,11 @@
 }
 
 .heading {
+  font-family: var(--font-geist-sans);
   font-size: var(--font-size-heading);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.0055em;
 }
 
 .caption {
@@ -52,9 +61,10 @@
 }
 
 .display {
+  font-family: var(--font-geist-sans);
   font-size: var(--font-size-display);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-heading);
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
 
 }

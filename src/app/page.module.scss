@@ -1,7 +1,9 @@
 .container {
-    display: flex;
+    display: grid;
+grid-template-columns: 1fr 1fr 1fr;
     height: 100%;
-    gap: 64px;
+    gap: 92px;
+    
 }
 
 .rightColumn {
@@ -12,12 +14,18 @@
     flex: 1;
     height: 100%;
     max-width: 40ch;
+    grid-column: 1 / 2;
+    grid-row: 1;
 }
 
 .leftColumn {
     height: 100%;
     margin-left: -16px;
     max-width: 40ch;
+    grid-column: 3 / 4;
+    grid-row: 1;
+    justify-self: flex-end;
+    width: 100%;
 }
 
 

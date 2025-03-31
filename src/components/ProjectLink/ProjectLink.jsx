@@ -41,7 +41,6 @@ export default function ProjectLink({
     // Update local state
     setIsHovered(false);
 
-    // Update global states
     setIsAnyProjectHovered(false);
     setCurrentProject(null);
   };
@@ -57,35 +56,41 @@ export default function ProjectLink({
         onBlur={handleMouseLeave}
       >
         <div className={styles.content}>
-          <Text tag="h3" type="heading" className={styles["project-title"]}>
+          <Text tag="h3" type="body" className={styles["project-title"]}>
             {title}
           </Text>
-          <Text tag="p" type="body" className={styles["project-description"]}>
-            {description}
+          <Text
+            tag="p"
+            type="body"
+            // color="secondary"
+            className={styles["project-description"]}
+          >
+            2024
           </Text>
         </div>
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {isHovered && (
             <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 0.2 } }}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1, transition: { duration: 0.3 } }}
               exit={{
                 opacity: 0,
-                transition: { duration: 0.5 },
+                transition: { duration: 0.3, delay: 0 },
               }}
               transition={{
                 layout: {
-                  duration: 0.35,
+                  duration: 0.3,
                   type: "spring",
                   bounce: 0.25,
                 },
               }}
               layoutId={layoutId}
               className={styles.background}
-              style={{ borderRadius: "12px" }}
+              style={{ borderRadius: "4px" }}
             />
           )}
         </AnimatePresence>
+        <span className={styles.base} />
       </Link>
     </>
   );

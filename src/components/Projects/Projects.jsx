@@ -23,11 +23,11 @@ function ProjectsContent({ isOverlayShown }) {
           className={styles.projects}
           initial={{
             opacity: 0,
-            filter: "blur(6px)",
+            // filter: "blur(6px)",
           }}
           animate={{
             opacity: 1,
-            filter: "blur(0px)",
+            // filter: "blur(0px)",
             translateY: 0,
             transition: {
               duration: 0.6,
@@ -53,7 +53,7 @@ function ProjectsContent({ isOverlayShown }) {
             projects={otherProjects}
             title="Other"
           />
-          <ProjectThumbnail currentThumbnail={currentProject} />
+          {/* <ProjectThumbnail currentThumbnail={currentProject} /> */}
         </motion.div>
       )}
     </AnimatePresence>

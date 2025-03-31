@@ -2,7 +2,6 @@
 
 import React, { useContext } from "react";
 import styles from "./ProjectThumbnail.module.scss";
-import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { ProjectContext } from "@/contexts/ProjectContext";
@@ -11,11 +10,7 @@ import { ProjectContext } from "@/contexts/ProjectContext";
 export default function ProjectThumbnail() {
   const { currentProject, isAnyProjectHovered } = useContext(ProjectContext);
 
-  // Early return if we're in a server environment or no project
-  if (typeof window === "undefined") return null;
-
-  // Create portal content
-  return createPortal(
+  return (
     <AnimatePresence>
       {isAnyProjectHovered && (
         <motion.div
@@ -40,17 +35,24 @@ export default function ProjectThumbnail() {
                   opacity: 0,
                   filter: "blur(10px)",
                   scale: 0.98,
+                  rotate: "-7deg",
+                  x: "-7%",
+                  y: "100%",
                 }}
                 animate={{
                   opacity: 1,
                   filter: "blur(0px)",
                   scale: 1,
-                  transition: { duration: 0.2 },
+
+                  y: "40%",
+                  transition: { duration: 0.7, type: "spring", bounce: 0 },
                 }}
                 exit={{
                   opacity: 0,
                   scale: 0.98,
                   filter: "blur(10px)",
+
+                  y: "100%",
                   transition: { duration: 0.2 },
                 }}
               >
@@ -65,7 +67,6 @@ export default function ProjectThumbnail() {
           </AnimatePresence>
         </motion.div>
       )}
-    </AnimatePresence>,
-    document.body
+    </AnimatePresence>
   );
 }

@@ -2,6 +2,7 @@
 import styles from "./Button.module.scss";
 import React from "react";
 import clsx from "clsx";
+import Text from "../Text/Text";
 
 export function Button({
   children,
@@ -18,7 +19,7 @@ export function Button({
       {...rest}
     >
       {leadingVisual && leadingVisual}
-      <span>{children}</span>
+      <Text type="body-emphasis">{children}</Text>
       {trailingVisual && trailingVisual}
     </button>
   );

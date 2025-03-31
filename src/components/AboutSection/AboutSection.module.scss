@@ -38,10 +38,13 @@
 .list {
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: var(--space-4);
     list-style: none;
     min-width: fit-content;
     white-space: nowrap;
+    .listTitle {
+        margin-bottom: var(--space-8);
+    }
     li {
         display: flex;
     }
