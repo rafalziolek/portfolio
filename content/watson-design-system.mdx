@@ -1,29 +1,37 @@
 ---
-title: 'Watson Design System'
+title: "Watson Design System"
 abstract: Watson is Docplanner's design language for our SaaS products and digital experiences. The system consists of working code, design tools and resources, and human interface guidelines.
 heading: WatsonHeading
 details:
-  - title: 'Company'
+  - title: "Company"
     items:
-      - text: 'Docplanner'
-  - title: 'Year'
+      - text: "Docplanner"
+  - title: "Year"
     items:
-      - text: '2022 — Ongoing'
-  - title: 'Scope'
+      - text: "2022 — Ongoing"
+  - title: "Scope"
     items:
-      - text: 'User Interface Design, Prototyping, Documentation'
-  - title: 'Visit'
+      - text: "User Interface Design, Prototyping, Documentation"
+  - title: "Visit"
     items:
-      - text: 'watson.docplanner.design'
-        link: 'https://watson.docplanner.design'
+      - text: "watson.docplanner.design"
+        link: "https://watson.docplanner.design"
 ---
 
 <Image
-  src='/projects/watson/2.jpg'
-  alt='alt text'
+  src="/projects/watson/2.jpg"
+  alt="alt text"
   width={1800}
   height={1400}
-></Image>
+  style={{
+    gridColumn: "span 12",
+    paddingBottom: "var(--space-l)",
+    width: "100%",
+    height: "auto",
+    objectFit: "cover",
+    ...props.style,
+  }}
+/>
 
 ## Background
 
@@ -65,30 +73,13 @@ We wanted to create a system that tackles many of our past issues at the roots. 
 
 We decided to start with the foundational design directives, such as spacing, typography, and colors. It allowed us to create solid foundations with strong emphasis on scalability and semantics. I was responsible for typography which included a new scale, styles and tokens & component definition.
 
-<Image
-  src='/projects/watson/font.png'
-  alt='Presentation of font Inter with example glyphs'
-  width={2542}
-  height={2428}
-  style={{ gridColumn: '1 / 7', width: '100%', height: '100%' }}
-></Image>
-<Image
-  src='/projects/watson/scale.png'
-  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
-  width={2542}
-  height={2428}
-  style={{ gridColumn: '7 / 13', width: '100%', height: '100%' }}
-></Image>
+![Presentation of font Inter with example glyphs](/projects/watson/font.png)
+
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/scale.png)
 
 After defining the scale I worked on design tokens that would let us define semantic styles with clear usage.
 
-<Image
-  src='/projects/watson/variants.png'
-  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
-  width={4383}
-  height={2073}
-  style={{ gridColumn: 'span 12', width: '100%' }}
-></Image>
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/variants.png)
 
 ### Layout
 
@@ -96,48 +87,17 @@ Another huge issue that our designers and developers struggled with were page la
 
 After auditing the product, I mapped all screens to find common features between the pages. I designed a proposal of a unified layout that could cover all pages, and wrote an extensive documentation with best practices that could help designers decide what layout suits their needs best.
 
-<Image
-  src='/projects/watson/layouts.png'
-  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
-  width={3956}
-  height={2282}
-  style={{ gridColumn: '1 / 7', width: '100%' }}
-></Image>
-<Image
-  src='/projects/watson/layouts-explorations.png'
-  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
-  width={3502}
-  height={1654}
-  style={{ gridColumn: '7 / 13', width: '100%' }}
-></Image>
-<Image
-  src='/projects/watson/screen_1.png'
-  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
-  width={4112}
-  height={3028}
-  style={{ gridColumn: '1 / 7', width: '100%' }}
-></Image>
-<Image
-  src='/projects/watson/screen_2.png'
-  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
-  width={4112}
-  height={3028}
-  style={{ gridColumn: '7 / 13', width: '100%' }}
-></Image>
-<Image
-  src='/projects/watson/screen_3.png'
-  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
-  width={4112}
-  height={3028}
-  style={{ gridColumn: '1 / 7', width: '100%' }}
-></Image>
-<Image
-  src='/projects/watson/screen_4.png'
-  alt='List of example texts with sizes from Watson and list of example text with font weights from Watson'
-  width={4112}
-  height={3028}
-  style={{ gridColumn: '7 / 13', width: '100%' }}
-></Image>
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/layouts.png)
+
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/layouts-explorations.png)
+
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/screen_1.png)
+
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/screen_2.png)
+
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/screen_3.png)
+
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/screen_4.png)
 
 ## Step Two: Components
 
@@ -149,32 +109,15 @@ We decided to tackle forms first. We saw an opportunity to provide a good amount
 
 The development of each component involved auditing current versions for issues, exploring designs to improve and align with new standards, proposing components with accessibility and API features, and creating simple, visual documentation on usage and best practices.
 
-<Image
-  src='/projects/watson/components.png'
-  alt=''
-  width={3228}
-  height={2320}
-  style={{ gridColumn: 'span 12', width: '100%' }}
-></Image>
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/components.png)
 
 ### Documentation
 
 Documenting components and design desicions behind them was one of our core principles when working on Watson. Every component includes a detailed documentation on the behaviour and it's usage.
 
-<Image
-  src='/projects/watson/docs-1.png'
-  alt=''
-  width={2542}
-  height={2428}
-  style={{ gridColumn: '1 /7', width: '100%' }}
-></Image>
-<Image
-  src='/projects/watson/docs-2.png'
-  alt=''
-  width={2542}
-  height={2428}
-  style={{ gridColumn: '7 / 13', width: '100%' }}
-></Image>
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/docs-1.png)
+
+![List of example texts with sizes from Watson and list of example text with font weights from Watson](/projects/watson/docs-2.png)
 
 ## Conclusion
 
