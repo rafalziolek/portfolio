@@ -69,6 +69,7 @@ export default function ProjectLink({
             2024
           </Text>
         </div>
+        <span className={styles.base} />
         <AnimatePresence mode="wait">
           {isHovered && (
             <motion.span
@@ -91,7 +92,6 @@ export default function ProjectLink({
             />
           )}
         </AnimatePresence>
-        <span className={styles.base} />
       </Link>
     </>
   );

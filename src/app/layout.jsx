@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
           <ProjectProvider>
             <OverlayProvider>{children}</OverlayProvider>
           </ProjectProvider>
-          <Footer />
+
           <Analytics />
         </div>
       </body>

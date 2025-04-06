@@ -19,9 +19,6 @@
     }
 
 .paragraph {
-    p {
-        width: 44ch;
-    }
     display: flex;
 
     flex-direction: column;
@@ -50,11 +47,6 @@
     }
 }
 
-.photoWrapper {
-    position: fixed;
-
-}
-
 .readMoreButton {
     margin-left: calc(-1 * var(--space-8));
     .readMoreButtonIcon {
@@ -67,3 +59,4 @@
         }
     }
 }
+

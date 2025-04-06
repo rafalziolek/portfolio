@@ -1,5 +1,12 @@
 .profile-photo {
     position: fixed;
     right: 24px;
-    bottom: 24px;;
+    bottom: 24px;
 }
+
+@media (max-width: 920px) {
+    .profile-photo {
+        display: none;
+    }
+}
+

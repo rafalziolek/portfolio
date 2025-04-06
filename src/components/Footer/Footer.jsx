@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./Footer.module.scss";
 import Text from "@/components/Text/Text";
 import Image from "next/image";
-
-export default function Footer() {
+import clsx from "clsx";
+export default function Footer({ className }) {
   return (
-    <div className={styles.footer}>
+    <div className={clsx(styles.footer, className)}>
       <Text tag="p">
         Special thanks to my cats,
         <Image

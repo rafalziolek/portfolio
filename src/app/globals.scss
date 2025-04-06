@@ -98,3 +98,10 @@ a {
     color-scheme: dark;
   }
 }
+@media screen and (max-width: 920px) {
+  :root {
+    --font-size-body: 1rem;
+    --font-size-body-article: 1rem;
+    --font-size-heading: 1rem;
+  }
+}

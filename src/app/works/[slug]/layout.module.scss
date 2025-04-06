@@ -29,3 +29,10 @@
     background: linear-gradient(180deg, transparent 0%, var(--color-bg) 90%);
     z-index: 0;
 }
+
+@media (max-width: 920px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+}

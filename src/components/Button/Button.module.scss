@@ -19,6 +19,9 @@
 
    &:hover {
     background-color: rgba($color: #F2F2F2, $alpha: 0.8);
+    @media (prefers-color-scheme: dark) {
+        background-color: rgba($color: #292929, $alpha: 0.8);
+    }
     transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
    } 
 

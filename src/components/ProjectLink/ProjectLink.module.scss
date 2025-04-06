@@ -1,8 +1,9 @@
+
 .container {
     text-decoration: none;
     color: var(--color-fg);    
     position: relative;
-    padding-bottom: 1px;
+    // padding-bottom: 1px;
 
     &:focus-visible {
        border: none;
@@ -14,7 +15,7 @@
         position: relative;
         @media (prefers-color-scheme: dark) {
             color: white;
-            mix-blend-mode: difference;
+            // mix-blend-mode: difference;
         }
             
         z-index: 1;
@@ -31,11 +32,9 @@
         pointer-events: none;
         border-radius: 6px;
        backdrop-filter: blur(10px);
-       background-color: rgba($color: #F2F2F2, $alpha: 0.8);
-       mix-blend-mode: plus-darker;
+       background-color: rgba($color: #F4F4F4, $alpha: 0.9);
        @media (prefers-color-scheme: dark) {
-           background-color: rgba($color: #161616, $alpha: 0.8);
-           mix-blend-mode: plus-darker
+           background-color: rgba($color: #212121, $alpha: 0.9);
        }     
     }
     
@@ -45,10 +44,12 @@
     .background {
        display: block;
        width: 100%;
-       height: 100%;
+       height: calc(100% - 1px);
        position: absolute;
        background-color: rgba($color:#e3e3e3, $alpha: 1);
-    //    mix-blend-mode: difference;
+       @media (prefers-color-scheme: dark) {
+           background-color: rgba($color: #3d3d3d, $alpha: 1);
+       }
        z-index: 0;
        top: 0;
        left: 0;
@@ -62,7 +63,6 @@
        flex-direction: row;
        align-items: center;
        justify-content: space-between;
-       max-width: 40ch;
    
    
        
@@ -71,3 +71,10 @@
    
        
    }
+
+
+   @media (max-width: 920px) {
+    .container {
+        padding-block: var(--space-8);
+    }
+}
