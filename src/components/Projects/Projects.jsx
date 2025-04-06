@@ -53,7 +53,6 @@ function ProjectsContent({ isOverlayShown }) {
             projects={otherProjects}
             title="Other"
           />
-          {/* <ProjectThumbnail currentThumbnail={currentProject} /> */}
         </motion.div>
       )}
     </AnimatePresence>
