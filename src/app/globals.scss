@@ -89,7 +89,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-fg: var(--color-white);
+    --color-fg: white;
     --color-fg-muted: rgba(255, 255, 255, 0.5);
     --color-bg: rgb(0, 0, 0);
     --color-bg-secondary: #262626;

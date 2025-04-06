@@ -24,9 +24,9 @@ function H2(props) {
           y1="1.16675"
           x2="100%"
           y2="1.16675"
-          stroke="black"
-          stroke-linecap="round"
-          stroke-dasharray="0.1 5"
+          // stroke="white"
+          strokeLinecap="round"
+          strokeDasharray="0.1 5"
         />
       </svg>
     </div>
