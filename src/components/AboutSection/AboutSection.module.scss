@@ -56,6 +56,7 @@
 }
 
 .readMoreButton {
+    margin-left: calc(-1 * var(--space-8));
     .readMoreButtonIcon {
         transition: all 0.2s ease-out;
     }

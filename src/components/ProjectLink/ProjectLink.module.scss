@@ -1,7 +1,5 @@
 .container {
     text-decoration: none;
-    // min-width: 350px;
-
     color: var(--color-fg);    
     position: relative;
     padding-bottom: 1px;
@@ -31,7 +29,7 @@
         top: 0;
         left: 0;
         pointer-events: none;
-        border-radius: 4px;
+        border-radius: 6px;
        backdrop-filter: blur(10px);
        background-color: rgba($color: #F2F2F2, $alpha: 0.8);
        mix-blend-mode: plus-darker;
@@ -41,7 +39,7 @@
        }     
     }
     
-    border-radius: 4px;
+    border-radius: 6px;
    
     padding: var(--space-4) var(--space-8);
     .background {

@@ -71,7 +71,7 @@ export default function MoreSection() {
                 transition={{ duration: 0.2 }}
                 style={{ marginTop: "4px" }}
               >
-                <ChevronUp size={16} strokeWidth={2.5} />
+                <ChevronUp size={14} strokeWidth={2.5} />
               </motion.span>
             ) : (
               <motion.span
@@ -83,7 +83,7 @@ export default function MoreSection() {
                 transition={{ duration: 0.2 }}
                 style={{ marginTop: "4px" }}
               >
-                <ChevronDown size={16} strokeWidth={2.5} />
+                <ChevronDown size={14} strokeWidth={2.5} />
               </motion.span>
             )}
           </AnimatePresence>

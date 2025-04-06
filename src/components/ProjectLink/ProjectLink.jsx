@@ -49,6 +49,7 @@ export default function ProjectLink({
     <>
       <Link
         href={href}
+        onClick={handleMouseLeave}
         className={styles.container}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -86,7 +87,7 @@ export default function ProjectLink({
               }}
               layoutId={layoutId}
               className={styles.background}
-              style={{ borderRadius: "4px" }}
+              style={{ borderRadius: "6px" }}
             />
           )}
         </AnimatePresence>

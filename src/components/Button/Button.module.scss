@@ -13,13 +13,25 @@
     display: flex;
     align-items: center;
     gap: var(--space-4);
+    padding-inline: var(--space-6);
+    border-radius: 6px;
+    transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
-    
+   &:hover {
+    background-color: rgba($color: #F2F2F2, $alpha: 0.8);
+    transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+   } 
 
-
-    
     &:focus-visible {
         outline: none;
         border: none;
+    }
+
+    &.withLeadingVisual {
+        padding-inline-start: var(--space-4);
+    }
+
+    &.withTrailingVisual {
+        padding-inline-end: var(--space-4);
     }
 }

@@ -34,25 +34,19 @@ export default function ProjectThumbnail() {
                 initial={{
                   opacity: 0,
                   filter: "blur(10px)",
-                  scale: 0.98,
-                  rotate: "-7deg",
-                  x: "-7%",
-                  y: "100%",
+                  // scale: 0.98,
                 }}
                 animate={{
                   opacity: 1,
                   filter: "blur(0px)",
                   scale: 1,
-
-                  y: "40%",
                   transition: { duration: 0.7, type: "spring", bounce: 0 },
                 }}
                 exit={{
                   opacity: 0,
-                  scale: 0.98,
+                  // scale: 0.98,
                   filter: "blur(10px)",
 
-                  y: "100%",
                   transition: { duration: 0.2 },
                 }}
               >
