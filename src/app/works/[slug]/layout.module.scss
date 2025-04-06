@@ -1,14 +1,18 @@
 .container {
     margin: 0 auto;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
+    // max-width: 600px;
+    display: grid;
+    grid-template-columns: 1fr minmax(600px, 1fr) 1fr;
     gap: var(--space-64);
     position: relative;
     .aside {
-        position: fixed;
-        top: 50px;
-        left: var(--space-80);
+        height: fit-content;
+        display: flex;
+        grid-column: 1 / 2;
+        // margin-top: var(--space-40);
+        position: sticky;
+        top: var(--space-24);
+        // left: var(--space-24);
         
     }
     

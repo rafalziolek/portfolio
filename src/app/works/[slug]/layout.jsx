@@ -14,7 +14,7 @@ export default function CaseStudyLayout({ children }) {
           Back
         </Button>
       </aside>
-      {children}
+      <div className={styles.content}>{children}</div>
       <div className={styles.fadeOut} />
     </div>
   );
