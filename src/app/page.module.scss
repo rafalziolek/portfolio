@@ -44,11 +44,17 @@ grid-template-columns: 40ch 1fr 40ch;
 
 @media (max-width: 920px) {
     .container {
+        max-width: 500px;
+        margin-inline: auto;
+        justify-content: stretch;
         display: flex;
         flex-direction: column;
         gap: var(--space-64);
         .rightColumn {
             flex: 0;
+                        .content {
+                gap: var(--space-24);
+            }
         }
         .leftColumn {
             grid-column: 1 / 2;
@@ -56,6 +62,7 @@ grid-template-columns: 40ch 1fr 40ch;
             flex: 1;
             margin-inline: calc(-1 * var(--space-8));
             width: unset;
+
         }
         .footer {
             align-self: flex-end;

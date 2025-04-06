@@ -34,5 +34,8 @@
     .container {
         display: flex;
         flex-direction: column;
+        margin-inline: auto;
+        justify-content: stretch;
+        max-width: 500px;
     }
 }
