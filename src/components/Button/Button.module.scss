@@ -15,14 +15,14 @@
     gap: var(--space-4);
     padding-inline: var(--space-6);
     border-radius: 6px;
-    transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition: background-color 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
    &:hover {
+    transition: background-color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     background-color: rgba($color: #F2F2F2, $alpha: 0.8);
     @media (prefers-color-scheme: dark) {
-        background-color: rgba($color: #292929, $alpha: 0.8);
+        background-color: rgba($color: #292929, $alpha: 0.8) !important;
     }
-    transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
    } 
 
     &:focus-visible {

@@ -1,62 +1,78 @@
-.modalWrapper {
-    position: fixed;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
 .backdrop {
-    position: fixed;
-    inset: 0;
-    backdrop-filter: blur(10px);
-   
-
-}
-
-.zoomButton {
-    opacity: 0;
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background: rgba($color: #000000, $alpha: 0.25);
-    backdrop-filter: blur(10px);
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-    transition: opacity 0.2s ease-in-out;
-    height: 32px;
-    width: 32px;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.6); // Slightly darker backdrop
+  z-index: 999; // Behind zoomed image
 }
 
 .imageWrapper {
-    // margin-inline: calc(-1 * var(--space-40));
-    margin-bottom: var(--space-40);
-    overflow: hidden;
-    // border: 1px solid rgba($color: #000000, $alpha: 0.25);
-    height: fit-content;
-    display: flex;
-    position: relative;
-    &:hover {
-        .zoomButton {
-            opacity: 1;
-        }
+  margin-bottom: var(--space-40);
+  overflow: hidden; // Keep overflow hidden if needed for border-radius
+  height: fit-content;
+  display: block; // Use block for simple vertical layout
+  position: relative;
+  border-radius: 12px;
+//   cursor: zoom-in; // Indicate zoom possibility
+
+  &:hover {
+    .zoomButton {
+      opacity: 1;
+      
     }
+  }
 }
 
-.imageWrapperExpanded {
-    max-height: 90%;
-    position: absolute;
-    border: none;
-    }
 .image {
-    width: 100%;
-    height: auto;
+  display: block; // Important for layoutId transitions
+  width: 100%;
+  height: auto;
+  border-radius: 12px; // Match zoomed
+  transform: translateZ(0); // Hardware acceleration hint
+}
+
+.zoomButton {
+  opacity: 0;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba($color: #000000, $alpha: 0.35);
+  backdrop-filter: blur(8px);
+  border: none;
+  cursor: zoom-in;
+  z-index: 1;
+  transition: opacity 0.2s ease-in-out;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; // Remove padding if causing issues
+  color: white; // Ensure icon color is white
+}
+
+// Container for the zoomed image, handles fixed positioning and centering
+.zoomedImageContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; // Above backdrop
+  cursor: zoom-out;
+//   padding: 5vh 5vw; // Use viewport units for padding
+  box-sizing: border-box; // Include padding in dimensions
+}
+
+// Style for the image *when* it's zoomed
+.zoomedImage {
+  display: block;
+  height: 95vh;
+  width: auto;
+  object-fit: cover; // Ensure entire image is visible
+//   transform: translateZ(0); // Hardware acceleration hint
 }

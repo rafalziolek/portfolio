@@ -1,96 +1,102 @@
 "use client";
 import Image from "next/image";
 import styles from "./PostImage.module.scss";
-import React from "react";
-import ReactDOM from "react-dom";
-import { motion } from "motion/react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion"; // Use framer-motion
 import { ZoomIn } from "lucide-react";
+
+// Define the custom motion component for Next.js Image
+const MotionImage = motion.create(Image);
+
 export default function PostImage(props) {
-  const [zoom, setZoom] = React.useState(false);
-  // For ESC key handling
-  React.useEffect(() => {
+  const [zoom, setZoom] = useState(false);
+
+  // ESC key handler
+  useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         setZoom(false);
       }
     };
-
     if (zoom) {
       window.addEventListener("keydown", handleKeyDown);
+      // Optional: Add scroll blocking here if needed
+      // document.body.style.overflow = 'hidden';
+    } else {
+      // Optional: Remove scroll blocking here if added
+      // document.body.style.overflow = '';
     }
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      // Optional: Ensure scroll blocking is removed on unmount/zoom change
+      // document.body.style.overflow = '';
     };
   }, [zoom]);
 
-  // For scroll blocking
-  React.useEffect(() => {
-    if (zoom) {
-      // Save original styles
-      const originalStyles = {
-        overflow: document.body.style.overflow || "",
-        paddingRight: document.body.style.paddingRight || "",
-      };
-
-      // Calculate scrollbar width
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-
-      // Just prevent scrolling without changing position
-      document.body.style.overflow = "hidden";
-      document.body.style.paddingRight = `${scrollbarWidth}px`; // Prevent layout shift
-
-      // Add styles directly to the html element
-      document.documentElement.style.overflow = "hidden";
-      document.documentElement.style.height = "100%";
-
-      return () => {
-        // Restore original styles
-        document.body.style.overflow = originalStyles.overflow;
-        document.body.style.paddingRight = originalStyles.paddingRight;
-        document.documentElement.style.overflow = "";
-        document.documentElement.style.height = "";
-      };
-    }
-  }, [zoom]);
   return (
     <>
-      {zoom &&
-        ReactDOM.createPortal(
-          <div className={styles.modalWrapper}>
+      {/* Original Image Wrapper (stays in document flow) */}
+      <AnimatePresence>
+        <motion.div
+          layoutId={`image-${props.src}-wrapper`}
+          className={styles.imageWrapper}
+          style={{ borderRadius: "12px" }}
+        >
+          {/* Original Image */}
+          <MotionImage
+            layoutId={`image-${props.src}`} // Shared layoutId
+            alt={props.alt}
+            {...props}
+            className={styles.image}
+            style={{ borderRadius: "12px" }} // Consistent styling
+          />
+          {/* Zoom button on the original image */}
+          <button
+            className={styles.zoomButton}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent wrapper click if wrapper has onClick
+              setZoom(true);
+            }}
+            aria-label="Zoom image"
+          >
+            <ZoomIn size={16} strokeWidth={2.5} style={{ color: "white" }} />
+          </button>
+        </motion.div>
+      </AnimatePresence>
+      {/* AnimatePresence for backdrop and zoomed image */}
+      <AnimatePresence>
+        {zoom && (
+          <>
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }} // Faster transition
               className={styles.backdrop}
-              onClick={() => setZoom(!zoom)}
+              onClick={() => setZoom(false)}
+              style={{ position: "fixed", zIndex: 999 }}
             />
+
+            {/* Zoomed Image Container (fixed position) */}
             <motion.div
-              layoutId={`image-${props.src}`}
-              className={[
-                styles.imageWrapper,
-                styles.imageWrapperExpanded,
-              ].join(" ")}
-              style={{
-                borderRadius: "12px",
-              }}
+              layoutId={`image-${props.src}-wrapper`}
+              className={styles.zoomedImageContainer}
+              onClick={() => setZoom(false)}
             >
-              <Image {...props} alt={props.alt} className={styles.image} />
+              {/* The Zoomed Image itself */}
+              <MotionImage
+                layoutId={`image-${props.src}`} // Shared layoutId
+                alt={props.alt}
+                {...props}
+                className={styles.zoomedImage}
+                style={{ borderRadius: "12px" }} // Consistent styling
+              />
+              {/* Optional: Add a close button */}
             </motion.div>
-          </div>,
-          document.body
+          </>
         )}
-      <motion.div
-        layoutId={`image-${props.src}`}
-        className={styles.imageWrapper}
-        style={{ borderRadius: "12px" }}
-      >
-        <button className={styles.zoomButton} onClick={() => setZoom(!zoom)}>
-          <ZoomIn size={16} strokeWidth={2.5} style={{ color: "white" }} />
-        </button>
-        <Image alt={props.alt} {...props} className={styles.image} />
-      </motion.div>
+      </AnimatePresence>
     </>
   );
 }

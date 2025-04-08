@@ -14,6 +14,7 @@ export function Button({
   className,
   ...rest
 }) {
+
   const classes = clsx(
     styles.button,
     leadingVisual && styles.withLeadingVisual,
