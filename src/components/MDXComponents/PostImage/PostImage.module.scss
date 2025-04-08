@@ -54,7 +54,7 @@
 // Container for the zoomed image, handles fixed positioning and centering
 .zoomedImageContainer {
   position: fixed;
-  inset: 5rem;
+  inset:5vw;
   display: flex;
   align-items: center;
   justify-content: center;
