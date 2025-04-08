@@ -1,18 +1,18 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  backdrop-filter: blur(5px);
-  background-color: rgba(0, 0, 0, 0.6); // Slightly darker backdrop
+  backdrop-filter: blur(5px); // Slightly darker backdrop
   z-index: 999; // Behind zoomed image
 }
 
 .imageWrapper {
   margin-bottom: var(--space-40);
   overflow: hidden; // Keep overflow hidden if needed for border-radius
-  height: fit-content;
-  display: block; // Use block for simple vertical layout
+  // height: fit-content;
+  display: flex; // Use block for simple vertical layout
   position: relative;
   border-radius: 12px;
+  align-items: stretch;
 //   cursor: zoom-in; // Indicate zoom possibility
 
   &:hover {
@@ -25,10 +25,9 @@
 
 .image {
   display: block; // Important for layoutId transitions
+  flex: 1;
   width: 100%;
-  height: auto;
-  border-radius: 12px; // Match zoomed
-  transform: translateZ(0); // Hardware acceleration hint
+  height: 100%;
 }
 
 .zoomButton {
@@ -55,24 +54,19 @@
 // Container for the zoomed image, handles fixed positioning and centering
 .zoomedImageContainer {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000; // Above backdrop
   cursor: zoom-out;
-//   padding: 5vh 5vw; // Use viewport units for padding
-  box-sizing: border-box; // Include padding in dimensions
+  overflow: scroll;
+
 }
 
 // Style for the image *when* it's zoomed
 .zoomedImage {
-  display: block;
-  height: 95vh;
-  width: auto;
-  object-fit: cover; // Ensure entire image is visible
-//   transform: translateZ(0); // Hardware acceleration hint
+  width: 100%;
+  height: auto;
+  
 }
