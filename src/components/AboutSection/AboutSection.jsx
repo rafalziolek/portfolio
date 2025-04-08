@@ -4,10 +4,11 @@ import styles from "./AboutSection.module.scss";
 import Text from "@/components/Text/Text";
 import { OverlayContext } from "@/contexts/OverlayContext";
 import { AnimatePresence, motion } from "motion/react";
-import StyledLink from "@/components/StyledLink/StyledLink";
 import ProfilePhoto from "@/components/ProfilePhoto/ProfilePhoto";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/Button/Button";
+import List from "@/components/List/List";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 const containerVariants = {
   hidden: {
@@ -149,48 +150,45 @@ export default function MoreSection() {
               animate="visible"
               exit="exit"
             >
-              <ul className={styles.list}>
-                <Text tag="h4" type="display" className={styles.listTitle}>
-                  Who inspires me
-                </Text>
-                <li>
-                  <StyledLink label="Faizal Westcott" href="#" />
-                </li>
-                <li>
-                  <StyledLink label="Gawx" href="#" />
-                </li>
-                <li>
-                  <StyledLink label="Rasmus Andersson" href="#" />
-                </li>
-                <li>
-                  <StyledLink label="Tyler The Creator" href="#" />
-                </li>
-              </ul>
-              <ul className={styles.list}>
-                <Text tag="h4" type="display" className={styles.listTitle}>
-                  Learning now
-                </Text>
-                <li>
-                  <Text tag="p">Vue.js</Text>
-                </li>
-                <li>
-                  <Text tag="p">Japanese</Text>
-                </li>
-              </ul>
-              <ul className={styles.list}>
-                <Text tag="h4" type="display" className={styles.listTitle}>
-                  Random favs
-                </Text>
-                <li>
-                  <StyledLink label="Star Wars" href="#" />
-                </li>
-                <li>
-                  <StyledLink label="What a day - Tyler The Creator" href="#" />
-                </li>
-                <li>
-                  <Text tag="span">Cooking</Text>
-                </li>
-              </ul>
+              <List heading="Who inspires me">
+                <List.Item
+                  href="https://www.youtube.com/@FaizalWestcott"
+                  external
+                >
+                  Faizal Westcott
+                </List.Item>
+                <List.Item href="https://www.youtube.com/@GawxArt" external>
+                  Gawx
+                </List.Item>
+                <List.Item href="https://x.com/rsms" external>
+                  Rasmus Andersson
+                </List.Item>
+                <List.Item
+                  href="https://music.apple.com/pl/artist/tyler-the-creator/420368335"
+                  external
+                >
+                  Tyler, The Creator
+                </List.Item>
+              </List>
+              <List heading="Learning now">
+                <List.Item>Vue.js</List.Item>
+                <List.Item>Japanese</List.Item>
+              </List>
+              <List heading="Random favs">
+                <List.Item
+                  href="https://en.wikipedia.org/wiki/Star_Wars"
+                  external
+                >
+                  Star Wars
+                </List.Item>
+                <List.Item
+                  href="https://music.apple.com/pl/album/what-a-day/1679454273?i=1679455188"
+                  external
+                >
+                  WHAT A DAY - Tyler The Creator
+                </List.Item>
+                <List.Item>Cooking</List.Item>
+              </List>
             </motion.div>
             <motion.div>
               <ProfilePhoto
