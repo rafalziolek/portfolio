@@ -13,21 +13,21 @@ import { SquareArrowOutUpRight } from "lucide-react";
 const containerVariants = {
   hidden: {
     opacity: 0,
-    filter: "blur(6px)",
   },
   visible: {
     opacity: 1,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.6,
-      staggerChildren: 0.2,
+      opacity: { duration: 0.3 },
+
+      staggerChildren: 0.1,
+      type: "spring",
     },
   },
   exit: {
     opacity: 0,
-    filter: "blur(4px)",
     transition: {
-      duration: 0.2,
+      opacity: { duration: 0.3 },
+      staggerChildren: 0.05,
     },
   },
 };
@@ -41,14 +41,18 @@ const paragraphVariants = {
     opacity: 1,
     translateY: 0,
     transition: {
-      duration: 0.3,
+      duration: 0.5,
+      type: "spring",
+      bounce: 0,
     },
   },
   exit: {
     opacity: 0,
     translateY: -10,
     transition: {
-      duration: 0.3,
+      duration: 0.5,
+      bounce: 0,
+      type: "spring",
     },
   },
 };
@@ -103,6 +107,7 @@ export default function MoreSection() {
       <AnimatePresence mode="popLayout">
         {isOverlayShown && (
           <motion.div
+            layout
             className={styles.moreWrapper}
             variants={containerVariants}
             initial="hidden"
@@ -112,9 +117,6 @@ export default function MoreSection() {
             <motion.div
               className={styles.paragraph}
               variants={paragraphVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
             >
               <Text tag="p">
                 I'm a designer who loves getting into both the nitty-gritty
@@ -146,9 +148,6 @@ export default function MoreSection() {
             <motion.div
               className={styles.listGroup}
               variants={paragraphVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
             >
               <List heading="Who inspires me">
                 <List.Item
@@ -190,14 +189,8 @@ export default function MoreSection() {
                 <List.Item>Cooking</List.Item>
               </List>
             </motion.div>
-            <motion.div>
-              <ProfilePhoto
-                variants={paragraphVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className={styles.photoWrapper}
-              />
+            <motion.div variants={paragraphVariants}>
+              <ProfilePhoto className={styles.photoWrapper} />
             </motion.div>
           </motion.div>
         )}

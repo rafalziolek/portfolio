@@ -57,13 +57,18 @@ export default function ProjectLink({
         onBlur={handleMouseLeave}
       >
         <div className={styles.content}>
-          <Text tag="h3" type="body" className={styles["project-title"]}>
+          <Text
+            tag="h3"
+            type="body"
+            font="mono"
+            className={styles["project-title"]}
+          >
             {title}
           </Text>
           <Text
             tag="p"
             type="body"
-            // color="secondary"
+            font="mono"
             className={styles["project-description"]}
           >
             2024

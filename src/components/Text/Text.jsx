@@ -17,6 +17,7 @@ export default function Text({
   className,
   color,
   children,
+  font,
   ...rest
 }) {
   const Component = tag;
@@ -28,7 +29,8 @@ export default function Text({
         textClass,
         className,
         styles.text,
-        color && styles[`text-${color}`]
+        color && styles[`text-${color}`],
+        font && styles[`text-${font}`]
       )}
       {...rest}
     >

@@ -13,12 +13,20 @@
     }
     .content {
         position: relative;
+
+        text-transform: uppercase;
         @media (prefers-color-scheme: dark) {
             color: white;
-            // mix-blend-mode: difference;
         }
             
         z-index: 1;
+        .project-title {
+            font-family: var(--font-geist-mono);
+            font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1, "ss04" 1, "ss05" 1;
+            font-size: 12px;
+            font-weight: 600 !important;
+
+        }
     }
 
 

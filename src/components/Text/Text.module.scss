@@ -1,12 +1,5 @@
 /* Base text styles */
-.text {
-  &.text-primary {
-    color: var(--color-fg);
-  }
-  &.text-secondary {
-    color: var(--color-fg-muted);
-  }
-}
+
 
 .body {
   font-family: var(--font-geist-sans);
@@ -65,4 +58,16 @@
   font-weight: var(--font-weight-heading);
   letter-spacing: -0.025em;
 
+}
+
+.text {
+  &.text-primary {
+    color: var(--color-fg);
+  }
+  &.text-secondary {
+    color: var(--color-fg-muted);
+  }
+  &.text-mono {
+    font-family: var(--font-geist-mono) !important;
+  }
 }

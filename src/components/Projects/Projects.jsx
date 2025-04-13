@@ -17,12 +17,13 @@ export default function Projects() {
 function ProjectsContent({ isOverlayShown }) {
   const { currentProject } = useContext(ProjectContext);
   return (
-    <AnimatePresence mode="popLayout">
+    <AnimatePresence mode="popLayout" initial={false}>
       {!isOverlayShown && (
         <motion.div
           className={styles.projects}
           initial={{
             opacity: 0,
+            transition: {},
             // filter: "blur(6px)",
           }}
           animate={{
@@ -30,7 +31,8 @@ function ProjectsContent({ isOverlayShown }) {
             // filter: "blur(0px)",
             translateY: 0,
             transition: {
-              duration: 0.6,
+              duration: 0.3,
+              delay: 0.15,
             },
           }}
           exit={{
