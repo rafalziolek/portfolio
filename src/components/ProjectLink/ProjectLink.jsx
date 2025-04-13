@@ -59,15 +59,15 @@ export default function ProjectLink({
         <div className={styles.content}>
           <Text
             tag="h3"
-            type="body"
+            type="caption-emphasis"
             font="mono"
             className={styles["project-title"]}
           >
             {title}
           </Text>
           <Text
-            tag="p"
-            type="body"
+            tag="span"
+            type="caption"
             font="mono"
             className={styles["project-description"]}
           >

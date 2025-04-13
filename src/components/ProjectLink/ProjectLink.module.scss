@@ -4,7 +4,7 @@
     color: var(--color-fg);    
     position: relative;
     // padding-bottom: 1px;
-
+    height: 1.5rem;
     &:focus-visible {
        border: none;
        outline: 2px solid var(--color-bg-secondary);
@@ -20,13 +20,7 @@
         }
             
         z-index: 1;
-        .project-title {
-            font-family: var(--font-geist-mono);
-            font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1, "ss04" 1, "ss05" 1;
-            font-size: 12px;
-            font-weight: 600 !important;
 
-        }
     }
 
 

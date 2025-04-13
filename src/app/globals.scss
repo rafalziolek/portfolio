@@ -27,7 +27,7 @@
   --font-size-heading: 0.875rem;
   --font-size-body: 0.8125rem;
   --font-size-body-article: 0.8125rem;
-  --font-size-caption: 0.6875rem;
+  --font-size-caption: 0.71875rem;
   --font-size-button: 0.90625rem;
 
   --font-weight-base: 450;
@@ -51,7 +51,7 @@
 
 html * {
   box-sizing: border-box;
-  // font-feature-settings: "ss01";
+  font-feature-settings: "ss01";
   ::selection {
     color: black;
     background: var(--color-bg-accent);
@@ -103,5 +103,6 @@ a {
     --font-size-body: 1rem;
     --font-size-body-article: 1rem;
     --font-size-heading: 1rem;
+    --font-size-caption: 0.85rem;
   }
 }

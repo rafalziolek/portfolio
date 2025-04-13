@@ -25,7 +25,12 @@ export default async function CaseStudyPage({ params }) {
           <Text tag="h1" type="display">
             {frontmatter.title}
           </Text>
-          <Text tag="small">
+          <Text
+            tag="span"
+            type="caption-emphasis"
+            font="mono"
+            style={{ textTransform: "uppercase" }}
+          >
             {year} {" • "} {company}
           </Text>
         </div>

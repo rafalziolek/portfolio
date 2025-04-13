@@ -40,7 +40,7 @@ export default function PostImage(props) {
         <motion.div
           layoutId={`image-${props.src}-wrapper`}
           className={styles.imageWrapper}
-          style={{ borderRadius: "12px" }}
+          style={{ borderRadius: "8px" }}
         >
           {/* Original Image */}
           <MotionImage
@@ -48,7 +48,7 @@ export default function PostImage(props) {
             alt={props.alt}
             {...props}
             className={styles.image}
-            style={{ borderRadius: "12px" }} // Consistent styling
+            style={{ borderRadius: "8px" }} // Consistent styling
           />
           {/* Zoom button on the original image */}
           <button
@@ -83,7 +83,7 @@ export default function PostImage(props) {
               layoutId={`image-${props.src}-wrapper`}
               className={styles.zoomedImageContainer}
               onClick={() => setZoom(false)}
-              style={{ borderRadius: "12px" }}
+              style={{ borderRadius: "8px" }}
             >
               {/* The Zoomed Image itself */}
               <MotionImage

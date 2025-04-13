@@ -18,7 +18,6 @@ const containerVariants = {
     opacity: 1,
     transition: {
       opacity: { duration: 0.3 },
-
       staggerChildren: 0.1,
       type: "spring",
     },
@@ -28,6 +27,7 @@ const containerVariants = {
     transition: {
       opacity: { duration: 0.3 },
       staggerChildren: 0.05,
+      type: "spring",
     },
   },
 };
@@ -64,7 +64,6 @@ export default function MoreSection() {
     <>
       <Button
         className={styles.readMoreButton}
-        style={{ backgroundColor: "transparent" }}
         onClick={() => setIsOverlayShown(!isOverlayShown)}
         trailingVisual={
           <AnimatePresence mode="wait" initial={false}>

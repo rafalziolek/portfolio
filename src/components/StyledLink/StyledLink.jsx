@@ -21,7 +21,7 @@ export default function StyledLink({
       {...props}
     >
       {leadingVisual && leadingVisual}
-      <span>{label}</span>
+      <span className={styles.label}>{label}</span>
       {trailingVisual && trailingVisual}
     </Text>
   );
