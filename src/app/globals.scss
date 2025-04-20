@@ -25,13 +25,13 @@
 
   --font-size-display: 1.5rem;
   --font-size-heading: 0.875rem;
-  --font-size-body: 0.8125rem;
-  --font-size-body-article: 0.8125rem;
-  --font-size-caption: 0.71875rem;
+  --font-size-body: 0.875rem;
+  --font-size-body-article: 0.875rem;
+  --font-size-caption: 0.75rem;
   --font-size-button: 0.90625rem;
 
   --font-weight-base: 450;
-  --font-weight-emphasis: 500;
+  --font-weight-emphasis: 550;
   --font-weight-heading: 600;
   --font-weight-article: 450;
 
@@ -91,7 +91,7 @@ a {
   :root {
     --color-fg: white;
     --color-fg-muted: rgba(255, 255, 255, 0.5);
-    --color-bg: rgb(0, 0, 0);
+    --color-bg: rgb(5, 5, 5);
     --color-bg-secondary: #262626;
     --color-border: oklch(0.3 0 0.5);}
   html {

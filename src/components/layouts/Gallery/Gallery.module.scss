@@ -1,0 +1,24 @@
+/* Styles for the overall Grid Page Layout container */
+.gridPageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Example: Ensure it takes full height */
+  /* Add more styles for padding, background, etc. */
+}
+
+/* Placeholder styles for controls area */
+.controlsPlaceholder {
+  padding: 1rem;
+  border-bottom: 1px solid #ccc; /* Example separator */
+  text-align: center;
+  background-color: #f0f0f0; /* Example background */
+}
+
+/* Placeholder styles for the grid content area */
+.gridPlaceholder {
+  flex-grow: 1; /* Allow grid to take remaining space */
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Add styles for the actual PhotoGrid and GridControls components when you create them */ 

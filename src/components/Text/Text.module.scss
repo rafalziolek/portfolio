@@ -8,6 +8,10 @@
   font-weight: var(--font-weight-base);
   // max-width: 60ch;
   letter-spacing: -0.0055em;
+  &.text-mono {
+    letter-spacing: -0.01em;
+    font-size: 0.8125rem;
+  }
   
 }
 
@@ -17,6 +21,10 @@
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-emphasis);
   letter-spacing: -0.0055em;
+  &.text-mono {
+    letter-spacing: -0.01em;
+    font-size: 0.8125rem;
+  }
 
 }
 
@@ -36,7 +44,7 @@
 }
 
 .caption {
-  font-family: var(--font-geist-mono);
+  font-family: var(--font-geist-sans);
   font-size: var(--font-size-caption);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
@@ -68,6 +76,9 @@
   }
   &.text-mono {
     font-family: var(--font-geist-mono);
+    font-feature-settings: "ss01" 1, "ss02" 0, "ss03" 1, "ss04" 0, "ss05" 1, "ss06" 1, "ss09" 1;
+  }
+  &.uppercase {
     text-transform: uppercase;
   }
 }

@@ -18,6 +18,7 @@ export default function Text({
   color,
   children,
   font,
+  uppercase,
   ...rest
 }) {
   const Component = tag;
@@ -30,7 +31,8 @@ export default function Text({
         className,
         styles.text,
         color && styles[`text-${color}`],
-        font && styles[`text-${font}`]
+        font && styles[`text-${font}`],
+        uppercase && styles.uppercase
       )}
       {...rest}
     >

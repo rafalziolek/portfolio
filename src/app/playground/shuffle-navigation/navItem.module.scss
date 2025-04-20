@@ -1,0 +1,34 @@
+/* Corresponds to className="relative font-normal text-xl text-white text-center" */
+.navLink {
+  position: relative;
+  font-weight: 400; /* Tailwind's font-normal */
+  font-size: 1.25rem; /* Tailwind's text-xl */
+  line-height: 1.75rem; /* Tailwind's text-xl */
+  color: #ffffff; /* Tailwind's text-white */
+  text-align: center;
+  display: inline-block; /* Needed because we set width */
+}
+
+/* Corresponds to className="absolute inset-0 bg-black dark:bg-white rounded-full z-[-1]" */
+.activeIndicator {
+  position: absolute;
+  inset: 0;
+  background-color: #000000; /* Tailwind's bg-black */
+  border-radius: 9999px; /* Tailwind's rounded-full */
+  z-index: -1;
+
+  /* Assuming a basic dark mode toggle based on a parent class or data attribute */
+  /* Adjust selector as needed for your dark mode implementation */
+  [data-theme='dark'] & {
+    background-color: #ffffff; /* Tailwind's dark:bg-white */
+  }
+}
+
+/* Corresponds to className="mix-blend-difference px-4 py-2" */
+.shuffleText {
+  mix-blend-mode: difference;
+  padding-left: 1rem; /* Tailwind's px-4 */
+  padding-right: 1rem; /* Tailwind's px-4 */
+  padding-top: 0.5rem; /* Tailwind's py-2 */
+  padding-bottom: 0.5rem; /* Tailwind's py-2 */
+} 

@@ -16,7 +16,6 @@
     .content {
         position: relative;
         flex-grow: 1;
-        text-transform: uppercase;
         @media (prefers-color-scheme: dark) {
             color: white;
         }
@@ -50,9 +49,9 @@
        width: 100%;
        height: calc(100% - 1px);
        position: absolute;
-       background-color: rgba($color:#e3e3e3, $alpha: 1);
+       background-color: rgba($color:#00E283, $alpha: 1);
        @media (prefers-color-scheme: dark) {
-           background-color: rgba($color: #3d3d3d, $alpha: 1);
+           background-color: rgba($color: #567CFF, $alpha: 1);
        }
        z-index: 0;
        top: 0;

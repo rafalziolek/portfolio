@@ -1,6 +1,8 @@
 import styles from "./layout.module.scss";
 import { Button } from "@/components/Button/Button";
 import { ChevronLeft } from "lucide-react";
+import FadeOut from "@/components/FadeOut/FadeOut";
+
 export default function CaseStudyLayout({ children }) {
   return (
     <div className={styles.container}>
@@ -15,7 +17,7 @@ export default function CaseStudyLayout({ children }) {
         </Button>
       </aside>
       <div className={styles.content}>{children}</div>
-      <div className={styles.fadeOut} />
+      <FadeOut />
     </div>
   );
 }

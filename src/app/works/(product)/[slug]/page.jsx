@@ -5,7 +5,7 @@ import {
   ArrowLeftSquare,
   ChevronLeft,
 } from "lucide-react";
-import CaseStudyLayout from "./layout";
+
 import Text from "@/components/Text/Text";
 import styles from "./page.module.scss";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -25,12 +25,7 @@ export default async function CaseStudyPage({ params }) {
           <Text tag="h1" type="display">
             {frontmatter.title}
           </Text>
-          <Text
-            tag="span"
-            type="caption-emphasis"
-            font="mono"
-            style={{ textTransform: "uppercase" }}
-          >
+          <Text tag="span" type="caption-emphasis" font="mono">
             {year} {" • "} {company}
           </Text>
         </div>

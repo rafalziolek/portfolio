@@ -24,11 +24,9 @@ function ProjectsContent({ isOverlayShown }) {
           initial={{
             opacity: 0,
             transition: {},
-            // filter: "blur(6px)",
           }}
           animate={{
             opacity: 1,
-            // filter: "blur(0px)",
             translateY: 0,
             transition: {
               duration: 0.3,
@@ -43,13 +41,11 @@ function ProjectsContent({ isOverlayShown }) {
             },
           }}
         >
-          {/* <hr className={styles.hr} /> */}
           <ProjectLinkGroup
             groupId="product-design"
             projects={productDesignProjects}
             title="Product Design"
           />
-          {/* <hr className={styles.hr} /> */}
           <ProjectLinkGroup
             groupId="other"
             projects={otherProjects}

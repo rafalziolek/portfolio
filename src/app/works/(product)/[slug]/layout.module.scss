@@ -18,17 +18,6 @@
     
 }
 
-.fadeOut {
-    position: sticky;
-    grid-column: 1 / -1;
-    bottom: 0;
-    margin: 0 calc(-1 * var(--space-64));
-    width: 120%;
-    height: 4rem;
-    background: linear-gradient(180deg, transparent 0%, var(--color-bg) 90%);
-    z-index: 0;
-}
-
 @media (max-width: 920px) {
     .container {
         display: flex;

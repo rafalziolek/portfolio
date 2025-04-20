@@ -60,8 +60,9 @@ export default function ProjectLink({
           <Text
             tag="h3"
             type="caption-emphasis"
-            font="mono"
+            uppercase
             className={styles["project-title"]}
+            font="mono"
           >
             {title}
           </Text>

@@ -11,7 +11,7 @@ export const productDesignProjects = [
       id: "2",
       title: "UI experiments",
       description: "Random experiments done in free time.",
-      href: "/works/ui-experiments",
+      href: "/playground",
       img: "/projects/runchise/image.png",
     },
     {
