@@ -21,12 +21,6 @@ export default function PlaygroundPage() {
         </Text>
       </header>
       <ExperimentsTable />
-
-      <div className={styles.legend}>
-        <NavLegend label="Navigate" kbKey="[↑↓]" />
-        <NavLegend label="Select" kbKey="[Enter]" />
-        <NavLegend label="Back" kbKey="[Esc]" />
-      </div>
     </div>
   );
 }
