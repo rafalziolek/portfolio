@@ -209,13 +209,7 @@ const images = [
         height: 2000,
         width: 1333,
     },
-    {
-        id: 31,
-        src: "/photography/31.jpg",
-        alt: "Photo 31",
-        height: 200,
-        width: 100,
-    },
+
     
 ];
 

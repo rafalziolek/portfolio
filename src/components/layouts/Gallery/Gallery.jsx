@@ -9,17 +9,19 @@ export default async function Gallery({ images }) {
     images.map(async (image, index) => {
       const color = await getColorPlaceholder(image.src);
       return (
-        <div key={image.id || index} className={styles.imageGridItem}>
-          <Image
-            style={{
-              backgroundColor: `${color}`,
-            }}
-            src={image.src}
-            alt={image.alt}
-            height={image.height}
-            width={image.width}
-          />
-        </div>
+        <Image
+          key={image.id || index}
+          className={styles.imageGridItem}
+          style={{
+            backgroundColor: `${color}`,
+          }}
+          src={image.src}
+          alt={image.alt}
+          height={image.height}
+          width={image.width}
+
+          // fill
+        />
       );
     })
   );
