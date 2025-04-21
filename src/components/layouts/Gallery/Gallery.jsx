@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import styles from "./Gallery.module.scss";
 import Image from "next/image";
 export default function Gallery({ images }) {
-  console.log(images);
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className={styles.gridPageContainer}>
