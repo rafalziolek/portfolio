@@ -20,14 +20,17 @@ const containerVariants = {
       opacity: { duration: 0.3 },
       staggerChildren: 0.1,
       type: "spring",
+      bounce: 0,
     },
   },
   exit: {
     opacity: 0,
+    height: 0,
     transition: {
       opacity: { duration: 0.3 },
-      staggerChildren: 0.05,
+      height: { duration: 0 },
       type: "spring",
+      bounce: 0,
     },
   },
 };

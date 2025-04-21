@@ -7,7 +7,8 @@ import ProjectThumbnail from "@/components/ProjectThumbnail/ProjectThumbnail";
 import { ProjectContext } from "@/contexts/ProjectContext";
 import { useContext } from "react";
 import { AnimatePresence } from "framer-motion";
-import Footer from "@/components/Footer/Footer";
+import ConditionalFooter from "@/components/ConditionalFooter/ConditionalFooter";
+
 export default function Home() {
   const { currentProject } = useContext(ProjectContext);
   return (
@@ -24,7 +25,7 @@ export default function Home() {
       <div className={styles.leftColumn}>
         <Projects />
       </div>
-      <Footer className={styles.footer} />
+      <ConditionalFooter />
     </div>
   );
 }
