@@ -1,10 +1,4 @@
 /* Styles for the overall Grid Page Layout container */
-.gridPageContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Example: Ensure it takes full height */
-  /* Add more styles for padding, background, etc. */
-}
 
 /* Placeholder styles for controls area */
 .controlsPlaceholder {
@@ -15,10 +9,23 @@
 }
 
 /* Placeholder styles for the grid content area */
-.gridPlaceholder {
-  flex-grow: 1; /* Allow grid to take remaining space */
-  padding: 1rem;
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   text-align: center;
+  gap: var(--space-24);
+}
+
+.imageGridItem {
+  width: 100%;
+
+  img {
+    position: unset;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 2px;
+  }
 }
 
 /* Add styles for the actual PhotoGrid and GridControls components when you create them */ 

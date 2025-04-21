@@ -1,22 +1,30 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styles from "./Gallery.module.scss";
-
-export default function Gallery({ children }) {
+import Image from "next/image";
+export default function Gallery({ images }) {
+  console.log(images);
   return (
-    <div className={styles.gridPageContainer}>
-      {/* Placeholder for controls - you'll replace this */}
-      <div className={styles.controlsPlaceholder}>
-        Grid Controls Placeholder
-      </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className={styles.gridPageContainer}>
+        {/* Placeholder for controls - you'll replace this */}
+        <div className={styles.gridControls}></div>
 
-      {/* Placeholder for the actual grid - you'll replace this */}
-      <div className={styles.gridPlaceholder}>
-        Grid Content Placeholder (Children will likely go inside the actual grid
-        component)
-        {/* <PhotoGrid items={/* pass data here * /} /> */}
+        {/* Placeholder for the actual grid - you'll replace this */}
+        <div className={styles.imageGrid}>
+          {images.map((image, index) => (
+            <div key={image.id || index} className={styles.imageGridItem}>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+              />
+            </div>
+          ))}
+        </div>
+        {/* Render children if needed directly, though often children are passed *to* the grid component */}
+        {/* {children} */}
       </div>
-      {/* Render children if needed directly, though often children are passed *to* the grid component */}
-      {/* {children} */}
-    </div>
+    </Suspense>
   );
 }

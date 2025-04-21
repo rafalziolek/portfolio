@@ -43,7 +43,7 @@ export const productDesignProjects = [
       id: "2",
       title: "(Not product) Design",
       description: "Anything, but the product design work",
-      href: "/works/not-product-design",
+      href: "/works/design",
       img: "/projects/watson/thumbnail.png",
     },
   ];

@@ -4,6 +4,7 @@ import styles from "./PostImage.module.scss";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion"; // Use framer-motion
 import { ZoomIn } from "lucide-react";
+import { Button } from "@/components/Button/Button";
 
 // Define the custom motion component for Next.js Image
 const MotionImage = motion.create(Image);
@@ -40,7 +41,7 @@ export default function PostImage(props) {
         <motion.div
           layoutId={`image-${props.src}-wrapper`}
           className={styles.imageWrapper}
-          style={{ borderRadius: "8px" }}
+          style={{ borderRadius: "2px" }}
         >
           {/* Original Image */}
           <MotionImage
@@ -48,10 +49,10 @@ export default function PostImage(props) {
             alt={props.alt}
             {...props}
             className={styles.image}
-            style={{ borderRadius: "8px" }} // Consistent styling
+            style={{ borderRadius: "2px" }} // Consistent styling
           />
           {/* Zoom button on the original image */}
-          <button
+          <Button
             className={styles.zoomButton}
             onClick={(e) => {
               e.stopPropagation(); // Prevent wrapper click if wrapper has onClick
@@ -60,7 +61,7 @@ export default function PostImage(props) {
             aria-label="Zoom image"
           >
             <ZoomIn size={16} strokeWidth={2.5} style={{ color: "white" }} />
-          </button>
+          </Button>
         </motion.div>
       </AnimatePresence>
       {/* AnimatePresence for backdrop and zoomed image */}
@@ -83,7 +84,7 @@ export default function PostImage(props) {
               layoutId={`image-${props.src}-wrapper`}
               className={styles.zoomedImageContainer}
               onClick={() => setZoom(false)}
-              style={{ borderRadius: "8px" }}
+              style={{ borderRadius: "2px" }}
             >
               {/* The Zoomed Image itself */}
               <MotionImage
@@ -92,7 +93,7 @@ export default function PostImage(props) {
                 {...props}
                 className={styles.zoomedImage}
                 // Consistent styling
-                style={{ borderRadius: "12px" }}
+                style={{ borderRadius: "2px" }}
               />
               {/* Optional: Add a close button */}
             </motion.div>

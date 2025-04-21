@@ -11,7 +11,7 @@
   // height: fit-content;
   display: flex; // Use block for simple vertical layout
   position: relative;
-  border-radius: 6px;
+  border-radius: 2px;
   align-items: stretch;
 //   cursor: zoom-in; // Indicate zoom possibility
 
@@ -35,15 +35,18 @@
   position: absolute;
   bottom: 8px;
   right: 8px;
+  span {
+    line-height: 100% !important;
+  }
   background: rgba($color: #000000, $alpha: 0.35);
   backdrop-filter: blur(8px);
-  border: none;
+  // border: none;
   cursor: zoom-in;
-  z-index: 1;
-  transition: opacity 0.2s ease-in-out;
+  // z-index: 1;
+  // transition: opacity 0.2s ease-in-out;
   height: 32px;
   width: 32px;
-  border-radius: 50%;
+  // border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

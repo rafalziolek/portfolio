@@ -14,11 +14,11 @@ export function Button({
   className,
   ...rest
 }) {
-
   const classes = clsx(
     styles.button,
     leadingVisual && styles.withLeadingVisual,
     trailingVisual && styles.withTrailingVisual,
+    !children && styles.iconOnly,
     className
   );
   if (as === "Link") {

@@ -1,19 +1,38 @@
+import Gallery from "@/components/layouts/Gallery/Gallery";
+import Text from "@/components/Text/Text";
 import React from "react";
-// import { getExperimentData } from '@/lib/data/experiments'; // Example data fetching
-
-// This page will render at the route /works/experiments
-// It automatically uses the layout defined in src/app/works/(gallery)/layout.jsx
-export default function ExperimentsPage() {
-  // const experimentItems = await getExperimentData();
+import styles from "./page.module.scss";
+import { Button } from "@/components/Button/Button";
+import { CornerUpLeft } from "lucide-react";
+import { getImagesData } from "@/utils";
+export default async function DesignPage() {
+  const designItems = await getImagesData("public/design");
 
   return (
-    <div>
-      <h2>Experiments Section</h2>
-      {/* Map through experimentItems and display them using the grid layout components */}
-      <p>
-        This content is specific to the experiments page and uses the
-        Gallery/Grid Layout.
-      </p>
-    </div>
+    <>
+      <header className={styles.header}>
+        <Button
+          style={{ marginLeft: "calc(var(--space-8) * -1)" }}
+          as="Link"
+          href="/"
+          leadingVisual={<CornerUpLeft size={14} strokeWidth={2.5} />}
+        >
+          Back
+        </Button>
+        <div className={styles.headerContent}>
+          <Text tag="h1" type="display">
+            (Not Product) Design
+          </Text>
+          {/* Map through photoItems and display them using the grid layout components */}
+          <Text tag="p" type="body">
+            Anything, but the product design work. Things I've designed for
+            myself, friends and clients.
+          </Text>
+        </div>
+      </header>
+      <div className={styles.gallery}>
+        <Gallery images={designItems} />
+      </div>
+    </>
   );
 }

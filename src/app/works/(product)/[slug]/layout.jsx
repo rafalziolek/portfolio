@@ -1,6 +1,6 @@
 import styles from "./layout.module.scss";
 import { Button } from "@/components/Button/Button";
-import { ChevronLeft } from "lucide-react";
+import { CornerUpLeft } from "lucide-react";
 import FadeOut from "@/components/FadeOut/FadeOut";
 
 export default function CaseStudyLayout({ children }) {
@@ -10,7 +10,7 @@ export default function CaseStudyLayout({ children }) {
         <Button
           as="Link"
           href="/"
-          leadingVisual={<ChevronLeft size={14} strokeWidth={2.5} />}
+          leadingVisual={<CornerUpLeft size={14} strokeWidth={2.5} />}
           style={{ marginLeft: "calc(var(--space-6) * -1)" }}
         >
           Back
