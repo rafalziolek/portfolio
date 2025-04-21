@@ -12,12 +12,7 @@ export default function Gallery({ images }) {
         <div className={styles.imageGrid}>
           {images.map((image, index) => (
             <div key={image.id || index} className={styles.imageGridItem}>
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-              />
+              <Image src={image.src} alt={image.alt} fill />
             </div>
           ))}
         </div>

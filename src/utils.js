@@ -32,31 +32,15 @@ export async function getImagesData(relativeDirPath) {
     return [];
   }
 
-  const photoPromises = fileNames
+  const photos = fileNames
     .filter(fileName => !fileName.startsWith('.'))
-    .map(async (fileName, index) => {
-      const filePath = path.join(imageDirPath, fileName);
-      try {
-        const dimensions = await imageSizeFromFile(filePath);
-        if (!dimensions || !dimensions.width || !dimensions.height) {
-          console.warn(`Could not get dimensions for: ${fileName}`);
-          return null;
-        }
-        return {
-          id: index.toString(),
-          src: `/${publicBaseDir}/${fileName}`,
-          alt: `Photo ${index + 1}`,
-          width: dimensions.width,
-          height: dimensions.height,
-        };
-      } catch (error) {
-        console.error(`Error processing file ${fileName} at path ${filePath}:`, error);
-        return null;
-      }
+    .map((fileName, index) => {
+      return {
+        id: index.toString(),
+        src: `/${publicBaseDir}/${fileName}`,
+        alt: `Photo ${index + 1}`,
+      };
     });
 
-  const photos = (await Promise.all(photoPromises))
-    .filter(photo => photo !== null);
-
   return photos;
-}
+  }
