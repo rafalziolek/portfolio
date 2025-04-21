@@ -6,10 +6,10 @@ import styles from "./page.module.scss";
 import { Button } from "@/components/Button/Button";
 import { CornerUpLeft } from "lucide-react";
 import { getImagesData } from "@/utils";
+import images from "./config";
 // This page will render at the route /works/photography
 // It automatically uses the layout defined in src/app/works/(gallery)/layout.jsx
 export default async function PhotographyPage() {
-  // const photoItems = await getPhotographyData();
   const photoItems = await getImagesData("public/photography");
 
   return (
@@ -36,7 +36,7 @@ export default async function PhotographyPage() {
         </div>
       </header>
       <div className={styles.gallery}>
-        <Gallery images={photoItems} />
+        <Gallery images={images} />
       </div>
     </>
   );

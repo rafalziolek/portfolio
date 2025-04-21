@@ -2,7 +2,7 @@ import matter from "gray-matter";
 import { imageSizeFromFile } from 'image-size/fromFile'
 import fs from "fs/promises";
 import path from "path";
-
+import { getPlaiceholder } from "plaiceholder";
 export async function parsePost(slug) {
   const rawContent = await readFile(
     path.join(`/content/${slug}.mdx`)
@@ -44,3 +44,28 @@ export async function getImagesData(relativeDirPath) {
 
   return photos;
   }
+
+export const getColorPlaceholder = async (imagePath) => {
+  // Construct the full file system path assuming images are in /public
+  const fullPath = path.join("public", imagePath);
+  console.log("Attempting to read file at:", fullPath);
+
+  try {
+    // Use the constructed full path with your existing readFile helper
+    const fileBuffer = await fs.readFile(path.join(process.cwd(), fullPath));
+    console.log("File buffer read successfully."); // Log success, not the buffer itself
+
+    // getPlaiceholder works with the buffer directly
+    const { color } = await getPlaiceholder(fileBuffer);
+    console.log("Plaiceholder color data:", color);
+
+    // Return the hex value which is likely what's needed for CSS
+    return color.hex;
+
+  } catch (err) {
+    // Log the error to see what went wrong
+    console.error(`Error getting color placeholder for ${fullPath}:`, err);
+    // Decide how to handle the error, e.g., return a default color or re-throw
+    return "#cccccc"; // Example: return a default gray color
+  }
+}

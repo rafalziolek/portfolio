@@ -4,10 +4,8 @@ import React from "react";
 import styles from "./page.module.scss";
 import { Button } from "@/components/Button/Button";
 import { CornerUpLeft } from "lucide-react";
-import { getImagesData } from "@/utils";
+import images from "./config";
 export default async function DesignPage() {
-  const designItems = await getImagesData("public/design");
-
   return (
     <>
       <header className={styles.header}>
@@ -31,7 +29,7 @@ export default async function DesignPage() {
         </div>
       </header>
       <div className={styles.gallery}>
-        <Gallery images={designItems} />
+        <Gallery images={images} />
       </div>
     </>
   );

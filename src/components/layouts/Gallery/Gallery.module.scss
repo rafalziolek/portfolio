@@ -18,13 +18,12 @@
 
 .imageGridItem {
   width: 100%;
-  position: relative;
+
   img {
-    position: unset !important;
-    width: 100% !important;
-    height: auto !important;
-    object-fit: cover;
+    width: 100%;
+    height: auto;
     border-radius: 2px;
+    object-fit: cover;
   }
 }
 
