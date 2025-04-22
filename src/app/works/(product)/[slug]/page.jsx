@@ -25,7 +25,7 @@ export default async function CaseStudyPage({ params }) {
           <Text tag="h1" type="display">
             {frontmatter.title}
           </Text>
-          <Text tag="span" type="caption-emphasis" font="mono">
+          <Text tag="span" color="secondary">
             {year} {" • "} {company}
           </Text>
         </div>
