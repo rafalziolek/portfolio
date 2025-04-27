@@ -4,3 +4,10 @@
     position: relative;
     row-gap: var(--space-32);
 }
+
+@media screen and (max-width: 1024px) {
+    .layout {
+        display: flex;
+        flex-direction: column;
+    }
+}

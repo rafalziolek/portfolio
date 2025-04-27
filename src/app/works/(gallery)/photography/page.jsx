@@ -2,13 +2,10 @@ import Gallery from "@/components/layouts/Gallery/Gallery";
 import Text from "@/components/Text/Text";
 import React from "react";
 import styles from "./page.module.scss";
-// import { getPhotographyData } from '@/lib/data/photography'; // Example data fetching
 import { Button } from "@/components/Button/Button";
 import { CornerUpLeft } from "lucide-react";
 import { getImagesData } from "@/utils";
 import images from "./config";
-// This page will render at the route /works/photography
-// It automatically uses the layout defined in src/app/works/(gallery)/layout.jsx
 export default async function PhotographyPage() {
   const photoItems = await getImagesData("public/photography");
 
@@ -36,7 +33,9 @@ export default async function PhotographyPage() {
         </div>
       </header>
       <div className={styles.gallery}>
-        <Gallery images={images} />
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <Gallery images={images} />
+        </React.Suspense>
       </div>
     </>
   );

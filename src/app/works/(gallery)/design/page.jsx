@@ -29,7 +29,9 @@ export default async function DesignPage() {
         </div>
       </header>
       <div className={styles.gallery}>
-        <Gallery images={images} />
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <Gallery images={images} />
+        </React.Suspense>
       </div>
     </>
   );

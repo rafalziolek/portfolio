@@ -25,7 +25,7 @@ export const productDesignProjects = [
       id: "4",
       title: "Poza Matą Studio",
       description: "Boutique yoga studio located in Poland",
-      href: "/works/poza-mata",
+      href: "#",
       img: "/projects/nikola/image.png",
     },
   ];

@@ -104,7 +104,32 @@ export default function MoreSection() {
           </AnimatePresence>
         }
       >
-        {isOverlayShown ? "Read less" : "Read more"}
+        {"Read "}
+        <AnimatePresence mode="wait" initial={false}>
+          {isOverlayShown ? (
+            <motion.span
+              style={{ display: "inline-block" }}
+              key="less"
+              initial={{ opacity: 0, y: 2 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              less
+            </motion.span>
+          ) : (
+            <motion.span
+              style={{ display: "inline-block" }}
+              key="more"
+              initial={{ opacity: 0, y: -2 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              more
+            </motion.span>
+          )}
+        </AnimatePresence>
       </Button>
       <AnimatePresence mode="popLayout">
         {isOverlayShown && (
