@@ -46,3 +46,16 @@
 }
 
 /* Add styles for the actual PhotoGrid and GridControls components when you create them */ 
+
+@media screen and (max-width: 768px) {
+  .imageGridItem {
+    height: fit-content;
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+  .filler {
+    display: none;
+  }
+}
