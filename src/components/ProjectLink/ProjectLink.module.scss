@@ -54,7 +54,7 @@
        width: 100%;
        height: calc(100% - 1px);
        position: absolute;
-       background-color: rgba($color:#00E283, $alpha: 1);
+       background-color: rgba($color: rgb(61, 255, 87), $alpha: 1);
        @media (prefers-color-scheme: dark) {
            background-color: rgba($color: #567CFF, $alpha: 1);
        }

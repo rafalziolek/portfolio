@@ -108,8 +108,8 @@ export default function MoreSection() {
         <AnimatePresence mode="wait" initial={false}>
           {isOverlayShown ? (
             <motion.span
-              style={{ display: "inline-block" }}
               key="less"
+              style={{ display: "inline-block" }}
               initial={{ opacity: 0, y: 2 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
@@ -119,8 +119,8 @@ export default function MoreSection() {
             </motion.span>
           ) : (
             <motion.span
-              style={{ display: "inline-block" }}
               key="more"
+              style={{ display: "inline-block" }}
               initial={{ opacity: 0, y: -2 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
@@ -131,6 +131,7 @@ export default function MoreSection() {
           )}
         </AnimatePresence>
       </Button>
+
       <AnimatePresence mode="popLayout">
         {isOverlayShown && (
           <motion.div
