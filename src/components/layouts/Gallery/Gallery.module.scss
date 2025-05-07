@@ -1,29 +1,26 @@
-/* Styles for the overall Grid Page Layout container */
-
-/* Placeholder styles for controls area */
 .controlsPlaceholder {
   padding: 1rem;
-  border-bottom: 1px solid #ccc; /* Example separator */
+  border-bottom: 1px solid #ccc;
   text-align: center;
-  background-color: #f0f0f0; /* Example background */
+  background-color: #f0f0f0;
 }
 
-/* Styles for the grid content area */
 .imageGrid {
-  display: flex; /* Changed from grid to flex */
-  flex-wrap: wrap; /* Allow items to wrap */
-  gap: var(--space-4); /* Use a smaller gap for flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: var(--space-4);
 }
 
-/* Styles for individual image items */
 .imageGridItem {
-  flex-grow: 1; /* Flex grow, shrink, basis (adjust basis 250px as needed) */
-  height: 400px; /* Example fixed height */
-  position: relative; /* Needed for next/image with fill or object-fit */
-  border-radius: 2px;
-  width: auto;
-  overflow: hidden; /* Ensure content doesn't spill */
+  max-height: 80vh;
+  position: relative;
+  border-radius: 6px;
   width: fit-content;
+  overflow: hidden;
+  width: 100%;
   
   &:hover img {
     transform: scale(1.05);
@@ -31,21 +28,18 @@
   }
 }
 
-
 .imageGridItem img {
   transition: transform 0.3s ease, opacity 0.3s ease;
-  display: block; /* Remove extra space below image */
-  width: auto;
-  min-width: 100%;
+  display: block;
+  width: 100%;
   height: 100%;
-  object-fit: cover; /* Cover the container */
+  object-fit: cover;
+  object-position: center;
 }
 
 .filler {
   flex-grow: 1000;
 }
-
-/* Add styles for the actual PhotoGrid and GridControls components when you create them */ 
 
 @media screen and (max-width: 768px) {
   .imageGridItem {

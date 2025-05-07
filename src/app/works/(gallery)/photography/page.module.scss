@@ -1,16 +1,14 @@
 .gallery {
-    grid-column: 1 / -1;
+    grid-column: 2 / -1;
 }
 
 .header {
-    .button {
-        margin-left: calc(var(--space-8) * -1);//
-    }
+    max-width: 35ch;
     grid-column: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-24);
+    gap: var(--space-16);
     .headerContent {
         display: flex;
         flex-direction: column;

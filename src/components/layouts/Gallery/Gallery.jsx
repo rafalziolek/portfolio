@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Gallery.module.scss";
 import Image from "next/image";
 import { getColorPlaceholder } from "@/utils";
+import { motion } from "motion/react";
 
 export default async function Gallery({ images }) {
   // Prepare image data including placeholder color

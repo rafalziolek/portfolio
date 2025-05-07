@@ -1,31 +1,33 @@
-"use client";
-import Intro from "@/components/Intro/Intro";
 import Projects from "@/components/Projects/Projects";
-import styles from "./page.module.scss";
-import AboutSection from "@/components/AboutSection/AboutSection";
+import ProjectCarousel from "@/components/ProjectThumbnail/ProjectCarousel";
+import ThumbnailStrip from "@/components/ProjectThumbnail/ThumbnailStrip";
+import ProjectStack from "@/components/ProjectThumbnail/ProjectStack";
 import ProjectThumbnail from "@/components/ProjectThumbnail/ProjectThumbnail";
-import { ProjectContext } from "@/contexts/ProjectContext";
-import { useContext } from "react";
-import { AnimatePresence } from "framer-motion";
-import ConditionalFooter from "@/components/ConditionalFooter/ConditionalFooter";
+import styles from "./page.module.scss";
+import Intro from "@/components/Intro/Intro";
+import ConditionalThumbnailStrip from "@/components/ProjectThumbnail/ConditionalThumbnailStrip";
+import ThumbnailStrip2 from "@/components/ProjectThumbnail/ThumbnailStrip2";
+import { Button } from "@/components/Button/Button";
+import AnimatedSection from "@/components/AnimatedSection/AnimatedSection";
 
-export default function Home() {
-  const { currentProject } = useContext(ProjectContext);
+export default function ProjectsPage({ children }) {
   return (
-    <div className={styles.container}>
-      <AnimatePresence>
-        <ProjectThumbnail currentThumbnail={currentProject} />
-      </AnimatePresence>
-      <div className={styles.rightColumn}>
-        <div className={styles.content}>
+    <div className={styles.worksLayout}>
+      <div className={styles.content}>
+        <AnimatedSection>
           <Intro />
-          <AboutSection />
+          <Projects />
+        </AnimatedSection>
+        <div className={styles.ReelsPlaceholder}>
+          <Button>Watch Reel</Button>
         </div>
       </div>
-      <div className={styles.leftColumn}>
-        <Projects />
-      </div>
-      <ConditionalFooter />
+      {/* <ProjectCarousel /> */}
+      {/* <ThumbnailStrip2 /> */}
+      {/* <ConditionalThumbnailStrip /> */}
+      {/* <ProjectStack /> */}
+      {/* <ProjectThumbnail /> */}
+      {children}
     </div>
   );
 }

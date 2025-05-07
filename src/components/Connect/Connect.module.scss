@@ -1,0 +1,22 @@
+.connectContainer {
+  /* Add styles for the connect section here */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  gap: var(--space-16); /* Space between heading and list */
+}
+
+/* Styles for the unordered list */
+.socialList {
+  flex: 1;
+  width: 100%;
+  list-style: none; /* Remove default bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  display: flex; /* Arrange items in a row */
+  align-items: center;
+  gap: 4px; /* Space between list items */
+  flex-direction: column;
+  margin-bottom: var(--space-16);
+}

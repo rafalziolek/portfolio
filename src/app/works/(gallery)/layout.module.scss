@@ -1,6 +1,6 @@
 .layout {
     display: grid;
-    grid-template-columns: 40ch 1fr 1fr;
+    grid-template-columns: minmax(35ch, 1fr) 2fr;
     position: relative;
     row-gap: var(--space-32);
 }

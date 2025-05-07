@@ -19,6 +19,8 @@ export default function Text({
   children,
   font,
   uppercase,
+  overflow,
+  nowrap,
   ...rest
 }) {
   const Component = tag;
@@ -27,12 +29,15 @@ export default function Text({
   return (
     <Component
       className={clsx(
+        "text",
         textClass,
         className,
         styles.text,
         color && styles[`text-${color}`],
         font && styles[`text-${font}`],
-        uppercase && styles.uppercase
+        uppercase && styles.uppercase,
+        overflow === "ellipsis" && styles["overflow-ellipsis"],
+        nowrap && styles.nowrap
       )}
       {...rest}
     >

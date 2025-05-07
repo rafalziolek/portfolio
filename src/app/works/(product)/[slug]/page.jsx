@@ -22,11 +22,11 @@ export default async function CaseStudyPage({ params }) {
     <>
       <header className={styles.headerContainer}>
         <div className={styles.headerContent}>
-          <Text tag="h1" type="display">
+          <Text tag="h1" type="body">
             {frontmatter.title}
           </Text>
           <Text tag="span" color="secondary">
-            {year} {" • "} {company}
+            {year}, {company}, Design systems
           </Text>
         </div>
       </header>

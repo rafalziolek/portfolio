@@ -1,10 +1,29 @@
 .project-heading {
-    padding-inline: var(--space-8);
-    padding-block:0  var(--space-20);
+    // padding-inline: var(--space-8);
+    // padding-block:0  4px;
+    
+    // background-color: var(--color-bg-secondary);
+    // border-radius:6px;
+    margin-bottom: var(--space-8);
+    // margin-left: -6px
 }
 
 .project-group {
     display: flex;
     flex-direction: column;
-    // gap: 1px;
+    align-items: flex-start;
+    gap: 0px;
+    // margin-inline: calc(var(--space-8) * -1);
+    width: 100%;
+    .project-links {
+        background-color: var(--color-bg);
+        // overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        // gap: var(--space-4);
+        // overflow: hidden;
+        // background-color: #F4F4F5;
+    }
 }

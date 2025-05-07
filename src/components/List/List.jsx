@@ -6,7 +6,7 @@ import StyledLink from "@/components/StyledLink/StyledLink";
 export default function List({ heading, children }) {
   return (
     <ul className={styles.list}>
-      <Text tag="h4" type="display" className={styles.listTitle}>
+      <Text tag="h4" type="body" className={styles.listTitle} color="secondary">
         {heading}
       </Text>
       {children}

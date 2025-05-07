@@ -6,12 +6,13 @@
 }
 
 .imageWrapper {
-  margin-bottom: var(--space-40);
+  margin-bottom: var(--space-8);
+  grid-column: 1/3;
+  // margin-inline: -5rem;
   overflow: hidden; // Keep overflow hidden if needed for border-radius
   // height: fit-content;
   display: flex; // Use block for simple vertical layout
   position: relative;
-  border-radius: 2px;
   align-items: stretch;
 //   cursor: zoom-in; // Indicate zoom possibility
 

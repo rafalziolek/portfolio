@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
+import Text from "@/components/Text/Text";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Tooltip.module.scss";
 
@@ -90,7 +91,7 @@ const TooltipContent = React.memo(({ content, triggerRef, isVisible }) => {
                 top: position.y,
               }}
             >
-              {content}
+              <Text type="caption">{content}</Text>
             </motion.div>
           )}
         </AnimatePresence>,

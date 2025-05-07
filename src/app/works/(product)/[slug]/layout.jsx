@@ -1,21 +1,22 @@
 import styles from "./layout.module.scss";
 import { Button } from "@/components/Button/Button";
-import { CornerUpLeft } from "lucide-react";
+import { ArrowLeft, CornerUpLeft } from "lucide-react";
 import FadeOut from "@/components/FadeOut/FadeOut";
-
-export default function CaseStudyLayout({ children }) {
+import Text from "@/components/Text/Text";
+import { parsePost } from "@/utils";
+import StyledLink from "@/components/StyledLink/StyledLink";
+import Navigation from "@/components/Navigation/Navigation";
+import Intro from "@/components/Intro/Intro";
+export default async function CaseStudyLayout({ children, params }) {
+  const { slug } = await params;
+  const { frontmatter } = await parsePost(slug);
+  const company = frontmatter.details[0].items[0].text;
+  const year = frontmatter.details[1].items[0].text;
   return (
-    <div className={styles.container}>
-      <aside className={styles.aside}>
-        <Button
-          as="Link"
-          href="/"
-          leadingVisual={<CornerUpLeft size={14} strokeWidth={2.5} />}
-          style={{ marginLeft: "calc(var(--space-6) * -1)" }}
-        >
-          Back
-        </Button>
-      </aside>
+    <div className={styles.layout}>
+      {/* <aside className={styles.aside}>
+        <Navigation />
+      </aside> */}
       <div className={styles.content}>{children}</div>
       <FadeOut />
     </div>

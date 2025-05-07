@@ -1,0 +1,39 @@
+
+
+// Container to position the carousel and handle clipping
+.carouselContainer {
+  position: absolute;
+  width: 50vw;
+top: 0;
+right: 0;
+transform: translate(4000px,0);
+height: 100vh;
+ 
+
+}
+
+// The rotating element - acts as the center of the 2D circle
+
+
+// Wrapper for each item, positioned absolutely around the .carousel center
+
+// The actual visible item
+.carouselItem {
+  // transform-style: preserve-3d; // Not needed for 2D
+  // backface-visibility: hidden; // Not needed for 2D
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.image {
+  object-fit: cover;
+  display: block;
+}
+

@@ -7,20 +7,23 @@ export default function ProjectLinkGroup({ projects, groupId, title }) {
   return (
     <LayoutGroup id={groupId}>
       <div className={styles["project-group"]}>
-        <Text className={styles["project-heading"]} type="display" tag="h2">
+        <Text className={styles["project-heading"]} type="caption" tag="h2">
           {title}
         </Text>
-        {projects.map(({ id, title, description, href, img }) => (
-          <ProjectLink
-            key={id}
-            id={id}
-            href={href}
-            title={title}
-            description={description}
-            layoutId={`${groupId}-background`}
-            img={img}
-          />
-        ))}
+        <div className={styles["project-links"]}>
+          {projects.map(({ id, title, description, href, img }, index) => (
+            <ProjectLink
+              key={id}
+              id={id}
+              prepend={`(${index + 1})`}
+              href={href}
+              title={title}
+              description={description}
+              layoutId={`${groupId}-background`}
+              img={img}
+            />
+          ))}
+        </div>
       </div>
     </LayoutGroup>
   );

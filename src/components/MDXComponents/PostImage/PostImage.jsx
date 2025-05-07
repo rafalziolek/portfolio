@@ -41,7 +41,7 @@ export default function PostImage(props) {
         <motion.div
           layoutId={`image-${props.src}-wrapper`}
           className={styles.imageWrapper}
-          style={{ borderRadius: "2px" }}
+          style={{ borderRadius: "6px" }}
         >
           {/* Original Image */}
           <MotionImage

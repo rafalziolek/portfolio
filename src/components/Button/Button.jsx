@@ -8,32 +8,26 @@ export function Button({
   children,
   onClick,
   as = "button",
-  leadingVisual,
-  trailingVisual,
   className,
   ...rest
 }) {
-  const classes = clsx(
-    styles.button,
-    leadingVisual && styles.withLeadingVisual,
-    trailingVisual && styles.withTrailingVisual,
-    !children && styles.iconOnly,
-    className
-  );
+  const classes = clsx(styles.button, className);
+
   if (as === "Link") {
     return (
       <Link className={classes} {...rest}>
-        {leadingVisual && leadingVisual}
-        <Text type="body-emphasis">{children}</Text>
-        {trailingVisual && trailingVisual}
+        <Text tag="span" type="body">
+          {children}
+        </Text>
       </Link>
     );
   }
+
   return (
     <button className={classes} onClick={onClick} {...rest}>
-      {leadingVisual && leadingVisual}
-      <Text type="body-emphasis">{children}</Text>
-      {trailingVisual && trailingVisual}
+      <Text tag="span" type="body">
+        {children}
+      </Text>
     </button>
   );
 }

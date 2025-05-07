@@ -1,8 +1,11 @@
 /* Base text styles */
+.text {
+  --font-family: "Helvetica Neue", system-ui, sans-serif;
+}
 
 
 .body {
-  font-family: var(--font-geist-sans);
+  font-family:var(--font-family);
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
@@ -10,20 +13,20 @@
   letter-spacing: -0.015em;
   &.text-mono {
     letter-spacing: -0.01em;
-    font-size: 0.8125rem;
+    // font-size: 0.8125rem;
   }
   
 }
 
 .bodyEmphasis {
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-family);
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-emphasis);
   letter-spacing: -0.0055em;
   &.text-mono {
     letter-spacing: -0.01em;
-    font-size: 0.8125rem;
+    // font-size: 0.8125rem;
   }
 
 }
@@ -36,7 +39,7 @@
 }
 
 .heading {
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-family);
   font-size: var(--font-size-heading);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-heading);
@@ -44,7 +47,7 @@
 }
 
 .caption {
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-family);
   font-size: var(--font-size-caption);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
@@ -59,7 +62,7 @@
 }
 
 .display {
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-family);
   font-size: var(--font-size-display);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-heading);
@@ -80,5 +83,13 @@
   }
   &.uppercase {
     text-transform: uppercase;
+  }
+  &.overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &.nowrap {
+    white-space: nowrap;
   }
 }

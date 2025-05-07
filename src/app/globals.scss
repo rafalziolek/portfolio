@@ -23,28 +23,30 @@
   --space-64: 4rem;
   --space-80: 5rem;
 
-  --font-size-display: 1.5rem;
-  --font-size-heading: 0.875rem;
-  --font-size-body: 0.83125rem;
-  --font-size-body-article: 0.875rem;
-  --font-size-caption: 0.75rem;
-  --font-size-button: 0.90625rem;
+  --font-size-display: 1.375rem;
+  --font-size-heading: 1.375rem;
+  --font-size-body: 1.375rem;
+  --font-size-body-article: 1.375rem;
+  --font-size-caption:1rem;
+  --font-size-button:1.375rem;
 
-  --font-weight-base: 580;
-  --font-weight-emphasis: 580;
-  --font-weight-heading: 650;
-  --font-weight-article: 480;
+  --font-weight-base:500;
+  --font-weight-emphasis: 700;
+  --font-weight-heading:500;
+  --font-weight-article: 600;
 
-  --line-height-base: 1.28;
+  --line-height-base: 1.16;
   --line-height-button: 1;
-  --line-height-article: 1.6;
+  --line-height-article: 1.4;
 
-  --color-fg: oklch(0 0 0.5);
-  --color-fg-muted: rgba(0, 0, 0, 0.5);
-  --color-bg: oklch(1 0 0.5);
-  --color-bg-secondary: oklch(0.96 0 0.5);
+  --color-fg: rgb(0, 0, 0);
+  --color-fg-muted: rgba(0, 0, 0, 0.612);
+  --color-bg: rgb(255, 255, 255);
+  --color-bg-inverted: rgb(0, 0, 0);
+  --color-fg-inverted: rgb(255, 255, 255);
+  --color-bg-secondary: #f1f1f1;
   --color-border: oklch(0.94 0 0.5);
---color-bg-accent: #F8EFAA;
+--color-bg-accent: #00E081;
   --font-family-mono: "Geist Mono Variable", monospace;
   --font-family-sans: "Geist Variable", sans-serif;
 }
@@ -93,17 +95,19 @@ a {
     --color-fg: white;
     --color-fg-muted: rgba(255, 255, 255, 0.5);
     --color-bg: rgb(5, 5, 5);
+    --color-bg-inverted: rgb(255, 255, 255);
+    --color-fg-inverted: rgb(0, 0, 0);
     --color-bg-secondary: #262626;
     --color-border: oklch(0.3 0 0.5);}
   html {
     color-scheme: dark;
   }
 }
-@media screen and (max-width: 920px) {
-  :root {
-    --font-size-body: 1rem;
-    --font-size-body-article: 1rem;
-    --font-size-heading: 1rem;
-    --font-size-caption: 0.85rem;
-  }
-}
+// @media screen and (max-width: 920px) {
+//   :root {
+//     --font-size-body: 1.0625rem;
+//     --font-size-body-article: 1rem;
+//     --font-size-heading: 1rem;
+//     --font-size-caption: 1rem;
+//   }
+// }

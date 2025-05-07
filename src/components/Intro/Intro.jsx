@@ -3,29 +3,22 @@ import React, { useContext } from "react";
 import styles from "./Intro.module.scss";
 import Text from "@/components/Text/Text";
 import StyledLink from "@/components/StyledLink/StyledLink";
-import EmailButton from "@/components/EmailButton/EmailButton";
+import { usePathname } from "next/navigation";
+import Navigation from "@/components/Navigation/Navigation";
 
 export default function Intro() {
+  const pathname = usePathname();
+  console.log(pathname);
+
   return (
     <>
-      <div className={styles.about}>
+      <div className={styles.intro}>
         <Text type="display" tag="h1">
-          rafal_ziolek
+          Rafał Ziółek — Designer and photographer.
         </Text>
-        <div className={styles.intro}>
-          <Text tag="p">
-            I am a designer and photographer based in Poland — Currently working
-            on design systems at Docplanner to help build exceptional experience
-            for doctors.
-          </Text>
-          <div className={styles.links}>
-            <StyledLink href="https://x.com/rafal_ziolek" label="x.com" />
-            •
-            <StyledLink href="https://github.com/rafalziolek" label="Github" />
-            •
-            <EmailButton label="rafal.ziolek@icloud.com" />
-          </div>
-        </div>
+        <Text tag="p" type="display">
+          Currently building design systems at&nbsp;Docplanner.
+        </Text>
       </div>
     </>
   );
