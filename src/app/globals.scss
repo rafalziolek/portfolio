@@ -76,12 +76,15 @@ body {
   overflow-x: hidden;
   font-family: var(--font-geist-sans);
   -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
   color: var(--color-fg);
   background: var(--color-bg);
   overflow: visible;
+  min-height: 100vh;
 }
 
 a {
