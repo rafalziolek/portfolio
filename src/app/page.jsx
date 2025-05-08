@@ -12,7 +12,7 @@ import AnimatedSection from "@/components/AnimatedSection/AnimatedSection";
 
 export default function ProjectsPage({ children }) {
   return (
-    <div className={styles.worksLayout}>
+    <>
       <div className={styles.content}>
         <AnimatedSection>
           <Intro />
@@ -28,6 +28,6 @@ export default function ProjectsPage({ children }) {
       {/* <ProjectStack /> */}
       {/* <ProjectThumbnail /> */}
       {children}
-    </div>
+    </>
   );
 }
