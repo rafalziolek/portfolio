@@ -34,7 +34,7 @@ export default function Footer({ className }) {
         </span>{" "}
         for emotional support while I&nbsp;built this website.
       </Text>
-      <Button>Colophon</Button>
+      <Button size="small">Colophon</Button>
     </div>
   );
 }

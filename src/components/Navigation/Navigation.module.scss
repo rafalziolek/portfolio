@@ -4,7 +4,7 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
-
+  padding-inline: var(--space-8);
   margin-inline: auto;
   gap: var(--space-8);
 position: sticky;
@@ -81,12 +81,13 @@ top: 0;
   width: 100%;
  }
  .navigationItem {
-  flex-grow: 1;
+  box-sizing: border-box;
+  flex: 1 0 0;
+  min-width: min-content;
   text-decoration: none;
   color: var(--color-fg);
   background-color: var(--color-bg-secondary);
-  padding: 0 6px;
-  height: 24px;
+  padding: 0px 6px 2px 6px;
   display: flex;
   align-items: center;
   justify-content: center;
