@@ -17,7 +17,13 @@ export default function Intro() {
           Rafał Ziółek — Designer and photographer.
         </Text>
         <Text tag="p" type="display">
-          Currently building design systems at&nbsp;Docplanner.
+          Currently building design systems at&nbsp;
+          <StyledLink
+            href="https://www.docplanner.com"
+            label="Docplanner"
+            style={{ display: "inline-flex" }}
+          />
+          .
         </Text>
       </div>
     </>

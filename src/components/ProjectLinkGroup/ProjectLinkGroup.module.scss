@@ -17,6 +17,7 @@
     width: 100%;
     .project-links {
         background-color: var(--color-bg);
+        margin-left: calc(var(--space-32) * -1);
         // overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -25,5 +26,13 @@
         // gap: var(--space-4);
         // overflow: hidden;
         // background-color: #F4F4F5;
+    }
+}
+
+@media (max-width: 640px) {
+    .project-group {
+        .project-links {
+            margin-left: unset;
+        }
     }
 }

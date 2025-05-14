@@ -18,21 +18,7 @@ export default function HomeLayout({ children }) {
   return (
     <>
       <div className={styles.homeLayout}>
-        <div className={styles.leftColumn}>
-          <Intro />
-        </div>
-        <ProjectProvider>
-          <div className={styles.content}>{children}</div>
-          <ProjectThumbnail />
-        </ProjectProvider>
-
-        <div className={styles.footer}>
-          <Footer />
-          <div className={styles.footerText}>
-            <Text tag="p">Warsaw, Poland</Text>
-            <Text tag="p">{currentDate}</Text>
-          </div>
-        </div>
+       
       </div>
     </>
   );

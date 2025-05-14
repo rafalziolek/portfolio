@@ -62,6 +62,7 @@ export default function AnimatedSection({ children }) {
           display: "flex",
           flexDirection: "column",
           gap: "var(--space-64)",
+          position: "relative",
         }}
       >
         {Array.isArray(children) ? (

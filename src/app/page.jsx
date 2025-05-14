@@ -17,10 +17,10 @@ export default function ProjectsPage({ children }) {
         <AnimatedSection>
           <Intro />
           <Projects />
+          <div className={styles.ReelsPlaceholder}>
+            <Button>Watch Reel</Button>
+          </div>
         </AnimatedSection>
-        <div className={styles.ReelsPlaceholder}>
-          <Button>Watch Reel</Button>
-        </div>
       </div>
       {/* <ProjectCarousel /> */}
       {/* <ThumbnailStrip2 /> */}
