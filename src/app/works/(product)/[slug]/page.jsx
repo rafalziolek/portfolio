@@ -20,16 +20,50 @@ export default async function CaseStudyPage({ params }) {
   const year = frontmatter.details[1].items[0].text;
   return (
     <>
-      {/* <header className={styles.headerContainer}>
+      <header className={styles.headerContainer}>
         <div className={styles.headerContent}>
           <Text tag="h1" type="body">
-            {frontmatter.title}
-          </Text>
-          <Text tag="span" type="caption" font="serif">
-            {year}
+            {frontmatter.abstract}
           </Text>
         </div>
-      </header> */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "24px",
+            justifyContent: "flex-start",
+            width: "100%",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+              alignItems: "flex-start",
+            }}
+          >
+            <Text tag="span" type="caption">
+              Role
+            </Text>
+            <Text tag="span">Designer</Text>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+              alignItems: "flex-start",
+            }}
+          >
+            <Text tag="span" type="caption">
+              Company
+            </Text>
+            <Text tag="span">{company}</Text>
+          </div>
+        </div>
+      </header>
       <MDXRemote source={content} components={components} />
     </>
   );

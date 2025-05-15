@@ -18,7 +18,7 @@ export default async function CaseStudyLayout({ children, params }) {
         <Navigation />
       </aside> */}
       <div className={styles.caseStudyLayout}>{children}</div>
-      <FadeOut />
+      {/* <FadeOut /> */}
     </>
   );
 }

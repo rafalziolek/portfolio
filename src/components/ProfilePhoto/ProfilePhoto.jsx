@@ -32,7 +32,7 @@ function ProfilePhoto() {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className={styles["profile-photo"]}
+      className={styles.profilePhoto}
     >
       <svg
         width="428"
