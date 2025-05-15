@@ -11,10 +11,7 @@ export default async function PhotographyPage() {
 
   return (
     <>
-      {" "}
-      <div className={styles.gallery}>
-        <Gallery images={images} />
-      </div>
+      <Gallery images={images} />
     </>
   );
 }

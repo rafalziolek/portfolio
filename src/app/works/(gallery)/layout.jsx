@@ -7,9 +7,9 @@ import { ChevronLeft } from "lucide-react";
 import Footer from "@/components/Footer/Footer";
 export default function GalleryLayout({ children }) {
   return (
-    <div className={styles.layout}>
+    <>
       {children}
       {/* <FadeOut /> */}
-    </div>
+    </>
   );
 }

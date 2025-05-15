@@ -3,7 +3,8 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-
+  align-self: flex-start;
+  grid-column: 2/3;
   gap: var(--space-16); /* Space between heading and list */
 }
 

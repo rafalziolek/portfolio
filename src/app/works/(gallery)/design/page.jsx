@@ -8,11 +8,9 @@ import images from "./config";
 export default async function DesignPage() {
   return (
     <>
-      <div className={styles.gallery}>
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <Gallery images={images} />
-        </React.Suspense>
-      </div>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <Gallery images={images} />
+      </React.Suspense>
     </>
   );
 }

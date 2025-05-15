@@ -1,5 +1,6 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
+import styles from "./AnimatedSection.module.scss";
 
 const containerVariants = {
   hidden: {
@@ -58,7 +59,9 @@ export default function AnimatedSection({ children }) {
         initial="hidden"
         animate="visible"
         exit="exit"
+        className={styles.animatedSection}
         style={{
+          gridColumn: "2/3",
           display: "flex",
           flexDirection: "column",
           gap: "var(--space-64)",

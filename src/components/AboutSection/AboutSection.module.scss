@@ -1,5 +1,6 @@
 
 .moreWrapper {
+    grid-column: 2/3;
     will-change: opacity, filter;
     display: flex;
     flex-direction: column;

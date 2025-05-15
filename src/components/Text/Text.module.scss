@@ -5,7 +5,7 @@
 
 
 .body {
-  font-family:var(--font-family);
+  font-family: var(--font-family);
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
@@ -32,9 +32,10 @@
 }
 
 .bodyArticle {
-  font-size: var(--font-size-body-article);
+  font-family: var(--font-family);
+  font-size: var(--font-size-caption);
   line-height: var(--line-height-article);
-  font-weight: var(--font-weight-article);
+  font-weight: var(--font-weight-base);
   letter-spacing: -0.01em;
 }
 
@@ -76,6 +77,10 @@
   }
   &.text-secondary {
     color: var(--color-fg-muted);
+  }
+  &.text-serif {
+    font-family: var(--font-shippori-mincho-b1);
+    -webkit-text-stroke: 0.4px var(--color-fg);
   }
   &.text-mono {
     font-family: var(--font-geist-mono);

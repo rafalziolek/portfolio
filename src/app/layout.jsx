@@ -50,13 +50,13 @@ export default function RootLayout({ children }) {
         {/* <h1 className={styles.title}>Rafał Ziółek</h1> */}
         <Navigation />
         <div className={styles.homeLayout}>
-          <div className={styles.content}>
-            <ProjectProvider>
-              {children}
-              {/* <ProjectThumbnail /> */}
-            </ProjectProvider>
-            <Footer />
-          </div>
+          {/* <div className={styles.content}> */}
+          <ProjectProvider>
+            {children}
+            {/* <ProjectThumbnail /> */}
+          </ProjectProvider>
+          <Footer />
+          {/* </div> */}
         </div>
 
         <Analytics />

@@ -13,12 +13,12 @@ export default async function CaseStudyLayout({ children, params }) {
   const company = frontmatter.details[0].items[0].text;
   const year = frontmatter.details[1].items[0].text;
   return (
-    <div className={styles.layout}>
+    <>
       {/* <aside className={styles.aside}>
         <Navigation />
       </aside> */}
-      <div className={styles.content}>{children}</div>
+      <div className={styles.caseStudyLayout}>{children}</div>
       <FadeOut />
-    </div>
+    </>
   );
 }

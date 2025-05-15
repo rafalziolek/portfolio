@@ -18,31 +18,25 @@ export default async function Gallery({ images }) {
   );
 
   return (
-    <div className={styles.gridPageContainer}>
-      {/* Optional Controls */}
-      {/* <div className={styles.gridControls}></div> */}
-
-      {/* Flexbox grid container */}
-      <div className={styles.imageGrid}>
-        {imagesWithPlaceholders.map((image) => (
-          <div
-            key={image.key}
-            className={styles.imageGridItem}
-            style={{
-              backgroundColor: image.placeholderColor,
-            }}
-          >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              height={image.height}
-              width={image.width}
-              style={{ objectFit: "cover" }} // Apply object-fit directly
-            />
-          </div>
-        ))}
-        <div className={styles.filler}></div>
-      </div>
-    </div>
+    <>
+      {imagesWithPlaceholders.map((image) => (
+        <div
+          key={image.key}
+          className={styles.imageGridItem}
+          style={{
+            backgroundColor: image.placeholderColor,
+          }}
+        >
+          <Image
+            src={image.src}
+            alt={image.alt}
+            height={image.height}
+            width={image.width}
+            style={{ objectFit: "cover" }} // Apply object-fit directly
+          />
+        </div>
+      ))}
+      <div className={styles.filler}></div>
+    </>
   );
 }

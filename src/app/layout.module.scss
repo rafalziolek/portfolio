@@ -2,8 +2,8 @@
 
 
 .homeLayout {
-    margin-inline: auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 30rem) 1fr;
     flex-direction: column;
     align-items: center;
     gap: var(--space-16);
@@ -14,8 +14,10 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        max-width: 30rem;
+        grid-column: 2/3;
         width: 100%;
+        align-self: start;
+        height: 100%;
     }
 
 

@@ -1,5 +1,5 @@
  .navigation {
-  font-family: var(--font-shippori-mincho);
+  // font-family: var(--font-shippori-mincho);
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -79,9 +79,11 @@ top: 0;
   justify-content: center;
   gap: var(--space-8);
   width: 100%;
+
  }
  .navigationItem {
   box-sizing: border-box;
+
   flex: 1 0 0;
   min-width: min-content;
   text-decoration: none;

@@ -20,19 +20,17 @@ export default async function CaseStudyPage({ params }) {
   const year = frontmatter.details[1].items[0].text;
   return (
     <>
-      <header className={styles.headerContainer}>
+      {/* <header className={styles.headerContainer}>
         <div className={styles.headerContent}>
           <Text tag="h1" type="body">
             {frontmatter.title}
           </Text>
-          <Text tag="span" color="secondary">
-            {year}, {company}, Design systems
+          <Text tag="span" type="caption" font="serif">
+            {year}
           </Text>
         </div>
-      </header>
-      <div className={styles.content}>
-        <MDXRemote source={content} components={components} />
-      </div>
+      </header> */}
+      <MDXRemote source={content} components={components} />
     </>
   );
 }
