@@ -64,7 +64,7 @@ export default function AnimatedSection({ children }) {
           gridColumn: "2/3",
           display: "flex",
           flexDirection: "column",
-          gap: "var(--space-64)",
+          gap: "var(--space-80)",
           position: "relative",
         }}
       >
