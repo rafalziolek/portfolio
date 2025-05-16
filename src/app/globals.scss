@@ -40,7 +40,7 @@
   --line-height-article: 1.4;
 
   --color-fg: rgb(0, 0, 0);
-  --color-fg-muted: rgba(0, 0, 0, 0.5);
+  --color-fg-muted: rgba(0, 0, 0, 0.3);
   --color-bg: rgb(255, 255, 255);
   --color-bg-inverted: rgb(0, 0, 0);
   --color-fg-inverted: rgb(255, 255, 255);
@@ -97,7 +97,7 @@ a {
 @media (prefers-color-scheme: dark) {
   :root {
     --color-fg: white;
-    --color-fg-muted: rgba(255, 255, 255, 0.5);
+    --color-fg-muted: rgba(255, 255, 255, 0.3);
     --color-bg: rgb(5, 5, 5);
     --color-bg-inverted: rgb(255, 255, 255);
     --color-fg-inverted: rgb(0, 0, 0);
