@@ -20,7 +20,7 @@ export default async function CaseStudyPage({ params }) {
   const year = frontmatter.details[1].items[0].text;
   return (
     <>
-      {/* <header className={styles.headerContainer}>
+      <header className={styles.headerContainer}>
         <div className={styles.headerContent}>
           <Text tag="h1" type="body">
             {frontmatter.abstract}
@@ -31,7 +31,7 @@ export default async function CaseStudyPage({ params }) {
             display: "flex",
             flexDirection: "column",
             gap: "24px",
-            justifyContent: "flex-start",
+            justifyContent: "center",
             width: "100%",
           }}
         >
@@ -40,10 +40,10 @@ export default async function CaseStudyPage({ params }) {
               display: "flex",
               flexDirection: "column",
               gap: "4px",
-              alignItems: "flex-start",
+              alignItems: "center",
             }}
           >
-            <Text tag="span" type="caption">
+            <Text tag="span" type="caption" font="serif">
               Role
             </Text>
             <Text tag="span">Designer</Text>
@@ -54,16 +54,16 @@ export default async function CaseStudyPage({ params }) {
               display: "flex",
               flexDirection: "column",
               gap: "4px",
-              alignItems: "flex-start",
+              alignItems: "center",
             }}
           >
-            <Text tag="span" type="caption">
+            <Text tag="span" type="caption" font="serif">
               Company
             </Text>
             <Text tag="span">{company}</Text>
           </div>
         </div>
-      </header> */}
+      </header>
       <MDXRemote source={content} components={components} />
     </>
   );

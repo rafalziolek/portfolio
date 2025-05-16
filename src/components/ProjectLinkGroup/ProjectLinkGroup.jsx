@@ -7,7 +7,12 @@ export default function ProjectLinkGroup({ projects, groupId, title }) {
   return (
     <LayoutGroup id={groupId}>
       <div className={styles["project-group"]}>
-        <Text className={styles["project-heading"]} type="caption" tag="h2">
+        <Text
+          className={styles["project-heading"]}
+          type="caption"
+          tag="h2"
+          font="serif"
+        >
           {title}
         </Text>
         <div className={styles["project-links"]}>

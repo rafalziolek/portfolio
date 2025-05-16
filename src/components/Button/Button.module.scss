@@ -1,18 +1,25 @@
 .button {
     text-decoration: none;
+    font-family:  "Helvetica Neue", system-ui, sans-serif;
+    // font-family: var(--font-shippori-mincho);
     color: var(--color-fg);
     background-color: var(--color-bg-secondary);
-    padding: 0 var(--space-12);
-    height: 24px;
+    padding: 2px var(--space-12);
+    // height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 999px;
     border: none;
-    font-size: var(--font-size-body);
     font-weight: var(--font-weight-base);
+    letter-spacing: -0.015em;
     transition: background-color 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-
+    &.medium {
+        font-size: var(--font-size-button);
+    }
+    .small {
+        font-size: var(--font-size-caption);
+    }
     &:hover {
         background-color: var(--color-bg-secondary);
         @media (prefers-color-scheme: dark) {

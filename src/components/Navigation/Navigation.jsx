@@ -38,7 +38,7 @@ export default function Navigation() {
       <div className={styles.navigationItems}>
         <NavigationItem
           href="/"
-          label="Work"
+          label="Works"
           isActive={isActive("/") || includesPath("/works")}
         />
         <NavigationItem
@@ -62,7 +62,12 @@ function NavigationItem({ href, label, isActive }) {
       href={href}
       className={clsx(styles.navigationItem, isActive && styles.active)}
     >
-      <Text tag="span" type="body">
+      <Text
+        tag="span"
+        type="body"
+        // font={isActive ? "serif" : ""}
+        color={!isActive ? "secondary" : ""}
+      >
         {label}
       </Text>
     </Link>

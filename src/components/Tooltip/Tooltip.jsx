@@ -76,7 +76,7 @@ const TooltipContent = React.memo(({ content, triggerRef, isVisible }) => {
               className={styles.tooltip}
               initial={{ opacity: 0, translateY: 4 }}
               animate={{
-                opacity: 0.5,
+                opacity: 1,
                 translateY: 0,
                 transition: { duration: 0.1 },
               }}
@@ -91,7 +91,9 @@ const TooltipContent = React.memo(({ content, triggerRef, isVisible }) => {
                 top: position.y,
               }}
             >
-              <Text type="caption">{content}</Text>
+              <Text type="caption" font="serif">
+                {content}
+              </Text>
             </motion.div>
           )}
         </AnimatePresence>,
