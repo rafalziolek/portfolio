@@ -6,14 +6,41 @@ import { usePathname } from "next/navigation";
 import Text from "@/components/Text/Text";
 import Link from "next/link";
 import clsx from "clsx";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+
 export default function Navigation() {
   const pathname = usePathname();
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = React.useState(false);
+  const lastScrollY = React.useRef(0);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const direction = latest > lastScrollY.current;
+    if (direction !== hidden && latest > 50) {
+      setHidden(direction);
+    }
+    lastScrollY.current = latest;
+  });
+
   const isActive = (path) => pathname === path;
+  const includesPath = (path) => pathname.includes(path);
 
   return (
-    <div className={styles.navigation}>
+    <motion.div
+      className={styles.navigation}
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.1, ease: "easeInOut" }}
+    >
       <div className={styles.navigationItems}>
-        <NavigationItem href="/" label="Work" isActive={isActive("/")} />
+        <NavigationItem
+          href="/"
+          label="Work"
+          isActive={isActive("/") || includesPath("/works")}
+        />
         <NavigationItem
           href="/about"
           label="About"
@@ -25,7 +52,7 @@ export default function Navigation() {
           isActive={isActive("/connect")}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

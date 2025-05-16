@@ -20,7 +20,7 @@ export default async function CaseStudyPage({ params }) {
   const year = frontmatter.details[1].items[0].text;
   return (
     <>
-      <header className={styles.headerContainer}>
+      {/* <header className={styles.headerContainer}>
         <div className={styles.headerContent}>
           <Text tag="h1" type="body">
             {frontmatter.abstract}
@@ -63,7 +63,7 @@ export default async function CaseStudyPage({ params }) {
             <Text tag="span">{company}</Text>
           </div>
         </div>
-      </header>
+      </header> */}
       <MDXRemote source={content} components={components} />
     </>
   );

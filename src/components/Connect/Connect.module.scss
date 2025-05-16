@@ -1,6 +1,7 @@
 .connectContainer {
   /* Add styles for the connect section here */
   display: flex;
+  margin-top: var(--space-64);
   flex: 1;
   flex-direction: column;
   align-self: flex-start;

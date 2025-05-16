@@ -9,7 +9,7 @@ import { Button } from "@/components/Button/Button";
 export default function Footer({ className }) {
   return (
     <div className={clsx(styles.footer, className)}>
-      <Text tag="p" type="caption">
+      <Text tag="p" type="body">
         Shout out to my cats &nbsp;
         <span style={{ whiteSpace: "nowrap" }}>
           <Image
