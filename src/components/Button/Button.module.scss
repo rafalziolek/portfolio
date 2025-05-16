@@ -1,21 +1,22 @@
 .button {
     text-decoration: none;
     font-family:  "Helvetica Neue", system-ui, sans-serif;
-    // font-family: var(--font-shippori-mincho);
+    font-family: var(--font-shippori-mincho);
+    -webkit-text-stroke: 0.2px var(--color-fg);
     color: var(--color-fg);
     background-color: var(--color-bg-secondary);
-    padding: 2px var(--space-12);
+    padding: 0px var(--space-12) 2px var(--space-12);
     // height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 999px;
     border: none;
-    font-weight: var(--font-weight-base);
-    letter-spacing: -0.015em;
+    font-weight: 600;
+    letter-spacing: -0.04em;
     transition: background-color 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     &.medium {
-        font-size: var(--font-size-button);
+        font-size: var(--font-size-caption);
     }
     .small {
         font-size: var(--font-size-caption);

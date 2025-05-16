@@ -42,14 +42,14 @@ export default function Navigation() {
           isActive={isActive("/") || includesPath("/works")}
         />
         <NavigationItem
-          href="/about"
-          label="About"
-          isActive={isActive("/about")}
-        />
-        <NavigationItem
           href="/connect"
           label="Connect"
           isActive={isActive("/connect")}
+        />
+        <NavigationItem
+          href="/about"
+          label="About"
+          isActive={isActive("/about")}
         />
       </div>
     </motion.div>
@@ -62,14 +62,7 @@ function NavigationItem({ href, label, isActive }) {
       href={href}
       className={clsx(styles.navigationItem, isActive && styles.active)}
     >
-      <Text
-        tag="span"
-        type="body"
-        // font={isActive ? "serif" : ""}
-        color={!isActive ? "secondary" : ""}
-      >
-        {label}
-      </Text>
+      {label}
     </Link>
   );
 }

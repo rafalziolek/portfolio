@@ -80,7 +80,9 @@
   }
   &.text-serif {
     font-family: var(--font-shippori-mincho);
-    -webkit-text-stroke: 0.4px var(--color-fg);
+    -webkit-text-stroke: 0.15px var(--color-fg);
+    letter-spacing: -0.04em;
+    font-weight: 600;
   }
   &.text-mono {
     font-family: var(--font-geist-mono);
