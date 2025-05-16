@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-self: flex-start;
     justify-content: center;
     gap: var(--space-80);
     width: 100%;
     grid-column: 2/3;
-    padding-top: var(--space-64);
+    padding-top: var(--space-48);
 }
 
 .ReelsPlaceholder {
