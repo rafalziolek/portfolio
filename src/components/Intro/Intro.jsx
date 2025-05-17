@@ -14,16 +14,25 @@ export default function Intro() {
     <>
       <div className={styles.intro}>
         <Text type="display" tag="h1">
-          Rafał Ziółek — Designer and photographer.
-        </Text>
-        <Text tag="p" type="display">
-          Currently building design systems at&nbsp;
+          I’m Rafał and I design things. Mostly software, but sometimes other
+          stuff too.
+          <br />
+          <br />
+          Currently, I work at{" "}
           <StyledLink
             href="https://www.docplanner.com"
             label="Docplanner"
             style={{ display: "inline-flex" }}
           />
-          .
+          , where I design and develop tools that give designers and developers
+          one less thing to worry about.
+          <br />
+          <br />
+          In my off hours, I spend time either cooking or doing photography.
+          <br />
+          <br />
+          This site is a place to showcase the things I make. If you find
+          something interesting here, cool. If not, that’s fine too. ✌︎
         </Text>
       </div>
     </>

@@ -9,18 +9,20 @@ import ConditionalThumbnailStrip from "@/components/ProjectThumbnail/Conditional
 import ThumbnailStrip2 from "@/components/ProjectThumbnail/ThumbnailStrip2";
 import { Button } from "@/components/Button/Button";
 import AnimatedSection from "@/components/AnimatedSection/AnimatedSection";
+import { Video } from "@/components/Video/Video";
 
 export default function ProjectsPage({ children }) {
   return (
     <>
       <div className={styles.content}>
-        <AnimatedSection>
-          <Intro />
-          <Projects />
-          <div className={styles.ReelsPlaceholder}>
-            <Button>Watch Reel</Button>
-          </div>
-        </AnimatedSection>
+        {/* <AnimatedSection> */}
+        <Intro />
+        <Projects />
+        <div className={styles.ReelsPlaceholder}>
+          <Video />
+          <Button className={styles.watchReelButton}>Watch Reel</Button>
+        </div>
+        {/* </AnimatedSection> */}
       </div>
       {/* <ProjectCarousel /> */}
       {/* <ThumbnailStrip2 /> */}
