@@ -8,12 +8,13 @@
     padding-block: 2px;
 
     .prepend {
-        font-family: var(--font-shippori-mincho);
+        // font-family: var(--font-shippori-mincho);
         // -webkit-text-stroke: 0.4px var(--color-fg); 
         // font-size: 0.9375rem;
         // position: absolute;
         letter-spacing: 0.08em !important;
         margin-right: var(--space-8);
+        font-variant-numeric: tabular-nums;
         // top: 50%;
         // left: calc(-1 * var(--space-32));
         // transform: translateY(-50%);

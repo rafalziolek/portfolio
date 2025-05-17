@@ -1,6 +1,6 @@
 /* Base text styles */
 .text {
-  --font-family: "Helvetica Neue", system-ui, sans-serif;
+  --font-family: var(--font-family-sans);
 }
 
 
@@ -10,7 +10,7 @@
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
   // max-width: 60ch;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
   &.text-mono {
     letter-spacing: -0.01em;
     // font-size: 0.8125rem;
@@ -23,7 +23,7 @@
   font-size: var(--font-size-body);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-emphasis);
-  letter-spacing: -0.0055em;
+  letter-spacing: -0.01em;
   &.text-mono {
     letter-spacing: -0.01em;
     // font-size: 0.8125rem;
@@ -44,7 +44,7 @@
   font-size: var(--font-size-heading);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-heading);
-  letter-spacing: -0.0055em;
+  letter-spacing: -0.01em;
 }
 
 .caption {
@@ -67,7 +67,7 @@
   font-size: var(--font-size-display);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-heading);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.01em;
 
 }
 
@@ -80,9 +80,9 @@
   }
   &.text-serif {
     font-family: var(--font-shippori-mincho);
-    -webkit-text-stroke: 0.15px var(--color-fg);
-    letter-spacing: -0.04em;
-    font-weight: 600;
+    // -webkit-text-stroke: 0.15px var(--color-fg);
+    letter-spacing: -0.035em;
+    font-weight: 500;
   }
   &.text-mono {
     font-family: var(--font-geist-mono);
