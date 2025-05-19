@@ -79,10 +79,11 @@
     color: var(--color-fg-muted);
   }
   &.text-serif {
-    font-family: var(--font-shippori-mincho);
-    // -webkit-text-stroke: 0.15px var(--color-fg);
-    letter-spacing: -0.035em;
-    font-weight: 500;
+    font-family: 'old standard tt', serif;
+    // -webkit-text-stroke: 0.6px var(--color-fg);
+    // letter-spacing: -0.035em;
+    font-weight: var(--font-weight-heading);
+    // font-weight: 700;
   }
   &.text-mono {
     font-family: var(--font-geist-mono);

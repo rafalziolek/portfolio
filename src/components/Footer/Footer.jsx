@@ -6,6 +6,7 @@ import Text from "@/components/Text/Text";
 import Image from "next/image";
 import clsx from "clsx";
 import { Button } from "@/components/Button/Button";
+import StyledLink from "@/components/StyledLink/StyledLink";
 export default function Footer({ className }) {
   return (
     <div className={clsx(styles.footer, className)}>
@@ -34,7 +35,7 @@ export default function Footer({ className }) {
         </span>{" "}
         for emotional support while I&nbsp;built this website.
       </Text>
-      <Button size="medium">Colophon</Button>
+      <StyledLink href="/colophon" label="Colophon" />
     </div>
   );
 }

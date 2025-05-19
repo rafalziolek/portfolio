@@ -96,7 +96,7 @@ top: 0;
   justify-content: center;
   border-radius: 999px;
   font-family: "Helvetica Neue", system-ui, sans-serif;
-  font-weight: 400;
+  font-weight: var(--font-weight-base);
   font-size: var(--font-size-body);
   letter-spacing: -0.03em;
   &:hover {
@@ -118,7 +118,7 @@ top: 0;
     text-underline-offset: 2px;
     text-decoration-color: var(--color-fg);
     text-decoration-thickness: 1px;
-    text-decoration-style: dotted;
+    text-decoration-style: solid;
 
 
 

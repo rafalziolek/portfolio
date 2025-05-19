@@ -4,8 +4,11 @@
     // font-family: var(--font-shippori-mincho);
     // -webkit-text-stroke: 0.2px var(--color-fg);
     color: var(--color-fg);
-    background-color: var(--color-bg-secondary);
-    padding: 0px var(--space-12) 2px var(--space-12);
+    background-color: var(--color-bg-translucent);
+    backdrop-filter: blur(10px);
+    background-blend-mode: plus-lighter;
+    line-height: var(--line-height-button);
+    padding: var(--space-4) var(--space-12) var(--space-4) var(--space-12);
     // height: 24px;
     display: flex;
     align-items: center;

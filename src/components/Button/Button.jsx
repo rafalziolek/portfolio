@@ -26,9 +26,7 @@ export function Button({
 
   return (
     <button className={classes} onClick={onClick} {...rest}>
-      <Text tag="span" type={size === "small" ? "caption" : "button"}>
-        {children}
-      </Text>
+      {children}
     </button>
   );
 }
