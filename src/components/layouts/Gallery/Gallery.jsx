@@ -18,7 +18,7 @@ export default async function Gallery({ images }) {
   );
 
   return (
-    <>
+    <div className={styles.gallery}>
       {imagesWithPlaceholders.map((image) => (
         <div
           key={image.key}
@@ -37,6 +37,6 @@ export default async function Gallery({ images }) {
         </div>
       ))}
       <div className={styles.filler}></div>
-    </>
+    </div>
   );
 }

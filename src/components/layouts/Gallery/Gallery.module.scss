@@ -1,10 +1,19 @@
+
+.gallery {
+  padding-top: var(--space-80);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-8);
+
+  width: 100%;
+  grid-column: 1 / -1;
+}
 .controlsPlaceholder {
   padding: 1rem;
   border-bottom: 1px solid #ccc;
   text-align: center;
   background-color: #f0f0f0;
 }
-
 .imageGrid {
   display: flex;
   flex-direction: column;
@@ -15,26 +24,25 @@
 }
 
 .imageGridItem {
-  height: 60vh;
+  height: fit-content;
   position: relative;
   border-radius: 0px;
-  width: fit-content;
   overflow: hidden;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   
-  &:hover img {
-    transform: scale(0.8);
-    transform-origin: center;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    // object-fit: contain;
-    // transition: transform 0.1s ease, opacity 0.3s ease;
-  }
+  // &:hover img {
+  //   transform: scale(1.1);
+  //   transform-origin: center;
+  //   max-width: 100%;
+
+  //   width: auto;
+  //   height: auto;
+  //   // object-fit: contain;
+  //   // transition: transform 0.1s ease, opacity 0.3s ease;
+  // }
 }
 
 .imageGridItem img {
@@ -42,9 +50,8 @@
   display: block;
 
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+
 }
 
 .filler {
