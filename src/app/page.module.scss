@@ -10,26 +10,15 @@
     padding-top: var(--space-80);
 }
 
-.ReelsPlaceholder {
+.ProjectContainer {
     height: auto;
-    aspect-ratio: 16 / 9;
     width: 100%;
     z-index: 100;
-    background-color: black;
     // border: 1px solid var(--color-border);
     display: flex;
     align-items: center;
     justify-content: center;
     position: sticky;
     bottom: var(--space-24);
-    overflow: hidden;
-    border-radius: 6px;
-    .watchReelButton {
-        position: absolute;
-        // bottom: var(--space-24);
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        top: 50%;
-        
-    }
+  
 }

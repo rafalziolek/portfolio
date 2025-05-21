@@ -6,6 +6,9 @@
     min-width: fit-content;
     white-space: nowrap;
     align-items: flex-start;
+    &.center {
+        align-items: center;
+    }
     .listTitle {
 
     }

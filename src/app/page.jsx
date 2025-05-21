@@ -14,16 +14,15 @@ import { Video } from "@/components/Video/Video";
 export default function ProjectsPage({ children }) {
   return (
     <>
-      <div className={styles.content}>
+      <hol className={styles.content}>
         {/* <AnimatedSection> */}
         <Intro />
         <Projects />
-        <div className={styles.ReelsPlaceholder}>
+        <div className={styles.ProjectContainer}>
           <Video />
-          <Button className={styles.watchReelButton}>Watch Reel</Button>
         </div>
         {/* </AnimatedSection> */}
-      </div>
+      </hol>
       {/* <ProjectCarousel /> */}
       {/* <ThumbnailStrip2 /> */}
       {/* <ConditionalThumbnailStrip /> */}

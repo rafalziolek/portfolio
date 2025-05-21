@@ -2,10 +2,11 @@ import React from "react";
 import styles from "./List.module.scss";
 import Text from "@/components/Text/Text";
 import StyledLink from "@/components/StyledLink/StyledLink";
+import clsx from "clsx";
 
-export default function List({ heading, children }) {
+export default function List({ heading, children, align }) {
   return (
-    <ul className={styles.list}>
+    <ul className={clsx(styles.list, align && styles[align])}>
       <Text tag="h4" type="caption" font="serif" className={styles.listTitle}>
         {heading}
       </Text>
@@ -20,6 +21,7 @@ function ListItem({
   leadingVisual,
   trailingVisual,
   external,
+
   ...rest
 }) {
   return (
