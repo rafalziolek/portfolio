@@ -14,13 +14,13 @@ export default function Navigation() {
   const [hidden, setHidden] = React.useState(false);
   const lastScrollY = React.useRef(0);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const direction = latest > lastScrollY.current;
-    if (direction !== hidden && latest > 50) {
-      setHidden(direction);
-    }
-    lastScrollY.current = latest;
-  });
+  // useMotionValueEvent(scrollY, "change", (latest) => {
+  //   const direction = latest > lastScrollY.current;
+  //   if (direction !== hidden && latest > 50) {
+  //     setHidden(direction);
+  //   }
+  //   lastScrollY.current = latest;
+  // });
 
   const isActive = (path) => pathname === path;
   const includesPath = (path) => pathname.includes(path);
