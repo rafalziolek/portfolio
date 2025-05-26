@@ -103,7 +103,7 @@ export default function ProjectLink({
           <Text
             tag="span"
             type="caption"
-            font="serif"
+            // font="serif"
             className={styles.prepend}
           >
             {prepend}
