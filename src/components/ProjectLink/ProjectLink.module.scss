@@ -9,7 +9,7 @@
 
     .prepend {
         letter-spacing: 0.08em !important;
-        margin-right: var(--space-8);
+        margin-right: var(--space-12);
         font-variant-numeric: tabular-nums;
         // margin-top: 4px;
         font-size: var(--font-size-superscript);
@@ -18,7 +18,7 @@
     }
     &:hover .project-title {
         text-decoration: underline;
-        text-underline-offset: 2px;
+        text-underline-offset: 4px;
         text-decoration-color: var(--color-fg);
         text-decoration-thickness: 1px;
         text-decoration-style: dotted;

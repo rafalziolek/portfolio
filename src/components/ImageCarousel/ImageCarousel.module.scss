@@ -17,10 +17,10 @@
     align-items: center;
     flex-direction: column;
     gap: var(--space-8);
-    position: absolute;
+    // position: absolute;
     // bottom: 5vh;
     left: auto;
-    mix-blend-mode: difference;
+    // mix-blend-mode: difference;
 }
 
 .indicators {
@@ -59,11 +59,13 @@
 
 .images {
     position: relative;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: var(--space-8);
+    justify-items: center;
+    height: fit-content;
 }
 
 .image {
@@ -72,5 +74,6 @@
     height: auto;
     width: auto;
     // object-fit: cover;
-    position: absolute;
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
 }
