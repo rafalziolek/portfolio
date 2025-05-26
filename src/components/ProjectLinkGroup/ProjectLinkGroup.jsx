@@ -11,7 +11,9 @@ export default function ProjectLinkGroup({ projects, groupId, title }) {
           className={styles["project-heading"]}
           type="caption"
           tag="h2"
-          font="serif"
+          uppercase
+          // font="serif"
+          // color="secondary"
         >
           {title}
         </Text>
