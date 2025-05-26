@@ -11,7 +11,9 @@
         letter-spacing: 0.08em !important;
         margin-right: var(--space-8);
         font-variant-numeric: tabular-nums;
-        margin-top: 4px;
+        // margin-top: 4px;
+        font-size: var(--font-size-superscript);
+        font-weight: var(--font-weight-base);
 
     }
     &:hover .project-title {

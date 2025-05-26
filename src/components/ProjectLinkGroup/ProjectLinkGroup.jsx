@@ -20,7 +20,7 @@ export default function ProjectLinkGroup({ projects, groupId, title }) {
             <ProjectLink
               key={id}
               id={id}
-              prepend={`(${index + 1})`}
+              prepend={`[${index + 1}]`}
               href={href}
               title={title}
               description={description}

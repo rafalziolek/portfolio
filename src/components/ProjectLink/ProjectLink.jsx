@@ -16,7 +16,7 @@ export default function ProjectLink({
   description,
   layoutId,
   img,
-  prepend = "(1)",
+  prepend = "[1]",
 }) {
   const pathname = usePathname();
   const isActive = pathname === href;

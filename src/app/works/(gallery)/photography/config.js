@@ -1,4 +1,4 @@
-const images = [
+const agata = [
     {
         id: 1,
         src: "/photography/1.jpg",
@@ -13,6 +13,9 @@ const images = [
         height: 2000,
         width: 1333,
     },
+];
+
+const kurs = [
     {
         id: 3,
         src: "/photography/3.jpg",
@@ -27,6 +30,9 @@ const images = [
         height: 1080,
         width: 864,
     },
+];
+
+const modelTestCinta = [
     {
         id: 5,
         src: "/photography/5.jpg",
@@ -62,6 +68,9 @@ const images = [
         height: 2000,
         width: 1600,
     },
+];
+
+const NikolaCinta = [
     {
         id: 10,
         src: "/photography/10.jpg",
@@ -111,6 +120,9 @@ const images = [
         height: 2000,
         width: 1599,
     },
+];
+
+const toSort = [
     {
         id: 17,
         src: "/photography/17.jpg",
@@ -209,8 +221,10 @@ const images = [
         height: 2000,
         width: 1333,
     },
-
-    
 ];
 
+// For backward compatibility, keep the original images array
+const images = [...agata, ...kurs, ...modelTestCinta, ...NikolaCinta, ...toSort];
+
+export { agata, kurs, modelTestCinta, NikolaCinta, toSort };
 export default images;

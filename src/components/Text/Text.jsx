@@ -9,6 +9,7 @@ const styleMap = {
   caption: styles.caption,
   "caption-emphasis": styles.captionEmphasis,
   display: styles.display,
+  superscript: styles.superscript,
 };
 
 export default function Text({

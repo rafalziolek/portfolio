@@ -1,0 +1,76 @@
+.carousel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-16);
+  position: relative;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space-8);
+    position: absolute;
+    // bottom: 5vh;
+    left: auto;
+    mix-blend-mode: difference;
+}
+
+.indicators {
+    display: flex;
+    gap: var(--space-8);
+    font-variant-numeric: tabular-nums;
+    right: auto;
+    justify-content: center;
+    .indicator {
+        background-color: transparent;
+        border: none;
+        color: var(--color-fg-muted);
+        font-family: var(--font-family-serif);
+        &.active {
+            // background-color: var(--color-bg-inverted);
+            color: var(--color-fg);
+        }
+    }
+}
+.next,.previous {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 100;
+    // display: none;
+}
+.next {
+    right: 0;
+    cursor: e-resize;
+}
+.previous {
+    left: 0;
+    cursor: w-resize;
+}
+
+.images {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.image {
+    max-height: 80vh;
+    max-width: 80vw;
+    height: auto;
+    width: auto;
+    // object-fit: cover;
+    position: absolute;
+}
