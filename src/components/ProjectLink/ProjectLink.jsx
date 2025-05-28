@@ -16,7 +16,8 @@ export default function ProjectLink({
   description,
   layoutId,
   img,
-  prepend = "[1]",
+  prepend = "01",
+  hoverColor = "var(--color-fg)",
 }) {
   const pathname = usePathname();
   const isActive = pathname === href;
@@ -67,6 +68,7 @@ export default function ProjectLink({
       <Link
         href={href}
         onClick={handleMouseLeave}
+        style={{ "--hover-color": hoverColor }}
         className={clsx(
           styles.container,
           !isActive &&
@@ -102,7 +104,7 @@ export default function ProjectLink({
           )} */}
           <Text
             tag="span"
-            type="caption"
+            type="superscript"
             // font="serif"
             className={styles.prepend}
           >

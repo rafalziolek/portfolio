@@ -4,7 +4,7 @@
     
     // background-color: var(--color-bg-secondary);
     // border-radius:6px;
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-8);
     // margin-left: -6px
 }
 
@@ -17,7 +17,7 @@
     width: 100%;
     .project-links {
         background-color: var(--color-bg);
-        margin-left: calc(var(--space-28) * -1);
+        margin-left: calc(var(--space-24) * -1);
         // overflow: hidden;
         display: flex;
         flex-direction: column;

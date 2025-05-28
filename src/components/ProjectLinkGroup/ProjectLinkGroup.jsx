@@ -9,7 +9,7 @@ export default function ProjectLinkGroup({ projects, groupId, title }) {
       <div className={styles["project-group"]}>
         <Text
           className={styles["project-heading"]}
-          type="caption"
+          type="superscript"
           tag="h2"
           uppercase
           // font="serif"
@@ -18,18 +18,21 @@ export default function ProjectLinkGroup({ projects, groupId, title }) {
           {title}
         </Text>
         <div className={styles["project-links"]}>
-          {projects.map(({ id, title, description, href, img }, index) => (
-            <ProjectLink
-              key={id}
-              id={id}
-              prepend={`[${index + 1}]`}
-              href={href}
-              title={title}
-              description={description}
-              layoutId={`${groupId}-background`}
-              img={img}
-            />
-          ))}
+          {projects.map(
+            ({ id, title, description, href, img, hoverColor }, index) => (
+              <ProjectLink
+                key={id}
+                id={id}
+                prepend={`0${index + 1}`}
+                href={href}
+                title={title}
+                description={description}
+                layoutId={`${groupId}-background`}
+                img={img}
+                hoverColor={hoverColor}
+              />
+            )
+          )}
         </div>
       </div>
     </LayoutGroup>

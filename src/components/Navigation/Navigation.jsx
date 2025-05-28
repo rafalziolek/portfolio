@@ -7,20 +7,33 @@ import Text from "@/components/Text/Text";
 import Link from "next/link";
 import clsx from "clsx";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import EmailButton from "../EmailButton/EmailButton";
 
 export default function Navigation() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
-  const [hidden, setHidden] = React.useState(false);
-  const lastScrollY = React.useRef(0);
+  const [small, setSmall] = React.useState(false);
+  const lastScrollY = React.useRef(null);
 
-  // useMotionValueEvent(scrollY, "change", (latest) => {
-  //   const direction = latest > lastScrollY.current;
-  //   if (direction !== hidden && latest > 50) {
-  //     setHidden(direction);
-  //   }
-  //   lastScrollY.current = latest;
-  // });
+  console.log(small);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (lastScrollY.current === null) {
+      lastScrollY.current = latest;
+      return;
+    }
+
+    const isScrollingDown = latest > lastScrollY.current;
+    const isScrollingUp = latest < lastScrollY.current;
+
+    if (isScrollingDown) {
+      setSmall(true);
+    } else if (isScrollingUp) {
+      setSmall(false);
+    }
+
+    lastScrollY.current = latest;
+  });
 
   const isActive = (path) => pathname === path;
   const includesPath = (path) => pathname.includes(path);
@@ -28,11 +41,12 @@ export default function Navigation() {
   return (
     <motion.div
       className={styles.navigation}
+      animate={small ? "small" : "large"}
+      initial={false}
       variants={{
-        visible: { y: 0 },
-        hidden: { y: "-100%" },
+        small: { scale: 0.8 },
+        large: { scale: 1 },
       }}
-      animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.1, ease: "easeInOut" }}
     >
       <div className={styles.navigationItems}>
@@ -41,11 +55,13 @@ export default function Navigation() {
           label="Works"
           isActive={isActive("/") || includesPath("/works")}
         />
+        ,&nbsp;
         <NavigationItem
           href="/connect"
           label="Connect"
           isActive={isActive("/connect")}
         />
+        ,&nbsp;
         <NavigationItem
           href="/about"
           label="About"

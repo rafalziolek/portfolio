@@ -1,4 +1,5 @@
 .container {
+    --hover-color: var(--color-fg);
     text-decoration: none;
     color: var(--color-fg);    
     position: relative;
@@ -8,26 +9,37 @@
     padding-block: 2px;
 
     .prepend {
-        letter-spacing: 0.08em !important;
-        margin-right:0.6875rem;
-        font-variant-numeric: tabular-nums;
-        // margin-top: 4px;
-
+        margin-right:.625rem;
+        // background-color: var(--color-bg-translucent);
+        color: var(--color-fg);
+        height:0.9375rem;
+        width: 0.9375rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    &:hover .project-title {
+    &:hover {
+        .project-title {
         text-decoration: underline;
         text-underline-offset: 4px;
-        text-decoration-color: var(--color-fg);
+        text-decoration-color: var(--hover-color);
         text-decoration-thickness: 1px;
         text-decoration-style: dotted;
+    }
+    .prepend {
+        color: var(--hover-color);
+    }
+
     }
     &:active {
         .project-title {
             scale: 0.98;
         }
+
     }
     &.active,&:hover {
-        color: var(--color-fg);
+
+        color: var(--hover-color);
     }
 
     &.dimmed {
@@ -35,8 +47,7 @@
     }
     .content {
         position: relative;
-        @media (prefers-color-scheme: dark) {
-        }
+
             
         z-index: 1;
 

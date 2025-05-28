@@ -8,6 +8,7 @@ export const productDesignProjects = [
     img: "/projects/watson/thumbnail.png",
     imgWidth: 1000,
     imgHeight: 1000,
+    hoverColor: "#007C68",
   },
     {
       id: "product-design-2",
@@ -17,6 +18,7 @@ export const productDesignProjects = [
       img: "/projects/runchise/image.png",
       imgWidth: 1000,
       imgHeight: 1000,
+      hoverColor: "#0E38B1",
     },
     {
       id: "product-design-3",
@@ -26,6 +28,7 @@ export const productDesignProjects = [
       img: "/projects/runchise/image.png",
       imgWidth: 1000,
       imgHeight: 1000,
+      hoverColor: "#FD550B",
     },
     {
       id: "4",

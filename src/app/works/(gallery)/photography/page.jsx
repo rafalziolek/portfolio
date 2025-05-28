@@ -6,7 +6,9 @@ import { CornerUpLeft } from "lucide-react";
 import StyledLink from "@/components/StyledLink/StyledLink";
 import { getImagesData } from "@/utils";
 import { agata, kurs, modelTestCinta, NikolaCinta, toSort } from "./config";
-import ImageCarousel from "@/components/ImageCarousel/ImageCarousel";
+import ImageCarousel, {
+  CarouselProvider,
+} from "@/components/ImageCarousel/ImageCarousel";
 
 export default async function PhotographyPage() {
   const photoItems = await getImagesData("public/photography");
@@ -14,11 +16,26 @@ export default async function PhotographyPage() {
   return (
     <>
       <div className={styles.container}>
-        <ImageCarousel images={agata} />
-        <ImageCarousel images={kurs} />
-        <ImageCarousel images={modelTestCinta} />
-        <ImageCarousel images={NikolaCinta} />
-        <ImageCarousel images={toSort} />
+        <CarouselProvider>
+          <ImageCarousel
+            images={modelTestCinta}
+            id="modelTestCinta"
+            title="Model Tests"
+          />
+          <ImageCarousel
+            images={NikolaCinta}
+            id="NikolaCinta"
+            title="Model Tests"
+          />
+          <ImageCarousel
+            images={agata}
+            id="agata"
+            title="Personal Photoshoot"
+          />
+          <ImageCarousel images={kurs} id="kurs" title="Kurs" />
+
+          <ImageCarousel images={toSort} id="toSort" title="To Sort" />
+        </CarouselProvider>
       </div>
     </>
   );

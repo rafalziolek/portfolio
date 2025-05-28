@@ -86,8 +86,8 @@
     color: var(--color-fg-muted);
   }
   &.text-serif {
-    font-family: var(--font-shippori-mincho), serif;
-    -webkit-text-stroke: 0.6px var(--color-fg);
+    font-family:  serif;
+    // -webkit-text-stroke: 0.6px var(--color-fg);
     letter-spacing: 0.01em;
     font-weight: var(--font-weight-heading);
     // font-weight: 700;
