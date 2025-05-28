@@ -7,8 +7,10 @@ function Colophon() {
     <div className={styles.colophon}>
       <List heading="Typography" align="center">
         <List.Item>Helvetica Neue</List.Item>
-        <List.Item style={{ fontFamily: "var(--font-shippori-mincho)" }}>
-          Shippori Mincho B1
+        <List.Item>
+          <Text type="body" font="serif">
+            Shippori Mincho B1
+          </Text>
         </List.Item>
       </List>
       <List heading="Built with" align="center">
