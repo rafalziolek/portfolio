@@ -7,6 +7,9 @@ function Colophon() {
     <div className={styles.colophon}>
       <List heading="Typography" align="center">
         <List.Item>Helvetica Neue</List.Item>
+        <List.Item style={{ fontFamily: "var(--font-shippori-mincho)" }}>
+          Shippori Mincho B1
+        </List.Item>
       </List>
       <List heading="Built with" align="center">
         <List.Item>Next.js</List.Item>
