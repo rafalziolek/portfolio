@@ -1,5 +1,6 @@
 import styles from "./Text.module.scss";
 import clsx from "clsx";
+import { forwardRef } from "react";
 
 const styleMap = {
   body: styles.body,
@@ -12,23 +13,27 @@ const styleMap = {
   superscript: styles.superscript,
 };
 
-export default function Text({
-  type = "body",
-  tag = "span",
-  className,
-  color,
-  children,
-  font,
-  uppercase,
-  overflow,
-  nowrap,
-  ...rest
-}) {
+const Text = forwardRef(function Text(
+  {
+    type = "body",
+    tag = "span",
+    className,
+    color,
+    children,
+    font,
+    uppercase,
+    overflow,
+    nowrap,
+    ...rest
+  },
+  ref
+) {
   const Component = tag;
   const textClass = styleMap[type];
 
   return (
     <Component
+      ref={ref}
       className={clsx(
         "text",
         textClass,
@@ -45,4 +50,6 @@ export default function Text({
       {children}
     </Component>
   );
-}
+});
+
+export default Text;

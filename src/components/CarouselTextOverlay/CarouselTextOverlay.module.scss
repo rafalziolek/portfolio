@@ -8,7 +8,7 @@
     align-items: center;
     flex-direction: row;
     gap: var(--space-6);
-    padding: var(--space-12);
+    padding: var(--space-12) var(--space-6) var(--space-12) var(--space-12);
     position: fixed;
     bottom: var(--space-16); 
     left: 0;
@@ -20,18 +20,52 @@
     width: 20rem
 }
 
-.indicators {
+.content {
     display: flex;
     // gap: var(--space-8);
     font-variant-numeric: tabular-nums;
     justify-content: space-between;
     width: 100%;
 }
+.indicators {
+    display: flex;
+    gap: var(--space-6);
+    max-width: 10ch;
+    overflow-x: scroll;
+    padding-inline: var(--space-16) var(--space-8);
+    
+    // Hide scrollbar for webkit browsers (Chrome, Safari, Edge)
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    // Hide scrollbar for Firefox
+    scrollbar-width: none;
+    
+    // Disable manual scrolling
+    pointer-events: none;
+    
+    // Add gradient mask for fade effect on edges
+    mask: linear-gradient(
+        to right,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+    );
+    -webkit-mask: linear-gradient(
+        to right,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+    );
+}
 
 .indicatorText {
 
     // color: var(--color-fg-inverted);
-    font-weight: var(--font-weight-bold) !important ;
+    // font-weight: var(--font-weight-bold) !important ;
 }
 
 .title {
