@@ -15,7 +15,6 @@ export default function CarouselTextOverlay({ carousels }) {
   const [carouselData, setCarouselData] = useState({});
   const [shouldHide, setShouldHide] = useState(false);
   const { scrollY } = useScroll();
-  const indicatorsRef = useRef(null);
   const indicatorRefs = useRef([]);
 
   // Hide overlay when approaching footer
@@ -50,31 +49,6 @@ export default function CarouselTextOverlay({ carousels }) {
   const currentData = activeCarousel ? carouselData[activeCarousel] : null;
 
   // Scroll active indicator into view
-  useEffect(() => {
-    if (
-      currentData &&
-      indicatorsRef.current &&
-      indicatorRefs.current[currentData.currentImage]
-    ) {
-      const activeIndicator = indicatorRefs.current[currentData.currentImage];
-      const container = indicatorsRef.current;
-
-      const containerRect = container.getBoundingClientRect();
-      const indicatorRect = activeIndicator.getBoundingClientRect();
-
-      // Check if indicator is outside visible area
-      const isOutsideLeft = indicatorRect.left < containerRect.left;
-      const isOutsideRight = indicatorRect.right > containerRect.right;
-
-      if (isOutsideLeft || isOutsideRight) {
-        activeIndicator.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        });
-      }
-    }
-  }, [currentData?.currentImage, activeCarousel, currentData]);
 
   return (
     <AnimatePresence mode="wait">
@@ -90,22 +64,10 @@ export default function CarouselTextOverlay({ carousels }) {
             <Text type="superscript" className={styles.title} font="serif">
               {currentConfig.title}
             </Text>
-            <div className={styles.indicators} ref={indicatorsRef}>
-              {Array.from({ length: currentData.totalImages }).map(
-                (_, index) => (
-                  <Text
-                    type="superscript"
-                    className={clsx(styles.indicatorText, {
-                      [styles.active]: index === currentData.currentImage,
-                    })}
-                    key={index}
-                    color={index !== currentData.currentImage && "inverted"}
-                    ref={(el) => (indicatorRefs.current[index] = el)}
-                  >
-                    {index + 1}
-                  </Text>
-                )
-              )}
+            <div className={styles.indicators}>
+              <Text type="superscript" className={styles.indicatorText}>
+                {currentData.currentImage + 1} / {currentData.totalImages}
+              </Text>
             </div>
           </motion.div>
         </div>
