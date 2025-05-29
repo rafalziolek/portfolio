@@ -1,9 +1,14 @@
 .textOverlay {
+    // background-blend-mode: plus-lighter;
+    background-color: var(--color-bg-translucent);
+    backdrop-filter: blur(10px);
+    border-radius: .25rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     gap: var(--space-6);
+    padding: var(--space-12);
     position: fixed;
     bottom: var(--space-16); 
     left: 0;
@@ -12,20 +17,25 @@
     width: fit-content;
     z-index: 100;
     pointer-events: none;
+    width: 20rem
 }
 
 .indicators {
     display: flex;
     // gap: var(--space-8);
     font-variant-numeric: tabular-nums;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .indicatorText {
-    color: var(--color-fg);
+
+    // color: var(--color-fg-inverted);
+    font-weight: var(--font-weight-bold) !important ;
 }
 
 .title {
-    color: var(--color-fg);
+    // color: var(--color-fg-inverted);
     text-align: center;
+    font-weight: var(--font-weight-bold) !important;
 } 

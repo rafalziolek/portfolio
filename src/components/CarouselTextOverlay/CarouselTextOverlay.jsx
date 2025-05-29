@@ -49,23 +49,22 @@ export default function CarouselTextOverlay({ carousels }) {
   return (
     <AnimatePresence mode="wait">
       {currentConfig && currentData && !shouldHide && (
-        <motion.div
-          key={activeCarousel}
-          className={styles.textOverlay}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.2 }}
-        >
-          <div className={styles.indicators}>
+        <div key={activeCarousel} className={styles.textOverlay}>
+          <motion.div
+            className={styles.indicators}
+            initial={{ opacity: 0, scale: 0.99 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.99 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Text type="superscript" className={styles.title} font="serif">
+              {currentConfig.title}
+            </Text>
             <Text type="superscript" className={styles.indicatorText}>
               {currentData.currentImage + 1} / {currentData.totalImages}
             </Text>
-          </div>
-          <Text type="body" className={styles.title}>
-            {currentConfig.title}
-          </Text>
-        </motion.div>
+          </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );
