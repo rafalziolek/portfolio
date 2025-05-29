@@ -73,7 +73,7 @@ export default function CarouselTextOverlay({ carousels }) {
         });
       }
     }
-  }, [currentData?.currentImage, activeCarousel]);
+  }, [currentData?.currentImage, activeCarousel, currentData]);
 
   return (
     <AnimatePresence mode="wait">

@@ -1,6 +1,6 @@
  .navigation {
-  color: var(--color-fg-inverted);
-  mix-blend-mode: difference;
+  color: var(--color-fg);
+  // mix-blend-mode: difference;
   // background-color: var(--color-bg);
   // font-family: var(--font-shippori-mincho);
   display: flex;
@@ -46,7 +46,7 @@ max-width: 30rem;
   box-sizing: border-box;
   width: fit-content;
   text-decoration: none;
-  color: var(--color-fg-inverted);
+  color: var(--color-fg);
   // border-radius: 2px;
   // flex: 1 0 0;
   // background-color: var(--color-bg-translucent);
@@ -65,7 +65,7 @@ max-width: 30rem;
     // color: var(--color-fg);
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: var(--color-fg-inverted);
+    text-decoration-color: var(--color-fg);
     text-decoration-thickness: 1px;
     text-decoration-style: dotted;
     // font-style: italic;
@@ -73,11 +73,11 @@ max-width: 30rem;
   }
   &.active {
     // font-family: var(--font-shippori-mincho) !important;
-    color: var(--color-fg-inverted);
+    color: var(--color-fg);
     // box-shadow: inset 0 0 0 1px var(--color-fg);
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: var(--color-fg-inverted);
+    text-decoration-color: var(--color-fg);
     text-decoration-thickness: 1px;
     text-decoration-style: dotted;
 
