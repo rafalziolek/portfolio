@@ -1,6 +1,6 @@
 .textOverlay {
     // background-blend-mode: plus-lighter;
-    background-color: white;
+    background-color: var(--color-bg);
     backdrop-filter: blur(10px);
     border-radius: .5rem;
     display: flex;
