@@ -65,19 +65,19 @@ export default function CarouselTextOverlay({ carousels }) {
               <Text type="superscript" className={styles.title} font="serif">
                 {currentConfig.title}
               </Text>
-              <Text
-                type="superscript"
-                className={styles.title}
-                color="secondary"
-              >
-                2025
-              </Text>
+              <div className={styles.indicators}>
+                <Text type="superscript" className={styles.indicatorText}>
+                  {currentData.currentImage + 1} / {currentData.totalImages}
+                </Text>
+              </div>
             </div>
-            <div className={styles.indicators}>
-              <Text type="superscript" className={styles.indicatorText}>
-                {currentData.currentImage + 1} / {currentData.totalImages}
-              </Text>
-            </div>
+            <Text
+              type="superscript"
+              className={styles.description}
+              color="secondary"
+            >
+              2025
+            </Text>
           </motion.div>
         </div>
       )}
