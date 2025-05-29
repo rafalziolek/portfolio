@@ -2,13 +2,13 @@
     // background-blend-mode: plus-lighter;
     background-color: color-mix(in srgb, var(--color-bg-inverted) 80%, transparent);
     backdrop-filter: blur(10px);
-    border-radius: .25rem;
+    border-radius: .3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
     gap: var(--space-6);
-    padding: var(--space-6) 0 var(--space-8) var(--space-8);
+    padding: var(--space-12) 0 calc(var(--space-16) - 2px) var(--space-12);
     position: fixed;
     bottom: var(--space-16); 
     left: 0;
@@ -30,8 +30,9 @@
 }
 .indicators {
     display: flex;
-    gap: var(--space-6);
+    gap: var(--space-4);
     max-width: 10ch;
+    margin-top: 2px;
     overflow-x: scroll;
     padding-inline: var(--space-16) var(--space-12);
     
@@ -53,22 +54,22 @@
         black 20%,
         black 80%,
         transparent 100%
-    );
-    -webkit-mask: linear-gradient(
-        to right,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-    );
-}
-
-.indicatorText {
-    line-height: 1;
-    color: var(--color-fg-inverted);
-
-
-    display: flex;
+        );
+        -webkit-mask: linear-gradient(
+            to right,
+            transparent 0%,
+            black 20%,
+            black 80%,
+            transparent 100%
+            );
+        }
+        
+        .indicatorText {
+            line-height: 1;
+            color: var(--color-fg-inverted);
+            
+            
+            display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0.5;
