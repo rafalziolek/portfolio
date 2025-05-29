@@ -3,7 +3,7 @@
 
 .homeLayout {
     display: grid;
-    grid-template-columns: 1fr minmax(0, 30rem) 1fr;
+    grid-template-columns: 1fr minmax(0, 27rem) 1fr;
     flex-direction: column;
     align-items: center;
     gap: var(--space-16);

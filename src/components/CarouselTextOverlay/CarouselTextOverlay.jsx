@@ -8,6 +8,7 @@ import {
 } from "motion/react";
 import Text from "../Text/Text";
 import styles from "./CarouselTextOverlay.module.scss";
+import clsx from "clsx";
 
 export default function CarouselTextOverlay({ carousels }) {
   const [activeCarousel, setActiveCarousel] = useState(null);
@@ -86,7 +87,7 @@ export default function CarouselTextOverlay({ carousels }) {
             exit={{ opacity: 0, scale: 0.99 }}
             transition={{ duration: 0.2 }}
           >
-            <Text type="superscript" className={styles.title}>
+            <Text type="superscript" className={styles.title} font="serif">
               {currentConfig.title}
             </Text>
             <div className={styles.indicators} ref={indicatorsRef}>
@@ -94,9 +95,11 @@ export default function CarouselTextOverlay({ carousels }) {
                 (_, index) => (
                   <Text
                     type="superscript"
-                    className={styles.indicatorText}
+                    className={clsx(styles.indicatorText, {
+                      [styles.active]: index === currentData.currentImage,
+                    })}
                     key={index}
-                    color={index !== currentData.currentImage && "secondary"}
+                    color={index !== currentData.currentImage && "inverted"}
                     ref={(el) => (indicatorRefs.current[index] = el)}
                   >
                     {index + 1}

@@ -1,6 +1,6 @@
 .textOverlay {
     // background-blend-mode: plus-lighter;
-    background-color: var(--color-bg);
+    background-color: color-mix(in srgb, var(--color-bg-inverted) 80%, transparent);
     backdrop-filter: blur(10px);
     border-radius: .25rem;
     display: flex;
@@ -8,7 +8,7 @@
     align-items: center;
     flex-direction: row;
     gap: var(--space-6);
-    padding: var(--space-12) var(--space-6) var(--space-12) var(--space-12);
+    padding: var(--space-8) 0 var(--space-8) var(--space-8);
     position: fixed;
     bottom: var(--space-16); 
     left: 0;
@@ -17,7 +17,7 @@
     width: fit-content;
     z-index: 100;
     pointer-events: none;
-    width: 20rem
+    width: 20rem;
 }
 
 .content {
@@ -26,13 +26,14 @@
     font-variant-numeric: tabular-nums;
     justify-content: space-between;
     width: 100%;
+    align-items: center;
 }
 .indicators {
     display: flex;
     gap: var(--space-6);
     max-width: 10ch;
     overflow-x: scroll;
-    padding-inline: var(--space-16) var(--space-8);
+    padding-inline: var(--space-16) var(--space-12);
     
     // Hide scrollbar for webkit browsers (Chrome, Safari, Edge)
     &::-webkit-scrollbar {
@@ -64,14 +65,27 @@
 
 .indicatorText {
     line-height: 1;
-    // color: var(--color-fg-inverted);
-    // font-weight: var(--font-weight-bold) !important ;
+    color: var(--color-fg-inverted);
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    &.active {
+        opacity: 1;
+        // text-decoration: underline;
+        // text-underline-offset: 1px;
+        // text-decoration-color: var(--color-fg-inverted);
+        // text-decoration-thickness: 1px;
+        // text-decoration-style: dotted;
+    }
 }
 
 .title {
-    // color: var(--color-fg-inverted);
+    color: var(--color-fg-inverted);
     line-height: 1;
     font-family: var(--font-family-sans) !important;
     text-align: center;
-    font-weight: var(--font-weight-bold) !important;
+
 } 
