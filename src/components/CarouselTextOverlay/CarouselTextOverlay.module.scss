@@ -63,13 +63,14 @@
 }
 
 .indicatorText {
-
+    line-height: 1;
     // color: var(--color-fg-inverted);
     // font-weight: var(--font-weight-bold) !important ;
 }
 
 .title {
     // color: var(--color-fg-inverted);
+    line-height: 1;
     font-family: var(--font-family-sans) !important;
     text-align: center;
     font-weight: var(--font-weight-bold) !important;
