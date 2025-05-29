@@ -10,7 +10,7 @@ export default function List({ heading, children, align }) {
       <Text
         tag="h4"
         type="superscript"
-        uppercase
+        // uppercase
         // font="serif"
         className={styles.listTitle}
       >
