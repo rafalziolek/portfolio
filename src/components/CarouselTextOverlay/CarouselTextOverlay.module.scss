@@ -1,0 +1,31 @@
+.textOverlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space-6);
+    position: fixed;
+    bottom: var(--space-16); 
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.indicators {
+    display: flex;
+    // gap: var(--space-8);
+    font-variant-numeric: tabular-nums;
+    justify-content: center;
+}
+
+.indicatorText {
+    color: var(--color-fg);
+}
+
+.title {
+    color: var(--color-fg);
+    text-align: center;
+} 

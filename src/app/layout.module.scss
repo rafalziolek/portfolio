@@ -56,6 +56,14 @@ padding-bottom: var(--space-16);
     grid-row-start: 1;
   }
 
+  @media (max-width: 768px) {
+    .homeLayout {
+      display: flex;
+      flex-direction: column;
+      padding-inline: var(--space-16);
+    }
+  }
+
 
 // @media screen and (max-width: 1280px) {
 //     .footer{

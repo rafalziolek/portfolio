@@ -20,3 +20,10 @@
     margin-right: var(--space-4);
     vertical-align:bottom;
 }}
+
+@media (max-width: 768px) {
+    .footer {
+        text-align: left;
+        align-items: flex-start;
+    }
+}

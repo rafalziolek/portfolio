@@ -11,29 +11,29 @@ import EmailButton from "../EmailButton/EmailButton";
 
 export default function Navigation() {
   const pathname = usePathname();
-  const { scrollY } = useScroll();
-  const [small, setSmall] = React.useState(false);
-  const lastScrollY = React.useRef(null);
+  // const { scrollY } = useScroll();
+  // const [small, setSmall] = React.useState(false);
+  // const lastScrollY = React.useRef(null);
 
-  console.log(small);
+  // console.log(small);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (lastScrollY.current === null) {
-      lastScrollY.current = latest;
-      return;
-    }
+  // useMotionValueEvent(scrollY, "change", (latest) => {
+  //   if (lastScrollY.current === null) {
+  //     lastScrollY.current = latest;
+  //     return;
+  //   }
 
-    const isScrollingDown = latest > lastScrollY.current;
-    const isScrollingUp = latest < lastScrollY.current;
+  //   const isScrollingDown = latest > lastScrollY.current;
+  //   const isScrollingUp = latest < lastScrollY.current;
 
-    if (isScrollingDown) {
-      setSmall(true);
-    } else if (isScrollingUp) {
-      setSmall(false);
-    }
+  //   if (isScrollingDown) {
+  //     setSmall(true);
+  //   } else if (isScrollingUp) {
+  //     setSmall(false);
+  //   }
 
-    lastScrollY.current = latest;
-  });
+  //   lastScrollY.current = latest;
+  // });
 
   const isActive = (path) => pathname === path;
   const includesPath = (path) => pathname.includes(path);
@@ -41,13 +41,13 @@ export default function Navigation() {
   return (
     <motion.div
       className={styles.navigation}
-      animate={small ? "small" : "large"}
-      initial={false}
-      variants={{
-        small: { scale: 0.8 },
-        large: { scale: 1 },
-      }}
-      transition={{ duration: 0.1, ease: "easeInOut" }}
+      // animate={small ? "small" : "large"}
+      // initial={false}
+      // variants={{
+      //   small: { scale: 0.8 },
+      //   large: { scale: 1 },
+      // }}
+      // transition={{ duration: 0.1, ease: "easeInOut" }}
     >
       <div className={styles.navigationItems}>
         <NavigationItem
@@ -55,13 +55,13 @@ export default function Navigation() {
           label="Works"
           isActive={isActive("/") || includesPath("/works")}
         />
-        ,&nbsp;
+        ,&nbsp;&nbsp;
         <NavigationItem
           href="/connect"
           label="Connect"
           isActive={isActive("/connect")}
         />
-        ,&nbsp;
+        ,&nbsp;&nbsp;
         <NavigationItem
           href="/about"
           label="About"

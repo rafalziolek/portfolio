@@ -1,7 +1,7 @@
 .connectContainer {
   /* Add styles for the connect section here */
   display: flex;
-  margin-top: 9rem;
+  margin-top: 8rem;
   flex: 1;
   flex-direction: column;
   align-self: flex-start;
@@ -21,4 +21,9 @@
   gap: 4px; /* Space between list items */
   flex-direction: column;
   margin-bottom: var(--space-16);
+}
+
+@media (max-width: 768px) {
+  .socialList {
+    align-items: flex-start;}
 }
