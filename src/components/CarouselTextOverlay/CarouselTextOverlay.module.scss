@@ -1,14 +1,14 @@
 .textOverlay {
     // background-blend-mode: plus-lighter;
-    background-color: color-mix(in srgb, var(--color-bg-inverted) 100%, transparent);
+    background-color: white;
     backdrop-filter: blur(10px);
-    border-radius: .25rem;
+    border-radius: .5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
     gap: var(--space-6);
-    padding: var(--space-12) 0 calc(var(--space-16) - 2px) var(--space-12);
+    padding: var(--space-6) 0 calc(var(--space-8) - 2px) var(--space-8);
     position: fixed;
     bottom: var(--space-16); 
     left: 0;
@@ -26,15 +26,22 @@
     font-variant-numeric: tabular-nums;
     justify-content: space-between;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
+    mix-blend-mode: luminosity;
+    .titleContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        // gap: var(--space-4);
+    }
 }
 .indicators {
     display: flex;
     gap: var(--space-4);
     max-width: 10ch;
-    margin-top: 2px;
+    // margin-top: 2px;
     overflow-x: scroll;
-    padding-inline: var(--space-16) var(--space-12);
+    padding-inline: var(--space-6) var(--space-8);
     
     // Hide scrollbar for webkit browsers (Chrome, Safari, Edge)
     &::-webkit-scrollbar {
@@ -48,25 +55,11 @@
     pointer-events: none;
     
     // Add gradient mask for fade effect on edges
-    mask: linear-gradient(
-        to right,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-        );
-        -webkit-mask: linear-gradient(
-            to right,
-            transparent 0%,
-            black 20%,
-            black 80%,
-            transparent 100%
-            );
+    
         }
         
         .indicatorText {
             line-height: 1;
-            color: var(--color-fg-inverted);
             font-size: 12px !important;
             
             display: flex;
@@ -84,7 +77,6 @@
 }
 
 .title {
-    color: var(--color-fg-inverted);
     line-height: 1;
     text-align: center;
 

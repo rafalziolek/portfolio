@@ -61,9 +61,18 @@ export default function CarouselTextOverlay({ carousels }) {
             exit={{ opacity: 0, scale: 0.99 }}
             transition={{ duration: 0.2 }}
           >
-            <Text type="superscript" className={styles.title} font="serif">
-              {currentConfig.title}
-            </Text>
+            <div className={styles.titleContainer}>
+              <Text type="superscript" className={styles.title} font="serif">
+                {currentConfig.title}
+              </Text>
+              <Text
+                type="superscript"
+                className={styles.title}
+                color="secondary"
+              >
+                2025
+              </Text>
+            </div>
             <div className={styles.indicators}>
               <Text type="superscript" className={styles.indicatorText}>
                 {currentData.currentImage + 1} / {currentData.totalImages}
