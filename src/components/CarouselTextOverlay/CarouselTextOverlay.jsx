@@ -66,7 +66,7 @@ export default function CarouselTextOverlay({ carousels }) {
                 {currentConfig.title}
               </Text>
               <div className={styles.indicators}>
-                <Text type="superscript" className={styles.indicatorText}>
+                <Text type="body" className={styles.indicatorText}>
                   {currentData.currentImage + 1} / {currentData.totalImages}
                 </Text>
               </div>

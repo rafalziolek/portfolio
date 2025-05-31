@@ -1,8 +1,9 @@
 .textOverlay {
-    // background-blend-mode: plus-lighter;
-    background-color: var(--color-bg);
-    backdrop-filter: blur(10px);
-    border-radius: .5rem;
+    // background-blend-mode: difference;
+    // border-top: 1px dotted var(--color-fg);
+    background-color: var(--color-bg-inverted);
+    // backdrop-filter: blur(10px);
+    border-radius: .3125rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,7 +18,7 @@
     width: fit-content;
     z-index: 100;
     pointer-events: none;
-    width: 18rem;
+    width: 27rem;
 }
 
 .content {
@@ -30,25 +31,39 @@
     flex-direction: column;
     mix-blend-mode: luminosity;
     .titleContainer {
+
+        backdrop-filter: blur(10px);
         display: flex;
         flex-direction: row;
-        align-items: baseline;
+        align-items: center;
         width: 100%;
         justify-content: space-between;
         // gap: var(--space-4);
     }
     .description {
+        color: var(--color-fg-inverted) !important;
+        // padding: var(--space-4) var(--space-6);
+        // border-radius: 999px;
+        // background-color: var(--color-bg-inverted) !important;
+        width: fit-content;
+        margin-top: 2px;
+        backdrop-filter: blur(10px);
         font-size: var(--font-size-superscript-small) !important;
+        // color: var(--color-fg-inverted) !important;
         font-family: var(--font-family-sans) !important;
     }
 }
 .indicators {
+    // background-color: var(--color-bg-inverted) !important;
+    // border-radius: 999px;
+    padding: 0 var(--space-8);
+    color: var(--color-fg-inverted) !important;
     display: flex;
     gap: var(--space-4);
     max-width: 10ch;
     // margin-top: 2px;
     overflow-x: scroll;
-    padding-inline: var(--space-6) var(--space-8);
+    // padding-inline: var(--space-6) var(--space-8);
     
     // Hide scrollbar for webkit browsers (Chrome, Safari, Edge)
     &::-webkit-scrollbar {
@@ -66,6 +81,7 @@
         }
         
         .indicatorText {
+        
             line-height: 1;
             font-size: 12px !important;
             
@@ -84,7 +100,11 @@
 }
 
 .title {
+    // background-color: var(--color-bg-inverted) !important;
+    // border-radius: 4px;
+    // padding: 2px 0;
     line-height: 1;
     text-align: center;
-font-weight: var(--font-weight-bold) !important;
+    color: var(--color-fg-inverted) !important;
+    // font-weight: var(--font-weight-bold) !important;
 } 

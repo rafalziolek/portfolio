@@ -33,7 +33,7 @@ max-width: 30rem;
   // align-items: stretch;
   justify-content: center;
   display: flex;
-  // gap: 1px;
+  gap: var(--space-16);
   width: 100%;
   font-size: var(--font-size-body);
   align-items: baseline;

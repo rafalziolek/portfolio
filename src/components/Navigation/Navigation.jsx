@@ -55,13 +55,11 @@ export default function Navigation() {
           label="Works"
           isActive={isActive("/") || includesPath("/works")}
         />
-        ,&nbsp;&nbsp;
         <NavigationItem
           href="/connect"
           label="Connect"
           isActive={isActive("/connect")}
         />
-        ,&nbsp;&nbsp;
         <NavigationItem
           href="/about"
           label="About"
