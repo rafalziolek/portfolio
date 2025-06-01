@@ -61,13 +61,26 @@ export default function CarouselTextOverlay({ carousels }) {
           exit={{ opacity: 0, scale: 0.99 }}
           transition={{ duration: 0.2 }}
         >
-          <Text type="superscript" className={styles.title}>
-            {currentConfig.title}
-          </Text>
-          <div className={styles.indicators}>
-            <Text type="superscript-small" className={styles.indicatorText}>
-              {currentData.currentImage + 1} of {currentData.totalImages}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "var(--space-12)",
+            }}
+          >
+            <Text type="superscript" className={styles.title}>
+              {currentConfig.title}
             </Text>
+            <div className={styles.indicators}>
+              <Text
+                type="superscript-small"
+                className={styles.indicatorText}
+                // uppercase
+              >
+                {currentData.currentImage + 1} / {currentData.totalImages}
+              </Text>
+            </div>
           </div>
           <div
             style={{

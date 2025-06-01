@@ -12,7 +12,7 @@ export default function ProjectLinkGroup({ projects, groupId, title }) {
           type="superscript-small"
           tag="h2"
           uppercase
-          // font="serif"
+          // font="mono"
           // color="secondary"
         >
           {title}

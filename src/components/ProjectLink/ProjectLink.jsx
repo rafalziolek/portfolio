@@ -68,7 +68,7 @@ export default function ProjectLink({
       <Link
         href={href}
         onClick={handleMouseLeave}
-        style={{ "--hover-color": hoverColor }}
+        // style={{ "--hover-color": hoverColor }}
         className={clsx(
           styles.container,
           !isActive &&

@@ -13,6 +13,7 @@ import Image from "next/image";
 import { components } from "@/components/MDXComponents/MDXComponents";
 import { parsePost } from "@/utils";
 import { Button } from "@/components/Button/Button";
+
 export default async function CaseStudyPage({ params }) {
   const { slug } = await params;
   const { frontmatter, content } = await parsePost(slug);
@@ -22,67 +23,78 @@ export default async function CaseStudyPage({ params }) {
     <>
       <header className={styles.headerContainer}>
         <div className={styles.headerContent}>
-          <Text tag="h1" type="body">
+          <Text tag="h1" type="body" className={styles.title}>
+            {frontmatter.title}
+          </Text>
+          <Text tag="span" type="superscript">
             {frontmatter.abstract}
           </Text>
         </div>
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
             gap: "24px",
             justifyContent: "start",
             width: "100%",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "4px",
-              alignItems: "flex-start",
-            }}
-          >
-            <Text tag="span" type="superscript-small" font="serif">
+          <div className={styles.detailItem}>
+            <Text
+              tag="h4"
+              type="superscript-small"
+              uppercase
+              className={styles.detailHeader}
+            >
               Role
             </Text>
-            <Text tag="span" type="superscript">
+            <Text
+              tag="span"
+              type="superscript"
+              className={styles.detailDescription}
+            >
               Designer
             </Text>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "4px",
-              alignItems: "flex-start",
-            }}
-          >
-            <Text tag="span" type="superscript-small" font="serif">
+          <div className={styles.detailItem}>
+            <Text
+              tag="h4"
+              type="superscript-small"
+              uppercase
+              className={styles.detailHeader}
+            >
               Company
             </Text>
-            <Text tag="span" type="superscript">
+            <Text
+              tag="span"
+              type="superscript"
+              className={styles.detailDescription}
+            >
               {company}
             </Text>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "4px",
-              alignItems: "flex-start",
-            }}
-          >
-            <Text tag="span" type="superscript-small" font="serif">
+          <div className={styles.detailItem}>
+            <Text
+              tag="h4"
+              type="superscript-small"
+              uppercase
+              className={styles.detailHeader}
+            >
               Year
             </Text>
-            <Text tag="span" type="superscript">
+            <Text
+              tag="span"
+              type="superscript"
+              className={styles.detailDescription}
+            >
               {year}
             </Text>
           </div>
         </div>
       </header>
-      <MDXRemote source={content} components={components} />
+      <div className={styles.content}>
+        <MDXRemote source={content} components={components} />
+      </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import "@/app/globals.scss";
-import { Shippori_Mincho_B1 } from "next/font/google";
+// import { Shippori_Mincho_B1 } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/react";
@@ -12,12 +12,12 @@ import Text from "@/components/Text/Text";
 import ProjectCarousel from "@/components/ProjectThumbnail/ProjectCarousel";
 import Navigation from "@/components/Navigation/Navigation";
 
-const shipporiMincho = Shippori_Mincho_B1({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-shippori-mincho",
-});
+// const shipporiMincho = Shippori_Mincho_B1({
+//   weight: ["400", "500", "600", "700"],
+//   subsets: ["latin"],
+//   display: "swap",
+//   variable: "--font-shippori-mincho",
+// });
 
 export const metadata = {
   title: "Rafał Ziółek — Product Designer & Photographer",
@@ -36,10 +36,7 @@ export default function RootLayout({ children }) {
     })
     .replace(" at ", ", ");
   return (
-    <html
-      lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${shipporiMincho.variable}`}
-    >
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} `}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
