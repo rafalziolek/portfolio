@@ -1,13 +1,13 @@
  .navigation {
   color: var(--color-fg);
   // mix-blend-mode: difference;
-  // background-color: var(--color-bg);
+  background-color: var(--color-bg);
   // font-family: var(--font-shippori-mincho);
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
-  padding: var(--space-12) 0;
+  padding: var(--space-8) 0;
   margin-inline: auto;
   gap: var(--space-8);
 position: fixed;
@@ -15,11 +15,11 @@ top:0;
 left: 0;
 right: 0;
 z-index: 1000;
-max-width: 30rem;
+// max-width: 30rem;
 // width: fit-content;
   // padding-block: var(--space-8);
-  border-radius: 999px;
-  // width: 100%;
+  // border-radius: 999px;
+  width: 100%;
   font-weight: var(--font-weight-base);
   // color: var(--color-fg-muted);
  
@@ -27,7 +27,7 @@ max-width: 30rem;
 
  .navigationItems {
   // backdrop-filter: blur(10px);
-  // max-width: 30rem;
+  max-width: 27rem;
   // text-align: center;
   // flex-direction: row;
   // align-items: stretch;

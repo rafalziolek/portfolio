@@ -2,7 +2,7 @@
     display: flex;
     grid-column: 1 / -1;
     flex-direction: column;
-    gap: var(--space-32);
+    gap: var(--space-8);
     scroll-snap-type: y mandatory;
 }
 

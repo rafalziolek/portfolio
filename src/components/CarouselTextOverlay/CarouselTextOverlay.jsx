@@ -67,17 +67,25 @@ export default function CarouselTextOverlay({ carousels }) {
               </Text>
               <div className={styles.indicators}>
                 <Text type="body" className={styles.indicatorText}>
-                  {currentData.currentImage + 1} / {currentData.totalImages}
+                  {currentData.currentImage + 1} of {currentData.totalImages}
+                </Text>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-end",
+                }}
+              >
+                <Text
+                  type="superscript"
+                  className={styles.description}
+                  color="secondary"
+                >
+                  2025 / Personal
                 </Text>
               </div>
             </div>
-            <Text
-              type="superscript"
-              className={styles.description}
-              color="secondary"
-            >
-              2025
-            </Text>
           </motion.div>
         </div>
       )}
