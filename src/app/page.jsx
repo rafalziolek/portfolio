@@ -14,7 +14,7 @@ import { Video } from "@/components/Video/Video";
 export default function ProjectsPage({ children }) {
   return (
     <>
-      <hol className={styles.content}>
+      <div className={styles.content}>
         {/* <AnimatedSection> */}
         <Intro />
         <Projects />
@@ -22,7 +22,7 @@ export default function ProjectsPage({ children }) {
           <Video />
         </div>
         {/* </AnimatedSection> */}
-      </hol>
+      </div>
       {/* <ProjectCarousel /> */}
       {/* <ThumbnailStrip2 /> */}
       {/* <ConditionalThumbnailStrip /> */}

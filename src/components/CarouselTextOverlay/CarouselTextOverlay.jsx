@@ -53,46 +53,38 @@ export default function CarouselTextOverlay({ carousels }) {
   return (
     <AnimatePresence mode="wait">
       {currentConfig && currentData && !shouldHide && (
-        <div key={activeCarousel} className={styles.textOverlay}>
-          <motion.div
-            className={styles.content}
-            initial={{ opacity: 0, scale: 0.99 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.99 }}
-            transition={{ duration: 0.2 }}
+        <motion.div
+          key={activeCarousel}
+          className={styles.content + " " + styles.textOverlay}
+          initial={{ opacity: 0, scale: 0.99 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.99 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Text type="superscript" className={styles.title}>
+            {currentConfig.title}
+          </Text>
+          <div className={styles.indicators}>
+            <Text type="superscript-small" className={styles.indicatorText}>
+              {currentData.currentImage + 1} of {currentData.totalImages}
+            </Text>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-end",
+            }}
           >
-            <div className={styles.titleContainer}>
-              <Text type="superscript" className={styles.title} font="serif">
-                {currentConfig.title}
-              </Text>
-              <div className={styles.indicators}>
-                <Text
-                  type="superscript-small"
-                  font="serif"
-                  className={styles.indicatorText}
-                >
-                  {currentData.currentImage + 1} of {currentData.totalImages}
-                </Text>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-end",
-                }}
-              >
-                <Text
-                  type="superscript"
-                  className={styles.description}
-                  color="secondary"
-                  font="serif"
-                >
-                  2025 / Personal
-                </Text>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+            <Text
+              type="superscript"
+              className={styles.description}
+              color="secondary"
+            >
+              2025 / Personal
+            </Text>
+          </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );

@@ -9,10 +9,10 @@ export default function ProjectLinkGroup({ projects, groupId, title }) {
       <div className={styles["project-group"]}>
         <Text
           className={styles["project-heading"]}
-          type="superscript"
+          type="superscript-small"
           tag="h2"
-          // uppercase
-          font="serif"
+          uppercase
+          // font="serif"
           // color="secondary"
         >
           {title}

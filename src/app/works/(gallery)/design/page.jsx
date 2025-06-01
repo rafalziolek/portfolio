@@ -5,6 +5,7 @@ import styles from "./page.module.scss";
 import { Button } from "@/components/Button/Button";
 import { CornerUpLeft } from "lucide-react";
 import images from "./config";
+
 export default async function DesignPage() {
   return (
     <>

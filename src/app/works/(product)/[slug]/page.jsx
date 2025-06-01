@@ -29,9 +29,9 @@ export default async function CaseStudyPage({ params }) {
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
             gap: "24px",
-            justifyContent: "center",
+            justifyContent: "start",
             width: "100%",
           }}
         >
@@ -40,27 +40,45 @@ export default async function CaseStudyPage({ params }) {
               display: "flex",
               flexDirection: "column",
               gap: "4px",
-              alignItems: "center",
+              alignItems: "flex-start",
             }}
           >
-            <Text tag="span" type="caption" font="serif">
+            <Text tag="span" type="superscript-small" font="serif">
               Role
             </Text>
-            <Text tag="span">Designer</Text>
+            <Text tag="span" type="superscript">
+              Designer
+            </Text>
           </div>
-
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: "4px",
-              alignItems: "center",
+              alignItems: "flex-start",
             }}
           >
-            <Text tag="span" type="caption" font="serif">
+            <Text tag="span" type="superscript-small" font="serif">
               Company
             </Text>
-            <Text tag="span">{company}</Text>
+            <Text tag="span" type="superscript">
+              {company}
+            </Text>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+              alignItems: "flex-start",
+            }}
+          >
+            <Text tag="span" type="superscript-small" font="serif">
+              Year
+            </Text>
+            <Text tag="span" type="superscript">
+              {year}
+            </Text>
           </div>
         </div>
       </header>

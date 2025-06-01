@@ -8,32 +8,10 @@ import Link from "next/link";
 import clsx from "clsx";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import EmailButton from "../EmailButton/EmailButton";
+import NavigationItem from "./NavigationItem";
 
 export default function Navigation() {
   const pathname = usePathname();
-  // const { scrollY } = useScroll();
-  // const [small, setSmall] = React.useState(false);
-  // const lastScrollY = React.useRef(null);
-
-  // console.log(small);
-
-  // useMotionValueEvent(scrollY, "change", (latest) => {
-  //   if (lastScrollY.current === null) {
-  //     lastScrollY.current = latest;
-  //     return;
-  //   }
-
-  //   const isScrollingDown = latest > lastScrollY.current;
-  //   const isScrollingUp = latest < lastScrollY.current;
-
-  //   if (isScrollingDown) {
-  //     setSmall(true);
-  //   } else if (isScrollingUp) {
-  //     setSmall(false);
-  //   }
-
-  //   lastScrollY.current = latest;
-  // });
 
   const isActive = (path) => pathname === path;
   const includesPath = (path) => pathname.includes(path);
@@ -67,16 +45,5 @@ export default function Navigation() {
         />
       </div>
     </motion.div>
-  );
-}
-
-function NavigationItem({ href, label, isActive }) {
-  return (
-    <Link
-      href={href}
-      className={clsx(styles.navigationItem, isActive && styles.active)}
-    >
-      {label}
-    </Link>
   );
 }
