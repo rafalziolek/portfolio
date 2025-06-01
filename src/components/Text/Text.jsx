@@ -11,6 +11,7 @@ const styleMap = {
   "caption-emphasis": styles.captionEmphasis,
   display: styles.display,
   superscript: styles.superscript,
+  "superscript-small": styles["superscript-small"],
 };
 
 const Text = forwardRef(function Text(

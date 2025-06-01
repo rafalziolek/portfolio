@@ -104,8 +104,8 @@ export default function ProjectLink({
           )} */}
           <Text
             tag="span"
-            type="superscript"
-            // font="serif"
+            type="superscript-small"
+            font="serif"
             className={styles.prepend}
           >
             {prepend}

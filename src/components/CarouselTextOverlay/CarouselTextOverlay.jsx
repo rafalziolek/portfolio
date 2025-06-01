@@ -66,7 +66,11 @@ export default function CarouselTextOverlay({ carousels }) {
                 {currentConfig.title}
               </Text>
               <div className={styles.indicators}>
-                <Text type="body" className={styles.indicatorText}>
+                <Text
+                  type="superscript-small"
+                  font="serif"
+                  className={styles.indicatorText}
+                >
                   {currentData.currentImage + 1} of {currentData.totalImages}
                 </Text>
               </div>
@@ -81,6 +85,7 @@ export default function CarouselTextOverlay({ carousels }) {
                   type="superscript"
                   className={styles.description}
                   color="secondary"
+                  font="serif"
                 >
                   2025 / Personal
                 </Text>

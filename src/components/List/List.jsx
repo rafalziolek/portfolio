@@ -11,7 +11,7 @@ export default function List({ heading, children, align }) {
         tag="h4"
         type="superscript"
         // uppercase
-        // font="serif"
+        font="serif"
         className={styles.listTitle}
       >
         {heading}

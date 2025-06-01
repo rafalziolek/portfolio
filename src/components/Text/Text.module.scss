@@ -78,6 +78,13 @@
   letter-spacing: -0.01em;
 }
 
+.superscript-small {
+  font-size: var(--font-size-superscript-small);
+  font-weight: var(--font-weight-base);
+  line-height: var(--line-height-base);
+  letter-spacing: -0.01em;
+}
+
 .text {
   &.text-primary {
     color: var(--color-fg);
