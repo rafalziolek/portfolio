@@ -21,6 +21,10 @@
   letter-spacing: -0.01em;
   // text-transform: uppercase;
   &:hover {
+    background-color: var(--color-bg-secondary);
+    @media (prefers-color-scheme: dark) {
+        background-color: rgba($color: #292929, $alpha: 0.8) !important;
+    }
     // background-color: var(--color-bg-inverted);
     // color: var(--color-fg);
     // text-decoration: underline;
@@ -42,7 +46,7 @@
     // text-decoration-thickness: 1px;
     // text-decoration-style: dotted;
 
-    background-color: #111ced;
+    background-color: var(--color-bg-inverted);
     box-shadow: none
   }
 } 

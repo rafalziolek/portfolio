@@ -32,7 +32,7 @@ export default async function CaseStudyPage({ params }) {
           {/* <Text tag="h1" type="superscript" className={styles.title}>
             {frontmatter.title}
           </Text> */}
-          <Text tag="span" type="superscript">
+          <Text tag="span" type="body">
             {frontmatter.abstract}
           </Text>
         </div>
@@ -55,11 +55,7 @@ export default async function CaseStudyPage({ params }) {
             >
               Role
             </Text>
-            <Text
-              tag="span"
-              type="superscript"
-              className={styles.detailDescription}
-            >
+            <Text tag="span" type="body" className={styles.detailDescription}>
               Designer
             </Text>
           </div>
@@ -72,11 +68,7 @@ export default async function CaseStudyPage({ params }) {
             >
               Company
             </Text>
-            <Text
-              tag="span"
-              type="superscript"
-              className={styles.detailDescription}
-            >
+            <Text tag="span" type="body" className={styles.detailDescription}>
               {company}
             </Text>
           </div>
@@ -89,11 +81,7 @@ export default async function CaseStudyPage({ params }) {
             >
               Year
             </Text>
-            <Text
-              tag="span"
-              type="superscript"
-              className={styles.detailDescription}
-            >
+            <Text tag="span" type="body" className={styles.detailDescription}>
               {year}
             </Text>
           </div>
@@ -106,13 +94,13 @@ export default async function CaseStudyPage({ params }) {
             >
               Credits
             </Text>
-            <Text tag="span" type="superscript">
+            <Text tag="span" type="body">
               Josep Martins
             </Text>
-            <Text tag="span" type="superscript">
+            <Text tag="span" type="body">
               Juan Sancho
             </Text>
-            <Text tag="span" type="superscript">
+            <Text tag="span" type="body">
               Nikki Plyem
             </Text>
           </div>
