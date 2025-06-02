@@ -1,7 +1,7 @@
 .connectContainer {
   /* Add styles for the connect section here */
   display: flex;
-  margin-top: 8rem;
+  margin-top: 1rem;
   flex: 1;
   flex-direction: column;
   align-self: flex-start;
@@ -12,15 +12,20 @@
 /* Styles for the unordered list */
 .socialList {
   flex: 1;
-  width: 100%;
+  width: fit-content;
   list-style: none; /* Remove default bullet points */
   padding: 0; /* Remove default padding */
   margin: 0; /* Remove default margin */
   display: flex; /* Arrange items in a row */
-  align-items: center;
-  gap: 4px; /* Space between list items */
+  // align-items: center;
+  gap: var(--space-4); /* Space between list items */
   flex-direction: column;
   margin-bottom: var(--space-16);
+  .socialListItem {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
 }
 
 @media (max-width: 768px) {

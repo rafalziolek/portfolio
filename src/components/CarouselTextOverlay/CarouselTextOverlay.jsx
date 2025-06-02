@@ -64,25 +64,25 @@ export default function CarouselTextOverlay({ carousels }) {
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              gap: "var(--space-12)",
+              flexDirection: "column",
+              alignItems: "flex-end",
+              gap: "var(--space-4)",
             }}
           >
             <Text type="body" className={styles.title}>
-              {currentConfig.title}
+              {currentConfig.title} / 2025
             </Text>
-            <div className={styles.indicators}>
-              <Text
-                type="superscript"
-                className={styles.indicatorText}
-                // uppercase
-              >
-                {currentData.currentImage + 1} of {currentData.totalImages}
-              </Text>
-            </div>
           </div>
-          <div
+          <div className={styles.indicators}>
+            <Text
+              type="body"
+              className={styles.indicatorText}
+              // uppercase
+            >
+              {currentData.currentImage + 1} of {currentData.totalImages}
+            </Text>
+          </div>
+          {/* <div
             style={{
               display: "flex",
               flexDirection: "column",
@@ -90,9 +90,9 @@ export default function CarouselTextOverlay({ carousels }) {
             }}
           >
             <Text type="body" className={styles.description} color="secondary">
-              2025 / Personal
+              / Personal
             </Text>
-          </div>
+          </div> */}
         </motion.div>
       )}
     </AnimatePresence>

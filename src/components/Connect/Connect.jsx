@@ -11,17 +11,31 @@ const socialLinks = [
   {
     name: "Instagram",
     href: "https://www.instagram.com/rafal.ziolek",
+    tag: "/rafal.ziolek",
     external: true,
   },
-  { name: "GitHub", href: "https://github.com/rafalziolek", external: true },
+  {
+    name: "GitHub",
+    tag: "/rafalziolek",
+    href: "https://github.com/rafalziolek",
+    external: true,
+  },
   {
     name: "Twitter",
     href: "https://twitter.com/rafal_ziolek",
+    tag: "/rafal_ziolek",
     external: true,
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/rafal-ziolek/",
+    tag: "/rafal-ziolek",
+    external: true,
+  },
+  {
+    name: "Are.na",
+    href: "https://www.are.na/rafal-ziolek",
+    tag: "/rafal-ziolek",
     external: true,
   },
 ];
@@ -88,6 +102,9 @@ const Connect = () => {
           <EmailButton label="Email" copyText="rafal.ziolek@icloud.com" />
           {socialLinks.map((link) => (
             <li key={link.name} className={styles.socialListItem}>
+              {/* <Text tag="p" type="superscript-small" uppercase>
+                {link.name}
+              </Text> */}
               <StyledLink
                 href={link.href}
                 external={link.external}

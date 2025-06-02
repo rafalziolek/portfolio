@@ -15,7 +15,7 @@ export default function ImageCarousel({ images, id, title }) {
   });
 
   // Spring animations for smooth movement
-  const springConfig = { damping: 25, stiffness: 150, mass: 1.2 };
+  const springConfig = { damping: 40, stiffness: 150, mass: 1.5 };
   const mouseX = useSpring(0, springConfig);
   const mouseY = useSpring(0, springConfig);
 

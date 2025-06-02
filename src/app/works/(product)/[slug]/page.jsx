@@ -10,113 +10,30 @@ import {
 
 import Text from "@/components/Text/Text";
 import styles from "./page.module.scss";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
-import { components } from "@/components/MDXComponents/MDXComponents";
-import { parsePost } from "@/utils";
+import { parsePost, getProjectImages } from "@/utils";
 import { Button } from "@/components/Button/Button";
+import CaseStudyClient from "./CaseStudyClient";
 
 export default async function CaseStudyPage({ params }) {
   const { slug } = await params;
-  const { frontmatter, content } = await parsePost(slug);
-  const company = frontmatter.details[0].items[0].text;
-  const year = frontmatter.details[1].items[0].text;
+  console.log("Slug:", slug);
+
+  const { frontmatter } = await parsePost(slug);
+  const images = await getProjectImages(slug);
+
+  console.log("Images found:", images.length);
+  console.log("Images:", images);
+
+  const company = frontmatter.details?.[0]?.items?.[0]?.text || "";
+  const year = frontmatter.details?.[1]?.items?.[0]?.text || "";
+
   return (
-    <>
-      <div className={styles.content}>
-        <MDXRemote source={content} components={components} />
-      </div>
-      <header className={styles.headerContainer}>
-        <div className={styles.headerContent}>
-          <Text tag="span" type="superscript-small" uppercase>
-            Project information
-          </Text>
-          {/* <Text tag="h1" type="superscript" className={styles.title}>
-            {frontmatter.title}
-          </Text> */}
-          <Text tag="span" type="body">
-            {frontmatter.abstract}
-          </Text>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--space-48)",
-            justifyContent: "start",
-            // width: "100%",
-            flex: "1 2 0",
-          }}
-        >
-          <div className={styles.detailItem}>
-            <Text
-              tag="h4"
-              type="superscript-small"
-              uppercase
-              className={styles.detailHeader}
-            >
-              Role
-            </Text>
-            <Text tag="span" type="body" className={styles.detailDescription}>
-              Designer
-            </Text>
-          </div>
-          <div className={styles.detailItem}>
-            <Text
-              tag="h4"
-              type="superscript-small"
-              uppercase
-              className={styles.detailHeader}
-            >
-              Company
-            </Text>
-            <Text tag="span" type="body" className={styles.detailDescription}>
-              {company}
-            </Text>
-          </div>
-          <div className={styles.detailItem}>
-            <Text
-              tag="h4"
-              type="superscript-small"
-              uppercase
-              className={styles.detailHeader}
-            >
-              Year
-            </Text>
-            <Text tag="span" type="body" className={styles.detailDescription}>
-              {year}
-            </Text>
-          </div>
-          <div className={styles.detailItem}>
-            <Text
-              tag="h4"
-              type="superscript-small"
-              uppercase
-              className={styles.detailHeader}
-            >
-              Credits
-            </Text>
-            <Text tag="span" type="body">
-              Josep Martins
-            </Text>
-            <Text tag="span" type="body">
-              Juan Sancho
-            </Text>
-            <Text tag="span" type="body">
-              Nikki Plyem
-            </Text>
-          </div>
-        </div>
-      </header>
-      <div className={styles.bottomDescription}>
-        <Text type="body" className={styles.title}>
-          {frontmatter.title}
-        </Text>
-        <Button lea>
-          Description&nbsp;
-          <ArrowDown />
-        </Button>
-      </div>
-    </>
+    <CaseStudyClient
+      frontmatter={frontmatter}
+      images={images}
+      company={company}
+      year={year}
+    />
   );
 }

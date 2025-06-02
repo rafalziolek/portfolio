@@ -14,6 +14,7 @@ export default function Projects() {
         title="Product Design"
       />
       <ProjectLinkGroup
+
         groupId="other"
         projects={otherProjects}
         title="Other"
