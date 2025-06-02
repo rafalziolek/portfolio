@@ -20,7 +20,7 @@ export default function ImageCarousel({ images, id, title }) {
   const mouseY = useSpring(0, springConfig);
 
   // Helper function to check if device supports hover (desktop)
-  const supportsHover = () => window.matchMedia("(hover: hover)").matches;
+  const supportsHover = () => window?.matchMedia("(hover: hover)").matches;
 
   // Dispatch custom event when carousel comes into view or image changes
   React.useEffect(() => {
