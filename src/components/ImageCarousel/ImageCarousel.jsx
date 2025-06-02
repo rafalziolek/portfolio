@@ -19,6 +19,9 @@ export default function ImageCarousel({ images, id, title }) {
   const mouseX = useSpring(0, springConfig);
   const mouseY = useSpring(0, springConfig);
 
+  // Helper function to check if device supports hover (desktop)
+  const supportsHover = () => window.matchMedia("(hover: hover)").matches;
+
   // Dispatch custom event when carousel comes into view or image changes
   React.useEffect(() => {
     if (isInView && typeof window !== "undefined") {
@@ -39,7 +42,7 @@ export default function ImageCarousel({ images, id, title }) {
   };
 
   const handleMouseMove = (e) => {
-    if (!ref.current) return;
+    if (!ref.current || !supportsHover()) return;
 
     const rect = ref.current.getBoundingClientRect();
     const centerX = rect.width / 2;
@@ -61,10 +64,12 @@ export default function ImageCarousel({ images, id, title }) {
   };
 
   const handleMouseEnter = () => {
+    if (!supportsHover()) return;
     setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
+    if (!supportsHover()) return;
     setIsHovered(false);
     mouseX.set(0);
     mouseY.set(0);
@@ -87,8 +92,8 @@ export default function ImageCarousel({ images, id, title }) {
             className={styles.imageWrapper}
             style={{
               opacity: currentImage === index ? 1 : 0,
-              x: currentImage === index ? mouseX : 0,
-              y: currentImage === index ? mouseY : 0,
+              x: currentImage === index && supportsHover() ? mouseX : 0,
+              y: currentImage === index && supportsHover() ? mouseY : 0,
             }}
             transition={{
               opacity: { duration: 0.3, ease: "easeOut" },
