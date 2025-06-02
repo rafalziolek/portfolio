@@ -84,7 +84,7 @@ export default function ImageCarousel({ images, id, title }) {
         {images.map((image, index) => (
           <motion.div
             key={index}
-            className={styles.image}
+            className={styles.imageWrapper}
             style={{
               opacity: currentImage === index ? 1 : 0,
               x: currentImage === index ? mouseX : 0,
@@ -99,7 +99,7 @@ export default function ImageCarousel({ images, id, title }) {
               alt={image.alt}
               width={image.width}
               height={image.height}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              className={styles.image}
             />
           </motion.div>
         ))}

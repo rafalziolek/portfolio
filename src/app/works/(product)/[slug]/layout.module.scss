@@ -22,7 +22,8 @@
     .caseStudyLayout {
         margin-top: var(--space-80);
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: var(--space-16);
         grid-column: 1/4;
         // grid-column: 7 / 18;
         // max-width: 60ch;

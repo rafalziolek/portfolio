@@ -7,11 +7,6 @@ function Colophon() {
     <div className={styles.colophon}>
       <List heading="Typography" align="center">
         <List.Item>Helvetica Neue</List.Item>
-        <List.Item>
-          <Text type="body" font="serif">
-            Shippori Mincho B1
-          </Text>
-        </List.Item>
       </List>
       <List heading="Built with" align="center">
         <List.Item>Next.js</List.Item>

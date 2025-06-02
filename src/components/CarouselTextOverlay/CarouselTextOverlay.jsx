@@ -69,16 +69,16 @@ export default function CarouselTextOverlay({ carousels }) {
               gap: "var(--space-12)",
             }}
           >
-            <Text type="superscript" className={styles.title}>
+            <Text type="body" className={styles.title}>
               {currentConfig.title}
             </Text>
             <div className={styles.indicators}>
               <Text
-                type="superscript-small"
+                type="superscript"
                 className={styles.indicatorText}
                 // uppercase
               >
-                {currentData.currentImage + 1} / {currentData.totalImages}
+                {currentData.currentImage + 1} of {currentData.totalImages}
               </Text>
             </div>
           </div>
@@ -89,11 +89,7 @@ export default function CarouselTextOverlay({ carousels }) {
               alignItems: "flex-end",
             }}
           >
-            <Text
-              type="superscript"
-              className={styles.description}
-              color="secondary"
-            >
+            <Text type="body" className={styles.description} color="secondary">
               2025 / Personal
             </Text>
           </div>

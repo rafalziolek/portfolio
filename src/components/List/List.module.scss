@@ -5,11 +5,12 @@
     min-width: fit-content;
     white-space: nowrap;
     align-items: flex-start;
+    gap: var(--space-4);
     &.center {
         align-items: center;
     }
     .listTitle {
-        margin-bottom: var(--space-16);
+        margin-bottom: var(--space-12);
         // font-weight: var(--font-weight-bold) !important;
     }
     li {

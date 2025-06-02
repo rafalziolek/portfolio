@@ -77,14 +77,20 @@
     height: fit-content;
 }
 
+.imageWrapper {
+    display: grid;
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+
+}
+
 .image {
-    max-height: 80vh;
-    max-width: 80vw;
+    max-height: 85vh;
+    max-width: 85vw;
     height: auto;
     width: auto;
     // object-fit: cover;
-    grid-column: 1 / 1;
-    grid-row: 1 / 1;
+
     // border: 32px solid white
 }
 

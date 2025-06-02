@@ -21,11 +21,17 @@ export default async function CaseStudyPage({ params }) {
   const year = frontmatter.details[1].items[0].text;
   return (
     <>
+      <div className={styles.content}>
+        <MDXRemote source={content} components={components} />
+      </div>
       <header className={styles.headerContainer}>
         <div className={styles.headerContent}>
-          <Text tag="h1" type="body" className={styles.title}>
-            {frontmatter.title}
+          <Text tag="span" type="superscript-small" uppercase>
+            Project information
           </Text>
+          {/* <Text tag="h1" type="superscript" className={styles.title}>
+            {frontmatter.title}
+          </Text> */}
           <Text tag="span" type="superscript">
             {frontmatter.abstract}
           </Text>
@@ -34,9 +40,10 @@ export default async function CaseStudyPage({ params }) {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "24px",
+            gap: "var(--space-48)",
             justifyContent: "start",
-            width: "100%",
+            // width: "100%",
+            flex: "1 2 0",
           }}
         >
           <div className={styles.detailItem}>
@@ -90,11 +97,27 @@ export default async function CaseStudyPage({ params }) {
               {year}
             </Text>
           </div>
+          <div className={styles.detailItem}>
+            <Text
+              tag="h4"
+              type="superscript-small"
+              uppercase
+              className={styles.detailHeader}
+            >
+              Credits
+            </Text>
+            <Text tag="span" type="superscript">
+              Josep Martins
+            </Text>
+            <Text tag="span" type="superscript">
+              Juan Sancho
+            </Text>
+            <Text tag="span" type="superscript">
+              Nikki Plyem
+            </Text>
+          </div>
         </div>
       </header>
-      <div className={styles.content}>
-        <MDXRemote source={content} components={components} />
-      </div>
     </>
   );
 }
