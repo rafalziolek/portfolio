@@ -33,17 +33,18 @@ export default function Navigation() {
           label="Works"
           isActive={isActive("/") || includesPath("/works")}
         />
-        <NavigationItem
-          href="/connect"
-          label="Connect"
-          isActive={isActive("/connect")}
-        />
+
         <NavigationItem
           href="/about"
           label="About"
           isActive={isActive("/about")}
         />
       </div>
+      <NavigationItem
+        href="/connect"
+        label="Connect"
+        isActive={isActive("/connect")}
+      />
     </motion.div>
   );
 }

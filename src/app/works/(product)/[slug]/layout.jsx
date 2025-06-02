@@ -14,9 +14,6 @@ export default async function CaseStudyLayout({ children, params }) {
   const year = frontmatter.details[1].items[0].text;
   return (
     <>
-      {/* <aside className={styles.aside}>
-        <Navigation />
-      </aside> */}
       <div className={styles.caseStudyLayout}>{children}</div>
       {/* <FadeOut /> */}
     </>

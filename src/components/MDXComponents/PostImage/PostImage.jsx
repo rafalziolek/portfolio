@@ -41,7 +41,6 @@ export default function PostImage(props) {
         <motion.div
           layoutId={`image-${props.src}-wrapper`}
           className={styles.imageWrapper}
-          style={{ borderRadius: "6px" }}
         >
           {/* Original Image */}
           <MotionImage
@@ -49,10 +48,10 @@ export default function PostImage(props) {
             alt={props.alt}
             {...props}
             className={styles.image}
-            style={{ borderRadius: "2px" }} // Consistent styling
+            // style={{ borderRadius: "2px" }} // Consistent styling
           />
           {/* Zoom button on the original image */}
-          <Button
+          {/* <Button
             className={styles.zoomButton}
             onClick={(e) => {
               e.stopPropagation(); // Prevent wrapper click if wrapper has onClick
@@ -61,7 +60,7 @@ export default function PostImage(props) {
             aria-label="Zoom image"
           >
             <ZoomIn size={16} strokeWidth={2.5} style={{ color: "white" }} />
-          </Button>
+          </Button> */}
         </motion.div>
       </AnimatePresence>
       {/* AnimatePresence for backdrop and zoomed image */}

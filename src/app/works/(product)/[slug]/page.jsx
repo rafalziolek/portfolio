@@ -1,9 +1,11 @@
 import StyledLink from "@/components/StyledLink/StyledLink";
 import {
+  ArrowDown,
   ArrowLeft,
   ArrowLeftCircle,
   ArrowLeftSquare,
   ChevronLeft,
+  CirclePlus,
 } from "lucide-react";
 
 import Text from "@/components/Text/Text";
@@ -106,6 +108,15 @@ export default async function CaseStudyPage({ params }) {
           </div>
         </div>
       </header>
+      <div className={styles.bottomDescription}>
+        <Text type="body" className={styles.title}>
+          {frontmatter.title}
+        </Text>
+        <Button lea>
+          Description&nbsp;
+          <ArrowDown />
+        </Button>
+      </div>
     </>
   );
 }
