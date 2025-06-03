@@ -22,7 +22,7 @@ export default function Intro() {
             style={{ fontStyle: "Italic" }}
           >
             {" "}
-            (or Rafa)
+            or Rafa
           </Text>{" "}
           and I design things. Mostly software, but sometimes other stuff too.{" "}
           <br />

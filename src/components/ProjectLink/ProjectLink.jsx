@@ -102,7 +102,12 @@ export default function ProjectLink({
               <Dot width={12} strokeWidth={10} />
             </motion.span>
           )} */}
-          <Text tag="span" type="superscript" className={styles.prepend}>
+          <Text
+            tag="span"
+            type="superscript"
+            className={styles.prepend}
+            // font="mono"
+          >
             {prepend}
           </Text>
           <Text tag="h3" type="body" className={styles["project-title"]} nowrap>

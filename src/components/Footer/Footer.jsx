@@ -12,7 +12,7 @@ import NavigationItem from "@/components/Navigation/NavigationItem";
 export default function Footer({ className }) {
   return (
     <div className={clsx(styles.footer, className)}>
-      <NavigationItem href="/colophon" label="Colophon" />
+      <NavigationItem href="/colophon" label="?" />
     </div>
   );
 }

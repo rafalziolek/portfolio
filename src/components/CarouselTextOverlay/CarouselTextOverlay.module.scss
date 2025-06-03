@@ -40,7 +40,7 @@ font-weight: var(--font-weight-bold) !important;
     // mix-blend-mode: difference;
     background-color: var(--color-bg-translucent) !important;
     // box-shadow: inset 0 0 0 1px var(--color-bg-inverted);
-    border-radius: 0.28rem;
+    border-radius: 0.5rem;
     padding: var(--space-4) 10px;
     color: var(--color-fg) !important;
     display: flex;
@@ -83,7 +83,7 @@ font-weight: var(--font-weight-bold) !important;
 
 .title {
     background-color: var(--color-bg-translucent) !important;
-    border-radius: 0.28rem;
+    border-radius: 0.5rem;
     backdrop-filter: blur(10px);
     padding: var(--space-4) 10px;
     line-height: 1;

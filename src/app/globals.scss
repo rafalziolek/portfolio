@@ -32,14 +32,14 @@
   --font-size-superscript:1.125rem;
   --font-size-superscript-small:0.875rem;
 
-  --font-weight-base:400;
-  --font-weight-emphasis: 400;
-  --font-weight-heading:400;
-  --font-weight-article: 400;
-  --font-weight-caption: 400;
-  --font-weight-bold: 500;
+  --font-weight-base: 400;
+  --font-weight-emphasis:: 400;
+  --font-weight-heading: 400;
+  --font-weight-article:: 400;
+  --font-weight-caption:: 400;
+  --font-weight-bold:: 400;
 
-  --line-height-base: 1.12;
+  --line-height-base: 1.2;
   --line-height-button: 1;
   --line-height-article: 1.2;
 
@@ -53,7 +53,7 @@
   --color-border: oklch(0.94 0 0.5);
 --color-bg-accent:#032ce4;
   --font-family-mono: "Geist Mono Variable", monospace;
-  --font-family-sans: "Helvetica Neue", sans-serif;
+  --font-family-sans: "ABC Oracle Cyrillic Variable Unlicensed Trial", sans-serif;
 }
 
 html * {
@@ -70,13 +70,14 @@ html * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
+
 }
 
 html,
 body {
   overscroll-behavior: none;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
 
   width: 100%;
   min-height: 100%;

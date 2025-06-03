@@ -1,6 +1,6 @@
 .navigationItem {
-  // height: 64px;
-  // width: 64px;
+  height: 1.75rem;  // width: 64px;
+  min-width: 1.75rem;
   // border-radius: 0;
   // mix-blend-mode: difference;
   box-sizing: border-box;
@@ -11,16 +11,16 @@
   // flex: 1 0 0;
   // box-shadow:inset 0 0 0 1px var(--color-bg-inverted);
   background-color: var(--color-bg-translucent);
-  padding: var(--space-4) 10px;
+  padding: var(--space-4) var(--space-8);
   display: flex;
   // align-items: center;
   // justify-content: center;
   // mix-blend-mode: difference;
-  border-radius: 0.28rem;
+  border-radius: 0.25rem;
   // font-family: "georgia", system-ui, sans-serif;
   font-weight: var(--font-weight-base);
-  font-size: var(--font-size-body);
-  letter-spacing: -0.01em;
+  font-size: var(--font-size-superscript);
+  letter-spacing: -0.03em;
   justify-content: center;
   align-items: center;
   // text-transform: uppercase;
@@ -32,6 +32,7 @@
     }
     &:active {
     scale: 0.98;
+    rotate: 2deg;
     }
     // background-color: var(--color-bg-inverted);
     // color: var(--color-fg);
@@ -80,7 +81,7 @@
       color: white;
       box-shadow: none;
       width: fit-content;
-      height: fit-content;
+      // height: fit-content;
     }
   }
 } 
