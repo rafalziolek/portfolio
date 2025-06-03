@@ -8,6 +8,8 @@ export default function NavigationItem({
   isActive,
   borderRadius = "default", // "default" | "full"
   variant = "default", // "default" | "accent"
+  children,
+  style,
 }) {
   return (
     <Link
@@ -18,8 +20,9 @@ export default function NavigationItem({
         borderRadius === "full" && styles.fullRadius,
         variant === "accent" && styles.accent
       )}
+      style={style}
     >
-      {label}
+      {label} {children}
     </Link>
   );
 }

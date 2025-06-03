@@ -4,6 +4,8 @@
   overflow: hidden;
   border-radius: 6px;
   aspect-ratio: 16 / 9;
+  box-shadow: 0 0 30px 20px rgba(0, 0, 0, 0.15);
+  
   &.opened {
     position: fixed;
     top: 50%;

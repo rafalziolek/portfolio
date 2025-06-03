@@ -17,7 +17,7 @@ const TooltipContent = React.memo(({ content, triggerRef, isVisible }) => {
       const scrollY = window.scrollY;
 
       setPosition({
-        x: triggerRect.right + scrollX + 16,
+        x: triggerRect.right + scrollX + 8,
         y:
           triggerRect.top +
           scrollY -
@@ -91,9 +91,7 @@ const TooltipContent = React.memo(({ content, triggerRef, isVisible }) => {
                 top: position.y,
               }}
             >
-              <Text type="caption" font="serif">
-                {content}
-              </Text>
+              <Text type="superscript-small">{content}</Text>
             </motion.div>
           )}
         </AnimatePresence>,

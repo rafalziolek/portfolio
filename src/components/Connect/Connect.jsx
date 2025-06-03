@@ -89,6 +89,12 @@ const itemVariants = {
 };
 
 const Connect = () => {
+  // Split social links
+  const mainSocialLinks = socialLinks.filter(
+    (link) => link.name !== "LinkedIn"
+  );
+  const linkedinLink = socialLinks.find((link) => link.name === "LinkedIn");
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -98,21 +104,31 @@ const Connect = () => {
         animate="visible"
         exit="exit"
       >
-        <motion.ul className={styles.socialList} variants={itemVariants}>
-          <EmailButton label="Email" copyText="rafal.ziolek@icloud.com" />
-          {socialLinks.map((link) => (
-            <li key={link.name} className={styles.socialListItem}>
-              {/* <Text tag="p" type="superscript-small" uppercase>
-                {link.name}
-              </Text> */}
-              <StyledLink
+        <motion.div variants={itemVariants}>
+          <List heading="Here all the time">
+            {mainSocialLinks.map((link) => (
+              <List.Item
+                key={link.name}
                 href={link.href}
                 external={link.external}
-                label={link.name}
-              ></StyledLink>
-            </li>
-          ))}
-        </motion.ul>
+              >
+                {link.name}
+              </List.Item>
+            ))}
+          </List>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <List heading="Here only if I have to">
+            <EmailButton label="Email" copyText="rafal.ziolek@icloud.com" />
+            <List.Item
+              href={linkedinLink.href}
+              external={linkedinLink.external}
+            >
+              {linkedinLink.name}
+            </List.Item>
+          </List>
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   );

@@ -7,23 +7,32 @@
     background-color: var(--color-bg-translucent);
     backdrop-filter: blur(10px);
     // background-blend-mode: plus-lighter;
-    line-height: var(--line-height-button);
 
-    padding: var(--space-4) var(--space-12) var(--space-4) var(--space-12);
+    padding: var(--space-6) 10px ;
     // height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 999px;
+    border-radius: 6px;
     border: none;
     font-weight: var(--font-weight-base);
     letter-spacing: -0.01em;
     transition: background-color 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    &.inverted {
+        background-color: var(--color-bg-inverted);
+        color: var(--color-fg-inverted);
+        &:hover {
+            background-color: var(--color-bg-inverted);
+            @media (prefers-color-scheme: dark) {
+                background-color: var(--color-bg-inverted) !important;
+            }
+        }
+    }
     &.medium {
         font-size: var(--font-size-body);
         // font-weight: var(--font-weight-bold);
     }
-    .small {
+    &.small {
         font-size: var(--font-size-superscript);
         // font-weight: var(--font-weight-bold);
     }

@@ -36,15 +36,18 @@ export function Video() {
         {!isVideoPlaying ? (
           <Button
             className={styles.watchReelButton}
+            size="small"
             onClick={() => {
               setIsVideoPlaying(!isVideoPlaying);
             }}
+            inverted
           >
             Watch Reel
           </Button>
         ) : (
           <Button
             className={styles.closeButton}
+            size="small"
             onClick={() => {
               setIsVideoPlaying(!isVideoPlaying);
             }}

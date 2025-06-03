@@ -56,6 +56,9 @@ export default function Navigation() {
             href="/"
             label="Works"
             isActive={isActive("/") || includesPath("/works")}
+            // style={{
+            //   borderRadius: isOnProjectPage ? "999px 0px 0px 999px" : "999px",
+            // }}
           />
           {/* (if pathname is /works, show the works navigation) */}
 
@@ -66,6 +69,8 @@ export default function Navigation() {
               label={formattedProjectName}
               isActive={true}
               variant="accent"
+              // style={{ borderRadius: "0px 999px 999px 0px" }}
+              // borderRadius="full"
             />
           )}
         </div>

@@ -9,8 +9,8 @@ export default function List({ heading, children, align }) {
     <ul className={clsx(styles.list, align && styles[align])}>
       <Text
         tag="h4"
-        type="superscript-small"
-        uppercase
+        type="superscript"
+        // uppercase
         // font="serif"
         className={styles.listTitle}
       >

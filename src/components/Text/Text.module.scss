@@ -10,7 +10,7 @@
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-base);
   // max-width: 60ch;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   &.text-mono {
     letter-spacing: -0.01em;
     // font-size: 0.8125rem;
@@ -93,7 +93,7 @@
     color: var(--color-fg-muted);
   }
   &.text-serif {
-    // font-family:  "Shippori Mincho B1", serif;
+    font-family:  "georgia", serif;
     // -webkit-text-stroke: 0.3px var(--color-fg);
     // font-weight: var(--font-weight-heading);
     // font-weight: 700;

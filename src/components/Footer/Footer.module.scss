@@ -1,5 +1,5 @@
 .footer {
-    padding-block: var(--space-48) var(--space-8);
+    // padding-block: var(--space-48) var(--space-8);
     text-align: left;
     margin-top: var(--space-80);
     display: flex;
@@ -8,6 +8,9 @@
     gap: var(--space-16);
     grid-column: 1/2;
     align-self: flex-end;
+    position: fixed;
+    bottom: var(--space-8);
+    left: var(--space-8);
     // font-weight: var(--font-weight-bold) !important;
 
     

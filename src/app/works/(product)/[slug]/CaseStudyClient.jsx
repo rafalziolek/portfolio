@@ -135,8 +135,8 @@ export default function CaseStudyClient({
       </header>
       <div className={styles.bottomDescription}>
         {images.length > 0 && (
-          <Text type="body" className={styles.imageCounter}>
-            {currentImage + 1} of {totalImages}
+          <Text type="body" className={styles.imageCounter} uppercase>
+            {currentImage + 1} / {totalImages}
           </Text>
         )}
       </div>

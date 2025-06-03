@@ -70,7 +70,7 @@ export default function CarouselTextOverlay({ carousels }) {
             }}
           >
             <Text type="body" className={styles.title}>
-              {currentConfig.title} / 2025
+              {currentConfig.title}
             </Text>
           </div>
           <div className={styles.indicators}>
@@ -79,7 +79,7 @@ export default function CarouselTextOverlay({ carousels }) {
               className={styles.indicatorText}
               // uppercase
             >
-              {currentData.currentImage + 1} of {currentData.totalImages}
+              {currentData.currentImage + 1} / {currentData.totalImages}
             </Text>
           </div>
           {/* <div

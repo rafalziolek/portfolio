@@ -21,7 +21,9 @@ export default function Intro() {
           <StyledLink
             href="https://www.docplanner.com"
             label="Docplanner"
-            style={{ display: "inline-flex" }}
+            style={{
+              display: "inline",
+            }}
           />
           , where I design and develop tools that give designers and developers
           one less thing to worry about. <br />

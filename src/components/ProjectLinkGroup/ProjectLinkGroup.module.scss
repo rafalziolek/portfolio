@@ -4,11 +4,10 @@
     
     // background-color: var(--color-bg-secondary);
     // border-radius:6px;
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-16);
     // font-family: "shippori mincho b1", serif !important;
     // text-transform:capitalize!important;
     // font-weight: var(--font-weight-bold) !important; 
-    font-size: var(--font-size-superscript-small) !important;
     // margin-left: -6px
     // letter-spacing: -0.04em !important;
 }
@@ -22,7 +21,7 @@
     width: 100%;
     .project-links {
         background-color: var(--color-bg);
-        margin-left: calc(var(--space-24) * -1);
+        margin-left: calc(var(--space-32) * -1);
         // overflow: hidden;
         display: flex;
         flex-direction: column;

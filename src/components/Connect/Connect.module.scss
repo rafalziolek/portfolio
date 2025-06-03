@@ -1,12 +1,12 @@
 .connectContainer {
   /* Add styles for the connect section here */
   display: flex;
-  margin-top: 1rem;
+  margin-top: calc(1rem + var(--space-4));
   flex: 1;
   flex-direction: column;
   align-self: flex-start;
   grid-column: 2/3;
-  gap: var(--space-16); /* Space between heading and list */
+  gap: var(--space-64); /* Space between heading and list */
 }
 
 /* Styles for the unordered list */

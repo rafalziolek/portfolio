@@ -10,9 +10,15 @@ export function Button({
   size = "medium",
   as = "button",
   className,
+  inverted = false,
   ...rest
 }) {
-  const classes = clsx(styles.button, styles[size], className);
+  const classes = clsx(
+    styles.button,
+    styles[size],
+    className,
+    inverted && styles.inverted
+  );
 
   if (as === "Link") {
     return (
