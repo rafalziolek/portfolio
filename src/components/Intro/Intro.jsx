@@ -14,8 +14,18 @@ export default function Intro() {
     <>
       <div className={styles.intro}>
         <Text type="body" tag="h1">
-          I’m Rafał and I design things. Mostly software, but sometimes other
-          stuff too. <br />
+          I’m Rafał{" "}
+          <Text
+            type="body"
+            tag="span"
+            color="secondary"
+            style={{ fontStyle: "Italic" }}
+          >
+            {" "}
+            (or Rafa)
+          </Text>{" "}
+          and I design things. Mostly software, but sometimes other stuff too.{" "}
+          <br />
           <br />
           Currently, I work at{" "}
           <StyledLink

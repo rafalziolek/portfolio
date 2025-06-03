@@ -1,6 +1,6 @@
 .colophon {
     align-self: flex-start;
-    margin-top: calc(1rem + var(--space-4));
+    margin-top: var(--space-32);
     grid-column: 2/3;
     display: flex;
     flex-direction: column;

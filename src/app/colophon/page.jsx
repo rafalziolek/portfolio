@@ -6,40 +6,19 @@ import Image from "next/image";
 function Colophon() {
   return (
     <div className={styles.colophon}>
-      <Text tag="p" type="body">
-        Shout out to my cats &nbsp;
-        <span style={{ whiteSpace: "nowrap" }}>
-          <Image
-            src="/tesla.jpg"
-            height={128}
-            width={128}
-            alt="Tesla"
-            className={styles.image}
-          />
-          Tesla
-        </span>
-        &nbsp;and&nbsp;
-        <span style={{ whiteSpace: "nowrap" }}>
-          <Image
-            src="/newton.jpg"
-            height={128}
-            width={128}
-            alt="Newton"
-            className={styles.image}
-          />
-          Newton
-        </span>{" "}
-        for emotional support while I&nbsp;built this website.
-      </Text>
-      <List heading="Typography">
+      {/* <List heading="Typography">
         <List.Item>Helvetica Neue</List.Item>
       </List>
       <List heading="Built with">
         <List.Item>Next.js</List.Item>
         <List.Item>Motion</List.Item>
-      </List>
+      </List> */}
 
-      <List heading="Websites that inspired this one">
+      <Text tag="p" type="body">
+        This website was built with Next.js and Motion, and the typeface used is
+        Helvetica Neue.
+      </Text>
+      <List heading="Websites that I took inspiration from">
         <List.Item>
           <StyledLink
             href="https://taliacotton.com/"
@@ -65,6 +44,32 @@ function Colophon() {
           ></StyledLink>
         </List.Item>
       </List>
+
+      <Text tag="p" type="body">
+        Special shout out to my cats &nbsp;
+        <span style={{ whiteSpace: "nowrap" }}>
+          <Image
+            src="/tesla.jpg"
+            height={128}
+            width={128}
+            alt="Tesla"
+            className={styles.image}
+          />
+          Tesla
+        </span>
+        &nbsp;and&nbsp;
+        <span style={{ whiteSpace: "nowrap" }}>
+          <Image
+            src="/newton.jpg"
+            height={128}
+            width={128}
+            alt="Newton"
+            className={styles.image}
+          />
+          Newton
+        </span>{" "}
+        for providing emotional support while I&nbsp;built this website.
+      </Text>
     </div>
   );
 }
