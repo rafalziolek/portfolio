@@ -27,9 +27,7 @@
   &:hover {
     background-color: var(--color-bg-inverted);
     color: var(--color-fg-inverted);
-    @media (prefers-color-scheme: dark) {
-        background-color: rgba($color: #292929, $alpha: 0.8) !important;
-    }
+
     &:active {
     scale: 0.98;
     rotate: 2deg;

@@ -79,7 +79,13 @@ export default function CarouselTextOverlay({ carousels }) {
               className={styles.indicatorText}
               // uppercase
             >
-              {currentData.currentImage + 1} of {currentData.totalImages}
+              <span className={styles.indicatorTextNumber}>
+                {currentData.currentImage + 1}
+              </span>{" "}
+              of{" "}
+              <span className={styles.indicatorTextNumber}>
+                {currentData.totalImages}
+              </span>
             </Text>
           </div>
           {/* <div

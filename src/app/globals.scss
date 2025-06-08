@@ -23,13 +23,13 @@
   --space-64: 4rem;
   --space-80: 5rem;
 
-  --font-size-display: 1.375rem;
-  --font-size-heading: 1.375rem;
-  --font-size-body: 1.375rem;
-  --font-size-body-article: 1.375rem;
-  --font-size-caption:1.375rem;
-  --font-size-button:1.375rem;
-  --font-size-superscript:1.125rem;
+  --font-size-display: 1.5rem;
+  --font-size-heading: 1.25rem;
+  --font-size-body: 1.25rem;
+  --font-size-body-article: 1.25rem;
+  --font-size-caption:1.25rem;
+  --font-size-button:1.25rem;
+  --font-size-superscript:1rem;
   --font-size-superscript-small:0.875rem;
 
   --font-weight-base: 400;
@@ -54,6 +54,7 @@
 --color-bg-accent:#032ce4;
   --font-family-mono: "Geist Mono Variable", monospace;
   --font-family-sans: "ABC Oracle Cyrillic Variable Unlicensed Trial", sans-serif;
+  --font-family-serif: "Libre Baskerville", serif;
 }
 
 html * {

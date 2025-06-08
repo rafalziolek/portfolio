@@ -68,7 +68,6 @@ export default function Navigation() {
               href={pathname}
               label={formattedProjectName}
               isActive={true}
-              variant="accent"
               // style={{ borderRadius: "0px 999px 999px 0px" }}
               // borderRadius="full"
             />

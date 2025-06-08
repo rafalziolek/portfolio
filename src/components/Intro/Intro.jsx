@@ -19,6 +19,7 @@ export default function Intro() {
             type="body"
             tag="span"
             color="secondary"
+            // font="serif"
             style={{ fontStyle: "Italic" }}
           >
             {" "}

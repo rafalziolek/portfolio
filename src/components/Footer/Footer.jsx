@@ -9,10 +9,16 @@ import { CircleHelp } from "lucide-react";
 import { Button } from "@/components/Button/Button";
 import StyledLink from "@/components/StyledLink/StyledLink";
 import NavigationItem from "@/components/Navigation/NavigationItem";
+import { usePathname } from "next/navigation";
 export default function Footer({ className }) {
+  const pathname = usePathname();
   return (
     <div className={clsx(styles.footer, className)}>
-      <NavigationItem href="/colophon" label="?" />
+      <NavigationItem
+        href="/colophon"
+        label="?"
+        isActive={pathname === "/colophon"}
+      />
     </div>
   );
 }
