@@ -24,7 +24,7 @@ export default function CarouselTextOverlay({ carousels }) {
     const scrollPosition = latest + windowHeight;
 
     // Hide when within 200px of the bottom
-    setShouldHide(scrollPosition >= documentHeight - 200);
+    // setShouldHide(scrollPosition >= documentHeight - 0);
   });
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function CarouselTextOverlay({ carousels }) {
 
   return (
     <AnimatePresence mode="wait">
-      {currentConfig && currentData && !shouldHide && (
+      {currentConfig && currentData && (
         <motion.div
           key={activeCarousel}
           className={styles.content + " " + styles.textOverlay}
@@ -75,14 +75,14 @@ export default function CarouselTextOverlay({ carousels }) {
           </div>
           <div className={styles.indicators}>
             <Text
-              type="superscript"
+              type="superscript-small"
               className={styles.indicatorText}
               // uppercase
             >
               <span className={styles.indicatorTextNumber}>
                 {currentData.currentImage + 1}
               </span>{" "}
-              of{" "}
+              /{" "}
               <span className={styles.indicatorTextNumber}>
                 {currentData.totalImages}
               </span>

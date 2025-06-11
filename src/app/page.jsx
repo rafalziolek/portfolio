@@ -1,3 +1,5 @@
+"use client";
+
 import Projects from "@/components/Projects/Projects";
 import ProjectCarousel from "@/components/ProjectThumbnail/ProjectCarousel";
 import ThumbnailStrip from "@/components/ProjectThumbnail/ThumbnailStrip";
@@ -10,24 +12,30 @@ import ThumbnailStrip2 from "@/components/ProjectThumbnail/ThumbnailStrip2";
 import { Button } from "@/components/Button/Button";
 import AnimatedSection from "@/components/AnimatedSection/AnimatedSection";
 import { Video } from "@/components/Video/Video";
+import { ProjectContext } from "@/contexts/ProjectContext";
+import { useContext } from "react";
 
 export default function ProjectsPage({ children }) {
+  const { isAnyProjectHovered } = useContext(ProjectContext);
   return (
     <>
       <div className={styles.content}>
         {/* <AnimatedSection> */}
         <Intro />
         <Projects />
-        <div className={styles.ProjectContainer}>
-          <Video />
-        </div>
+        {isAnyProjectHovered ? (
+          <ProjectThumbnail />
+        ) : (
+          <div className={styles.ProjectContainer}>
+            <Video />
+          </div>
+        )}
         {/* </AnimatedSection> */}
       </div>
       {/* <ProjectCarousel /> */}
       {/* <ThumbnailStrip2 /> */}
       {/* <ConditionalThumbnailStrip /> */}
       {/* <ProjectStack /> */}
-      {/* <ProjectThumbnail /> */}
       {children}
     </>
   );

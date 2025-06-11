@@ -15,49 +15,12 @@ export default function ProjectThumbnail() {
   return (
     <AnimatePresence>
       {isAnyProjectHovered && !isProjectOpen && (
-        <motion.div
-          key="thumbnail-container"
-          className={styles.thumbnail}
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: { duration: 0 },
-          }}
-          exit={{
-            opacity: 0,
-            transition: { duration: 0 },
-          }}
-        >
+        <motion.div key="thumbnail-container" className={styles.thumbnail}>
           <AnimatePresence mode="popLayout">
             {currentProject && (
               <motion.div
                 key={currentProject.id}
                 className={styles.imageContainer}
-                initial={{
-                  opacity: 0,
-                  filter: "blur(30px) brightness(2)",
-                }}
-                animate={{
-                  opacity: 1,
-                  filter: "blur(0px) brightness(1)",
-                  y: 0,
-                  transition: {
-                    duration: 0.3,
-                    type: "spring",
-                    bounce: 0.0,
-                    filter: { duration: 0.3 },
-                  },
-                }}
-                exit={{
-                  opacity: 0,
-                  filter: "blur(30px) brightness(2)",
-                  transition: {
-                    duration: 0.3,
-                    type: "spring",
-                    bounce: 0.0,
-                    filter: { duration: 0 },
-                  },
-                }}
               >
                 <Image
                   src={currentProject.img}

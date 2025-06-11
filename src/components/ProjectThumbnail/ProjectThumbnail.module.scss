@@ -3,17 +3,31 @@
 .thumbnail {
     grid-column:3 / 4;
     grid-row: 1 / 4;
-    max-height: calc(100vh - 8px);
-    max-width: 100%;
+    // max-height: 20rem;
+    max-width: 40rem;
+    width: auto;
+    height: auto;
+    margin-inline: auto;
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     grid-row-start: 1;
     pointer-events: none;
     position: absolute;
-    bottom: 16px;
-    right: 16px;
-    width: 600px;
-    height: 600px;
+    bottom: 32px;
+    left: 0;
+    right: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    // mask-image: url("/star.svg");
+    // mask-size: 100%;
+    // mask-repeat: no-repeat;
+    // mask-position: center;
+    // mask-size: 100%;
+    // mask-repeat: no-repeat;
+    // mask-position: center;
+    // mask-size: 100%;
+
+    z-index: -10;
 
 
 
@@ -23,8 +37,8 @@
 .imageContainer {
     width: 100%;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+    // align-items:;
+    justify-content: center;
     height: 100%;
     
     img {
