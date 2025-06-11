@@ -11,6 +11,7 @@ export default function ProjectLinkGroup({ projects, groupId, title }) {
           className={styles["project-heading"]}
           type="superscript"
           tag="h2"
+          bold
           // uppercase
           // font="mono"
           // color="secondary"
