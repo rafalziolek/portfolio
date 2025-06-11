@@ -5,7 +5,7 @@
     // background-color: var(--color-bg-secondary);
     // border-radius:6px;
     margin-bottom: var(--space-12);
-    // font-family: "shippori mincho b1", serif !important;
+    // font-family: var(--font-family-serif);
     // text-transform:capitalize!important;
     // font-weight: var(--font-weight-bold) !important; 
     // margin-left: -6px
@@ -21,7 +21,7 @@
     width: 100%;
     .project-links {
         // background-color: var(--color-bg);
-        margin-left: calc(var(--space-32) * -1);
+        margin-left: calc(var(--space-40) * -1);
         // overflow: hidden;
         display: flex;
         flex-direction: column;

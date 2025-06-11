@@ -25,14 +25,14 @@ export default function Footer({ className }) {
       </Button>
       {isOpen && (
         <div className={styles.footerDialog}>
-          <Text tag="p" type="superscript">
+          <Text tag="p" type="body">
             This website was built with Next.js and Motion, and the typeface
             used is Oracle.
           </Text>
           <List heading="Websites that I took inspiration from" type="small">
             <List.Item>
               <StyledLink
-                type="superscript"
+                // type="superscript"
                 href="https://taliacotton.com/"
                 label="taliacotton.com"
                 inverted
@@ -40,7 +40,7 @@ export default function Footer({ className }) {
             </List.Item>
             <List.Item>
               <StyledLink
-                type="superscript"
+                // type="superscript"
                 href="https://www.jipark.org/"
                 label="jipark.org"
                 inverted
@@ -48,7 +48,7 @@ export default function Footer({ className }) {
             </List.Item>
             <List.Item>
               <StyledLink
-                type="superscript"
+                // type="superscript"
                 href="https://morebymore.com/"
                 label="morebymore.com"
                 inverted
@@ -56,7 +56,7 @@ export default function Footer({ className }) {
             </List.Item>
             <List.Item>
               <StyledLink
-                type="superscript"
+                // type="superscript"
                 href="https://www.yihui.work/"
                 label="yihui.work"
                 inverted
@@ -64,7 +64,7 @@ export default function Footer({ className }) {
             </List.Item>
           </List>
 
-          <Text tag="p" type="superscript">
+          <Text tag="p" type="superscript" style={{ marginTop: "2rem" }}>
             Special shout out to my cats &nbsp;
             <span style={{ whiteSpace: "nowrap" }}>
               <Image

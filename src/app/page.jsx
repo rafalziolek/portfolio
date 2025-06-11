@@ -29,8 +29,8 @@ export default function ProjectsPage({ children }) {
           </div>
         )}
         {/* </AnimatedSection> */}
+        {isAnyProjectHovered && <ProjectThumbnail />}
       </div>
-      {isAnyProjectHovered && <ProjectThumbnail />}
       {/* <ProjectCarousel /> */}
       {/* <ThumbnailStrip2 /> */}
       {/* <ConditionalThumbnailStrip /> */}

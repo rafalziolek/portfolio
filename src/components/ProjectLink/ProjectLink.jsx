@@ -106,11 +106,18 @@ export default function ProjectLink({
             tag="span"
             type="superscript"
             className={styles.prepend}
+            // color="inverted"
             // font="mono"
           >
             {prepend}
           </Text>
-          <Text tag="h3" type="body" className={styles["project-title"]} nowrap>
+          <Text
+            tag="h3"
+            type="body"
+            className={styles["project-title"]}
+            nowrap
+            // color="inverted"
+          >
             {title}
           </Text>
           {/* <Text

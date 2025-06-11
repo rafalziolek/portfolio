@@ -62,11 +62,11 @@ export default function CarouselTextOverlay({ carousels }) {
           transition={{ duration: 0.2 }}
         >
           <div className={styles.title}>
-            <Text type="superscript">{currentConfig.title}</Text>
+            <Text type="body">{currentConfig.title}</Text>
           </div>
           <div className={styles.indicators}>
             <Text
-              type="superscript-small"
+              type="body"
               className={styles.indicatorText}
               // uppercase
             >

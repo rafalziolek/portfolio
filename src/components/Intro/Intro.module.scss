@@ -16,6 +16,18 @@
     
   }
 
+  .serifHighlight {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01), 0 0 6px 1px rgba(0, 0, 0, 0.1);
+    padding: 2px 6px 0px 4px;
+    border-radius: 8px;
+    display: inline-block;
+    line-height: 1;
+  }
+
   .links {
     display: flex;
     flex-direction: column;

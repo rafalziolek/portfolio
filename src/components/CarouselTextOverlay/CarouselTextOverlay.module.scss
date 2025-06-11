@@ -38,12 +38,12 @@ font-weight: var(--font-weight-bold) !important;
     }}
 
 .indicators {
-    height: 1.5rem;
+    height: 1.775rem;
     // mix-blend-mode: difference;
     background-color: var(--color-bg) !important;
     // box-shadow: inset 0 0 0 1px var(--color-bg-inverted);
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01), 0 0 6px 1px rgba(0, 0, 0, 0.1);
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     padding: var(--space-4) var(--space-8);
     color: var(--color-fg) !important;
     display: flex;
@@ -91,10 +91,10 @@ font-weight: var(--font-weight-bold) !important;
 }
 
 .title {
-    height: 1.5rem;
+    height: 1.775rem;
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01), 0 0 6px 1px rgba(0, 0, 0, 0.1);
     background-color: var(--color-bg) !important;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     backdrop-filter: blur(10px);
     padding: var(--space-4) var(--space-8);
     line-height: 1;

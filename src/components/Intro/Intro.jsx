@@ -14,14 +14,14 @@ export default function Intro() {
     <>
       <div className={styles.intro}>
         <Text type="body" tag="h1">
-          I’m Rafał
+          I'm{" "}
           <Text
-            type="superscript"
+            type="body"
             tag="span"
-            color="secondary"
-            style={{ verticalAlign: "super" }}
+            // font="serif"
+            className={styles.serifHighlight}
           >
-            *
+            Rafał
           </Text>{" "}
           {/* <Text
             type="superscript"
@@ -32,9 +32,17 @@ export default function Intro() {
             {" "}
             *or Rafa
           </Text>{" "} */}
-          and I design things. Mostly software, but sometimes other stuff too.{" "}
-          <br />
-          <br />
+          and I design things. Mostly software, but sometimes{" "}
+          <Text
+            type="body"
+            tag="span"
+            // font="serif"
+            className={styles.serifHighlight}
+          >
+            other stuff
+          </Text>{" "}
+          too. <br />
+          {/* <br />
           Currently, I work at{" "}
           <StyledLink
             href="https://www.docplanner.com"
@@ -44,9 +52,17 @@ export default function Intro() {
             }}
           />
           , where I design and develop tools that give designers and developers
-          one less thing to worry about. <br />
-          <br /> This site is a place to showcase the things I make. If you find
-          something interesting here, cool. If not, that’s fine too ✌︎
+          one less thing to worry about. <br /> */}
+          <br /> This site is a place to showcase the things I make. If you find{" "}
+          <Text
+            type="body"
+            tag="span"
+            // font="serif"
+            className={styles.serifHighlight}
+          >
+            something interesting
+          </Text>{" "}
+          here, cool. If not, that's fine too ✌︎
         </Text>
       </div>
     </>

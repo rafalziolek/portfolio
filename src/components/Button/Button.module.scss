@@ -6,10 +6,10 @@
     background-color: var(--color-bg);
     // backdrop-filter: blur(10px);
     // background-blend-mode: plus-lighter;
-    height: 1.5rem;
-    min-width: 1.5rem;
+    height: 1.775rem;
+    min-width: 1.775rem;
 
-    font-size: var(--font-size-superscript);
+    font-size: var(--font-size-body);
     font-weight: var(--font-weight-base);
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01), 0 0 6px 1px rgba(0, 0, 0, 0.1);
     padding: var(--space-4) var(--space-8) ;
@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     border: none;
     font-weight: var(--font-weight-base);
     letter-spacing: -0.01em;

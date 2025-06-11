@@ -25,11 +25,11 @@
 
   --font-size-display: 1.5rem;
   --font-size-heading: 1.09375rem;
-  --font-size-body: 1.09375rem;
-  --font-size-body-article: 1.09375rem;
-  --font-size-caption:1.09375rem;
-  --font-size-button:1.09375rem;
-  --font-size-superscript:0.84375rem;
+  --font-size-body: 1.375rem;
+  --font-size-body-article: 1.25rem;
+  --font-size-caption:1.25rem;
+  --font-size-button:1.25rem;
+  --font-size-superscript:0.9375rem;
   --font-size-superscript-small:0.78125rem;
 
   --font-weight-base: 400;
@@ -39,14 +39,14 @@
   --font-weight-caption:: 400;
   --font-weight-bold:: 400;
 
-  --line-height-base: 1.15;
+  --line-height-base: 1.2;
   --line-height-button: 1;
   --line-height-article: 1.2;
 
   --color-fg: rgb(0, 0, 0);
   --color-fg-muted: rgba(0, 0, 0, 0.3);
   --color-bg: rgb(255, 255, 255);
-  --color-bg-surface: #F9F9F9;
+  --color-bg-surface: #f5f5f5;
   --color-bg-inverted: rgb(0, 0, 0);
   --color-fg-inverted: rgb(255, 255, 255);
   --color-bg-secondary: #f1f1f1;
@@ -55,7 +55,7 @@
 --color-bg-accent:#032ce4;
   --font-family-mono: "Geist Mono Variable", monospace;
   --font-family-sans: "ABC Oracle Cyrillic Variable Unlicensed Trial", sans-serif;
-  --font-family-serif: "ABC Marist Unlicensed Trial", serif;
+  --font-family-serif: "STIX Two Math", serif;
 }
 
 html * {
