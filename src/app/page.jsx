@@ -23,15 +23,14 @@ export default function ProjectsPage({ children }) {
         {/* <AnimatedSection> */}
         <Intro />
         <Projects />
-        {isAnyProjectHovered ? (
-          <ProjectThumbnail />
-        ) : (
+        {!isAnyProjectHovered && (
           <div className={styles.ProjectContainer}>
             <Video />
           </div>
         )}
         {/* </AnimatedSection> */}
       </div>
+      {isAnyProjectHovered && <ProjectThumbnail />}
       {/* <ProjectCarousel /> */}
       {/* <ThumbnailStrip2 /> */}
       {/* <ConditionalThumbnailStrip /> */}

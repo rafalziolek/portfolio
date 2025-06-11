@@ -105,7 +105,7 @@ const Connect = () => {
         exit="exit"
       >
         <motion.div variants={itemVariants}>
-          <List heading="I am here all the time" align="center">
+          <List heading="I am here all the time">
             {mainSocialLinks.map((link) => (
               <List.Item
                 key={link.name}
@@ -119,7 +119,7 @@ const Connect = () => {
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <List heading="... and here only if I have to" align="center">
+          <List heading="... and here only if I have to">
             <EmailButton label="Email" copyText="rafal.ziolek@icloud.com" />
             <List.Item
               href={linkedinLink.href}

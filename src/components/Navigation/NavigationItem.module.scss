@@ -42,6 +42,7 @@
     // font-family: 'times new roman' !important;
   }
   &.active {
+    rotate: 4deg;
     // font-family: var(--font-shippori-mincho) !important;
     color: var(--color-fg-inverted);
     background-color: var(--color-bg-inverted);

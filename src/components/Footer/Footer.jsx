@@ -35,6 +35,7 @@ export default function Footer({ className }) {
                 type="superscript"
                 href="https://taliacotton.com/"
                 label="taliacotton.com"
+                inverted
               ></StyledLink>
             </List.Item>
             <List.Item>
@@ -42,6 +43,7 @@ export default function Footer({ className }) {
                 type="superscript"
                 href="https://www.jipark.org/"
                 label="jipark.org"
+                inverted
               ></StyledLink>
             </List.Item>
             <List.Item>
@@ -49,6 +51,7 @@ export default function Footer({ className }) {
                 type="superscript"
                 href="https://morebymore.com/"
                 label="morebymore.com"
+                inverted
               ></StyledLink>
             </List.Item>
             <List.Item>
@@ -56,6 +59,7 @@ export default function Footer({ className }) {
                 type="superscript"
                 href="https://www.yihui.work/"
                 label="yihui.work"
+                inverted
               ></StyledLink>
             </List.Item>
           </List>

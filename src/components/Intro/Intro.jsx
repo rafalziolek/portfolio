@@ -14,17 +14,24 @@ export default function Intro() {
     <>
       <div className={styles.intro}>
         <Text type="body" tag="h1">
-          I’m Rafał{" "}
+          I’m Rafał
           <Text
-            type="body"
+            type="superscript"
+            tag="span"
+            color="secondary"
+            style={{ verticalAlign: "super" }}
+          >
+            *
+          </Text>{" "}
+          {/* <Text
+            type="superscript"
             tag="span"
             color="secondary"
             // font="serif"
-            style={{ fontStyle: "Italic" }}
           >
             {" "}
-            or Rafa
-          </Text>{" "}
+            *or Rafa
+          </Text>{" "} */}
           and I design things. Mostly software, but sometimes other stuff too.{" "}
           <br />
           <br />
