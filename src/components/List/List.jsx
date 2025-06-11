@@ -4,9 +4,15 @@ import Text from "@/components/Text/Text";
 import StyledLink from "@/components/StyledLink/StyledLink";
 import clsx from "clsx";
 
-export default function List({ heading, children, align }) {
+export default function List({ heading, children, align, type = "default" }) {
   return (
-    <ul className={clsx(styles.list, align && styles[align])}>
+    <ul
+      className={clsx(
+        styles.list,
+        align && styles[align],
+        type === "small" && styles.small
+      )}
+    >
       <Text
         tag="h4"
         type="superscript"

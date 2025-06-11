@@ -30,7 +30,7 @@
   --font-size-caption:1.09375rem;
   --font-size-button:1.09375rem;
   --font-size-superscript:0.84375rem;
-  --font-size-superscript-small:0.75rem;
+  --font-size-superscript-small:0.78125rem;
 
   --font-weight-base: 400;
   --font-weight-emphasis:: 400;
@@ -46,11 +46,12 @@
   --color-fg: rgb(0, 0, 0);
   --color-fg-muted: rgba(0, 0, 0, 0.3);
   --color-bg: rgb(255, 255, 255);
+  --color-bg-surface: #F9F9F9;
   --color-bg-inverted: rgb(0, 0, 0);
   --color-fg-inverted: rgb(255, 255, 255);
   --color-bg-secondary: #f1f1f1;
   --color-bg-translucent: rgba(189, 189, 189, 0.4);
-  --color-border: oklch(0.94 0 0.5);
+  --color-border: rgba(0, 0, 0, 0.02);
 --color-bg-accent:#032ce4;
   --font-family-mono: "Geist Mono Variable", monospace;
   --font-family-sans: "ABC Oracle Cyrillic Variable Unlicensed Trial", sans-serif;
@@ -91,7 +92,7 @@ body {
 
 body {
   color: var(--color-fg);
-  background: var(--color-bg);
+  background: var(--color-bg-surface);
   overflow: visible;
   min-height: 100vh;
 }
@@ -106,7 +107,8 @@ a {
   :root {
     --color-fg: rgb(255, 255, 255);
     --color-fg-muted: rgba(255, 255, 255, 0.3);
-    --color-bg: rgb(5, 5, 5);
+    --color-bg: rgb(32, 32, 32);
+    --color-bg-surface: #000;
     --color-bg-inverted: rgb(255, 255, 255);
     --color-fg-inverted: rgb(0, 0, 0);
     --color-bg-secondary: rgb(38, 38, 38);

@@ -61,17 +61,8 @@ export default function CarouselTextOverlay({ carousels }) {
           exit={{ opacity: 0, scale: 0.99 }}
           transition={{ duration: 0.2 }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-end",
-              gap: "var(--space-4)",
-            }}
-          >
-            <Text type="superscript" className={styles.title}>
-              {currentConfig.title}
-            </Text>
+          <div className={styles.title}>
+            <Text type="superscript">{currentConfig.title}</Text>
           </div>
           <div className={styles.indicators}>
             <Text
@@ -81,8 +72,8 @@ export default function CarouselTextOverlay({ carousels }) {
             >
               <span className={styles.indicatorTextNumber}>
                 {currentData.currentImage + 1}
-              </span>{" "}
-              /{" "}
+              </span>
+              /
               <span className={styles.indicatorTextNumber}>
                 {currentData.totalImages}
               </span>

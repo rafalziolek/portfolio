@@ -1,6 +1,6 @@
 .navigationItem {
   height: 1.5rem;  // width: 64px;
-  min-width: 1.55rem;
+  min-width: 1.5rem;
   // border-radius: 0;
   // mix-blend-mode: difference;
   box-sizing: border-box;
@@ -9,7 +9,7 @@
   color: var(--color-fg);
   backdrop-filter: blur(10px);
   // flex: 1 0 0;
-  box-shadow: 0 0 0 1px var(--color-border), 0 0 6px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01), 0 0 6px 1px rgba(0, 0, 0, 0.1);
   background-color: var(--color-bg);
   padding: var(--space-4) var(--space-8);
   display: flex;

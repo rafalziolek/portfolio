@@ -1,23 +1,26 @@
 .button {
     text-decoration: none;
-    font-family:  "Helvetica Neue", system-ui, sans-serif;
-    // font-family: var(--font-shippori-mincho);
+    font-family: var(--font-family-sans);
     // -webkit-text-stroke: 0.2px var(--color-fg);
     color: var(--color-fg);
-    background-color: var(--color-bg-translucent);
-    backdrop-filter: blur(10px);
+    background-color: var(--color-bg);
+    // backdrop-filter: blur(10px);
     // background-blend-mode: plus-lighter;
 
-    padding: var(--space-6) 10px ;
+    font-size: var(--font-size-superscript);
+    font-weight: var(--font-weight-base);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01), 0 0 6px 1px rgba(0, 0, 0, 0.1);
+    padding: var(--space-4) var(--space-8) ;
     // height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
+    border-radius: 0.25rem;
     border: none;
     font-weight: var(--font-weight-base);
     letter-spacing: -0.01em;
     transition: background-color 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
     &.inverted {
         background-color: var(--color-bg-inverted);
         color: var(--color-fg-inverted);
@@ -28,16 +31,11 @@
             }
         }
     }
-    &.medium {
-        font-size: var(--font-size-body);
-        // font-weight: var(--font-weight-bold);
-    }
-    &.small {
-        font-size: var(--font-size-superscript);
-        // font-weight: var(--font-weight-bold);
-    }
+
+
     &:hover {
-        background-color: var(--color-bg-secondary);
+        background-color: var(--color-bg-inverted);
+        color: var(--color-fg-inverted);
         @media (prefers-color-scheme: dark) {
             background-color: rgba($color: #292929, $alpha: 0.8) !important;
         }

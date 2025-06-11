@@ -10,8 +10,14 @@
         align-items: center;
     }
     .listTitle {
+        
         margin-bottom: var(--space-16);
         // font-weight: var(--font-weight-bold) !important;
+    }
+    &.small {
+        .listTitle {
+            margin-bottom: var(--space-4);
+        }
     }
     li {
         display: flex;
