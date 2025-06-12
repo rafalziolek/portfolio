@@ -64,7 +64,7 @@ export default function Footer({ className }) {
             </List.Item>
           </List>
 
-          <Text tag="p" type="superscript" style={{ marginTop: "2rem" }}>
+          <Text tag="p" type="superscript">
             Special shout out to my cats &nbsp;
             <span style={{ whiteSpace: "nowrap" }}>
               <Image
