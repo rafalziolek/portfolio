@@ -3,6 +3,7 @@ import styles from "./List.module.scss";
 import Text from "@/components/Text/Text";
 import StyledLink from "@/components/StyledLink/StyledLink";
 import clsx from "clsx";
+import { CornerRightDown } from "lucide-react";
 
 export default function List({ heading, children, align, type = "default" }) {
   return (
@@ -20,7 +21,12 @@ export default function List({ heading, children, align, type = "default" }) {
         // font="serif"
         className={styles.listTitle}
       >
-        {heading}
+        {heading}{" "}
+        <CornerRightDown
+          size={10}
+          style={{ marginLeft: "6px" }}
+          strokeWidth={2.5}
+        />
       </Text>
       {children}
     </ul>

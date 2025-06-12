@@ -102,7 +102,7 @@ export default function ProjectLink({
               <Dot width={12} strokeWidth={10} />
             </motion.span>
           )} */}
-          <Text
+          {/* <Text
             tag="span"
             type="superscript"
             className={styles.prepend}
@@ -110,7 +110,7 @@ export default function ProjectLink({
             // font="mono"
           >
             {prepend}
-          </Text>
+          </Text> */}
           <Text
             tag="h3"
             type="body"

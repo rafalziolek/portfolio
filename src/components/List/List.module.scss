@@ -10,8 +10,9 @@
         align-items: center;
     }
     .listTitle {
-        
+    //    margin-left: 16px;
         margin-bottom: var(--space-8);
+        text-transform: uppercase;
         // font-weight: var(--font-weight-bold) !important;
     }
     &.small {

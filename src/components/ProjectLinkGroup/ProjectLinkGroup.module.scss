@@ -7,9 +7,10 @@
     margin-bottom: var(--space-8);
     // font-family: var(--font-family-serif);
     // text-transform:capitalize!important;
-    font-weight: var(--font-weight-bold) !important; 
+    // font-weight: var(--font-weight-bold) !important; 
     // margin-left: -6px
     // letter-spacing: -0.04em !important;
+    // margin-left: 8px;
 }
 
 .project-group {
@@ -21,7 +22,7 @@
     width: 100%;
     .project-links {
         // background-color: var(--color-bg);
-        margin-left: calc(28px * -1);
+        // margin-left: calc(28px * -1);
         // overflow: hidden;
         display: flex;
         flex-direction: column;
