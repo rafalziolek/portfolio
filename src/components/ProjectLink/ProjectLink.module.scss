@@ -7,11 +7,11 @@
     align-items: center;
     box-sizing: border-box;
     padding-block: 1px;
-    padding-inline: 0.5rem;
+    // padding-inline: 0.5rem;
     // mix-blend-mode: difference;
 
     .prepend {
-        margin-right:1rem;
+        margin-right:0.75rem;
         color: var(--color-fg);
         height:0.9375rem;
         width: 0.9375rem;
@@ -23,23 +23,23 @@
     }
     &:hover {
         .project-title {
-        // text-decoration: underline;
-        // text-underline-offset: 4px;
-        // text-decoration-color: var(--color-fg);
-        // text-decoration-thickness: 1px;
-        // text-decoration-style: dotted;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        text-decoration-color: var(--color-fg);
+        text-decoration-thickness: 1px;
+        text-decoration-style: dotted;
     }
 
 
     }
     &.active,&:hover {
-        background-color: var(--color-bg-inverted) !important;
-        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01), 0 0 6px 1px rgba(0, 0, 0, 0.1);
+        // background-color: var(--color-bg-inverted) !important;
+        // box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01), 0 0 6px 1px rgba(0, 0, 0, 0.1);
         
-        color: var(--color-fg-inverted);
-        border-radius: 0.5rem;
+        // color: var(--color-fg-inverted);
+        // border-radius: 0.5rem;
         .prepend {
-            color: var(--color-fg-inverted);
+            // color: var(--color-fg-inverted);
         }
     }
     &:active {
