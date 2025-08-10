@@ -2,10 +2,14 @@
 
 import React from "react";
 import { ReactNode } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { motion } from "motion/react";
+import Button from "./Button";
 
 interface MainNavProps {
   className?: string;
+  onAboutClick?: () => void;
+  isAboutOpen?: boolean;
 }
 
 interface MainNavItemProps {
@@ -14,22 +18,28 @@ interface MainNavItemProps {
   href?: string;
   onClick?: () => void;
   className?: string;
+  asMotion?: boolean;
 }
 
-const MainNav = ({ className = "" }: MainNavProps) => {
+const MainNav = ({
+  className = "",
+  onAboutClick,
+  isAboutOpen = false,
+}: MainNavProps) => {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
-    <nav
-      className={`fixed w-fit bottom-6 left-1/2 -translate-x-1/2 transform backdrop-blur-md bg-[#e7e7e7] flex flex-row gap-1 items-center justify-start p-1 rounded-full ${className}`}
+    <motion.nav
+      className={`fixed w-fit bottom-6 left-1/2 -translate-x-1/2 transform backdrop-blur-md flex flex-row gap-1 items-center justify-start p-1 rounded-full ${className}`}
     >
-      <MainNavItem isActive={pathname === "/"} href="/">
+      <MainNavItem isActive={pathname === "/"} onClick={() => router.push("/")}>
         Works
       </MainNavItem>
-      <MainNavItem isActive={pathname === "/about"} href="/about">
-        About
+      <MainNavItem isActive={false} onClick={onAboutClick}>
+        <span>About</span>
       </MainNavItem>
-    </nav>
+    </motion.nav>
   );
 };
 
@@ -39,36 +49,42 @@ const MainNavItem = ({
   onClick,
   className = "",
   isActive = false,
+  asMotion = false,
 }: MainNavItemProps) => {
-  const baseClasses = `
-    backdrop-blur-md 
-    flex flex-row gap-3 h-11 
-    items-center justify-center px-4
-    relative rounded-full 
-    shrink-0 transition-all duration-200
-    font-medium text-lg text-center 
-    whitespace-nowrap tracking-tight
-    cursor-pointer
-  `;
+  const variant = isActive ? "filled" : "ghost";
 
-  const activeClasses = isActive
-    ? "bg-black text-white"
-    : "bg-white text-black border border-black/12 hover:bg-gray-50";
-
-  const combinedClasses = `${baseClasses} ${activeClasses} ${className}`.trim();
+  if (onClick) {
+    if (asMotion) {
+      return (
+        <Button
+          asMotion
+          onClick={onClick}
+          variant={variant}
+          className={className}
+        >
+          {children}
+        </Button>
+      );
+    }
+    return (
+      <Button onClick={onClick} variant={variant} className={className}>
+        {children}
+      </Button>
+    );
+  }
 
   if (href) {
     return (
-      <a href={href} className={combinedClasses}>
+      <Button href={href} variant={variant} className={className}>
         {children}
-      </a>
+      </Button>
     );
   }
 
   return (
-    <button onClick={onClick} className={combinedClasses}>
+    <Button variant={variant} className={className}>
       {children}
-    </button>
+    </Button>
   );
 };
 

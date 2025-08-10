@@ -8,13 +8,25 @@ export const metadata = {
   description: "",
 };
 
+const bdoGrotesk = localFont({
+  src: [
+    {
+      path: "./fonts/BDOGrotesk-VF.ttf",
+      weight: "100 900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-bdo-grotesk",
+  display: "swap",
+});
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body>
+      <body className={bdoGrotesk.variable}>
         <div>
           {children}
           <Analytics />

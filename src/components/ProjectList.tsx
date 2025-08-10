@@ -15,74 +15,69 @@ const projects = [
     id: "docplanner-ia",
     imagePath: "/projects/docplanner-ia/ia-preview-01.png",
     backgroundColor: "#f5f5f5",
-    imageWidth: 600,
-    imageHeight: 600,
+    imageWidth: 3200,
+    imageHeight: 2400,
     alt: "Docplanner Information Architecture preview",
   },
   {
     id: "multitood",
     imagePath: "/projects/multitood/1.png",
     backgroundColor: "rgba(250,250,250,0.98)",
-    imageWidth: 768,
-    imageHeight: 500,
+    imageWidth: 2880,
+    imageHeight: 2046,
     alt: "Multitood dashboard interface",
   },
   {
     id: "runchise",
-    imagePath: "/projects/runchise/runchise-01.png",
+    imagePath: "/projects/runchise/image.png",
     backgroundColor: "rgba(250,250,250,0.98)",
-    imageWidth: 600,
-    imageHeight: 545,
+    imageWidth: 2524,
+    imageHeight: 2966,
     alt: "Runchise mobile app interface",
   },
   {
-    id: "watson",
+    id: "watson-design-system",
     imagePath: "/projects/watson/image.png",
     backgroundColor: "rgba(250,250,250,0.98)",
-    imageWidth: 600,
-    imageHeight: 545,
+    imageWidth: 2800,
+    imageHeight: 2048,
     alt: "Watson Design System overview",
   },
   {
-    id: "nikola",
-    imagePath: "/projects/nikola/image.png",
+    id: "nikola-chmiel",
+    imagePath: "/projects/nikola/project-small.png",
     backgroundColor: "rgba(250,250,250,0.98)",
-    imageWidth: 600,
-    imageHeight: 600,
+    imageWidth: 2800,
+    imageHeight: 2048,
     alt: "Nikola project preview",
   },
 ];
 
-// Helper function to calculate project width
-function calculateProjectWidth(
-  imageWidth: number,
-  imageHeight: number
-): number {
-  const aspectRatio = imageWidth / imageHeight;
-  const containerHeight = 700;
-  return Math.min(imageWidth, containerHeight * aspectRatio);
-}
-
-// Calculate project widths and cumulative positions
-const projectWidths = projects.map((project) =>
-  calculateProjectWidth(project.imageWidth, project.imageHeight)
-);
-
-const projectPositions = projectWidths.reduce((acc, width, index) => {
+// Runtime-calculated widths and positions based on container height
+function calculateWidthsForHeight(containerHeightPx: number) {
   const gap = 8; // 2 * gap-2 = 8px
-  const prevPosition = index === 0 ? 0 : acc[index - 1];
-  const prevWidth = index === 0 ? 0 : projectWidths[index - 1];
-  acc[index] = prevPosition + prevWidth + (index > 0 ? gap : 0);
-  return acc;
-}, [] as number[]);
+  const widths = projects.map((p) => {
+    const aspect = p.imageWidth / p.imageHeight;
+    return Math.round(containerHeightPx * aspect);
+  });
 
-const totalWidth =
-  projectPositions[projectPositions.length - 1] +
-  projectWidths[projectWidths.length - 1];
+  const positions = widths.reduce((acc, width, index) => {
+    const prevPosition = index === 0 ? 0 : acc[index - 1];
+    const prevWidth = index === 0 ? 0 : widths[index - 1];
+    acc[index] = prevPosition + prevWidth + (index > 0 ? gap : 0);
+    return acc;
+  }, [] as number[]);
+
+  const total = positions[positions.length - 1] + widths[widths.length - 1];
+  return { widths, positions, total };
+}
 
 export default function ProjectList() {
   const [isMobile, setIsMobile] = React.useState(false);
   const [isClient, setIsClient] = React.useState(false);
+  const [cardWidths, setCardWidths] = React.useState<number[] | null>(null);
+  const [positions, setPositions] = React.useState<number[] | null>(null);
+  const [totalWidth, setTotalWidth] = React.useState<number>(0);
 
   const { scrollX, scrollY } = useScroll();
   const scrollAxis = React.useRef<"x" | "y" | null>(null);
@@ -165,15 +160,33 @@ export default function ProjectList() {
     function calc() {
       if (!carouselRef.current) return;
 
-      // Calculate max scroll distance to center the last project
-      const lastProjectPosition = projectPositions[projectPositions.length - 1];
-      const lastProjectWidth = projectWidths[projectWidths.length - 1];
-      // To center the last project: move it from 90vw to 50vw (40vw difference)
-      const viewportOffset = window.innerWidth * 0.4; // 40vw in pixels
-      const maxScrollDistance =
-        lastProjectPosition + lastProjectWidth / 2 + viewportOffset;
+      // Measure the actual container height so any h-[..] value works
+      const containerEl = carouselRef.current;
+      const measuredHeight = containerEl.clientHeight;
+      const containerHeightPx =
+        measuredHeight > 0
+          ? measuredHeight
+          : Math.round(parseFloat(getComputedStyle(containerEl).height));
 
-      document.body.style.height = `calc(100vh + ${maxScrollDistance}px)`;
+      const { widths, positions, total } =
+        calculateWidthsForHeight(containerHeightPx);
+      setCardWidths(widths);
+      setPositions(positions);
+      setTotalWidth(total);
+
+      // Compute how far we must translate to center the last card
+      const lastCenterWithinContainer =
+        positions[positions.length - 1] + widths[widths.length - 1] / 2;
+
+      const containerLeftPx = containerEl.getBoundingClientRect().left;
+      const viewportCenterPx = window.innerWidth / 2;
+      const maxScrollDistance =
+        containerLeftPx + lastCenterWithinContainer - viewportCenterPx;
+
+      document.body.style.height = `calc(100vh + ${Math.max(
+        0,
+        Math.round(maxScrollDistance)
+      )}px)`;
     }
 
     calc();
@@ -190,29 +203,25 @@ export default function ProjectList() {
   }
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-10">
-      <div className="absolute top-1/2 -translate-y-1/2 w-full h-[700px] overflow-hidden pointer-events-auto">
-        <motion.div
-          ref={carouselRef}
-          className="flex gap-2 h-full"
-          style={{
-            x: translateX,
-            width: `${totalWidth + window.innerWidth}px`,
-            paddingLeft: "90vw",
-          }}
-        >
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              imagePath={project.imagePath}
-              backgroundColor={project.backgroundColor}
-              imageWidth={project.imageWidth}
-              imageHeight={project.imageHeight}
-              alt={project.alt}
-            />
-          ))}
-        </motion.div>
-      </div>
-    </div>
+    <motion.div
+      ref={carouselRef}
+      className="flex gap-2 h-[50vh] fixed top-1/2 -translate-y-1/2 overflow-hidden pointer-events-auto left-[90vw]"
+      style={{
+        x: translateX,
+        width: `${totalWidth + window.innerWidth}px`,
+      }}
+    >
+      {projects.map((project, index) => (
+        <ProjectCard
+          key={project.id}
+          href={`/${project.id}`}
+          imagePath={project.imagePath}
+          backgroundColor={project.backgroundColor}
+          imageWidth={project.imageWidth}
+          imageHeight={project.imageHeight}
+          alt={project.alt}
+        />
+      ))}
+    </motion.div>
   );
 }
