@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={bdoGrotesk.variable}>
-        <div>
+        <div className="h-[300vh]">
           {children}
           <Analytics />
         </div>

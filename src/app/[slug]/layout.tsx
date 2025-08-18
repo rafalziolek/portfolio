@@ -28,7 +28,7 @@ export default async function ProjectLayout({
 
   return (
     <>
-      {children}
+      <div className="pt-16">{children}</div>
       <ProjectNav title={title} nextProjectSlug={nextProjectSlug} />
     </>
   );

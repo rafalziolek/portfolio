@@ -1,9 +1,16 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-weight-normal: 550;
-  --font-weight-medium: 650;
-  --text-sm: 0.90625rem;
+  --font-weight-normal: 500;
+  --font-weight-bold: 600;
+  --text-sm: 0.875rem;
+  --text-md: 0.9375rem
+  --text-xs: 0.6875rem;
+  --text-lg: 1.0625rem;
+  --tracking-tight: -0.01em;
+  --marker-color: var(--color-gray-200);
+  --font-family-mono: 'berkeley mono', var(--font-bdo-grotesk), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif;
+  --font-family-sans: 'univers next pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif;
   
 }
 
@@ -15,19 +22,20 @@ html * {
 
 * {
   box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
 }
 
 html,
 body {
-  font-family: var(--font-bdo-grotesk), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif;
+  font-family:'berkeley mono', var(--font-bdo-grotesk), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif;
+  background-color: black;
+  /* font-feature-settings: "salt" 1; */
 
 }
 
 body {
-  line-height: 1.33;
-  letter-spacing: -0.01em;
+  line-height: 1.2;
   overflow: visible;
 }
 
@@ -72,6 +80,44 @@ body {
   .modal-content-animate {
     animation: none !important;
   }
+}
+
+
+/* Marker-style link highlight */
+.marker-link {
+  position: relative;
+  text-decoration: none;
+  z-index: 0;
+}
+
+.marker-link::after {
+  inset: 0;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0.1em;
+  bottom: 0.1em;
+  left: -0.1em;
+  right: -0.1em;
+  background: var(--marker-color);
+
+  border-radius: 0.18em;
+  /* Wavy, irregular top edge */
+
+  transition: filter 180ms ease, transform 180ms ease;
+}
+
+.marker-link:hover::after {
+  background: black;
+}
+
+.marker-link:hover {
+  color: white;
+}
+
+.marker-link:focus-visible {
+  outline: 2px dotted rgba(0, 0, 0, 0.5);
+  outline-offset: 2px;
 }
 
 

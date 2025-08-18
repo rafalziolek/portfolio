@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Text from "./Text";
 
 export default function TimeDisplay() {
   const formatTime = () => {
@@ -29,6 +30,11 @@ export default function TimeDisplay() {
   }, []);
 
   return (
-    <p className="whitespace-pre tabular-nums uppercase font-medium ">{time}</p>
+    <Text
+      variant="body"
+      className="whitespace-pre tabular-nums uppercase text-xs text-black !font-bold"
+    >
+      {time}
+    </Text>
   );
 }
