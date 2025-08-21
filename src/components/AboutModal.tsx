@@ -161,7 +161,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     </Text>
                     <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
-                  <div className="flex flex-col justify-stretch w-full">
+                  <div className="flex flex-col justify-stretch w-full gap-1">
                     <div className="flex flex-row gap-3 items-baseline justify-between w-full ">
                       <Text variant="body" color="black">
                         Docplanner
@@ -228,7 +228,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     </Text>
                     <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
-                  <div className="flex flex-col items-start justify-center w-full">
+                  <div className="flex flex-col gap-1 items-start justify-center w-full">
                     <Text
                       variant="body"
                       color="black"
@@ -273,7 +273,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     </Text>
                     <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
-                  <div className="flex flex-col items-start justify-start w-full">
+                  <div className="flex flex-col items-start gap-1 justify-start w-full">
                     <Text
                       variant="body"
                       as="a"
@@ -348,7 +348,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     </Text>
                     <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
-                  <div className="flex flex-col items-start justify-center w-full">
+                  <div className="flex flex-col items-start gap-1 justify-center w-full">
                     <Text
                       variant="body"
                       className="whitespace-pre"
@@ -389,7 +389,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     </Text>
                     <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
-                  <div className="flex flex-col items-start justify-center w-full">
+                  <div className="flex flex-col items-start gap-1  justify-center w-full">
                     <Text
                       variant="body"
                       as="a"
