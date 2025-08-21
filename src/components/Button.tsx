@@ -58,7 +58,7 @@ export default function Button({
   icon,
 }: ButtonProps) {
   const baseClasses =
-    `py-2 font-mono font-medium uppercase backdrop-blur-md relative rounded-full shrink-0 font-medium text-sm tracking-tight text-center whitespace-nowrap tracking-[-0.01em] cursor-pointer active:scale-95 outline-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 transition-(transform,background-color) duration-150 ease-out`.trim();
+    `py-2 font-normal font-mono uppercase backdrop-blur-md relative rounded-full shrink-0 text-sm tracking-tight text-center whitespace-nowrap tracking-[-0.01em] cursor-pointer active:scale-95 outline-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 transition-(transform,background-color) duration-150 ease-out`.trim();
   const classes = `${baseClasses} ${getSizeClasses(size)} ${getVariantClasses(
     variant
   )} ${iconOnly ? "!px-2" : ""} ${className}`.trim();

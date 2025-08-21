@@ -4,9 +4,9 @@
   --font-weight-normal: 400;
   --font-weight-bold: 600;
   --text-sm: 0.875rem;
-  --text-md: 0.9375rem
+  --text-md: 0.9375rem;
   --text-xs: 0.6875rem;
-  --text-lg: 1.0625rem;
+  --text-lg: 1.03125rem;
   --tracking-tight: -0.01em;
   --marker-color: var(--color-gray-200);
   --font-mono: 'cofo sans mono vf';
@@ -30,7 +30,7 @@ html,
 body {
   /* font-family:'berkeley mono', var(--font-bdo-grotesk), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif; */
   background-color: black;
-  /* font-feature-settings: "salt" 1; */
+  font-feature-settings: "cv10" 1;
 
 }
 

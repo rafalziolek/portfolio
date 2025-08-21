@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <div className="fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center text-center  mx-auto text-neutral-200">
-        <div className="w-full max-w-[380px] flex flex-col gap-4 items-start">
+        <div className="w-full max-w-[360px] flex flex-col gap-6 items-start">
           <div className="flex flex-col gap-3 items-center justify-center">
             <Text
               variant="lead"
@@ -29,7 +29,7 @@ export default function Home() {
             </Text>
           </div>
           <div className="flex flex-col gap-2 items-center justify-center py-14 px-0 rounded-lg w-full">
-            <div className="flex h-[160px] items-center justify-center relative ">
+            <div className="flex h-[130px] items-center justify-center relative ">
               <div className="flex-none rotate-[2.683deg]">
                 <Image
                   src="/image 50.png"
@@ -42,7 +42,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-6 items-start justify-center">
+          <div className="flex flex-col gap-4 items-start justify-center">
             <Text variant="heading-lg" isUppercase>
               He blends interactions, experience and aesthetics into cohesive,{" "}
               <br /> detail-driven systems.

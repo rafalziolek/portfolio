@@ -65,11 +65,11 @@ function getClassesForVariant(variant: TextVariant): string {
       return "text-xs tracking-[-0.05em] font-[700]";
     case "heading-lg":
       // Matches prominent text on the home page hero
-      return "text-lg leading-[1.1] tracking-[-0.01em]";
+      return "text-lg leading-[1.15] tracking-[-0.02em] font-normal";
     case "paragraph":
       return "text-md font-[400] leading-[1.5]";
     case "lead":
-      return "font-black text-gray-200 text-2xl -mb-0.5 tracking-[-0.01em]";
+      return "font-bold tracking-[-0.01em] text-2xl -mb-0.5";
     default:
       return "";
   }

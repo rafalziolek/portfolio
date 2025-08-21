@@ -108,10 +108,10 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                           />
                           <div className="flex flex-row gap-3 flex-1 items-center justify-between w-full">
                             <div className="flex flex-col flex-1 items-start justify-start">
-                              <Text variant="heading" color="black" isUppercase>
+                              <Text variant="body" isUppercase>
                                 heart pt. 6
                               </Text>
-                              <Text variant="body" color="black">
+                              <Text variant="body" className="text-neutral-700">
                                 <span>Kendrick Lamar – </span>
                                 <span className="font">GNX</span>
                               </Text>
