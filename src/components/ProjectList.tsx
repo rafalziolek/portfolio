@@ -205,7 +205,7 @@ export default function ProjectList() {
   return (
     <motion.div
       ref={carouselRef}
-      className="flex gap-2 h-[50vh] fixed top-1/2 -translate-y-1/2 overflow-hidden pointer-events-auto left-[90vw]"
+      className="flex gap-2 h-[60vh] fixed top-1/2 -translate-y-1/2 overflow-hidden pointer-events-auto left-[90vw]"
       style={{
         x: translateX,
         width: `${totalWidth + window.innerWidth}px`,

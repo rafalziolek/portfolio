@@ -9,7 +9,7 @@ export interface DottedDividerProps {
   /** Dot color */
   color?: string;
   /** Visual style of the divider */
-  lineStyle?: "dotted" | "dashed";
+  lineStyle?: "dotted" | "dashed" | "asterisk";
   /** Length of a dash (px). Used only when lineStyle is "dashed" */
   dashLength?: number;
   /** Gap between dashes (px). Used only when lineStyle is "dashed" */
@@ -49,6 +49,30 @@ export default function DottedDivider({
               height={thickness}
             >
               <circle cx={cx} cy={cy} r={radius} fill={color} />
+            </pattern>
+          </defs>
+          <rect width="100%" height={thickness} fill={`url(#${patternId})`} />
+        </>
+      ) : lineStyle === "asterisk" ? (
+        <>
+          <defs>
+            <pattern
+              id={patternId}
+              patternUnits="userSpaceOnUse"
+              width={spacing}
+              height={thickness}
+            >
+              <text
+                x={cx}
+                y={cy}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize={thickness * 0.8}
+                fill={color}
+                fontFamily="monospace"
+              >
+                *
+              </text>
             </pattern>
           </defs>
           <rect width="100%" height={thickness} fill={`url(#${patternId})`} />

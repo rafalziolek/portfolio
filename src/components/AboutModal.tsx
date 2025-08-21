@@ -41,7 +41,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
           >
             {/* Modal Content */}
             <motion.div
-              className="bg-white gap-16 font-normal box-border flex flex-col items-center justify-start mx-auto my-14 px-15 pt-8 pb-6 w-[480px] max-w-[90vw]"
+              className="bg-neutral-100 gap-16 font-normal box-border flex flex-col items-center justify-start mx-auto my-14 px-12 pt-8 pb-6 w-[450px] max-w-[90vw] "
               onClick={(e) => e.stopPropagation()}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -54,13 +54,13 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 <Text
                   variant="body"
                   isUppercase
-                  className="whitespace-pre text-xs text-black !font-bold"
+                  className="whitespace-pre text-xs text-black"
                 >
                   Warsaw, Poland
                 </Text>
               </div>
               {/* Profile Image */}
-              <div className="flex flex-col gap-12 items-center justify-center px-0  w-full mb-4">
+              <div className="flex flex-col gap-12 items-center justify-center px-0  w-full ">
                 <div className="flex h-[287px] items-center justify-center relative w-[338px]">
                   <div className="flex-none rotate-[2.683deg]">
                     <Image
@@ -77,7 +77,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 <div className="flex flex-col gap-0.5 items-center justify-center w-full">
                   <div className="flex flex-col gap-12 items-start justify-start w-full ">
                     {/* Description */}
-                    <Text variant="body" color="black">
+                    <Text variant="body">
                       I obsess over the pixels and the system they live in.
                       <br />
                       <br />
@@ -91,7 +91,14 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     <p>Recently listened</p>
                     </div>
                     </div> */}
-                      <div className="flex flex-col gap-4  flex-1 bg-neutral-100 rounded-md p-4 -mx-3 self-stretch">
+                      <div className="flex flex-col gap-4  flex-1 bg-neutral-200/60 rounded-2xl -mx-1 p-4 self-stretch">
+                        {/* <DottedDivider
+                          lineStyle="asterisk"
+                          dashLength={8}
+                          thickness={10}
+                          gap={3.5}
+                          className="w-full"
+                        /> */}
                         <div className="flex flex-row gap-2  items-center justify-center overflow-hidden">
                           <SpotifyAlbumCover
                             albumUrl="https://open.spotify.com/album/0hvT3yIEysuuvkK73vgdcW"
@@ -101,11 +108,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                           />
                           <div className="flex flex-row gap-3 flex-1 items-center justify-between w-full">
                             <div className="flex flex-col flex-1 items-start justify-start">
-                              <Text
-                                variant="body"
-                                color="black"
-                                className="!font-semibold"
-                              >
+                              <Text variant="heading" color="black" isUppercase>
                                 heart pt. 6
                               </Text>
                               <Text variant="body" color="black">
@@ -129,6 +132,13 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                             </button>
                           </div>
                         </div>
+                        {/* <DottedDivider
+                          lineStyle="asterisk"
+                          dashLength={8}
+                          thickness={10}
+                          gap={3.5}
+                          className="w-full"
+                        /> */}
                       </div>
                     </div>
                   </div>
@@ -136,38 +146,24 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 </div>
               </div>
               {/* Divider */}{" "}
-              <div className="flex flex-col gap-6 items-start justify-start w-full">
+              <div className="flex flex-col gap-6 items-start justify-start w-full uppercase">
                 <div className="flex flex-col gap-2 items-start justify-start w-full leading-[1.4]">
                   <div className="flex flex-row gap-3 items-center justify-center w-full">
-                    <DottedDivider
-                      lineStyle="dashed"
-                      dashLength={6}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                     <Text
                       variant="heading"
                       isUppercase
                       color="black"
                       font="sans"
-                      className="flex-1 text-center !font-[800]"
+                      className="flex-1 text-center "
                     >
                       Experience
                     </Text>
-                    <DottedDivider
-                      lineStyle="dashed"
-                      dashLength={6}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
                   <div className="flex flex-col justify-stretch w-full">
                     <div className="flex flex-row gap-3 items-baseline justify-between w-full ">
-                      <Text
-                        variant="body"
-                        color="black"
-                        className="!font-medium"
-                      >
+                      <Text variant="body" color="black">
                         Docplanner
                       </Text>
                       <Text variant="body" color="black">
@@ -175,11 +171,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                       </Text>
                     </div>
                     <div className="flex flex-row gap-3 items-baseline justify-between">
-                      <Text
-                        variant="body"
-                        color="black"
-                        className="!font-medium"
-                      >
+                      <Text variant="body" color="black">
                         Semiflat
                       </Text>
                       <Text variant="body" color="black">
@@ -187,11 +179,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                       </Text>
                     </div>
                     <div className="flex flex-row gap-3 items-baseline justify-between w-full">
-                      <Text
-                        variant="body"
-                        color="black"
-                        className="!font-medium"
-                      >
+                      <Text variant="body" color="black">
                         Absolvent Group
                       </Text>
                       <Text variant="body" color="black">
@@ -199,11 +187,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                       </Text>
                     </div>
                     <div className="flex flex-row gap-3 items-baseline justify-between">
-                      <Text
-                        variant="body"
-                        color="black"
-                        className="!font-medium"
-                      >
+                      <Text variant="body" color="black">
                         INVO
                       </Text>
                       <Text variant="body" color="black">
@@ -228,16 +212,11 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 /> */}
               </div>
               {/* Learning, Likes, Dislikes, Connect Sections */}
-              <div className="flex flex-col gap-16 items-center justify-start w-full">
+              <div className="flex flex-col gap-16 items-center justify-start w-full uppercase">
                 {/* Learning Now */}
                 <div className="flex flex-col gap-2 items-start justify-start w-full">
                   <div className="flex flex-row gap-2 items-center justify-center w-full">
-                    <DottedDivider
-                      lineStyle="dashed"
-                      dashLength={8}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                     <Text
                       variant="heading"
                       color="black"
@@ -247,12 +226,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     >
                       I'm learning now
                     </Text>
-                    <DottedDivider
-                      lineStyle="dashed"
-                      dashLength={8}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
                   <div className="flex flex-col items-start justify-center w-full">
                     <Text
@@ -270,7 +244,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                       >
                         Japanese
                       </Text>
-                      <span className="text-gray-500 text-[14px] tracking-normal font-medium">
+                      <span className="text-neutral-500 text-[14px] tracking-normal font-medium">
                         それは難しい
                       </span>
                     </div>
@@ -285,14 +259,9 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 </div>
 
                 {/* I Like */}
-                <div className="flex flex-col gap-2 items-start justify-start w-full">
+                <div className="flex flex-col gap-2 items-start justify-start w-full uppercase">
                   <div className="flex flex-row gap-2 items-center justify-center w-full">
-                    <DottedDivider
-                      lineStyle="dashed"
-                      dashLength={8}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                     <Text
                       variant="heading"
                       color="black"
@@ -302,12 +271,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     >
                       I like
                     </Text>
-                    <DottedDivider
-                      lineStyle="dashed"
-                      dashLength={8}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
                   <div className="flex flex-col items-start justify-start w-full">
                     <Text
@@ -370,14 +334,9 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 </div>
 
                 {/* I Don't Like */}
-                <div className="flex flex-col gap-2 items-start justify-start w-full">
+                <div className="flex flex-col gap-2 items-start justify-start w-full uppercase">
                   <div className="flex flex-row gap-2 items-center justify-center w-full">
-                    <DottedDivider
-                      lineStyle="dashed"
-                      dashLength={8}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                     <Text
                       variant="heading"
                       color="black"
@@ -387,12 +346,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     >
                       I don't like
                     </Text>
-                    <DottedDivider
-                      lineStyle="dashed"
-                      dashLength={8}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
                   <div className="flex flex-col items-start justify-center w-full">
                     <Text
@@ -423,12 +377,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 {/* Connect */}
                 <div className="flex flex-col gap-2 items-start justify-start w-full">
                   <div className="flex flex-row gap-2 items-center justify-center w-full">
-                    <DottedDivider
-                      lineStyle="dashed"
-                      dashLength={8}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                     <Text
                       variant="heading"
                       color="black"
@@ -438,13 +387,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                     >
                       Connect
                     </Text>
-                    <DottedDivider
-                      className="-mt-0.5"
-                      lineStyle="dashed"
-                      dashLength={8}
-                      thickness={1.5}
-                      gap={4}
-                    />
+                    <DottedDivider dashLength={8} thickness={2} gap={3.5} />
                   </div>
                   <div className="flex flex-col items-start justify-center w-full">
                     <Text
@@ -478,7 +421,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                       >
                         LinkedIn
                       </Text>
-                      <Text variant="body" className="text-gray-500">
+                      <Text variant="body" className="text-neutral-500">
                         I am rarely there.
                       </Text>
                     </div>
@@ -497,7 +440,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 asMotion
                 layoutId="menu-cta"
                 onClick={onClose}
-                className="sticky bottom-8"
+                className="sticky bottom-8 bg-red-700 hover:bg-red-600"
               >
                 <motion.span layoutId="menu-cta-label">Close</motion.span>
               </Button>

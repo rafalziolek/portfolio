@@ -14,8 +14,13 @@ export default function Home() {
     <>
       <div className="fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center text-center  mx-auto text-neutral-200">
         <div className="w-full max-w-[380px] flex flex-col gap-4 items-start">
-          <div className="flex flex-col gap-2 items-center justify-center">
-            <Text variant="lead" isUppercase font="sans">
+          <div className="flex flex-col gap-3 items-center justify-center">
+            <Text
+              variant="lead"
+              isUppercase
+              font="sans"
+              className="!text-red-500"
+            >
               Rafa designs things.{" "}
             </Text>
 

@@ -32,7 +32,7 @@ export default function TimeDisplay() {
   return (
     <Text
       variant="body"
-      className="whitespace-pre tabular-nums uppercase text-xs text-black !font-bold"
+      className="whitespace-pre tabular-nums uppercase text-xs text-black "
     >
       {time}
     </Text>

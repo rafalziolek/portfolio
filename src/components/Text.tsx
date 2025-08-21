@@ -56,7 +56,7 @@ function getClassesForVariant(variant: TextVariant): string {
   switch (variant) {
     case "body":
       // Matches body text used in AboutModal for list items and paragraphs
-      return "text-sm font-normal tracking-tight leading-[1.33]";
+      return "text-sm font-normal tracking-tighter leading-[1.25]";
     case "heading":
       // Matches list headings in AboutModal (e.g., "Experience")
       return "text-[0.9rem] font-bold tracking-tight";
@@ -65,11 +65,11 @@ function getClassesForVariant(variant: TextVariant): string {
       return "text-xs tracking-[-0.05em] font-[700]";
     case "heading-lg":
       // Matches prominent text on the home page hero
-      return "text-lg leading-[1.1] tracking-[-0.01em] font-bold";
+      return "text-lg leading-[1.1] tracking-[-0.01em]";
     case "paragraph":
       return "text-md font-[400] leading-[1.5]";
     case "lead":
-      return "font-black text-gray-200 text-xl -mb-0.5 tracking-[-0.01em]";
+      return "font-black text-gray-200 text-2xl -mb-0.5 tracking-[-0.01em]";
     default:
       return "";
   }
@@ -91,22 +91,14 @@ export default function Text({
   const Tag: ElementType = as ?? defaultTagByVariant[variant];
   const baseClasses = getClassesForVariant(variant);
   const transformClass = isUppercase ? "uppercase" : "";
-  const composedClassName = [baseClasses, transformClass, className]
+  const composedClassName = [
+    baseClasses,
+    transformClass,
+    font === "sans" ? "font-sans" : "font-mono",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
-
-  const MONO_STACK =
-    "'berkeley mono', var(--font-bdo-grotesk), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Inter', sans-serif";
-  const SANS_STACK =
-    "'univers next pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', 'Inter', sans-serif";
-
-  const style: React.CSSProperties | undefined =
-    color || font
-      ? {
-          ...(color ? { color } : {}),
-          fontFamily: font === "sans" ? SANS_STACK : MONO_STACK,
-        }
-      : undefined;
 
   if (asMotion) {
     const MotionTag = motion(Tag);
@@ -115,7 +107,6 @@ export default function Text({
         layoutId={layoutId}
         layout={motionLayout}
         className={composedClassName}
-        style={style}
         {...restProps}
       >
         {children}
@@ -124,7 +115,7 @@ export default function Text({
   }
 
   return (
-    <Tag className={composedClassName} style={style} {...restProps}>
+    <Tag className={composedClassName} {...restProps}>
       {children}
     </Tag>
   );
