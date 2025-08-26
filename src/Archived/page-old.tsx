@@ -15,7 +15,7 @@ export default function Home() {
       <div className="fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center text-center  mx-auto text-neutral-200">
         <div className="w-full max-w-[360px] flex flex-col gap-6 items-start">
           <div className="flex flex-col gap-3 items-center justify-center">
-            <AboutModal />
+            {/* <AboutModal /> */}
             <Text variant="lead" isUppercase font="sans" className="!">
               Rafa designs things.{" "}
             </Text>

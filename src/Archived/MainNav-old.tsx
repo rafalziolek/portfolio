@@ -4,7 +4,7 @@ import React from "react";
 import { ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "motion/react";
-import Button from "./Button";
+import Button from "@/components/Button";
 
 interface MainNavProps {
   className?: string;

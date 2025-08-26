@@ -6,7 +6,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
 } from "motion/react";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "@/components/ProjectCard";
 
 // Mobile detection will be handled in useEffect to avoid hydration issues
 
