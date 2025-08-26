@@ -1,26 +1,81 @@
-import { ReactNode } from "react";
+"use client";
+
+import React, { ReactNode } from "react";
+import Text from "./Text";
 
 interface ListItemProps {
   label: string;
-  children: ReactNode;
+  value?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
   className?: string;
+  valueClassName?: string;
+  children?: ReactNode;
+  /**
+   * When true, the label becomes a link
+   */
+  isLabelLink?: boolean;
 }
 
 export default function ListItem({
   label,
-  children,
+  value,
+  href,
+  target,
+  rel,
   className = "",
+  valueClassName = "",
+  children,
+  isLabelLink = false,
 }: ListItemProps) {
+  if (children) {
+    // Custom content override
+    return (
+      <div
+        className={`flex flex-row gap-3 items-baseline justify-between w-full ${className}`}
+      >
+        {children}
+      </div>
+    );
+  }
+
+  if (isLabelLink && href) {
+    return (
+      <div
+        className={`flex flex-row gap-3 items-baseline justify-between w-full ${className}`}
+      >
+        <Text
+          variant="body"
+          as="a"
+          href={href}
+          target={target}
+          rel={rel}
+          className="marker-link whitespace-pre"
+        >
+          {label}
+        </Text>
+        {value && (
+          <Text variant="body" className={`text-neutral-500 ${valueClassName}`}>
+            {value}
+          </Text>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`grid grid-cols-[1fr_auto] gap-4 items-baseline pb-8 pt-3 relative border-b border-dotted border-black/15 ${className}`}
+      className={`flex flex-row gap-3 items-baseline justify-between w-full ${className}`}
     >
-      <dt className="text-black text-lg font-medium leading-[1.33] uppercase">
+      <Text variant="body" color="black" className="whitespace-pre">
         {label}
-      </dt>
-      <dd className="flex flex-col items-end text-black text-xl font-medium leading-[1.5] tracking-[-0.2px] min-w-[152px]">
-        {children}
-      </dd>
+      </Text>
+      {value && (
+        <Text variant="body" color="black" className={valueClassName}>
+          {value}
+        </Text>
+      )}
     </div>
   );
 }

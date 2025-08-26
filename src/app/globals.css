@@ -8,10 +8,10 @@
   --text-xs: 0.6875rem;
   --text-lg: 1.03125rem;
   --tracking-tight: -0.01em;
-  --marker-color: var(--color-gray-200);
-  --font-mono: 'cofo sans mono vf';
-  --font-sans: 'helvetica neue', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif;
-  
+  --marker-color: var(--color-neutral-200);
+  --font-mono: 'PP neue montreal mono';
+  --font-sans: 'Univers next Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif;
+
 }
 
 html * {
@@ -22,15 +22,19 @@ html * {
 
 * {
   box-sizing: border-box;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html,
 body {
   /* font-family:'berkeley mono', var(--font-bdo-grotesk), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif; */
   background-color: black;
-  font-feature-settings: "cv10" 1;
+  font-feature-settings: "ss03" 1;
+::selection {
+  background-color: tomato; /* Soft yellow highlight */
+  color: white; /* Tailwind's neutral-900 for good contrast */
+}
 
 }
 
@@ -119,5 +123,3 @@ body {
   outline: 2px dotted rgba(0, 0, 0, 0.5);
   outline-offset: 2px;
 }
-
-

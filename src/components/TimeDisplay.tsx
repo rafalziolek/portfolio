@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Text from "./Text";
 
-export default function TimeDisplay() {
+function TimeDisplayClient() {
   const formatTime = () => {
     const formatter = new Intl.DateTimeFormat("en-US", {
       hour12: false,
@@ -29,12 +28,15 @@ export default function TimeDisplay() {
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <Text
-      variant="body"
-      className="whitespace-pre tabular-nums uppercase text-xs text-black "
-    >
-      {time}
-    </Text>
-  );
+  return <time>{time}</time>;
 }
+
+// Export the dynamically imported component that only renders on client
+import dynamic from "next/dynamic";
+
+const TimeDisplay = dynamic(() => Promise.resolve(TimeDisplayClient), {
+  ssr: false,
+  loading: () => <time>--:--:--</time>,
+});
+
+export default TimeDisplay;

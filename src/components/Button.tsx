@@ -25,12 +25,11 @@ interface ButtonProps {
 function getVariantClasses(variant: ButtonVariant): string {
   switch (variant) {
     case "filled":
-      return "bg-neutral-200/100 backdrop-blur-sm text-black";
+      return "bg-black";
     case "white":
       return "bg-white text-black hover:bg-neutral-100";
-    case "ghost":
     default:
-      return "text-white bg-neutral-800/90 hover:bg-neutral-700 duration-150 backdrop-blur-md";
+      return "text-white font-bold bg-black hover:bg-neutral-800 duration-150 backdrop-blur-md";
   }
 }
 

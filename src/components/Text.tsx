@@ -56,10 +56,10 @@ function getClassesForVariant(variant: TextVariant): string {
   switch (variant) {
     case "body":
       // Matches body text used in AboutModal for list items and paragraphs
-      return "text-sm font-normal tracking-tighter leading-[1.25]";
+      return "text-sm font-medium tracking-[-0.03em] leading-[1.25]";
     case "heading":
       // Matches list headings in AboutModal (e.g., "Experience")
-      return "text-[0.9rem] font-bold tracking-tight";
+      return "text-[0.8125rem] font-extrabold tracking-tight";
     case "heading-sm":
       // Matches time/location in AboutModal
       return "text-xs tracking-[-0.05em] font-[700]";
@@ -69,7 +69,7 @@ function getClassesForVariant(variant: TextVariant): string {
     case "paragraph":
       return "text-md font-[400] leading-[1.5]";
     case "lead":
-      return "font-bold tracking-[-0.01em] text-2xl -mb-0.5";
+      return "font-black tracking-[-0.01em] text-2xl -mb-0.5";
     default:
       return "";
   }

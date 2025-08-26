@@ -29,14 +29,6 @@ export default function ProjectSlugPage({
         {/* Main content area */}
         <main className="pt-20 pb-24 px-4 col-start-2 col-span-1">
           {/* Header Section */}
-          {/* <Text
-            variant="lead"
-            font="sans"
-            isUppercase
-            className="text-center mb-8"
-          >
-            {projectTitle}
-          </Text> */}
           {/* Description Section */}
           <div className="mb-6">
             <Text variant="paragraph" font="sans">
