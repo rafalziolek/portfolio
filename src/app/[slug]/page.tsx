@@ -48,7 +48,7 @@ export default function ProjectSlugPage({
           />
 
           {/* Caption for first image */}
-          <Text variant="heading-sm" font="mono" color="rgba(255,255,255,0.5)">
+          <Text variant="heading" font="mono" color="rgba(255,255,255,0.5)">
             Project interface and user experience design.
           </Text>
         </main>

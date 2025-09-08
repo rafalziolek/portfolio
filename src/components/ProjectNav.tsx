@@ -133,9 +133,8 @@ export default function ProjectNav({
             >
               <Button
                 onClick={handleNext}
-                variant="filled"
+                variant="default"
                 iconOnly
-                icon={<ArrowRight size={20} color="black" />}
                 className=" px-4 font-medium text-lg tracking-tight"
               ></Button>
             </motion.div>
