@@ -10,12 +10,13 @@ export default function Home() {
     <div className="min-h-screen bg-black relative">
       <TopNav />
 
-      <div className="flex flex-col items-center justify-start pt-[117px] gap-6">
+      <div className="flex flex-col items-center justify-start gap-6">
         {/* About Section - Centered */}
+
         <AboutSection />
+        <ProjectGrid />
 
         {/* Project Grid - Full width below */}
-        <ProjectGrid />
       </div>
     </div>
   );

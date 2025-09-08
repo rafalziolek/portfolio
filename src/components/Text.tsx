@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 type TextVariant =
   | "body"
   | "heading"
-  | "heading-sm"
+  | "small"
   | "heading-lg"
   | "paragraph"
   | "lead";
@@ -26,7 +26,7 @@ interface TextProps extends PropsWithChildren {
    */
   isUppercase?: boolean;
   /**
-   * Font family selection. Defaults to "mono" (Berkeley Mono). "sans" uses BDOGrotesk.
+   * Font family selection. Defaults to "sans" (Inter). "mono" uses CommitMono.
    */
   font?: TextFont;
   /**
@@ -47,29 +47,27 @@ const defaultTagByVariant: Record<TextVariant, ElementType> = {
   body: "p",
   paragraph: "p",
   heading: "h2",
-  "heading-sm": "h3",
   "heading-lg": "h1",
   lead: "h1",
+  small: "span",
 };
 
 function getClassesForVariant(variant: TextVariant): string {
   switch (variant) {
+    case "small":
+      return "text-xs font-medium tracking-tight leading-[1.5] uppercase";
     case "body":
-      // Matches body text used in AboutModal for list items and paragraphs
-      return "text-sm font-medium tracking-[-0.03em] leading-[1.25]";
+      // Matches new design body text: Inter Medium 450, 16px, 25px line-height
+      return "text-md font-normal tracking-tight leading-normal";
     case "heading":
-      // Matches list headings in AboutModal (e.g., "Experience")
-      return "text-[0.8125rem] font-extrabold tracking-tight";
-    case "heading-sm":
-      // Matches time/location in AboutModal
-      return "text-xs tracking-[-0.05em] font-[700]";
-    case "heading-lg":
-      // Matches prominent text on the home page hero
-      return "text-lg leading-[1.15] tracking-[-0.02em] font-normal";
+      // Matches new design section headings: Inter Bold 800, 16px, 1.5 line-height
+      return "text-md font-bold tracking-tight leading-[1.5]";
     case "paragraph":
-      return "text-md font-[400] leading-[1.5]";
+      // Matches body paragraph text in new design
+      return "text-base font-[450] tracking-[-0.32px] leading-[25px]";
     case "lead":
-      return "font-black tracking-[-0.01em] text-2xl -mb-0.5";
+      // Main hero text: Inter Bold 800, 16px, 1.5 line-height
+      return "text-base font-extrabold tracking-[-0.32px] leading-[1.5]";
     default:
       return "";
   }
@@ -81,7 +79,7 @@ export default function Text({
   className = "",
   color,
   isUppercase = false,
-  font = "mono",
+  font = "sans",
   children,
   asMotion = false,
   layoutId,
@@ -100,6 +98,8 @@ export default function Text({
     .filter(Boolean)
     .join(" ");
 
+  const style = color ? { color } : {};
+
   if (asMotion) {
     const MotionTag = motion(Tag);
     return (
@@ -107,6 +107,7 @@ export default function Text({
         layoutId={layoutId}
         layout={motionLayout}
         className={composedClassName}
+        style={style}
         {...restProps}
       >
         {children}
@@ -115,7 +116,7 @@ export default function Text({
   }
 
   return (
-    <Tag className={composedClassName} {...restProps}>
+    <Tag className={composedClassName} style={style} {...restProps}>
       {children}
     </Tag>
   );

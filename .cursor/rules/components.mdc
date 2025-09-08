@@ -1,0 +1,13 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+When working in components directory:
+
+- Always use Tailwind for styling
+- Use Framer Motion for animations. Import it from motion/react as it's the newest version
+- Follow component naming conventions
+- New icons should be created inside icons folder and reused. Never as one-time implementation.
+- Create new components for extractable parts during implementation of complex pages/sections.

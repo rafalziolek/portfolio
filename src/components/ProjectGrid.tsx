@@ -38,25 +38,25 @@ interface ProjectGridProps {
 
 export default function ProjectGrid({ className = "" }: ProjectGridProps) {
   return (
-    <div className={`w-full bg-black ${className}`}>
-      <div className="flex flex-col gap-[10.972px] items-start justify-center w-full">
+    <div className={`w-full mt-[95vh] pb-10 bg-black z-10 ${className}`}>
+      <div className="flex flex-col  gap-4 items-start justify-center w-full">
         {/* Create rows of 3 projects */}
         {Array.from(
           { length: Math.ceil(projects.length / 3) },
           (_, rowIndex) => (
             <div
               key={rowIndex}
-              className="flex gap-[10.972px] items-start justify-center w-full"
+              className="flex gap-4 items-start justify-center w-full"
             >
               {projects
                 .slice(rowIndex * 3, (rowIndex + 1) * 3)
                 .map((project, index) => (
-                                     <div
-                     key={project.id}
-                     className="flex-1 min-w-0 cursor-pointer"
-                   >
+                  <div
+                    key={project.id}
+                    className="flex-1 min-w-0 cursor-pointer"
+                  >
                     <Link href={`/${project.id}`} className="block">
-                      <div className="relative aspect-[632/500] bg-center bg-cover bg-no-repeat border border-[rgba(255,255,255,0.1)] border-solid">
+                      <div className="relative aspect-[632/500] bg-center bg-cover bg-no-repeat shadow-[0_1px_0_0_rgba(0,0,0,0.05)]">
                         <Image
                           src={project.imagePath}
                           alt={project.alt}
@@ -65,8 +65,8 @@ export default function ProjectGrid({ className = "" }: ProjectGridProps) {
                           sizes="33vw"
                         />
                       </div>
-                                         </Link>
-                   </div>
+                    </Link>
+                  </div>
                 ))}
               {/* Fill empty slots if needed */}
               {Array.from(

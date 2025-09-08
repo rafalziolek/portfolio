@@ -1,11 +1,12 @@
 "use client";
 
 import React, { ReactNode } from "react";
+import clsx from "clsx";
 import { motion } from "motion/react";
 import Link from "next/link";
 
-type ButtonVariant = "filled" | "ghost" | "white";
-type ButtonSize = "default";
+type ButtonVariant = "default" | "inverted" | "square";
+type ButtonSize = "default" | "small";
 
 interface ButtonProps {
   children?: ReactNode;
@@ -17,105 +18,71 @@ interface ButtonProps {
   asMotion?: boolean;
   layoutId?: string;
   motionLayout?: boolean | "position" | "size" | "preserve-aspect";
-  type?: "button" | "submit" | "reset";
   iconOnly?: boolean;
-  icon?: ReactNode;
+  leadingIcon?: ReactNode;
+  trailingIcon?: ReactNode;
 }
 
 function getVariantClasses(variant: ButtonVariant): string {
   switch (variant) {
-    case "filled":
-      return "bg-black";
-    case "white":
-      return "bg-white text-black hover:bg-neutral-100";
+    case "inverted":
+      return "text-black bg-white";
+    case "square":
+      return "text-white bg-transparent hover:bg-white/10 transition-colors !rounded-[3px]";
     default:
-      return "text-white font-bold bg-black hover:bg-neutral-800 duration-150 backdrop-blur-md";
+      return "text-white bg-black duration-150";
   }
 }
 
 function getSizeClasses(size: ButtonSize): string {
   switch (size) {
+    case "small":
+      return "flex flex-row gap-2 items-center justify-center w-[1.625rem] h-[1.625rem]";
     default:
-      return "flex flex-row gap-3 items-center justify-center px-5";
+      return "flex flex-row gap-2.5 items-center justify-center px-5 py-2.5 text-[16px] font-semibold tracking-tight";
   }
 }
 
-const MotionLink = motion(Link);
+function getButtonTag(asMotion: boolean, href?: string): React.ElementType {
+  if (asMotion) {
+    const MotionLink = motion.create(Link);
+    const MotionButton = motion.create("button");
+    return href ? MotionLink : MotionButton;
+  }
+  return href ? Link : "button";
+}
 
 export default function Button({
   children,
   onClick,
   href,
   className = "",
-  variant = "ghost",
+  variant = "default",
   size = "default",
   asMotion = false,
   layoutId,
   motionLayout,
-  type = "button",
   iconOnly = false,
-  icon,
+  leadingIcon,
+  trailingIcon,
 }: ButtonProps) {
-  const baseClasses =
-    `py-2 font-normal font-mono uppercase backdrop-blur-md relative rounded-full shrink-0 text-sm tracking-tight text-center whitespace-nowrap tracking-[-0.01em] cursor-pointer active:scale-95 outline-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 transition-(transform,background-color) duration-150 ease-out`.trim();
-  const classes = `${baseClasses} ${getSizeClasses(size)} ${getVariantClasses(
-    variant
-  )} ${iconOnly ? "!px-2" : ""} ${className}`.trim();
-
-  // Determine content based on iconOnly prop
-  const content = iconOnly ? icon : children;
-
-  // Common props for motion components
-  const motionProps = {
-    layoutId,
-    layout: motionLayout,
-    className: classes,
-  };
-
-  // Button with onClick (prioritized over href)
-  if (onClick) {
-    if (asMotion) {
-      return (
-        <motion.button {...motionProps} onClick={onClick} type={type}>
-          {content}
-        </motion.button>
-      );
-    }
-    return (
-      <button onClick={onClick} className={classes} type={type}>
-        {content}
-      </button>
-    );
-  }
-
-  // Link button (Next.js Link)
-  if (href) {
-    if (asMotion) {
-      return (
-        <MotionLink href={href} {...motionProps}>
-          {content}
-        </MotionLink>
-      );
-    }
-    return (
-      <Link href={href} className={classes}>
-        {content}
-      </Link>
-    );
-  }
-
-  // Default button (no onClick, no href)
-  if (asMotion) {
-    return (
-      <motion.button {...motionProps} type={type}>
-        {content}
-      </motion.button>
-    );
-  }
-
+  const Tag = getButtonTag(asMotion, href);
+  const Classes = clsx(
+    "font-sans",
+    getVariantClasses(variant),
+    getSizeClasses(size),
+    `${
+      variant === "square" ? "rounded-[0.3125rem]" : "rounded-full"
+    } active:scale-98 ${size !== "small" && leadingIcon ? "pl-5" : ""} ${
+      size !== "small" && trailingIcon ? "pr-5" : ""
+    }`,
+    className
+  );
   return (
-    <button className={classes} type={type}>
-      {content}
-    </button>
+    <Tag className={Classes} onClick={onClick}>
+      {leadingIcon}
+      {children}
+      {trailingIcon}
+    </Tag>
   );
 }

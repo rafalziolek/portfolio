@@ -43,7 +43,7 @@ export default function ListItem({
   if (isLabelLink && href) {
     return (
       <div
-        className={`flex flex-row gap-3 items-baseline justify-between w-full ${className}`}
+        className={`flex flex-row gap-2 items-baseline justify-start w-full ${className}`}
       >
         <Text
           variant="body"
@@ -51,12 +51,17 @@ export default function ListItem({
           href={href}
           target={target}
           rel={rel}
-          className="marker-link whitespace-pre"
+          color="white"
+          className="underline decoration-white/30 underline-offset-[14.5%] whitespace-pre"
         >
           {label}
         </Text>
         {value && (
-          <Text variant="body" className={`text-neutral-500 ${valueClassName}`}>
+          <Text
+            variant="body"
+            color="rgba(255,255,255,0.46)"
+            className={valueClassName}
+          >
             {value}
           </Text>
         )}
@@ -66,13 +71,17 @@ export default function ListItem({
 
   return (
     <div
-      className={`flex flex-row gap-3 items-baseline justify-between w-full ${className}`}
+      className={`flex flex-row gap-2 items-baseline justify-start w-full ${className}`}
     >
-      <Text variant="body" color="black" className="whitespace-pre">
+      <Text variant="body" color="white" className="whitespace-pre">
         {label}
       </Text>
       {value && (
-        <Text variant="body" color="black" className={valueClassName}>
+        <Text
+          variant="body"
+          color="rgba(255,255,255,0.46)"
+          className={valueClassName}
+        >
           {value}
         </Text>
       )}

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import DottedDivider from "./DottedDivider";
 import Text from "./Text";
 
 interface SectionHeadingProps {
@@ -15,10 +14,9 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div
-      className={`flex flex-col gap-3 items-start justify-center w-full ${className}`}
+      className={`flex flex-col items-start justify-start w-full ${className}`}
     >
-      <DottedDivider dashLength={8} thickness={1.5} gap={6} />
-      <Text variant="heading" isUppercase font="sans">
+      <Text variant="heading" color="white">
         {title}
       </Text>
     </div>
