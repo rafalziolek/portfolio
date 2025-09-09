@@ -14,7 +14,7 @@ export default function TopNav() {
       <div className="flex items-center justify-between">
         {/* Left - Time and Location */}
         <div className="bg-neutral-900 rounded-[0.3125rem] px-2.5 py-[0.1875rem] h-8 flex items-center justify-center">
-          <Text variant="small" font="mono" color="white">
+          <Text variant="small" color="white">
             Warsaw, <TimeDisplay />
           </Text>
         </div>
@@ -25,7 +25,6 @@ export default function TopNav() {
             <div className="flex items-center">
               <Text
                 variant="small"
-                font="mono"
                 as="a"
                 href="mailto:rafal.ziolek@icloud.com"
                 color="white"
@@ -36,7 +35,6 @@ export default function TopNav() {
             </div>
             <Text
               variant="small"
-              font="mono"
               as="a"
               href="https://x.com/rafal_ziolek"
               target="_blank"
@@ -48,7 +46,6 @@ export default function TopNav() {
             </Text>
             <Text
               variant="small"
-              font="mono"
               as="a"
               href="https://www.instagram.com/rafal.ziolek/"
               target="_blank"

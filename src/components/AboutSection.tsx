@@ -173,7 +173,7 @@ export default function AboutSection({ className }: { className?: string }) {
                   width={15}
                   height={15}
                   color="black"
-                  className="mt-[0.09375rem] will-change-transform"
+                  className="mt-[0.075rem] will-change-transform"
                 />
               }
             >
