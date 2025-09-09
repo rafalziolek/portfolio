@@ -66,7 +66,7 @@ export default function AboutSection({ className }: { className?: string }) {
               </div>
 
               {/* Content Sections */}
-              <div className="flex flex-col gap-10 items-center justify-start w-full">
+              <div className="flex flex-col gap-14 items-center justify-start w-full">
                 {/* Experience Section */}
                 <div className="flex flex-col gap-1.5 items-start justify-start w-full">
                   <SectionHeading title="Experience" />
@@ -173,7 +173,7 @@ export default function AboutSection({ className }: { className?: string }) {
                   width={15}
                   height={15}
                   color="black"
-                  className="mt-[1px]"
+                  className="mt-[0.09375rem] will-change-transform"
                 />
               }
             >

@@ -30,16 +30,16 @@ function getVariantClasses(variant: ButtonVariant): string {
     case "square":
       return "text-white bg-transparent hover:bg-white/10 transition-colors !rounded-[3px]";
     default:
-      return "text-white bg-black duration-150";
+      return "text-white bg-neutral-900 duration-150";
   }
 }
 
 function getSizeClasses(size: ButtonSize): string {
   switch (size) {
     case "small":
-      return "flex flex-row gap-2 items-center justify-center w-[1.625rem] h-[1.625rem]";
+      return "flex flex-row gap-2 items-center justify-center min-w-[1.625rem] min-h-[1.625rem]";
     default:
-      return "flex flex-row gap-2.5 items-center justify-center px-5 py-2.5 text-[16px] font-semibold tracking-tight";
+      return "flex flex-row gap-2.5 items-center justify-center px-5 py-2 text-sm font-normal tracking-tight";
   }
 }
 

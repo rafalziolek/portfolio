@@ -4,8 +4,9 @@
   --font-weight-normal: 400;
   --font-weight-semibold: 600;
   --font-weight-bold:800;
-  --text-md:1.09375rem;
-  --tracking-tight: -0.002em;
+  --text-md:1.0625rem;
+  --text-sm:1rem;
+  --tracking-tight: -0.005em;
   --marker-color: var(--color-neutral-200);
   --font-mono: 'commitmonov143';
   --font-sans: 'arial nova', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
