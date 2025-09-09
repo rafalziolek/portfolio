@@ -39,7 +39,7 @@ function getSizeClasses(size: ButtonSize): string {
     case "small":
       return "flex flex-row gap-2 items-center justify-center min-w-[1.625rem] min-h-[1.625rem]";
     default:
-      return "flex flex-row gap-2.5 items-center justify-center px-5 py-2 text-sm  tracking-tight";
+      return "flex flex-row gap-2.5 items-center justify-center px-5 pt-2.5 pb-[11px] text-md  tracking-tight";
   }
 }
 

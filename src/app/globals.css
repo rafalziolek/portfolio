@@ -2,11 +2,11 @@
 
 @theme {
   --font-weight-normal: 500;
-  --font-weight-semibold: 600;
+  --font-weight-medium: 550;
   --font-weight-bold:700;
-  --text-md:1.025rem;
+  --text-md:1.125rem;
   --text-sm:1rem;
-  --tracking-tight: -0.001em;
+  --tracking-tight: -0.008em;
   --marker-color: var(--color-neutral-200);
   --font-mono: 'commitmonov143';
   --font-sans: 'arial nova', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
@@ -35,7 +35,7 @@ body {
    */
    /* font-feature-settings: 'ss03' on, 'ss06' on, 'ss07' on; */
    /* font-variation-settings: "wdth" 96; */
-   /* font-feature-settings: 'fwid' on, 'ss01' on, 'ss03' on, 'ss08' on, 'ss09' on; */
+   font-feature-settings: 'fwid' on, 'ss01' on, 'ss03' on, 'ss08' on, 'ss09' on;
 
 
 
