@@ -1,12 +1,12 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-weight-normal: 500;
+  --font-weight-normal: 450;
   --font-weight-medium: 550;
   --font-weight-bold:700;
-  --text-md:1.125rem;
-  --text-sm:1rem;
-  --tracking-tight: -0.008em;
+  --text-md:1.0625rem;
+  --text-sm:0.9375rem;
+  --tracking-tight: -0.002em;
   --marker-color: var(--color-neutral-200);
   --font-mono: 'commitmonov143';
   --font-sans: 'arial nova', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
@@ -31,17 +31,16 @@ html,
 body {
   /* font-family:'berkeley mono', var(--font-bdo-grotesk), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif; */
   background-color: black;
-  /* font-feature-settings:  'cv10' on;
-   */
+   /* font-feature-settings:  'cv10' on; */
+   
    /* font-feature-settings: 'ss03' on, 'ss06' on, 'ss07' on; */
-   /* font-variation-settings: "wdth" 96; */
-   font-feature-settings: 'fwid' on, 'ss01' on, 'ss03' on, 'ss08' on, 'ss09' on;
+   font-variation-settings: "wdth" 97;
 
 
 
 ::selection {
-  color: tomato; /* Tailwind's neutral-900 for good contrast */
-
+  color: #000000; /* Tailwind's neutral-900 for good contrast */
+  background-color: #517fff;
 }
 
 }

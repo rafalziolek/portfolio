@@ -43,7 +43,7 @@ export default function ListItem({
   if (isLabelLink && href) {
     return (
       <div
-        className={`flex flex-row gap-2 items-baseline justify-start w-full ${className}`}
+        className={`flex flex-row gap-2 items-baseline justify-between w-full ${className}`}
       >
         <Text
           variant="body"
@@ -71,16 +71,17 @@ export default function ListItem({
 
   return (
     <div
-      className={`flex flex-row gap-2 items-baseline justify-start w-full ${className}`}
+      className={`flex flex-row gap-2 items-center justify-between self-stretch px-2 -mx-2  ${className} transition-colors duration-600 ease-in-out hover:duration-150 hover:bg-neutral-800/60 `}
     >
       <Text variant="body" color="white" className="whitespace-pre">
         {label}
       </Text>
       {value && (
         <Text
-          variant="body"
+          variant="small"
+          // font="mono"
           color="rgba(255,255,255,0.46)"
-          className={valueClassName}
+          className={`${valueClassName}`}
         >
           {value}
         </Text>

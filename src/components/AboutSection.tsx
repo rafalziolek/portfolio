@@ -20,11 +20,11 @@ export default function AboutSection({ className }: { className?: string }) {
       className={` text-white w-full h-[95vh] overflow-hidden fixed ${className}`}
     >
       <div className="flex flex-col items-center justify-start">
-        <div className="max-w-[640px] w-full flex flex-col gap-2 items-start justify-center pt-0 px-0 sticky top-0">
+        <div className="max-w-[520px] w-full flex flex-col gap-2 items-start justify-center pt-0 px-0 sticky top-0">
           <div className="flex-1 flex gap-2 justify-start pt-12 sticky top-0">
-            <div className="flex-1 h-full flex flex-col gap-14 justify-start px-0 py-12 sticky top-0">
+            <div className="flex-1 h-full flex flex-col gap-12 justify-start px-0 py-12 sticky top-0">
               {/* Hero Section */}
-              <div className="flex flex-col gap-8 items-start justify-start w-full">
+              <div className="flex flex-col gap-8 items-start justify-start">
                 {/* Hero Text */}
                 <div className="flex flex-col justify-start w-full">
                   <Text variant="heading">Rafa designs things.</Text>
@@ -47,7 +47,7 @@ export default function AboutSection({ className }: { className?: string }) {
                   </div>
 
                   {/* Main Description */}
-                  <div className="flex flex-col items-start w-full gap-6 text-pretty">
+                  <div className="flex flex-col items-start w-full gap-2 text-pretty">
                     <Text variant="body">
                       I obsess over the pixels and the system they live in.
                     </Text>
@@ -61,94 +61,80 @@ export default function AboutSection({ className }: { className?: string }) {
               </div>
 
               {/* Horizontal Divider */}
-              <div className=" h-0 -mx-[50vw]">
-                <div className="border-b border-dotted border-white/15" />
+              <div className=" h-0 ">
+                <div className="border-b border-dotted border-white/12" />
               </div>
 
               {/* Content Sections */}
-              <div className="flex flex-col gap-14 items-center justify-start w-full">
+              <div className="flex flex-col gap-10 items-center justify-start ">
                 {/* Experience Section */}
-                <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="flex flex-col gap-2 items-start justify-start w-full">
                   <SectionHeading title="Experience" />
                   <div className="flex flex-col items-start justify-start w-full">
-                    <ListItem label="Docplanner" value="2019 – Now" />
-                    <ListItem label="Semiflat" value="2021 – 2024" />
+                    <ListItem label="Docplanner" value="2019–present" />
+                    <ListItem label="Semiflat" value="2021–2024" />
                     <ListItem label="Absolvent Group" value="2019" />
                     <ListItem label="INVO" value="2019" />
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="flex flex-col gap-2 items-start justify-start w-full">
                   <SectionHeading title="I'm learning now" />
-                  <div className="flex flex-col items-start justify-center w-full">
-                    <Text variant="body">React Native</Text>
-                    <div className="flex gap-2 items-baseline justify-start w-full">
-                      <Text variant="body">Japanese</Text>
-                      <Text variant="body" color="rgba(255,255,255,0.46)">
-                        それは難しい
-                      </Text>
-                    </div>
-                    <Text variant="body">Viennoiserie</Text>
+                  <div className="flex flex-col items-start justify-start w-full">
+                    <ListItem label="React Native" />
+                    <ListItem label="Japanese" value="それは難しい" />
+                    <ListItem label="Viennoiserie" />
                   </div>
                 </div>
                 {/* I Like */}
-                <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="flex flex-col gap-2 items-start justify-start w-full">
                   <SectionHeading title="I like" />
                   <div className="flex flex-col items-start justify-start w-full">
-                    <Text variant="body">Star Wars</Text>
-                    <Text variant="body">Cooking</Text>
-                    <Text variant="body">Coffee</Text>
-                    <Text variant="body">To Pimp a Butterfly</Text>
-                    <Text variant="body">Bad bitches</Text>
-                    <Text variant="body">Cowboy Bebop</Text>
-                    <Text variant="body">Uncut Gems</Text>
-                    <Text variant="body">Fitness</Text>
+                    <ListItem label="Star Wars" />
+                    <ListItem label="Cooking" />
+                    <ListItem label="Coffee" />
+                    <ListItem label="To Pimp a Butterfly" />
+                    <ListItem label="Bad bitches" />
+                    <ListItem label="Cowboy Bebop" />
+                    <ListItem label="Uncut Gems" />
+                    <ListItem label="Fitness" />
                   </div>
                 </div>
 
                 {/* I Don't Like */}
-                <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="flex flex-col gap-2 items-start justify-start w-full">
                   <SectionHeading title="I don't like" />
-                  <div className="flex flex-col items-start justify-center w-full">
-                    <Text variant="body">Bad bitches</Text>
-                    <Text variant="body">OKRs</Text>
-                    <Text variant="body">Small talk</Text>
-                    <Text variant="body">Disco Polo</Text>
+                  <div className="flex flex-col items-start justify-start w-full">
+                    <ListItem label="Bad bitches" />
+                    <ListItem label="OKRs" />
+                    <ListItem label="Small talk" />
+                    <ListItem label="Disco Polo" />
                   </div>
                 </div>
 
                 {/* Connect */}
-                <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="flex flex-col gap-2 items-start justify-start w-full">
                   <SectionHeading title="Connect" />
-                  <div className="flex flex-col items-start justify-center w-full">
-                    <Text
-                      variant="body"
-                      as="a"
+                  <div className="flex flex-col items-start justify-start w-full">
+                    <ListItem
+                      label="Instagram"
                       href="https://www.instagram.com/rafal.ziolek/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline decoration-white/30 underline-offset-[14.5%]"
-                    >
-                      Instagram
-                    </Text>
-                    <Text
-                      variant="body"
-                      as="a"
+                      isLabelLink={true}
+                    />
+                    <ListItem
+                      label="x.com"
                       href="https://x.com/rafal_ziolek"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline decoration-white/30 underline-offset-[14.5%]"
-                    >
-                      x.com
-                    </Text>
-                    <Text
-                      variant="body"
-                      as="a"
+                      isLabelLink={true}
+                    />
+                    <ListItem
+                      label="Email"
                       href="mailto:rafal.k.ziolek@gmail.com"
-                      className="underline decoration-white/30 underline-offset-[14.5%]"
-                    >
-                      Email
-                    </Text>
+                      isLabelLink={true}
+                    />
                   </div>
                 </div>
 

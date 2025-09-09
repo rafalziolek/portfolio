@@ -14,7 +14,7 @@ export default function TopNav() {
       <div className="flex items-center justify-between">
         {/* Left - Time and Location */}
         <div className="bg-neutral-900 rounded-[0.3125rem] px-2.5 py-[0.1875rem] h-8 flex items-center justify-center">
-          <Text variant="small" color="white">
+          <Text variant="caption" color="white" font="mono">
             Warsaw, <TimeDisplay />
           </Text>
         </div>
@@ -24,20 +24,22 @@ export default function TopNav() {
           <div className="bg-neutral-900 rounded-[0.3125rem] px-2.5 py-[0.1875rem] h-8 flex items-center justify-center gap-3">
             <div className="flex items-center">
               <Text
-                variant="small"
+                variant="caption"
                 as="a"
                 href="mailto:rafal.ziolek@icloud.com"
                 color="white"
+                font="mono"
                 className="hover:opacity-70 transition-opacity"
               >
                 Email
               </Text>
             </div>
             <Text
-              variant="small"
+              variant="caption"
               as="a"
               href="https://x.com/rafal_ziolek"
               target="_blank"
+              font="mono"
               rel="noopener noreferrer"
               color="white"
               className="hover:opacity-70 transition-opacity"
@@ -45,10 +47,11 @@ export default function TopNav() {
               x.com
             </Text>
             <Text
-              variant="small"
+              variant="caption"
               as="a"
               href="https://www.instagram.com/rafal.ziolek/"
               target="_blank"
+              font="mono"
               rel="noopener noreferrer"
               color="white"
               className="hover:opacity-70 transition-opacity"

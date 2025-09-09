@@ -7,6 +7,7 @@ type TextVariant =
   | "body"
   | "heading"
   | "small"
+  | "caption"
   | "heading-lg"
   | "paragraph"
   | "lead";
@@ -50,12 +51,15 @@ const defaultTagByVariant: Record<TextVariant, ElementType> = {
   "heading-lg": "h1",
   lead: "h1",
   small: "span",
+  caption: "span",
 };
 
 function getClassesForVariant(variant: TextVariant): string {
   switch (variant) {
+    case "caption":
+      return "text-xs uppercase font-normal tracking-normal leading-[1.5] ";
     case "small":
-      return "text-xs uppercase font-medium tracking-tight leading-[1.5] ";
+      return "text-sm  font-normal tracking-normal leading-[1.5] ";
     case "body":
       // Matches new design body text: Inter Medium 450, 16px, 25px line-height
       return "text-md font-normal tracking-tight leading-normal";
