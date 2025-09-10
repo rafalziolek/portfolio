@@ -156,10 +156,10 @@ export default function AboutSection({ className }: { className?: string }) {
               variant="inverted"
               trailingIcon={
                 <SizeIcon
-                  width={18}
-                  height={18}
+                  width={15}
+                  height={15}
                   color="black"
-                  className="mt-[0.125rem] will-change-transform"
+                  className="mt-[0.03125rem] will-change-transform"
                 />
               }
             >

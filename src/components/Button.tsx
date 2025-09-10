@@ -39,7 +39,7 @@ function getSizeClasses(size: ButtonSize): string {
     case "small":
       return "flex flex-row gap-2 items-center justify-center min-w-[1.625rem] min-h-[1.625rem]";
     default:
-      return "flex flex-row gap-2.5 items-center justify-center px-5 pt-2.5 pb-[11px] text-md  tracking-tight";
+      return "flex flex-row gap-2.5 items-center justify-center px-4 py-2  text-sm font-medium tracking-tight";
   }
 }
 
@@ -74,7 +74,7 @@ export default function Button({
     `${
       variant === "square" ? "rounded-[0.3125rem]" : "rounded-full"
     } active:scale-98 ${size !== "small" && leadingIcon ? "pl-5" : ""} ${
-      size !== "small" && trailingIcon ? "pr-5" : ""
+      size !== "small" && trailingIcon ? "pr-4" : ""
     }`,
     className
   );

@@ -1,15 +1,15 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-weight-normal: 450;
-  --font-weight-medium: 550;
-  --font-weight-bold:700;
-  --text-md:1.0625rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold:600;
+  --text-md: 1.0625rem;
   --text-sm:0.9375rem;
-  --tracking-tight: -0.002em;
+  --tracking-tight: -0.005em;
   --marker-color: var(--color-neutral-200);
-  --font-mono: 'commitmonov143';
-  --font-sans: 'arial nova', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --font-mono: 'Test Söhne Mono';
+  --font-sans:"Test Söhne",system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
   
   /* Typography scale matching Figma design */
 
@@ -31,10 +31,9 @@ html,
 body {
   /* font-family:'berkeley mono', var(--font-bdo-grotesk), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', "Inter", sans-serif; */
   background-color: black;
-   /* font-feature-settings:  'cv10' on; */
    
    /* font-feature-settings: 'ss03' on, 'ss06' on, 'ss07' on; */
-   font-variation-settings: "wdth" 97;
+   /* font-variation-settings: "wdth" 120 "opsz" 14; */
 
 
 

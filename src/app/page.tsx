@@ -7,10 +7,11 @@ import TopNav from "@/components/TopNav";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black relative">
+    <div className="bg-black">
       <TopNav />
 
-      <div className="flex flex-col items-center justify-start gap-6">
+      {/* Main content that scrolls over the footer */}
+      <div className="flex flex-col items-center justify-start gap-6 min-h-screen relative z-10 bg-black">
         {/* About Section - Centered */}
 
         <AboutSection />
@@ -18,6 +19,8 @@ export default function Home() {
 
         {/* Project Grid - Full width below */}
       </div>
+
+      {/* Fixed Footer behind content */}
     </div>
   );
 }
