@@ -70,8 +70,8 @@ export default function ListItem({
   }
 
   return (
-    <div
-      className={`flex flex-row gap-2 items-center justify-between self-stretch px-2 -mx-2  ${className} transition-colors duration-600 ease-in-out hover:duration-150 hover:bg-neutral-800/60 `}
+    <li
+      className={`flex flex-row gap-2 items-center justify-start self-stretch px-2 -mx-2  ${className} `}
     >
       <Text variant="body" color="white" className="whitespace-pre">
         {label}
@@ -86,6 +86,6 @@ export default function ListItem({
           {value}
         </Text>
       )}
-    </div>
+    </li>
   );
 }

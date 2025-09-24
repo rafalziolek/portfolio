@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         {" "}
-        <div className="">
+        <div className="{inter.className}">
           {children}
           <Analytics />
         </div>

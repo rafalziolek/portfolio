@@ -28,7 +28,7 @@ function getVariantClasses(variant: ButtonVariant): string {
     case "inverted":
       return "text-black bg-white";
     case "square":
-      return "text-white bg-transparent hover:bg-white/10 transition-colors !rounded-[3px]";
+      return "text-white bg-transparent hover:bg-white/10 transition-colors !rounded-full";
     default:
       return "text-white bg-neutral-900 duration-150";
   }
@@ -39,7 +39,7 @@ function getSizeClasses(size: ButtonSize): string {
     case "small":
       return "flex flex-row gap-2 items-center justify-center min-w-[1.625rem] min-h-[1.625rem]";
     default:
-      return "flex flex-row gap-2.5 items-center justify-center px-4 py-2  text-sm font-medium tracking-tight";
+      return "flex flex-row gap-2 items-center justify-center px-4.5 py-2  text-sm font-medium tracking-tight";
   }
 }
 

@@ -57,7 +57,7 @@ const defaultTagByVariant: Record<TextVariant, ElementType> = {
 function getClassesForVariant(variant: TextVariant): string {
   switch (variant) {
     case "caption":
-      return "text-xs uppercase font-normal tracking-normal leading-[1.5] ";
+      return "text-xs uppercase font-medium tracking-normal leading-[1.5] ";
     case "small":
       return "text-sm  font-normal tracking-normal leading-[1.5] ";
     case "body":

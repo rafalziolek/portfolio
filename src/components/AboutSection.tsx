@@ -17,19 +17,23 @@ export default function AboutSection({ className }: { className?: string }) {
 
   return (
     <div
-      className={` text-white w-full h-[95vh] overflow-hidden fixed ${className}`}
+      className={`text-white w-full  ${
+        !isExpanded ? "h-[95vh]" : "h-fit"
+      } overflow-hidden  ${className}`}
     >
       <div className="flex flex-col items-center justify-start">
-        <div className="max-w-[520px] w-full flex flex-col gap-2 items-start justify-center pt-0 px-0 sticky top-0">
+        <div className="max-w-[450px] w-full flex flex-col gap-2 items-start justify-center pt-0 px-0 sticky top-0">
           <div className="flex-1 flex gap-2 justify-start pt-12 sticky top-0">
             <div className="flex-1 h-full flex flex-col gap-12 justify-start px-0 py-12 sticky top-0">
               {/* Hero Section */}
               <div className="flex flex-col gap-8 items-start justify-start">
                 {/* Hero Text */}
                 <div className="flex flex-col justify-start w-full">
-                  <Text variant="heading">Rafa designs things.</Text>
-                  <Text variant="body">
-                    Mostly software, but sometimes other things too.
+                  <Text variant="heading" className="!text-xl !leading-[1.25]">
+                    <span className="underline  decoration-white/100 underline-offset-[14.5%]">
+                      Rafa designs things.
+                    </span>{" "}
+                    Mostly software, but&nbsp;sometimes other things too.
                   </Text>
                 </div>
 
@@ -47,7 +51,7 @@ export default function AboutSection({ className }: { className?: string }) {
                   </div>
 
                   {/* Main Description */}
-                  <div className="flex flex-col items-start w-full gap-2 text-pretty">
+                  <div className="flex flex-col items-start w-full gap-6 text-pretty">
                     <Text variant="body">
                       I obsess over the pixels and the system they live in.
                     </Text>
@@ -61,7 +65,7 @@ export default function AboutSection({ className }: { className?: string }) {
               </div>
 
               {/* Horizontal Divider */}
-              <div className=" h-0 ">
+              <div className=" h-0">
                 <div className="border-b border-dotted border-white/12" />
               </div>
 
@@ -145,7 +149,7 @@ export default function AboutSection({ className }: { className?: string }) {
 
           {/* Bottom Button Container */}
           <div
-            className="sticky w-full bottom-0 flex h-32 pb-8 flex-col items-center justify-end"
+            className="sticky -mx-8 self-stretch bottom-0 flex h-32 pb-8 flex-col items-center justify-end"
             style={{
               background:
                 "linear-gradient(to bottom, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0.013) 8.1%, hsla(0, 0%, 0%, 0.049) 15.5%, hsla(0, 0%, 0%, 0.104) 22.5%, hsla(0, 0%, 0%, 0.175) 29%, hsla(0, 0%, 0%, 0.259) 35.3%, hsla(0, 0%, 0%, 0.352) 41.2%, hsla(0, 0%, 0%, 0.45) 47.1%, hsla(0, 0%, 0%, 0.55) 52.9%, hsla(0, 0%, 0%, 0.648) 58.8%, hsla(0, 0%, 0%, 0.741) 64.7%, hsla(0, 0%, 0%, 0.825) 71%, hsla(0, 0%, 0%, 0.896) 77.5%, hsla(0, 0%, 0%, 0.951) 84.5%, hsla(0, 0%, 0%, 0.987) 91.9%, hsl(0, 0%, 0%) 100%)",

@@ -38,7 +38,7 @@ interface ProjectGridProps {
 
 export default function ProjectGrid({ className = "" }: ProjectGridProps) {
   return (
-    <div className={`w-full mt-[95vh] pb-10 bg-black z-10 ${className}`}>
+    <div className={`w-full  pb-10 bg-black z-10 ${className}`}>
       <div className="flex flex-col  gap-4 items-start justify-center w-full">
         {/* Create rows of 3 projects */}
         {Array.from(

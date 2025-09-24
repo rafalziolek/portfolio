@@ -10,25 +10,24 @@ import Button from "./Button";
 
 export default function TopNav() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 p-[6px]">
+    <nav className="fixed top-0 left-0 right-0 z-50 ">
       <div className="flex items-center justify-between">
         {/* Left - Time and Location */}
-        <div className="bg-neutral-900 rounded-[0.3125rem] px-2.5 py-[0.1875rem] h-8 flex items-center justify-center">
-          <Text variant="caption" color="white" font="mono">
+        <div className="rounded-[0.3125rem] px-2.5 h-8 flex items-center justify-center">
+          <Text variant="caption" color="white">
             Warsaw, <TimeDisplay />
           </Text>
         </div>
 
         {/* Right - Social Links and Actions */}
         <div className="flex items-center gap-1">
-          <div className="bg-neutral-900 rounded-[0.3125rem] px-2.5 py-[0.1875rem] h-8 flex items-center justify-center gap-3">
+          <div className=" rounded-[0.3125rem] px-2.5 py-[0.1875rem] h-8 flex items-center justify-center gap-3">
             <div className="flex items-center">
               <Text
                 variant="caption"
                 as="a"
                 href="mailto:rafal.ziolek@icloud.com"
                 color="white"
-                font="mono"
                 className="hover:opacity-70 transition-opacity"
               >
                 Email
@@ -39,7 +38,6 @@ export default function TopNav() {
               as="a"
               href="https://x.com/rafal_ziolek"
               target="_blank"
-              font="mono"
               rel="noopener noreferrer"
               color="white"
               className="hover:opacity-70 transition-opacity"
@@ -51,7 +49,6 @@ export default function TopNav() {
               as="a"
               href="https://www.instagram.com/rafal.ziolek/"
               target="_blank"
-              font="mono"
               rel="noopener noreferrer"
               color="white"
               className="hover:opacity-70 transition-opacity"
@@ -61,7 +58,7 @@ export default function TopNav() {
           </div>
 
           {/* Square Action Buttons */}
-          <div className="bg-neutral-900 rounded-[0.3125rem] p-[0.1875rem] flex items-center gap-[0.1875rem]">
+          <div className=" rounded-[0.3125rem] p-[0.1875rem] flex items-center gap-[0.1875rem]">
             <Button variant="square" size="small" iconOnly>
               <FontFamilyIcon width={15} height={15} />
             </Button>
