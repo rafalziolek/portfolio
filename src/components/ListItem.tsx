@@ -70,7 +70,7 @@ export default function ListItem({
 
   return (
     <li
-      className={`flex flex-row gap-2 items-center justify-between  self-stretch  ${className} `}
+      className={`flex flex-row gap-2 items-center justify-start  self-stretch  ${className} `}
     >
       <Text variant="body" color="" className="whitespace-pre   ">
         {label}

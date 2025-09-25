@@ -40,12 +40,12 @@ export default function AboutSection({ className }: { className?: string }) {
                 {/* Image and Description Block */}
                 <div className="flex flex-col gap-10 items-start justify-start w-full">
                   {/* Profile Image */}
-                  <div className="h-[248px] w-full relative">
+                  <div className="h-[260px] self-stretch relative">
                     <Image
                       src="/test-portrait.png"
                       alt="Portrait of Rafa"
                       fill
-                      className="object-cover object-top"
+                      className="object-cover object-top rounded-xs"
                     />
                     {/* <div className="absolute inset-0 border-[0.5px] border-white/20" /> */}
                   </div>
@@ -53,7 +53,9 @@ export default function AboutSection({ className }: { className?: string }) {
                   {/* Main Description */}
                   <div className="flex flex-col items-start w-full gap-4 text-pretty">
                     <Text variant="body">
-                      I obsess over the pixels and the system they live in.
+                      I obsess over the pixels and the system they live in.{" "}
+                      <br />
+                      <br />
                       <span>
                         {" "}
                         Design should be honest —no dark patterns, no fluff—just
