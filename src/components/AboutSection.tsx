@@ -22,46 +22,44 @@ export default function AboutSection({ className }: { className?: string }) {
       } overflow-hidden  ${className}`}
     >
       <div className="flex flex-col items-center justify-start">
-        <div className="max-w-[500px] w-full flex flex-col gap-2 items-start justify-center pt-0 px-0 sticky top-0">
+        <div className="max-w-[420px] w-full flex flex-col gap-2 items-start justify-center pt-0 px-0 sticky top-0">
           <div className="flex-1 flex gap-2 justify-start pt-32 sticky top-0">
-            <div className="flex-1 h-full flex flex-col gap-16 justify-start px-0 py-12 sticky top-0">
+            <div className="flex-1 h-full flex flex-col gap-6 justify-start px-0 py-12 sticky top-0">
               {/* Hero Section */}
-              <div className="flex flex-col gap-8 items-start justify-start">
+              <div className="flex flex-col gap-10 items-start justify-start">
                 {/* Hero Text */}
                 <div className="flex flex-col justify-start w-full">
-                  <Text
-                    variant="heading"
-                    className="!text-2xl !leading-[1.25] text-balance text-white"
-                  >
+                  <Text variant="lead" className="single-story-a">
                     Rafa designs things.{" "}
-                    <span className="text-neutral-400/76">
+                    <span className="">
                       Mostly software, but&nbsp;sometimes other things too.
                     </span>
                   </Text>
                 </div>
 
                 {/* Image and Description Block */}
-                <div className="flex flex-col gap-8 items-start justify-start w-full">
+                <div className="flex flex-col gap-10 items-start justify-start w-full">
                   {/* Profile Image */}
                   <div className="h-[248px] w-full relative">
                     <Image
                       src="/test-portrait.png"
                       alt="Portrait of Rafa"
                       fill
-                      className="object-cover"
+                      className="object-cover object-top"
                     />
-                    <div className="absolute inset-0 border-[0.5px] border-white/20" />
+                    {/* <div className="absolute inset-0 border-[0.5px] border-white/20" /> */}
                   </div>
 
                   {/* Main Description */}
                   <div className="flex flex-col items-start w-full gap-4 text-pretty">
                     <Text variant="body">
                       I obsess over the pixels and the system they live in.
-                    </Text>
-                    <Text variant="body">
-                      Design should be honest—no dark patterns, no fluff—just
-                      stuff that works, feels right, and makes sense for both
-                      the person using it and the people building it.
+                      <span>
+                        {" "}
+                        Design should be honest —no dark patterns, no fluff—just
+                        stuff that works, feels right, and makes sense for both
+                        the person using it and the people building it.
+                      </span>
                     </Text>
                   </div>
                 </div>
@@ -69,7 +67,7 @@ export default function AboutSection({ className }: { className?: string }) {
 
               {/* Horizontal Divider */}
               <div className=" h-0">
-                <div className="border-b border-dotted border-white/20" />
+                {/* <div className="border-b border-dotted border-white/20" /> */}
               </div>
 
               {/* Content Sections */}

@@ -14,11 +14,9 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div
-      className={`flex flex-col items-start justify-start w-full decoration-white/30 underline-offset-[14.5%] ${className}`}
+      className={`mb-1  flex flex-col items-start justify-start w-full decoration-white/30 underline-offset-[14.5%] ${className}`}
     >
-      <Text variant="heading" className="">
-        {title}
-      </Text>
+      <Text variant="heading">{title}</Text>
     </div>
   );
 }
