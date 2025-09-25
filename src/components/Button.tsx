@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { motion } from "motion/react";
 import Link from "next/link";
 
-type ButtonVariant = "default" | "inverted" | "square";
+type ButtonVariant = "default" | "inverted" | "square" | "ghost";
 type ButtonSize = "default" | "small";
 
 interface ButtonProps {
@@ -26,11 +26,13 @@ interface ButtonProps {
 function getVariantClasses(variant: ButtonVariant): string {
   switch (variant) {
     case "inverted":
-      return "text-white bg-neutral-300/30 backdrop-blur-[10px] brightness-110 saturate-150";
+      return "text-black bg-white/90 backdrop-blur-[10px] brightness-110 saturate-150";
     case "square":
       return "text-white bg-transparent hover:bg-white/10 transition-colors !rounded-full";
     default:
-      return "text-white bg-neutral-900 duration-150";
+      return "text-white bg-neutral-800/75 duration-150 hover:bg-neutral-800/90 backdrop-blur-[10px] hover:scale-103 transition-all";
+    case "ghost":
+      return "text-white bg-transparent hover:bg-white/10 transition-colors";
   }
 }
 
@@ -39,7 +41,7 @@ function getSizeClasses(size: ButtonSize): string {
     case "small":
       return "flex flex-row gap-2 items-center justify-center min-w-[1.625rem] min-h-[1.625rem]";
     default:
-      return "flex flex-row gap-2 items-center justify-center px-4.5 py-2  text-[15px] font-medium tracking-normal ";
+      return "flex flex-row gap-2 items-center justify-center px-4.5 py-2.5 text-[15px] font-medium tracking-tight font-mono ";
   }
 }
 

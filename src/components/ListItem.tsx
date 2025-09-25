@@ -16,6 +16,7 @@ interface ListItemProps {
    * When true, the label becomes a link
    */
   isLabelLink?: boolean;
+  icon?: ReactNode;
 }
 
 export default function ListItem({
@@ -28,6 +29,7 @@ export default function ListItem({
   valueClassName = "",
   children,
   isLabelLink = false,
+  icon,
 }: ListItemProps) {
   if (children) {
     // Custom content override
@@ -51,10 +53,10 @@ export default function ListItem({
           href={href}
           target={target}
           rel={rel}
-          color="white"
-          className="underline decoration-white/30 underline-offset-[14.5%] whitespace-pre"
+          className="text-blue-400 underline decoration-white/20 underline-offset-[14.5%] whitespace-pre inline-flex items-center gap-1"
         >
           {label}
+          {icon}
         </Text>
         {value && (
           <Text
@@ -70,10 +72,15 @@ export default function ListItem({
 
   return (
     <li
-      className={`flex flex-row gap-2 items-center justify-start  self-stretch  ${className} `}
+      className={`flex flex-row gap-2 items-center justify-between  self-stretch  ${className} `}
     >
-      <Text variant="body" color="" className="whitespace-pre   ">
+      <Text
+        variant="body"
+        color=""
+        className="whitespace-pre   inline-flex items-center gap-1"
+      >
         {label}
+        {icon}
       </Text>
       {value && (
         <Text

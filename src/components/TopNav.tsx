@@ -10,21 +10,22 @@ import Button from "./Button";
 
 export default function TopNav() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 ">
+    <nav className="fixed top-1 left-1 right-1 z-50 ">
       <div className="flex items-center justify-between">
         {/* Left - Time and Location */}
-        <div className="rounded-[0.3125rem] px-2.5 h-8 flex items-center justify-center">
-          <Text variant="caption" color="white">
+        <div className=" bg-neutral-700/30 backdrop-blur-[10px] brightness-110 saturate-150 flex flex-row  rounded-sm px-4 py-1.5">
+          <Text variant="caption" color="white" font="mono">
             Warsaw, <TimeDisplay />
           </Text>
         </div>
 
         {/* Right - Social Links and Actions */}
         <div className="flex items-center gap-1">
-          <div className=" rounded-[0.3125rem] px-2.5 py-[0.1875rem] h-8 flex items-center justify-center gap-3">
+          <div className="  text-white bg-neutral-700/30  backdrop-blur-[10px] brightness-110 saturate-150 flex flex-row  rounded-sm px-4 py-1.5 gap-3">
             <div className="flex items-center">
               <Text
                 variant="caption"
+                font="mono"
                 as="a"
                 href="mailto:rafal.ziolek@icloud.com"
                 color="white"
@@ -35,6 +36,7 @@ export default function TopNav() {
             </div>
             <Text
               variant="caption"
+              font="mono"
               as="a"
               href="https://x.com/rafal_ziolek"
               target="_blank"
@@ -46,6 +48,7 @@ export default function TopNav() {
             </Text>
             <Text
               variant="caption"
+              font="mono"
               as="a"
               href="https://www.instagram.com/rafal.ziolek/"
               target="_blank"
@@ -58,7 +61,7 @@ export default function TopNav() {
           </div>
 
           {/* Square Action Buttons */}
-          <div className=" rounded-[0.3125rem] p-[0.1875rem] flex items-center gap-[0.1875rem]">
+          <div className=" text-white bg-neutral-700/30  backdrop-blur-[10px] brightness-110 saturate-150 flex flex-row p-0.5  rounded-sm">
             <Button variant="square" size="small" iconOnly>
               <FontFamilyIcon width={15} height={15} />
             </Button>

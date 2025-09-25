@@ -11,7 +11,7 @@ type TextVariant =
   | "heading-lg"
   | "paragraph"
   | "lead";
-type TextFont = "mono" | "sans";
+type TextFont = "mono" | "sans" | "serif";
 
 interface TextProps extends PropsWithChildren {
   variant: TextVariant;
@@ -96,7 +96,11 @@ export default function Text({
   const composedClassName = [
     baseClasses,
     transformClass,
-    font === "sans" ? "font-sans" : "font-mono",
+    font === "sans"
+      ? "font-sans"
+      : font === "serif"
+      ? "font-serif"
+      : "font-mono",
     className,
   ]
     .filter(Boolean)
