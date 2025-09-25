@@ -29,8 +29,8 @@ export default function AboutSection({ className }: { className?: string }) {
               <div className="flex flex-col gap-8 items-start justify-start">
                 {/* Hero Text */}
                 <div className="flex flex-col justify-start w-full">
-                  <Text variant="heading" className="!text-xl !leading-[1.25]">
-                    <span className="underline  decoration-white/100 underline-offset-[14.5%]">
+                  <Text variant="heading" className="!text-xl !leading-[1.25] ">
+                    <span className="underline decoration decoration-neutral-600 underline-offset-[13.5%]">
                       Rafa designs things.
                     </span>{" "}
                     Mostly software, but&nbsp;sometimes other things too.
@@ -51,7 +51,7 @@ export default function AboutSection({ className }: { className?: string }) {
                   </div>
 
                   {/* Main Description */}
-                  <div className="flex flex-col items-start w-full gap-6 text-pretty">
+                  <div className="flex flex-col items-start w-full gap-4 text-pretty">
                     <Text variant="body">
                       I obsess over the pixels and the system they live in.
                     </Text>
@@ -65,12 +65,12 @@ export default function AboutSection({ className }: { className?: string }) {
               </div>
 
               {/* Horizontal Divider */}
-              <div className=" h-0">
+              {/* <div className=" h-0">
                 <div className="border-b border-dotted border-white/12" />
-              </div>
+              </div> */}
 
               {/* Content Sections */}
-              <div className="flex flex-col gap-10 items-center justify-start ">
+              <div className="flex flex-col gap-10 items-center justify-start pt-4">
                 {/* Experience Section */}
                 <div className="flex flex-col gap-2 items-start justify-start w-full">
                   <SectionHeading title="Experience" />
