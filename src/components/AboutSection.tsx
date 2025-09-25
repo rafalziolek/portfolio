@@ -27,7 +27,7 @@ export default function AboutSection({ className }: { className?: string }) {
     >
       <div className="flex flex-col items-center justify-start">
         <div className="max-w-[480px] w-full flex flex-col gap-2 items-start justify-center pt-0 px-0 sticky top-0">
-          <div className="flex-1 flex gap-2 justify-start pt-32 sticky top-0">
+          <div className="flex-1 flex gap-2 justify-start pt-24 sticky top-0">
             <div className="flex-1 h-full flex flex-col gap-10 justify-start px-0 py-12 sticky top-0">
               {/* Hero Section */}
               <div className="flex flex-col gap-8 items-start justify-start">
@@ -35,11 +35,11 @@ export default function AboutSection({ className }: { className?: string }) {
                 <div className="flex flex-col justify-start w-full">
                   <Text
                     variant="lead"
-                    className="single-story-a tracking-[-0.03em] text-white "
+                    className="single-story-a tracking-[-0.03em] text-white !font-[700] "
                   >
                     Rafa designs things.{" "}
                     <span className="text-balance">
-                      Mostly software, <br /> sometimes other things.
+                      Mostly software, sometimes other stuff.
                     </span>
                   </Text>
                 </div>
@@ -57,14 +57,14 @@ export default function AboutSection({ className }: { className?: string }) {
                       fill
                       className="object-cover object-top rounded-xs"
                     />
-                    {/* <div className="absolute inset-0 border-[0.5px] border-white/20" /> */}
+                    <div className="absolute inset-0 border-[0.5px] border-white/20" />
                   </div>
                 </div>
                 <div className="flex flex-col items-start w-full gap-4 text-pretty">
                   <Text variant="body">
                     He’s currently building design systems at{" "}
                     <a
-                      className="text-blue-400 underline decoration-white/20 underline-offset-[14.5%] inline-flex items-center gap-0.5"
+                      className="text-teal-400 underline decoration-white/20 underline-offset-[14.5%] inline-flex items-center gap-0.5"
                       href="https://docplanner.com"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -80,15 +80,16 @@ export default function AboutSection({ className }: { className?: string }) {
                   </Text>
                 </div>
               </div>
+
               {/* Horizontal Divider */}
               <div className=" h-0">
-                <div className="border-b border-dotted border-white/15" />
+                <div className="border-b border-dotted border-white/10" />
               </div>
 
               {/* Content Sections */}
               <div className="flex flex-col gap-10 items-start justify-start ">
                 {/* Experience Section */}
-                <div className="col-span-1 flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="col-span-1 flex flex-col gap-1 items-start justify-start w-full">
                   <SectionHeading title="Previously" />
                   <div className="flex flex-col items-start justify-start w-full">
                     <ListItem label="Semiflat" />
@@ -97,7 +98,7 @@ export default function AboutSection({ className }: { className?: string }) {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="flex flex-col gap-1 items-start justify-start w-full">
                   <SectionHeading title="I'm learning now" />
                   <div className="flex flex-col items-start justify-start w-full">
                     <ListItem label="React Native" />
@@ -106,7 +107,7 @@ export default function AboutSection({ className }: { className?: string }) {
                   </div>
                 </div>
                 {/* I Like */}
-                <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="flex flex-col gap-1 items-start justify-start w-full">
                   <SectionHeading title="I like" />
                   <div className="flex flex-col items-start justify-start w-full">
                     <ListItem
@@ -150,7 +151,7 @@ export default function AboutSection({ className }: { className?: string }) {
                 </div>
 
                 {/* I Don't Like */}
-                <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="flex flex-col gap-1 items-start justify-start w-full">
                   <SectionHeading title="I don't like" />
                   <div className="flex flex-col items-start justify-start w-full">
                     <ListItem label="Bad bitches" />
@@ -161,7 +162,7 @@ export default function AboutSection({ className }: { className?: string }) {
                 </div>
 
                 {/* Connect */}
-                <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <div className="flex flex-col gap-1 items-start justify-start w-full">
                   <SectionHeading title="Connect" />
                   <div className="flex flex-col items-start justify-start w-full">
                     <ListItem

@@ -57,7 +57,7 @@ const defaultTagByVariant: Record<TextVariant, ElementType> = {
 function getClassesForVariant(variant: TextVariant): string {
   switch (variant) {
     case "caption":
-      return "text-xs uppercase tracking-normal font-normal leading-[1.5] ";
+      return "text-xs  tracking-normal font-normal leading-[1.5] ";
     case "small":
       return "text-sm  font-normal tracking-tight leading-normal ";
     case "body":
@@ -71,7 +71,7 @@ function getClassesForVariant(variant: TextVariant): string {
       return "text-base font-[450] tracking-[-0.32px] leading-[25px]";
     case "lead":
       // Main hero text: Inter Bold 800, 16px, 1.5 line-height
-      return "text-[22px] leading-[1.2] font-bold";
+      return "text-[24px] leading-[1.2] font-bold";
     default:
       return "";
   }

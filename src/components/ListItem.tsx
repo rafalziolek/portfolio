@@ -53,7 +53,7 @@ export default function ListItem({
           href={href}
           target={target}
           rel={rel}
-          className="text-blue-400 underline decoration-white/20 underline-offset-[14.5%] whitespace-pre inline-flex items-center gap-1"
+          className="text-white underline decoration-white/30 underline-offset-[14.5%] whitespace-pre inline-flex items-center gap-1"
         >
           {label}
           {icon}
@@ -87,7 +87,7 @@ export default function ListItem({
           variant="small"
           // font="mono"
           color=""
-          className={`${valueClassName} text-neutral-400/76 `}
+          className={`${valueClassName} text-neutral-500`}
         >
           {value}
         </Text>

@@ -1,17 +1,17 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-weight-normal:450;
+  --font-weight-normal:600;
 --font-weight-medium: 600;
-  --font-weight-bold:700;
+  --font-weight-bold:600;
   --font-sans:  var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
   /* --font-sans: "neue haas grotesk text pro", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;   */
   /* --font-weight-normal: 400;
   --font-weight-medium: 500; 
   --font-weight-bold:600; */
-  --text-md: 16px;
+  --text-md: 17px;
   --leading-normal: 1.33;
-  --text-sm: 16px;
+  --text-sm: 17px;
   --text-xs:12px;
   --tracking-tight: -0.015em;
   --marker-color: var(--color-neutral-200);
