@@ -65,12 +65,12 @@ export default function AboutSection({ className }: { className?: string }) {
               </div>
 
               {/* Horizontal Divider */}
-              {/* <div className=" h-0">
-                <div className="border-b border-dotted border-white/12" />
-              </div> */}
+              <div className=" h-0 -mx-6">
+                {/* <div className="border-b border-dotted border-white/12" /> */}
+              </div>
 
               {/* Content Sections */}
-              <div className="flex flex-col gap-10 items-center justify-start pt-4">
+              <div className="flex flex-col gap-10 items-center justify-start ">
                 {/* Experience Section */}
                 <div className="flex flex-col gap-2 items-start justify-start w-full">
                   <SectionHeading title="Experience" />
