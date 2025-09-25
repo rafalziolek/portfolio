@@ -29,7 +29,10 @@ export default function AboutSection({ className }: { className?: string }) {
               <div className="flex flex-col gap-10 items-start justify-start">
                 {/* Hero Text */}
                 <div className="flex flex-col justify-start w-full">
-                  <Text variant="lead" className="single-story-a">
+                  <Text
+                    variant="lead"
+                    className="single-story-a tracking-[-0.03em]"
+                  >
                     Rafa designs things.{" "}
                     <span className="">
                       Mostly software, but&nbsp;sometimes other things too.
@@ -165,7 +168,7 @@ export default function AboutSection({ className }: { className?: string }) {
                 <SizeIcon
                   width={15}
                   height={15}
-                  color="black"
+                  color="white"
                   className="mt-[0.03125rem] will-change-transform"
                 />
               }
