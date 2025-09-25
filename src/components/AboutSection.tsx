@@ -28,14 +28,14 @@ export default function AboutSection({ className }: { className?: string }) {
       <div className="flex flex-col items-center justify-start">
         <div className="max-w-[480px] w-full flex flex-col gap-2 items-start justify-center pt-0 px-0 sticky top-0">
           <div className="flex-1 flex gap-2 justify-start pt-24 sticky top-0">
-            <div className="flex-1 h-full flex flex-col gap-8 justify-start px-0 py-12 sticky top-0">
+            <div className="flex-1 h-full flex flex-col gap-14 justify-start px-0 py-12 sticky top-0">
               {/* Hero Section */}
-              <div className="flex flex-col gap-8 items-start justify-start">
+              <div className="flex flex-col gap-7 items-start justify-start">
                 {/* Hero Text */}
                 <div className="flex flex-col justify-start w-full">
                   <Text
                     variant="lead"
-                    className="single-story-a tracking-[-0.03em] text-white !font-[700] "
+                    className="single-story-a tracking-[-0.03em] text-white  mb-2"
                   >
                     Rafa designs things.{" "}
                     <span className="text-balance">
@@ -48,7 +48,7 @@ export default function AboutSection({ className }: { className?: string }) {
 
                 {/* Main Description */}
 
-                <div className="flex flex-col gap-8 items-start justify-start w-full">
+                <div className="flex flex-col gap-8 items-start justify-start w-full mb-2">
                   {/* Profile Image */}
                   <div className="h-[260px] self-stretch relative">
                     <Image
@@ -60,7 +60,7 @@ export default function AboutSection({ className }: { className?: string }) {
                     <div className="absolute inset-0 border-[0.5px] border-white/20" />
                   </div>
                 </div>
-                <div className="flex flex-col items-start w-full gap-4 text-pretty">
+                <div className="flex flex-col items-start w-full gap-5 text-pretty">
                   <Text variant="body">
                     He’s currently building design systems at{" "}
                     <a
@@ -82,7 +82,7 @@ export default function AboutSection({ className }: { className?: string }) {
               </div>
 
               {/* Horizontal Divider */}
-              <div className=" h-0">
+              <div className=" h-0 -mx-[50vw]">
                 <div className="border-b border-dotted border-white/10" />
               </div>
 

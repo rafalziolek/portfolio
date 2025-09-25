@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-weight-normal:600;
+  --font-weight-normal:500;
 --font-weight-medium: 600;
   --font-weight-bold:600;
   --font-sans:  var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
@@ -9,9 +9,9 @@
   /* --font-weight-normal: 400;
   --font-weight-medium: 500; 
   --font-weight-bold:600; */
-  --text-md: 17px;
+  --text-md: 18px;
   --leading-normal: 1.33;
-  --text-sm: 17px;
+  --text-sm: 18px;
   --text-xs:12px;
   --tracking-tight: -0.015em;
   --marker-color: var(--color-neutral-200);
