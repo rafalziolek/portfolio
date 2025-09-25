@@ -59,8 +59,7 @@ export default function ListItem({
         {value && (
           <Text
             variant="body"
-            color="rgba(255,255,255,0.46)"
-            className={valueClassName}
+            className={`${valueClassName} text-neutral-400/76`}
           >
             {value}
           </Text>
@@ -71,7 +70,7 @@ export default function ListItem({
 
   return (
     <li
-      className={`flex flex-row gap-2 items-center justify-start self-stretch px-2 -mx-2  ${className} `}
+      className={`flex flex-row gap-2 items-center justify-start self-stretch px-4  ${className} `}
     >
       <Text variant="body" color="white" className="whitespace-pre">
         {label}
@@ -80,8 +79,8 @@ export default function ListItem({
         <Text
           variant="small"
           // font="mono"
-          color="rgba(255,255,255,0.46)"
-          className={`${valueClassName}`}
+          color=""
+          className={`${valueClassName} text-neutral-400/76`}
         >
           {value}
         </Text>
