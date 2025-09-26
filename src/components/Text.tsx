@@ -71,7 +71,7 @@ function getClassesForVariant(variant: TextVariant): string {
       return "text-base font-[450] tracking-[-0.32px] leading-[25px]";
     case "lead":
       // Main hero text: Inter Bold 800, 16px, 1.5 line-height
-      return "text-[24px] leading-[1.3] font-bold";
+      return "text-[22px] leading-[1.3] font-bold";
     default:
       return "";
   }

@@ -37,7 +37,7 @@ export default function AboutSection({ className }: { className?: string }) {
                     variant="lead"
                     className="single-story-a tracking-[-0.03em] text-white  mb-2"
                   >
-                    Rafa designs things.{" "}
+                    Rafa designs things. <br />
                     <span className="text-balance">
                       Mostly software, sometimes other stuff.
                     </span>
@@ -64,7 +64,7 @@ export default function AboutSection({ className }: { className?: string }) {
                   <Text variant="body">
                     He’s currently building design systems at{" "}
                     <a
-                      className="text-blue-400 underline decoration-white/20 underline-offset-[14.5%] inline-flex items-center gap-0.5"
+                      className="text-white underline decoration-white/20 underline-offset-[14.5%] inline-flex items-center gap-0.5"
                       href="https://docplanner.com"
                       target="_blank"
                       rel="noopener noreferrer"
