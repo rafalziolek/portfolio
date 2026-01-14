@@ -77,7 +77,7 @@ export default function About() {
                 </p>
               </div>
 
-              <hr className="w-full border-t border-dashed border-neutral-800" />
+              <hr className="w-full border-t border-neutral-900/80" />
 
               <div className="w-full text-left">
                 <span className="mb-8 block text-lg font-medium tracking-tighter text-neutral-500">
@@ -88,28 +88,28 @@ export default function About() {
                   {/* Visual Lines (SVG) */}
                   <svg className="pointer-events-none absolute inset-0 h-full w-full">
                     {/* Line to React Native */}
-                    <line x1="30" y1="30" x2="280" y2="50" stroke="#525252" strokeWidth="1" />
+                    <line x1="30" y1="30" x2="280" y2="50" stroke="#ffffff" strokeWidth="1" />
                     <path
                       d="M280 50 l-5 -3 m 5 3 l-5 3"
-                      stroke="#525252"
+                      stroke="#ffffff"
                       strokeWidth="1"
                       fill="none"
                     />
 
                     {/* Line to Japanese */}
-                    <line x1="30" y1="30" x2="80" y2="140" stroke="#525252" strokeWidth="1" />
+                    <line x1="30" y1="30" x2="80" y2="140" stroke="#ffffff" strokeWidth="1" />
                     <path
                       d="M80 140 l-2 -5 m 2 5 l-5 -2"
-                      stroke="#525252"
+                      stroke="#ffffff"
                       strokeWidth="1"
                       fill="none"
                     />
 
                     {/* Line to Vienosserie */}
-                    <line x1="30" y1="30" x2="200" y2="150" stroke="#525252" strokeWidth="1" />
+                    <line x1="30" y1="30" x2="200" y2="150" stroke="#ffffff" strokeWidth="1" />
                     <path
                       d="M200 150 l-5 -2 m 5 2 l-2 -5"
-                      stroke="#525252"
+                      stroke="#ffffff"
                       strokeWidth="1"
                       fill="none"
                     />
@@ -121,26 +121,26 @@ export default function About() {
                   </div>
 
                   {/* React Native Node */}
-                  <div className="absolute top-4 left-[240px] flex flex-col items-center justify-center rounded-3xl bg-neutral-800/50 px-5 py-3 backdrop-blur-sm">
-                    <span className="text-base font-bold text-white">React native</span>
+                  <div className="absolute top-4 right-0 flex flex-col items-center justify-center rounded-full bg-neutral-800/50 px-5 py-3 backdrop-blur-sm">
+                    <span className="text-lg font-semibold text-white">React native</span>
                     <span className="font-mono text-sm text-neutral-400">¯\_(ツ)_/¯</span>
                   </div>
 
                   {/* Japanese Node */}
-                  <div className="absolute top-[120px] left-[20px] flex flex-col items-center justify-center rounded-3xl bg-neutral-800/50 px-6 py-3 backdrop-blur-sm">
-                    <span className="text-base font-bold text-white">Japanese</span>
+                  <div className="absolute top-[120px] left-[20px] flex flex-col items-center justify-center rounded-full bg-neutral-800/50 px-6 py-3 backdrop-blur-sm">
+                    <span className="text-lg font-semibold text-white">Japanese</span>
                     <span className="font-mono text-sm text-neutral-400">難しい</span>
                   </div>
 
                   {/* Vienosserie Node */}
-                  <div className="absolute top-[140px] left-[180px] flex flex-col items-center justify-center rounded-3xl bg-neutral-800/50 px-6 py-3 backdrop-blur-sm">
-                    <span className="text-base font-bold text-white">Vienosserie</span>
+                  <div className="absolute top-[180px] right-12 flex flex-col items-center justify-center rounded-full bg-neutral-800/50 px-6 py-3 backdrop-blur-sm">
+                    <span className="text-lg font-semibold text-white">Vienosserie</span>
                     <span className="font-mono text-sm text-neutral-400">BUT VEGAN</span>
                   </div>
                 </div>
               </div>
 
-              <hr className="w-full border-t border-dashed border-neutral-800" />
+              <hr className="w-full border-t border-neutral-900/80" />
 
               <div className="grid w-full grid-cols-2 gap-8 text-left">
                 <div>

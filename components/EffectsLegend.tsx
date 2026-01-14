@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { usePathname } from 'next/navigation';
 import { useEffects } from '@/context/EffectsContext';
 
@@ -16,7 +15,7 @@ const EffectsLegend = () => {
     <div className="col-span-2 flex flex-col">
       <span className="text-md inline-flex items-center font-semibold tracking-tight">
         Press{' '}
-        <span className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-sm bg-gray-400/80 font-mono text-xs text-black backdrop-blur-sm">
+        <span className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-sm bg-gray-300 font-mono text-xs text-black backdrop-blur-sm">
           E
         </span>
       </span>
