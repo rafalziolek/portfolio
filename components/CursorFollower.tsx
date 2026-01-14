@@ -34,7 +34,7 @@ const CursorWindow = ({
       animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
       exit={{ opacity: 0, scale: 0.96, filter: 'blur(10px)' }}
       transition={{ duration: 0.2 }}
-      className={`fixed top-0 left-0 h-[300px] w-[300px] pointer-events-none z-50 flex items-center justify-center text-white text-2xl font-bold rounded-xl shadow-lg transition-colors duration-200 ${PLACEHOLDER_IMAGES[activeIndex]}`}
+      className={`pointer-events-none fixed top-0 left-0 z-50 flex h-[300px] w-[300px] items-center justify-center rounded-xl text-2xl font-bold text-white shadow-lg transition-colors duration-200 ${PLACEHOLDER_IMAGES[activeIndex]}`}
     >
       Image {activeIndex + 1}
     </motion.div>
