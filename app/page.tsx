@@ -8,7 +8,7 @@ export default function Home() {
         I'm a software designer based in Warsaw.
       </h1>
       <div className="flex flex-col pb-10">
-        <p className="text-md leading-[1.4em] font-medium tracking-tight">
+        <p className="text-lg leading-[1.4em] font-medium tracking-tight">
           Currently at Docplanner, where I'm building design systems for both web and mobile apps.
           Earlier, I worked with Semiflat, helping early-stage startups shape their products and
           design systems.
@@ -16,25 +16,25 @@ export default function Home() {
 
         <div className="flex gap-3.5 pt-3">
           <a
-            className="text-md leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
+            className="text-lg leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
             href="x.com/rafal_ziolek"
           >
             x.com
           </a>
           <a
-            className="text-md leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
+            className="text-lg leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
             href="mailto:rafal.ziolek@icloud.com"
           >
             Email
           </a>
           <a
-            className="text-md leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-5"
+            className="text-lg leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-5"
             href="https://arena.co/rafal-ziolek"
           >
             Are.na
           </a>
           <a
-            className="text-md leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
+            className="text-lg leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
             href="https://rafal-ziolek.github.io/resume.pdf"
           >
             Résumé
