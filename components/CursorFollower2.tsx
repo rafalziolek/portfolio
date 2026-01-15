@@ -4,13 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useEffects } from '@/context/EffectsContext';
 
-const PLACEHOLDER_IMAGES = [
-  'bg-red-500',
-  'bg-blue-500',
-  'bg-green-500',
-  'bg-yellow-500',
-  'bg-purple-500',
-];
+import { PROJECTS } from '@/lib/data';
+import Image from 'next/image';
+
+/* Removed PLACEHOLDER_IMAGES */
 
 interface TrailItem {
   id: string;
@@ -150,7 +147,7 @@ const CursorFollower2 = ({
 
         // Update state for next cycle
         lastSpawnRef.current = { x: clientX, y: clientY, time: now };
-        setActiveIndex((prev) => (prev + 1) % PLACEHOLDER_IMAGES.length);
+        setActiveIndex((prev) => (prev + 1) % PROJECTS.length);
       }
     };
 
@@ -172,23 +169,47 @@ const CursorFollower2 = ({
     <>
       {/* Render the Trail */}
       <AnimatePresence>
-        {trail.map((item) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 1, scale: 1 }} // Instant appear
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1, transition: { duration: 0.5 } }} // Fade out animation without scale change
-            style={{
-              position: 'fixed',
-              left: item.x,
-              top: item.y,
-              transform: 'translate(-50%, -50%)', // Center on coordinates
-            }}
-            className={`pointer-events-none z-40 flex h-32 w-32 items-center justify-center rounded-xl font-mono text-xl font-bold text-white shadow-md ${PLACEHOLDER_IMAGES[item.imageIndex]}`}
-          >
-            {/* Optional content inside */}
-          </motion.div>
-        ))}
+        {trail.map((item) => {
+          const project = PROJECTS[item.imageIndex % PROJECTS.length];
+          const aspect = project.src.width / project.src.height;
+          let width, height;
+
+          if (project.src.height > project.src.width) {
+            // Portrait: Width = 150px
+            width = 150;
+            height = 150 / aspect;
+          } else {
+            // Landscape/Square: Height = 150px
+            height = 150;
+            width = 150 * aspect;
+          }
+
+          return (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 1, scale: 1 }} // Instant appear
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1, transition: { duration: 0.5 } }} // Fade out animation without scale change
+              style={{
+                position: 'fixed',
+                left: item.x,
+                top: item.y,
+                width,
+                height,
+                transform: 'translate(-50%, -50%)', // Center on coordinates
+              }}
+              className={`pointer-events-none z-40 flex items-center justify-center overflow-hidden`}
+            >
+              <Image
+                src={project.src}
+                alt={project.alt}
+                fill
+                sizes="300px" // Safe upper bound
+                className="object-cover"
+              />
+            </motion.div>
+          );
+        })}
       </AnimatePresence>
 
       {/* Render the "Head" (Follower) - optional, but keeps the "tracking" feeling */}

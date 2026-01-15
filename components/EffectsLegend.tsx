@@ -19,7 +19,9 @@ const EffectsLegend = () => {
           E
         </span>
       </span>
-      <span className="text-md font-medium">To turn {isEnabled ? 'off' : 'on'} effects</span>
+      <span className="text-md font-medium tracking-tight">
+        To turn {isEnabled ? 'off' : 'on'} effects
+      </span>
     </div>
   );
 };

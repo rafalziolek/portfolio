@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="grid grid-cols-12 items-end">
         <div className="col-span-2 flex flex-col">
           <span className="text-md font-semibold tracking-tight">Rafał Ziółek</span>
-          <span className="text-md font-bold">(ラファウジュウウェク)</span>
+          <span className="text-md font-bold tracking-tight">(ラファウジュウウェク)</span>
         </div>
 
         <EffectsLegend />

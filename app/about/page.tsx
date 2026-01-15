@@ -16,37 +16,37 @@ export default function About() {
         {/* Center Column */}
         <div className="flex flex-col items-center justify-center pt-40 text-center">
           <h1 className="font-gyre-heros pb-9 text-[3.375rem] leading-[0.9em] tracking-[-0.035em]">
-            I’m a Rafa. Software designer and developer living in Warsaw.
+            Hi, I’m Rafal, <br />a self-taught software designer and developer
           </h1>
 
           <div className="flex flex-col items-center gap-24">
             <div className="flex flex-col items-center gap-9">
-              <p className="text-lg leading-[1.4em] font-medium tracking-tighter">
+              <p className="text-md leading-[1.4em] font-medium tracking-tight">
                 Currently at Docplanner, where I'm building design systems for both web and mobile
                 apps. Earlier, I worked with Semiflat, helping early-stage startups shape their
                 products and design systems.
               </p>
               <div className="flex gap-3.5">
                 <a
-                  className="text-lg leading-[1.4em] font-medium tracking-tighter underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
+                  className="text-md leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
                   href="x.com/rafal_ziolek"
                 >
                   x.com
                 </a>
                 <a
-                  className="text-lg leading-[1.4em] font-medium tracking-tighter underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
+                  className="text-md leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
                   href="mailto:rafal.ziolek@icloud.com"
                 >
                   Email
                 </a>
                 <a
-                  className="text-lg leading-[1.4em] font-medium tracking-tighter underline decoration-white/40 decoration-dotted decoration-1 underline-offset-5"
+                  className="text-md leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-5"
                   href="https://arena.co/rafal-ziolek"
                 >
                   Are.na
                 </a>
                 <a
-                  className="text-lg leading-[1.4em] font-medium tracking-tighter underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
+                  className="text-md leading-[1.4em] font-medium tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
                   href="https://rafal-ziolek.github.io/resume.pdf"
                 >
                   Résumé
@@ -67,10 +67,10 @@ export default function About() {
             </div>
             <div className="flex flex-col gap-16">
               <div className="w-full text-left">
-                <span className="mb-2 block text-lg font-medium tracking-tighter text-neutral-500">
+                <span className="text-md mb-2 block font-medium tracking-tight text-neutral-500">
                   Design should be honest
                 </span>
-                <p className="text-lg leading-[1.4em] font-medium tracking-tighter text-neutral-300">
+                <p className="text-md leading-[1.4em] font-medium tracking-tight text-neutral-300">
                   I obsess over the pixels and the system they live in. Design should be honest—no
                   dark patterns, no fluff—just stuff that works, feels right, and makes sense for
                   both the person using it and the people building it.
@@ -80,7 +80,7 @@ export default function About() {
               <hr className="w-full border-t border-neutral-900/80" />
 
               <div className="w-full text-left">
-                <span className="mb-8 block text-lg font-medium tracking-tighter text-neutral-500">
+                <span className="text-md mb-8 block font-medium tracking-tight text-neutral-500">
                   I am currently learning
                 </span>
 
@@ -144,10 +144,10 @@ export default function About() {
 
               <div className="grid w-full grid-cols-2 gap-8 text-left">
                 <div>
-                  <span className="mb-2 block text-lg font-medium tracking-tighter text-neutral-500">
+                  <span className="text-md mb-2 block font-medium tracking-tight text-neutral-500">
                     Things I like
                   </span>
-                  <ul className="list-inside list-image-none text-lg leading-[1.4em] font-medium tracking-tighter text-neutral-300">
+                  <ul className="text-md list-inside list-image-none leading-[1.4em] font-medium tracking-tight text-neutral-300">
                     <li>Bad bitches</li>
                     <li>Star Wars</li>
                     <li>Cooking</li>
@@ -160,10 +160,10 @@ export default function About() {
                 </div>
 
                 <div>
-                  <span className="mb-2 block text-lg font-medium tracking-tighter text-neutral-500">
+                  <span className="text-md mb-2 block font-medium tracking-tight text-neutral-500">
                     Things I dislike
                   </span>
-                  <ul className="text-lg leading-[1.4em] font-medium tracking-tighter text-neutral-300">
+                  <ul className="text-md leading-[1.4em] font-medium tracking-tight text-neutral-300">
                     <li>Bad bitches</li>
                     <li>OKRs</li>
                     <li>Small talk</li>
