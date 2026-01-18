@@ -15,8 +15,8 @@ const MusicPlayer = ({ className }: { className?: string }) => {
         <div className="absolute top-1/2 left-1/2 z-10 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-black backdrop-blur-sm" />
       </div>
 
-      <div className="flex flex-col leading-snug">
-        <span className="text-md font-semibold">Amira kitchen</span>
+      <div className="flex flex-col">
+        <span className="text-md font-medium">Amira kitchen</span>
         <span className="text-md">Westside Gunn</span>
       </div>
     </div>
