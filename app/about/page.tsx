@@ -16,13 +16,13 @@ export default function About() {
 
         {/* Center Column */}
         <div className="text flex flex-col items-center justify-center pt-40">
-          <h1 className="font-gyre-heros pb-9 text-[3.375rem] leading-[1em] tracking-[-0.035em]">
+          <h1 className="font-gyre-heros pb-9 text-[3.375rem] leading-[1em] tracking-[-0.03em]">
             Hi, I’m Rafal, a self-taught software designer and developer
           </h1>
 
           <div className="flex flex-col gap-24">
             <div className="flex flex-col gap-9">
-              <p className="text-lg leading-[1.5em] font-medium tracking-tight">
+              <p className="text-lg leading-[1.5em] tracking-tight">
                 Currently at Docplanner, where I'm building design systems for both web and mobile
                 apps. Earlier, I worked with Semiflat, helping early-stage startups shape their
                 products and design systems.

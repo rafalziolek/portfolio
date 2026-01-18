@@ -11,6 +11,9 @@
   --font-sans: var(--font-inter);
   --font-gyre-heros: var(--font-gyre-heros);
   --animate-spin-slow: spin 7s linear infinite;
+  --text-lg: 1.0625rem;
+  --text-md: 0.9375rem;
+  --font-weight-medium: 520;
 }
 
 @media (prefers-color-scheme: dark) {
