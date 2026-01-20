@@ -30,7 +30,7 @@ export default function DottedProgressBar({
 
   return (
     <div className="flex w-full flex-col">
-      <span className="mb-2 text-lg font-medium tracking-tight text-white">{label}</span>
+      <span className="mb-2 text-xl font-medium tracking-tight text-white">{label}</span>
 
       <div
         className="relative"

@@ -26,13 +26,13 @@ const Button: React.FC<ButtonProps> = ({
 
   const commonClasses = `flex h-10 ${
     label ? 'w-fit px-3' : 'w-10 px-0'
-  } items-center justify-center gap-0.5 leading-none rounded-full text-lg font-medium -tracking-[0.02em] transition-all ease-out hover:bg-neutral-300 active:scale-96 ${variants[variant]} ${className} `;
+  } items-center justify-center gap-0.75 leading-none rounded-full text-xl font-medium -tracking-[0.02em] transition-all ease-out hover:bg-neutral-300 active:scale-96 ${variants[variant]} ${className} `;
 
   const content = (
     <>
-      {iconStart && <Icon name={iconStart} size={22} />}
+      {iconStart && <Icon name={iconStart} size={24} />}
       {label && <span className="px-1">{label}</span>}
-      {iconEnd && <Icon name={iconEnd} size={22} />}
+      {iconEnd && <Icon name={iconEnd} size={24} />}
     </>
   );
 

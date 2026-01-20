@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${texGyreHeros.variable} antialiased`}>
+      <body className={`${inter.variable} ${texGyreHeros.variable} font-normal antialiased`}>
         <EffectsProvider>
           {children}
           <Footer />
