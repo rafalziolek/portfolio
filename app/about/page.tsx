@@ -10,7 +10,7 @@ export default function About() {
     <div data-hide-cursor className="relative min-h-screen w-full pb-24">
       <Button iconStart="close" aria-label="close" href="/" className="fixed top-4 left-4 z-50" />
 
-      <div className="grid min-h-screen grid-cols-[1fr_minmax(0,520px)_1fr]">
+      <div className="grid min-h-screen grid-cols-[1fr_minmax(0,550px)_1fr]">
         {/* Left Column */}
         <div />
 

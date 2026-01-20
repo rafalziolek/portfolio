@@ -3,13 +3,13 @@ import CursorFollower2 from '@components/CursorFollower2';
 
 export default function Home() {
   return (
-    <div data-hide-cursor className="align-start flex max-w-[520px] flex-col justify-start p-6">
+    <div data-hide-cursor className="align-start flex max-w-[550px] flex-col justify-start p-6">
       <h1 className="font-gyre-heros pb-8 text-5xl leading-[1em] tracking-[-0.03em] text-pretty">
         I'm a software designer
         <br /> based in Warsaw.
       </h1>
       <div className="flex flex-col pb-10">
-        <p className="text-md leading-tight font-normal tracking-tight text-pretty dark:font-normal">
+        <p className="text-md leading-snug font-normal tracking-tight text-pretty dark:font-normal">
           Currently at Docplanner, where I'm building design systems for both web and mobile apps.
           Earlier, I worked with Semiflat, helping early-stage startups shape their products and
           design systems.
