@@ -4,7 +4,7 @@ import CursorFollower2 from '@components/CursorFollower2';
 export default function Home() {
   return (
     <div data-hide-cursor className="align-start flex max-w-[520px] flex-col justify-start p-6">
-      <h1 className="font-gyre-heros pb-8 text-5xl leading-[0.9em] tracking-[-0.03em] text-pretty">
+      <h1 className="font-gyre-heros pb-8 text-5xl leading-[1em] tracking-[-0.03em] text-pretty">
         I'm a software designer
         <br /> based in Warsaw.
       </h1>
