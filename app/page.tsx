@@ -3,10 +3,9 @@ import CursorFollower2 from '@components/CursorFollower2';
 
 export default function Home() {
   return (
-    <div data-hide-cursor className="align-start flex max-w-[550px] flex-col justify-start p-6">
+    <div data-hide-cursor className="align-start flex max-w-[500px] flex-col justify-start p-6">
       <h1 className="font-gyre-heros pb-8 text-5xl leading-[1em] tracking-[-0.03em] text-pretty">
-        I'm a software designer
-        <br /> based in Warsaw.
+        I'm a software designer based in Warsaw.
       </h1>
       <div className="flex flex-col pb-10">
         <p className="text-md leading-snug font-normal tracking-tight text-pretty dark:font-normal">
@@ -18,7 +17,7 @@ export default function Home() {
         <div className="flex gap-3.5 pt-6">
           <a
             className="text-md leading-normal font-normal tracking-tight underline decoration-dotted decoration-1 underline-offset-4 dark:font-normal dark:decoration-white/40"
-            href="x.com/rafal_ziolek"
+            href="https://x.com/rafal_ziolek"
           >
             x.com
           </a>
@@ -30,7 +29,7 @@ export default function Home() {
           </a>
           <a
             className="text-md leading-normal font-normal tracking-tight underline decoration-dotted decoration-1 underline-offset-4 dark:font-normal dark:decoration-white/40"
-            href="https://arena.co/rafal-ziolek"
+            href="https://are.na/rafal-ziolek"
           >
             Are.na
           </a>

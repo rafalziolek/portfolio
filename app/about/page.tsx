@@ -10,22 +10,33 @@ export default function About() {
     <div data-hide-cursor className="relative min-h-screen w-full pb-24">
       <Button iconStart="close" aria-label="close" href="/" className="fixed top-4 left-4 z-50" />
 
-      <div className="grid min-h-screen grid-cols-[1fr_minmax(0,550px)_1fr]">
+      <div className="grid min-h-screen grid-cols-[1fr_minmax(0,500px)_1fr]">
         {/* Left Column */}
         <div />
 
         {/* Center Column */}
         <div className="flex flex-col justify-center pt-40">
           <h1 className="font-gyre-heros pb-12 text-5xl leading-none tracking-[-0.02em] text-pretty">
-            Hi, I am Rafal. A self-taught software designer and developer based in Warsaw.
+            About
           </h1>
 
           <div className="flex flex-col gap-24">
             <div className="flex flex-col gap-9">
               <p className="text-md leading-normal font-normal tracking-tight text-pretty">
-                Currently at Docplanner, where I'm building design systems for both web and mobile
-                apps. Earlier, I worked with Semiflat, helping early-stage startups shape their
-                products and design systems.
+                Hi, I am Rafal Ziolek, I'm self-taught product designer and developer, based in
+                Warsaw, Poland.
+              </p>
+
+              <p className="text-md leading-normal font-normal tracking-tight text-pretty">
+                I focus on the intersection of form and function to create experiences that
+                effortlessly become an extension of oneself. I&nbsp;believe in ideas over opinions,
+                prototypes as the most valuable tool for collaboration, and exploring one hundred
+                ideas to find the right one.
+              </p>
+              <p className="text-md leading-normal font-normal tracking-tight text-pretty">
+                Currently I am at Docplanner, where I'm building design systems for both web and
+                mobile apps. Earlier, I worked with Semiflat, helping early-stage startups shape
+                their products and design systems.
               </p>
               <div className="flex gap-3.5 font-normal">
                 <a
@@ -66,7 +77,7 @@ export default function About() {
                 className="object-cover"
               />
             </div>
-            <div className="flex flex-col gap-16">
+            <div className="flex flex-col gap-48">
               <div className="w-full text-left">
                 <span className="text-md mb-4 block font-medium tracking-tight opacity-50">
                   Design should be honest
@@ -78,8 +89,6 @@ export default function About() {
                 </p>
               </div>
 
-              <hr className="w-full border-t border-black/20 dark:border-white/10" />
-
               <div className="w-full text-left">
                 <span className="text-md mb-6 block font-medium tracking-tight opacity-50">
                   Currently learning
@@ -87,8 +96,6 @@ export default function About() {
 
                 <LearningSection />
               </div>
-
-              <hr className="w-full border-t border-black/20 dark:border-white/10" />
 
               <div className="grid w-full grid-cols-2 gap-8 text-left">
                 <div>
