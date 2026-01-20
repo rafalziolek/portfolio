@@ -10,19 +10,19 @@ export default function About() {
     <div data-hide-cursor className="relative min-h-screen w-full pb-24">
       <Button iconStart="close" aria-label="close" href="/" className="fixed top-4 left-4 z-50" />
 
-      <div className="grid min-h-screen grid-cols-[1fr_minmax(0,540px)_1fr]">
+      <div className="grid min-h-screen grid-cols-[1fr_minmax(0,520px)_1fr]">
         {/* Left Column */}
         <div />
 
         {/* Center Column */}
         <div className="flex flex-col justify-center pt-40">
-          <h1 className="font-gyre-heros pb-12 text-5xl leading-[1em] tracking-[-0.02em] text-pretty">
+          <h1 className="font-gyre-heros pb-12 text-5xl leading-none tracking-[-0.02em] text-pretty">
             Hi, I am Rafal. A self-taught software designer and developer based in Warsaw.
           </h1>
 
           <div className="flex flex-col gap-24">
             <div className="flex flex-col gap-9">
-              <p className="text-md leading-normal font-normal tracking-tight">
+              <p className="text-md leading-normal font-normal tracking-tight text-pretty">
                 Currently at Docplanner, where I'm building design systems for both web and mobile
                 apps. Earlier, I worked with Semiflat, helping early-stage startups shape their
                 products and design systems.

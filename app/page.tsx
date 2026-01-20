@@ -9,7 +9,7 @@ export default function Home() {
         <br /> based in Warsaw.
       </h1>
       <div className="flex flex-col pb-10">
-        <p className="text-md leading-normal font-normal tracking-tight text-pretty dark:font-normal">
+        <p className="text-md leading-tight font-normal tracking-tight text-pretty dark:font-normal">
           Currently at Docplanner, where I'm building design systems for both web and mobile apps.
           Earlier, I worked with Semiflat, helping early-stage startups shape their products and
           design systems.

@@ -12,7 +12,6 @@
   --font-gyre-heros: var(--font-gyre-heros);
   --animate-spin-slow: spin 7s linear infinite;
   --text-md: 1.03125rem;
-  --font-weight-medium: 450;
   --font-weight-normal: 450;
 }
 
@@ -27,4 +26,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter);
+}
+
+p {
+  text-wrap: pretty;
 }

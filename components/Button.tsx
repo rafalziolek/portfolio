@@ -25,8 +25,8 @@ const Button: React.FC<ButtonProps> = ({
       'dark:bg-neutral-400 dark:text-black dark:hover:text-black bg-black text-neutral-300 hover:bg-neutral-900 hover:text-neutral-200 dark:hover:bg-neutral-300',
   };
 
-  const commonClasses = `flex h-10 ${
-    label ? 'w-fit px-3' : 'w-10 px-0'
+  const commonClasses = `flex h-9 ${
+    label ? 'w-fit px-3' : 'w-9 px-0'
   } items-center justify-center gap-0.75 leading-none rounded-full text-md font-normal -tracking-[0.02em] transition-all ease-out  active:scale-96 ${variants[variant]} ${className} `;
 
   const content = (
