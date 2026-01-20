@@ -10,44 +10,44 @@ export default function About() {
     <div data-hide-cursor className="relative min-h-screen w-full pb-24">
       <Button iconStart="close" aria-label="close" href="/" className="fixed top-4 left-4 z-50" />
 
-      <div className="grid min-h-screen grid-cols-[1fr_minmax(0,600px)_1fr]">
+      <div className="grid min-h-screen grid-cols-[1fr_minmax(0,540px)_1fr]">
         {/* Left Column */}
         <div />
 
         {/* Center Column */}
         <div className="flex flex-col justify-center pt-40">
-          <h1 className="font-gyre-heros pb-12 text-[3.375rem] leading-[1em] font-semibold tracking-[-0.02em] text-pretty">
+          <h1 className="font-gyre-heros pb-12 text-5xl leading-[1em] tracking-[-0.02em] text-pretty">
             Hi, I am Rafal. A self-taught software designer and developer based in Warsaw.
           </h1>
 
           <div className="flex flex-col gap-24">
             <div className="flex flex-col gap-9">
-              <p className="text-xl leading-[1.5em] font-normal tracking-tight">
+              <p className="text-md leading-normal font-normal tracking-tight">
                 Currently at Docplanner, where I'm building design systems for both web and mobile
                 apps. Earlier, I worked with Semiflat, helping early-stage startups shape their
                 products and design systems.
               </p>
               <div className="flex gap-3.5 font-normal">
                 <a
-                  className="text-xl leading-[1.4em] tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
+                  className="text-md leading-normal tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
                   href="x.com/rafal_ziolek"
                 >
                   x.com
                 </a>
                 <a
-                  className="text-xl leading-[1.4em] tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
+                  className="text-md leading-normal tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
                   href="mailto:rafal.ziolek@icloud.com"
                 >
                   Email
                 </a>
                 <a
-                  className="text-xl leading-[1.4em] tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-5"
+                  className="text-md leading-normal tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-5"
                   href="https://arena.co/rafal-ziolek"
                 >
                   Are.na
                 </a>
                 <a
-                  className="text-xl leading-[1.4em] tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
+                  className="text-md leading-normal tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
                   href="https://rafal-ziolek.github.io/resume.pdf"
                 >
                   Résumé
@@ -68,34 +68,34 @@ export default function About() {
             </div>
             <div className="flex flex-col gap-16">
               <div className="w-full text-left">
-                <span className="mb-4 block text-lg font-medium tracking-tight text-neutral-500">
+                <span className="text-md mb-4 block font-medium tracking-tight opacity-50">
                   Design should be honest
                 </span>
-                <p className="text-xl leading-[1.4em] font-medium tracking-tight text-neutral-300">
+                <p className="text-md leading-normal font-medium tracking-tight">
                   I obsess over the pixels and the system they live in. Design should be honest—no
                   dark patterns, no fluff—just stuff that works, feels right, and makes sense for
                   both the person using it and the people building it.
                 </p>
               </div>
 
-              <hr className="w-full border-t border-neutral-900/80" />
+              <hr className="w-full border-t border-black/20 dark:border-white/10" />
 
               <div className="w-full text-left">
-                <span className="mb-6 block text-lg font-medium tracking-tight text-neutral-500">
+                <span className="text-md mb-6 block font-medium tracking-tight opacity-50">
                   Currently learning
                 </span>
 
                 <LearningSection />
               </div>
 
-              <hr className="w-full border-t border-neutral-900/80" />
+              <hr className="w-full border-t border-black/20 dark:border-white/10" />
 
               <div className="grid w-full grid-cols-2 gap-8 text-left">
                 <div>
-                  <span className="mb-4 block text-lg font-medium tracking-tight text-neutral-500">
+                  <span className="text-md mb-4 block font-medium tracking-tight opacity-50">
                     Things I like
                   </span>
-                  <ul className="list-inside list-image-none text-xl leading-[1.4em] font-medium tracking-tight text-neutral-300">
+                  <ul className="text-md list-inside list-image-none leading-normal font-medium tracking-tight">
                     <li>Bad bitches</li>
                     <li>Star Wars</li>
                     <li>Cooking</li>
@@ -108,10 +108,10 @@ export default function About() {
                 </div>
 
                 <div>
-                  <span className="mb-4 block text-lg font-medium tracking-tight text-neutral-500">
+                  <span className="text-md mb-4 block font-medium tracking-tight opacity-50">
                     Things I dislike
                   </span>
-                  <ul className="text-xl leading-[1.4em] font-medium tracking-tight text-neutral-300">
+                  <ul className="text-md leading-normal font-medium tracking-tight">
                     <li>Bad bitches</li>
                     <li>OKRs</li>
                     <li>Small talk</li>

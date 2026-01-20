@@ -30,7 +30,7 @@ export default function DottedProgressBar({
 
   return (
     <div className="flex w-full flex-col">
-      <span className="mb-2 text-xl font-medium tracking-tight text-white">{label}</span>
+      <span className="text-md mb-2 font-medium tracking-tight">{label}</span>
 
       <div
         className="relative"
@@ -71,13 +71,18 @@ export default function DottedProgressBar({
              Only the parts coincident with the white dots in the mask will show. */}
           <g mask={`url(#${maskId})`}>
             {/* Background Bar (Full Width) */}
-            <rect width="100%" height="100%" className="text-neutral-800" fill="currentColor" />
+            <rect
+              width="100%"
+              height="100%"
+              className="text-black/20 dark:text-neutral-800"
+              fill="currentColor"
+            />
 
             {/* Foreground Bar (Progress Width) */}
             <rect
               width={`${progress * 100}%`}
               height="100%"
-              className="text-neutral-200"
+              className="text-black dark:text-white"
               fill="currentColor"
             />
           </g>
@@ -90,7 +95,7 @@ export default function DottedProgressBar({
           className="mt-1 flex-none"
           aria-hidden="true"
         />
-        <span className="mt-1 text-sm font-medium tracking-tight text-neutral-500">
+        <span className="mt-1 text-sm font-medium tracking-tight text-neutral-700 dark:text-neutral-400/50">
           {description}
         </span>
       </div>

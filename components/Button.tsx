@@ -21,18 +21,19 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const variants = {
-    primary: 'bg-neutral-400 text-black',
+    primary:
+      'dark:bg-neutral-400 dark:text-black dark:hover:text-black bg-black text-neutral-300 hover:bg-neutral-900 hover:text-neutral-200 dark:hover:bg-neutral-300',
   };
 
   const commonClasses = `flex h-10 ${
     label ? 'w-fit px-3' : 'w-10 px-0'
-  } items-center justify-center gap-0.75 leading-none rounded-full text-xl font-medium -tracking-[0.02em] transition-all ease-out hover:bg-neutral-300 active:scale-96 ${variants[variant]} ${className} `;
+  } items-center justify-center gap-0.75 leading-none rounded-full text-md font-normal -tracking-[0.02em] transition-all ease-out  active:scale-96 ${variants[variant]} ${className} `;
 
   const content = (
     <>
-      {iconStart && <Icon name={iconStart} size={24} />}
+      {iconStart && <Icon name={iconStart} size={20} />}
       {label && <span className="px-1">{label}</span>}
-      {iconEnd && <Icon name={iconEnd} size={24} />}
+      {iconEnd && <Icon name={iconEnd} size={20} />}
     </>
   );
 

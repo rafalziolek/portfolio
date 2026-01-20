@@ -13,13 +13,13 @@ const EffectsLegend = () => {
 
   return (
     <div className="col-span-2 flex flex-col">
-      <span className="inline-flex items-center text-lg font-medium tracking-tight">
+      <span className="text-md inline-flex items-center font-medium tracking-tight">
         Press{' '}
-        <span className="ml-1.5 inline-flex h-4 w-4 items-center justify-center rounded-sm bg-gray-300 text-xs text-black backdrop-blur-sm">
+        <span className="ml-1.5 inline-flex h-4 w-4 items-center justify-center rounded-sm bg-black text-xs text-neutral-400 backdrop-blur-sm dark:bg-gray-400 dark:text-black">
           E
         </span>
       </span>
-      <span className="text-lg tracking-tight">To turn {isEnabled ? 'off' : 'on'} effects</span>
+      <span className="text-md tracking-tight">To turn {isEnabled ? 'off' : 'on'} effects</span>
     </div>
   );
 };

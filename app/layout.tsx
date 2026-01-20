@@ -11,9 +11,19 @@ const inter = Inter({
 });
 
 const texGyreHeros = localFont({
-  src: '../assets/texgyreheroscn-bold.otf',
+  src: [
+    {
+      path: '../assets/texgyreheroscn-regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../assets/texgyreheroscn-bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
   variable: '--font-gyre-heros',
-  weight: '700',
 });
 
 export const metadata: Metadata = {
