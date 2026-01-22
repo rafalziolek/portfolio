@@ -26,14 +26,14 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const commonClasses = `flex h-9 ${
-    label ? 'w-fit px-3' : 'w-9 px-0'
+    label ? 'w-fit px-2.5' : 'w-9 px-0'
   } items-center justify-center gap-0.75 leading-none rounded-full text-md font-normal -tracking-[0.02em] transition-all ease-out  active:scale-96 ${variants[variant]} ${className} `;
 
   const content = (
     <>
-      {iconStart && <Icon name={iconStart} size={20} />}
-      {label && <span className="px-1">{label}</span>}
-      {iconEnd && <Icon name={iconEnd} size={20} />}
+      {iconStart && <Icon name={iconStart} size={18} />}
+      {label && <span className="px-0.5">{label}</span>}
+      {iconEnd && <Icon name={iconEnd} size={18} />}
     </>
   );
 
