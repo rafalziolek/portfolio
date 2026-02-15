@@ -4,6 +4,7 @@ import CursorFollower2 from '@/components/CursorFollower2';
 import Image from 'next/image';
 import LearningSection from '@/components/LearningSection';
 import LikeDislikeGraph from '@/components/LikeDislikeGraph';
+import Link from '@/components/Link';
 
 export default function About() {
   return (
@@ -39,30 +40,10 @@ export default function About() {
                 their products and design systems.
               </p>
               <div className="flex gap-3.5 font-normal">
-                <a
-                  className="text-md leading-normal tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
-                  href="x.com/rafal_ziolek"
-                >
-                  x.com
-                </a>
-                <a
-                  className="text-md leading-normal tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
-                  href="mailto:rafal.ziolek@icloud.com"
-                >
-                  Email
-                </a>
-                <a
-                  className="text-md leading-normal tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-5"
-                  href="https://arena.co/rafal-ziolek"
-                >
-                  Are.na
-                </a>
-                <a
-                  className="text-md leading-normal tracking-tight underline decoration-white/40 decoration-dotted decoration-1 underline-offset-4"
-                  href="https://rafal-ziolek.github.io/resume.pdf"
-                >
-                  Résumé
-                </a>
+                <Link href="https://x.com/rafal_ziolek">x.com</Link>
+                <Link href="mailto:rafal.ziolek@icloud.com">Email</Link>
+                <Link href="https://arena.co/rafal-ziolek">Are.na</Link>
+                <Link href="https://rafal-ziolek.github.io/resume.pdf">Résumé</Link>
               </div>
             </div>
 

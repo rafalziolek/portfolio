@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 :root {
-  --background: var(--color-neutral-200);
-  --foreground: var(--color-black);
+  --background: var(--color-stone-300);
+  --foreground: var(--color-stone-800);
 }
 
 @theme inline {
@@ -11,15 +11,14 @@
   --font-sans: var(--font-inter);
   --font-gyre-heros: var(--font-gyre-heros);
   --animate-spin-slow: spin 7s linear infinite;
-  --text-md: 15px;
-  --font-weight-normal: 480;
+  --font-weight-normal: 420;
   --leading-snug: 1.3;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--color-black);
-    --foreground: var(--color-neutral-300);
+    --foreground: #b0b0b0;
   }
 }
 

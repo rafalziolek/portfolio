@@ -5,12 +5,14 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 interface EffectsContextType {
   isEnabled: boolean;
   toggleEffects: () => void;
+  isKeyPressed: boolean;
 }
 
 const EffectsContext = createContext<EffectsContextType | undefined>(undefined);
 
 export const EffectsProvider = ({ children }: { children: React.ReactNode }) => {
   const [isEnabled, setIsEnabled] = useState(true);
+  const [isKeyPressed, setIsKeyPressed] = useState(false);
 
   const toggleEffects = () => setIsEnabled((prev) => !prev);
 
@@ -23,16 +25,34 @@ export const EffectsProvider = ({ children }: { children: React.ReactNode }) => 
       }
 
       if (e.key.toLowerCase() === 'e') {
-        toggleEffects();
+        if (!e.repeat) {
+          toggleEffects();
+        }
+        setIsKeyPressed(true);
+      }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (['INPUT', 'TEXTAREA'].includes(target.tagName) || target.isContentEditable) {
+        return;
+      }
+
+      if (e.key.toLowerCase() === 'e') {
+        setIsKeyPressed(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
   }, []);
 
   return (
-    <EffectsContext.Provider value={{ isEnabled, toggleEffects }}>
+    <EffectsContext.Provider value={{ isEnabled, toggleEffects, isKeyPressed }}>
       {children}
     </EffectsContext.Provider>
   );

@@ -1,47 +1,37 @@
-import Button from '@components/Button';
 import CursorFollower2 from '@components/CursorFollower2';
+import Link from '@components/Link';
 
 export default function Home() {
   return (
-    <div data-hide-cursor className="align-start flex max-w-[500px] flex-col justify-start p-6">
-      <h1 className="font-gyre-heros pb-8 text-5xl leading-[1em] tracking-[-0.025em] text-pretty">
-        I'm a software designer based in Warsaw.
+    <div data-hide-cursor className="align-start flex max-w-[480px] flex-col justify-start p-6">
+      <h1 className="font-gyre-heros pb-12 text-5xl leading-[1em] tracking-[-0.035em] text-pretty">
+        I’m a software designer based in Warsaw.
       </h1>
-      <div className="flex flex-col pb-10">
-        <p className="text-md leading-snug font-normal tracking-tight text-pretty dark:font-normal">
-          Currently at Docplanner, where I'm building design systems for both web and mobile apps.
-          Earlier, I worked with Semiflat, helping early-stage startups shape their products and
-          design systems.
+      <div className="text-md flex flex-col gap-5 pb-10 leading-snug font-normal tracking-tight text-pretty dark:font-normal">
+        <p>
+          Currently building design systems at{' '}
+          <Link href="https://www.docplanner.com">Docplanner</Link>.<br />
+          Previously helped startups shape their products at{' '}
+          <Link href="https://semiflat.com">Semiflat</Link>.
         </p>
 
-        <div className="flex gap-3.5 pt-6">
-          <a
-            className="text-md leading-snug font-normal tracking-tight underline decoration-dotted decoration-1 underline-offset-4 dark:font-normal dark:decoration-white/40"
-            href="https://x.com/rafal_ziolek"
-          >
-            x.com
-          </a>
-          <a
-            className="text-md leading-snug font-normal tracking-tight underline decoration-dotted decoration-1 underline-offset-4 dark:font-normal dark:decoration-white/40"
-            href="mailto:rafal.ziolek@icloud.com"
-          >
-            Email
-          </a>
-          <a
-            className="text-md leading-snug font-normal tracking-tight underline decoration-dotted decoration-1 underline-offset-4 dark:font-normal dark:decoration-white/40"
-            href="https://are.na/rafal-ziolek"
-          >
-            Are.na
-          </a>
-          <a
-            className="text-md leading-snug font-normal tracking-tight underline decoration-dotted decoration-1 underline-offset-4 dark:font-normal dark:decoration-white/40"
-            href="https://rafal-ziolek.github.io/resume.pdf"
-          >
-            Résumé
-          </a>
-        </div>
+        <p>
+          The best digital experiences emerge when design and code work as one. That’s where I find
+          myself working best.
+        </p>
+        <p>
+          I believe in prototypes over processes, and designing from deep understanding. To design
+          something really well, you have to get it.
+        </p>
+
+        <p>...</p>
+
+        <p>
+          Find me on <Link href="https://x.com/rafal_ziolek">x.com</Link>,{' '}
+          <Link href="https://are.na/rafal-ziolek">Are.na</Link>, or contact me by{' '}
+          <Link href="mailto:rafal.ziolek@icloud.com">email</Link>.
+        </p>
       </div>
-      <Button iconStart="plus" label="More" href="/about" />
       <CursorFollower2 threshold={120} />
     </div>
   );

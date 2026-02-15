@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useEffects } from '@/context/EffectsContext';
 
 const EffectsLegend = () => {
-  const { isEnabled } = useEffects();
+  const { isEnabled, isKeyPressed } = useEffects();
   const pathname = usePathname();
 
   if (pathname !== '/') {
@@ -12,10 +12,14 @@ const EffectsLegend = () => {
   }
 
   return (
-    <div className="col-span-2 flex flex-col">
+    <div className="col-span-2 flex flex-col text-sm">
       <span className="text-md inline-flex items-center font-medium tracking-tight">
         Press{' '}
-        <span className="ml-1.5 inline-flex h-4 w-4 items-center justify-center rounded-sm bg-black text-xs text-neutral-400 backdrop-blur-sm dark:bg-gray-400 dark:text-black">
+        <span
+          className={`ml-1.5 inline-flex transform items-center justify-center rounded-sm bg-black pr-[5px] pl-[4px] text-xs backdrop-blur-sm transition-transform duration-100 ease-in-out dark:bg-neutral-400 dark:text-black ${
+            isKeyPressed ? 'scale-80' : 'scale-100'
+          }`}
+        >
           E
         </span>
       </span>
