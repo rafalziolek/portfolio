@@ -1,9 +1,7 @@
 import Button from '@/components/Button';
 import React from 'react';
-import CursorFollower2 from '@/components/CursorFollower2';
 import Image from 'next/image';
 import LearningSection from '@/components/LearningSection';
-import LikeDislikeGraph from '@/components/LikeDislikeGraph';
 import Link from '@/components/Link';
 
 export default function About() {
