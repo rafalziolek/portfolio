@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div data-hide-cursor className="align-start flex max-w-[480px] flex-col justify-start p-6">
       <h1
-        className="pb-12 text-[42px] leading-[1em] tracking-[-0.035em] text-pretty"
+        className="pb-12 text-5xl leading-[1em] tracking-[-0.04em] text-pretty"
         style={{ fontFamily: 'OT Neue Montreal medium' }}
       >
         I’m a software designer
