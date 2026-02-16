@@ -4,10 +4,15 @@ import Link from '@components/Link';
 export default function Home() {
   return (
     <div data-hide-cursor className="align-start flex max-w-[480px] flex-col justify-start p-6">
-      <h1 className="font-gyre-heros pb-12 text-5xl leading-[1em] tracking-[-0.035em] text-pretty">
-        I’m a software designer based in Warsaw.
+      <h1
+        className="pb-12 text-[42px] leading-[1em] tracking-[-0.035em] text-pretty"
+        style={{ fontFamily: 'OT Neue Montreal medium' }}
+      >
+        I’m a software designer
+        <br /> based in Warsaw.
       </h1>
       <div className="text-md flex flex-col gap-5 pb-10 leading-snug font-normal tracking-tight text-pretty dark:font-normal">
+        <p>I'm Rafał, self taught designer and developer based in Warsaw, Poland.</p>
         <p>
           Currently building design systems at{' '}
           <Link href="https://www.docplanner.com">Docplanner</Link>.<br />
