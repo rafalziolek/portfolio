@@ -12,7 +12,7 @@ export default function Home() {
         <br /> based in Warsaw.
       </h1>
       <div className="text-md flex flex-col gap-5 pb-10 leading-snug font-normal tracking-tight text-pretty dark:font-normal">
-        <p>I'm Rafał, self taught designer and developer based in Warsaw, Poland.</p>
+        <p>I'm Rafał, a self-taught designer and developer based in Warsaw, Poland.</p>
         <p>
           Currently building design systems at{' '}
           <Link href="https://www.docplanner.com">Docplanner</Link>.<br />
