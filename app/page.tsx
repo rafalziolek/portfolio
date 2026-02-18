@@ -5,10 +5,10 @@ export default function Home() {
   return (
     <div data-hide-cursor className="align-start flex max-w-[480px] flex-col justify-start p-6">
       <h1
-        className="pb-12 text-5xl leading-[0.9em] tracking-[-0.04em] text-pretty"
+        className="pb-12 text-[40px] leading-[1em] tracking-[-0.03em] text-pretty"
         style={{ fontFamily: 'OT Neue Montreal medium' }}
       >
-        I’m a software designer
+        I’m a software designer,
         <br /> based in Warsaw.
       </h1>
       <div className="text-md flex flex-col gap-5 pb-10 leading-snug font-normal tracking-tight text-pretty dark:font-normal">
