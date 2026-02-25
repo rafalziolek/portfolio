@@ -7,18 +7,21 @@ import { HoverArtifactProvider } from '@/context/HoverArtifactContext';
 export default function Home() {
   return (
     <HoverArtifactProvider>
-      <div data-hide-cursor className="align-start flex max-w-[480px] flex-col justify-start p-6">
+      <div
+        data-hide-cursor
+        className="align-center flex max-w-[420px] flex-col justify-center px-8 py-8"
+      >
         <h1
-          className="pb-12 text-[54px] leading-[1em] tracking-[-0.03em] text-pretty"
+          className="font-gyre-heros pb-12 text-[42px] leading-[0.9em] tracking-[-0.04em] text-pretty text-shadow-[0_0_1px_var(--color-foreground)]"
           style={{ fontFamily: 'OT Neue Montreal medium' }}
         >
           I'm a software designer,
           <br /> based in <HoverArtifact artifactId="warsaw-clock">Warsaw</HoverArtifact>.
         </h1>
-        <div className="flex flex-col gap-10 pb-10 text-xl leading-[1.3] !font-medium tracking-tight text-pretty dark:font-normal">
+        <div className="flex flex-col gap-5 pb-10 text-sm leading-[1.5] tracking-[-0.02em] text-balance dark:font-normal">
           <p>
             I'm <HoverArtifact artifactId="rafal-photo">Rafał</HoverArtifact>, a self-taught
-            designer and developer. Currently I work at{' '}
+            designer and developer. Currently I&nbsp;work at{' '}
             <Link href="https://www.docplanner.com">Docplanner</Link>. Previously helped startups
             shape their products at <Link href="https://semiflat.com">Semiflat</Link>.
           </p>
