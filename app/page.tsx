@@ -8,10 +8,9 @@ export default function Home() {
         className="pb-12 text-[40px] leading-[1em] tracking-[-0.03em] text-pretty"
         style={{ fontFamily: 'OT Neue Montreal medium' }}
       >
-        I’m a software designer,
-        <br /> based in Warsaw.
+        Rafal Ziolek, software designer,
       </h1>
-      <div className="text-md flex flex-col gap-5 pb-10 leading-snug font-normal tracking-tight text-pretty dark:font-normal">
+      <div className="flex flex-col gap-5 pb-10 text-lg leading-snug font-normal tracking-tight text-pretty dark:font-normal">
         <p>I'm Rafał, a self-taught designer and developer based in Warsaw, Poland.</p>
         <p>
           Currently building design systems at{' '}
