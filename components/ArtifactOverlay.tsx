@@ -16,7 +16,7 @@ const ArtifactOverlay = () => {
     <>
       {showClock && (
         <div
-          className="pointer-events-none fixed inset-0 z-30 flex items-center justify-center"
+          className="pointer-events-none fixed right-2 bottom-2 z-30 flex items-center justify-center"
           aria-hidden="true"
         >
           <WarsawClock />
@@ -24,16 +24,16 @@ const ArtifactOverlay = () => {
       )}
       {showPhoto && (
         <div
-          className="pointer-events-none fixed inset-0 z-30 flex items-center justify-center"
+          className="pointer-events-none fixed right-2 bottom-2 z-30 flex items-center justify-center"
           aria-hidden="true"
         >
-          <div className="h-[35vh] w-auto overflow-hidden">
+          <div className="h-[30vh] w-auto overflow-hidden rounded-lg">
             <Image
               src="/profile.png"
               alt="Rafał Ziolek"
               width={500}
               height={500}
-              className="h-[50vh] w-auto max-w-none -translate-y-[15%] grayscale"
+              className="h-[45vh] w-auto max-w-none -translate-y-[15%] grayscale"
             />
           </div>
         </div>
