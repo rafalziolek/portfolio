@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
-import Footer from '@/components/Footer';
 import { EffectsProvider } from '@/context/EffectsContext';
+import { Agentation } from 'agentation';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -38,12 +38,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${texGyreHeros.variable} font-normal antialiased`}>
-        <EffectsProvider>
-          {children}
-          <Footer />
-        </EffectsProvider>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/mtj8ilt.css" />
+      </head>
+      <body className={`font-normal antialiased`}>
+        <EffectsProvider>{children}</EffectsProvider>
       </body>
+      {process.env.NODE_ENV === 'development' && <Agentation />}
     </html>
   );
 }
