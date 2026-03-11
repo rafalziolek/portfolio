@@ -25,6 +25,7 @@ export default function TabBar() {
             left: 4,
             width: 'calc(50% - 4px)',
           }}
+          initial={{ x: `${activeIndex * 100}%` }}
           animate={{
             x: `${activeIndex * 100}%`,
           }}
