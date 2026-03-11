@@ -8,7 +8,7 @@ import { HoverArtifactProvider } from '@/context/HoverArtifactContext';
 export default function InfoContent() {
   return (
     <HoverArtifactProvider>
-      <div className="font-gyre-heros dark:text-foreground grid grid-cols-1 gap-y-6 p-4 text-[21px] leading-[1.15] tracking-[-0.03em] text-black sm:grid-rows-[auto] sm:gap-x-10 sm:gap-y-0 sm:p-2 md:grid-cols-[repeat(16,minmax(0,1fr))]">
+      <div className="font-gyre-heros dark:text-foreground grid grid-cols-1 p-4 text-[17px] leading-[1.15] tracking-[-0.03em] text-black sm:grid-rows-[auto] sm:gap-x-10 sm:gap-y-0 md:grid-cols-[repeat(16,minmax(0,1fr))] md:p-2 md:text-[22px]">
         {/* Name block */}
         <div className="mb-4 flex flex-col items-start md:col-[6/span_3] md:row-1">
           <span>Rafał Ziółek</span>
@@ -17,7 +17,7 @@ export default function InfoContent() {
 
         {/* Bio + work history */}
         <div className="flex flex-col gap-3 md:col-[9/span_8] md:row-1">
-          <p className="tracking-[-0.04em]">
+          <p className="tracking-[-0.04em] text-balance">
             I&rsquo;m{' '}
             <HoverArtifact artifactId="rafal-photo">
               <span className="decoration-foreground/10 underline decoration-dotted underline-offset-[6%]">
@@ -30,17 +30,36 @@ export default function InfoContent() {
                 Warsaw, Poland
               </span>
             </HoverArtifact>
-            . Currently I work at Docplanner. Previously, I helped startups shape their products at
-            Semiflat.
+            . Currently I&nbsp;work at Docplanner. Previously, I&nbsp;helped startups shape their
+            products at Semiflat.
           </p>
 
-          <p className="tracking-[-0.04em]">
+          <p className="tracking-[-0.04em] text-balance">
             The best digital experiences emerge when design and code work as one&mdash;That&rsquo;s
-            where I find myself working best. I believe in prototypes over processes, and designing
-            from deep understanding. To design something really well, you have to get it.
+            where I&nbsp;find myself working best. I&nbsp;believe in prototypes over processes, and
+            designing from deep understanding. To design something really well, you have to get it.
           </p>
 
-          <div className="grid grid-cols-[repeat(6,minmax(0,1fr))] gap-x-1 gap-y-1 pt-3 tracking-[-0.02em]">
+          {/* Mobile table: 2 columns (Year / Where) */}
+          <div className="grid grid-cols-2 gap-x-2 gap-y-1 pt-3 tracking-[-0.02em] md:hidden">
+            <span className="text-[13px] opacity-50">Year</span>
+            <span className="text-[13px] opacity-50">Where</span>
+
+            <span className="text-[16px]">2019–Now</span>
+            <span className="text-[16px]">Docplanner</span>
+
+            <span className="text-[16px]">2021–2024</span>
+            <span className="text-[16px]">Semiflat</span>
+
+            <span className="text-[16px]">2018</span>
+            <span className="text-[16px]">Absolent Group</span>
+
+            <span className="text-[16px]">2018</span>
+            <span className="text-[16px]">INVO</span>
+          </div>
+
+          {/* Desktop table: 3 columns (Year / Where / What) */}
+          <div className="hidden grid-cols-[repeat(6,minmax(0,1fr))] gap-x-1 gap-y-1 pt-3 tracking-[-0.02em] md:grid">
             <span className="col-[1/span_2] text-[13px] opacity-50">Year</span>
             <span className="col-[3/span_2] text-[13px] opacity-50">Where</span>
             <span className="col-[5/span_2] text-[13px] opacity-50">What</span>
@@ -67,13 +86,13 @@ export default function InfoContent() {
         <div className="mb-1 flex h-0 w-full flex-col border-b border-dotted border-black/15 pt-10 md:col-[6/span_11] dark:border-white/15" />
 
         {/* Outside of design */}
-        <div className="flex flex-col md:col-[6/span_3]">
+        <div className="mb-2 flex flex-col md:col-[6/span_3]">
           <span>Outside of design</span>
         </div>
         <div className="flex flex-col md:col-[9/span_8]">
           <p>
             I am a <Link href="https://www.instagram.com/rafal.ziolek/">photographer</Link> an avid
-            baker, and I&rsquo;m learning Japanese (日本語).
+            baker, and I&rsquo;m learning Japanese [<span className="font-light">日本語</span>].
           </p>
         </div>
 
@@ -81,7 +100,7 @@ export default function InfoContent() {
         <div className="mb-2 flex h-0 w-full flex-col border-b border-dotted border-black/15 pt-10 md:col-[6/span_11] dark:border-white/15" />
 
         {/* Connect */}
-        <div className="flex flex-col md:col-[6/span_3]">
+        <div className="mb-2 flex flex-col md:col-[6/span_3]">
           <span>Connect</span>
         </div>
         <div className="flex flex-col gap-0 md:col-[9/span_8]">
