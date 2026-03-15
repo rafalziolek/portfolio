@@ -11,7 +11,7 @@ const Link: React.FC<LinkProps> = ({ href, children, className = '', ...props })
   return (
     <a
       href={href}
-      className={`text-foreground decoration-foreground/40 hover:decoration-foreground underline decoration-dotted decoration-1 underline-offset-4 transition-all hover:decoration-solid ${className}`}
+      className={`text-foreground link-underline ${className}`}
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
       {...props}

@@ -33,3 +33,17 @@ body {
 p {
   text-wrap: pretty;
 }
+
+@utility link-underline {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--color-foreground) 40%, transparent);
+  text-underline-offset: 4px;
+  transition: all;
+
+  &:hover {
+    text-decoration-style: solid;
+    text-decoration-color: var(--color-foreground);
+  }
+}

@@ -18,7 +18,7 @@ const HoverArtifact = ({ children, artifactId }: HoverArtifactProps) => {
   );
 
   return (
-    <span onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <span className="link-underline cursor-help" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {children}
     </span>
   );
