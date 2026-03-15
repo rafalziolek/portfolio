@@ -25,7 +25,7 @@ const item = {
     opacity: 1,
     filter: 'blur(0px)',
     y: '0',
-    transition: { duration: 1.2, type: 'spring', bounce: 0 },
+    transition: { duration: 1.2, type: 'spring' as const, bounce: 0 },
   },
 };
 
