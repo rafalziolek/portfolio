@@ -38,7 +38,7 @@ export default function TabBar() {
             href={tab.href}
             className="relative flex h-full flex-1 items-center justify-center rounded-full"
           >
-            <span className="relative z-10 text-[17px] tracking-[-0.03em] text-black md:text-[22px] dark:text-white">
+            <span className="relative z-10 text-base tracking-[-0.03em] text-black dark:text-white">
               {tab.label}
             </span>
           </Link>
