@@ -27,7 +27,7 @@ const ArtifactOverlay = () => {
           className="pointer-events-none fixed inset-0 z-30 flex items-center justify-center"
           aria-hidden="true"
         >
-          <div className="h-[30vh] w-[30vh] overflow-hidden rounded-full">
+          <div className="h-[min(50vh,90vw)] w-[min(50vh,90vw)] max-h-120 max-w-120 overflow-hidden rounded-full">
             <Image
               src="/profile.png"
               alt="Rafał Ziolek"
