@@ -12,7 +12,13 @@ export default function AppShell({ children, spinning = false }: AppShellProps) 
       <main className="h-full w-full overflow-hidden">{children}</main>
 
       <div className="fixed right-4 bottom-4 left-4 z-50 flex items-center justify-between">
-        <div className="flex size-[52px] items-center justify-center rounded-full bg-[rgba(227,227,227,0.8)] p-1 backdrop-blur-[5px] dark:bg-[rgba(38,38,38,0.78)]">
+        <div
+          className="flex size-[52px] items-center justify-center rounded-full bg-[rgba(227,227,227,0.8)] p-1 backdrop-blur-[5px] dark:bg-[rgba(38,38,38,0.78)]"
+          style={{
+            maskImage: 'radial-gradient(circle, transparent 18%, black 19%)',
+            WebkitMaskImage: 'radial-gradient(circle, transparent 18%, black 19%)',
+          }}
+        >
           <CdDisc
             src="https://upload.wikimedia.org/wikipedia/en/3/36/Prayers_for_paris.jpg"
             alt="Prayers for Paris album cover"
