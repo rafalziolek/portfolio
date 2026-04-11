@@ -11,7 +11,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-gyre-heros: var(--font-gyre-heros);
-  --font-ot-neue-motreal: 'OT Neue Montreal';
+  --font-ot-neue-montreal: 'OT Neue Montreal';
   --animate-spin-slow: spin 7s linear infinite;
   --font-weight-normal: 450;
   --leading-snug: 1.2;
@@ -27,7 +27,11 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter);
+  font-family: 'PP Neue Montreal', univers-next-pro, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
 }
 
 p {
