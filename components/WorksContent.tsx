@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { motion, useMotionValue } from 'framer-motion';
-import Image from 'next/image';
 import { PROJECTS as BASE_PROJECTS } from '@/lib/data';
+import WorkItem from './WorkItem';
 
 // Duplicate items for testing scroll
 const PROJECTS = [...BASE_PROJECTS, ...BASE_PROJECTS, ...BASE_PROJECTS].map((p, i) => ({
@@ -20,15 +20,6 @@ const container = {
     transition: {
       staggerChildren: 0.03,
     },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, filter: 'blur(10px)' },
-  show: {
-    opacity: 1,
-    filter: 'blur(0px)',
-    transition: { duration: 1.2, type: 'spring' as const, bounce: 0 },
   },
 };
 
@@ -176,7 +167,11 @@ export default function WorksContent() {
       if (scrollKeys.includes(e.key)) {
         e.preventDefault();
         const dir = ['ArrowUp', 'PageUp', 'Home'].includes(e.key) ? -1 : 1;
-        const amount = ['PageDown', 'PageUp'].includes(e.key) ? 200 : e.key === 'Home' || e.key === 'End' ? getMaxScroll() : 40;
+        const amount = ['PageDown', 'PageUp'].includes(e.key)
+          ? 200
+          : e.key === 'Home' || e.key === 'End'
+            ? getMaxScroll()
+            : 40;
         const maxScroll = getMaxScroll();
 
         if (e.key === 'Home') {
@@ -216,40 +211,16 @@ export default function WorksContent() {
       <motion.div
         ref={contentRef}
         style={{ y: offsetY }}
-        className="px-12 pt-[15vh] pb-[40vh] lg:px-16"
+        className="px-4 pt-[15vh] pb-[40vh] lg:px-8"
       >
         <motion.div
           variants={container}
           initial={shouldAnimate ? 'hidden' : 'show'}
           animate="show"
-          className="grid grid-cols-2 gap-12 lg:grid-cols-4 lg:gap-16"
+          className="grid grid-cols-2 gap-4 lg:grid-cols-4"
         >
           {PROJECTS.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={item}
-              whileHover={{ scale: 1.1, zIndex: 10 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="relative w-full overflow-hidden after:pointer-events-none after:absolute after:inset-0 after:z-10 after:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.1)] after:content-[''] dark:after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]"
-              style={{ aspectRatio: '339 / 225' }}
-            >
-              <Image
-                src={project.src}
-                alt={project.alt}
-                fill
-                sizes="(max-width: 1023px) 50vw, 25vw"
-                className="object-cover"
-              />
-
-              {project.id === 'ninja-app-3' && (
-                <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                  <div className="size-6 rounded-[6px] bg-[#56986a]" />
-                  <span className="text-[14px] tracking-[-0.02em] text-black">
-                    Docplanner App
-                  </span>
-                </div>
-              )}
-            </motion.div>
+            <WorkItem key={project.id} project={project} />
           ))}
         </motion.div>
       </motion.div>
