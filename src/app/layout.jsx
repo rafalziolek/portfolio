@@ -1,35 +1,21 @@
-import '@/app/globals.scss';
-import Footer from '@/components/footer/footer';
-import localFont from 'next/font/local';
-import { Analytics } from '@vercel/analytics/react';
+import "@/app/globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
-  title: 'Rafał Ziółek — Product Designer & Photographer',
-  description: '',
+  title: "Rafal J. Ziolek — Software Designer",
+  description:
+    "Software designer creating product interfaces, apps, websites, and design systems.",
 };
-
-const NeueMontreal = localFont({
-  src: [
-    {
-      path: './fonts/PPNeueMontreal-Medium.woff',
-      weight: '500',
-      style: 'medium',
-    },
-  ],
-});
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en' className={NeueMontreal.className}>
+    <html lang="en" className="font-sans">
       <head>
-        <link rel='icon' href='/favicon.ico' sizes='any' />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body>
-        <div>
-          {children}
-          <Footer />
-          <Analytics />
-        </div>
+      <body className="antialiased">
+        {children}
+        <Analytics />
       </body>
     </html>
   );

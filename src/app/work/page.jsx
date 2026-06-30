@@ -1,13 +1,8 @@
-import styles from "./page.module.scss";
-
-import ProjectList from "@/components/ProjectList/ProjectList";
+import WorksPageClient from '@/components/portfolio/WorksPageClient';
+import { workItems } from '@/data/portfolio.mjs';
 
 function Work() {
-  return (
-    <>
-      <ProjectList></ProjectList>
-    </>
-  );
+  return <WorksPageClient items={workItems} />;
 }
 
 export default Work;

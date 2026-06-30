@@ -1,11 +1,5 @@
-import MainNav from "@/components/main-nav/MainNav";
 function WorkLayout({ children }) {
-  return (
-    <>
-      <MainNav></MainNav>
-      {children}
-    </>
-  );
+  return children;
 }
 
 export default WorkLayout;
