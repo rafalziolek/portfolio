@@ -1,5 +1,4 @@
 import { Stack } from '../Stack/Stack';
-import styles from './Pill.module.scss';
 import Text from '../Text/text';
 function Pill({ children, circleText, className }) {
   if (circleText) {
@@ -10,8 +9,8 @@ function Pill({ children, circleText, className }) {
         alignItems='center'
         className={className}
       >
-        <span className={styles.circle}></span>
-        <span className={`${styles.pill} ${className}`}>{children}</span>
+        <span className="flex size-[10px] items-center justify-center rounded-full bg-[var(--color-orange)] text-[var(--font-size-xs)] text-black"></span>
+        <span className={`box-border whitespace-nowrap rounded-full text-[var(--font-size-xs)] leading-[var(--line-height-m)] [font-variant-position:super] ${className || ''}`}>{children}</span>
       </Stack>
     );
   }
@@ -20,7 +19,7 @@ function Pill({ children, circleText, className }) {
       as='span'
       type='caption'
       color='secondary'
-      className={`${styles.pill} ${className}`}
+      className={`box-border whitespace-nowrap rounded-full text-[var(--font-size-xs)] leading-[var(--line-height-m)] [font-variant-position:super] ${className || ''}`}
     >
       {children}
     </Text>

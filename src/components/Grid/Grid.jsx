@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Grid.module.scss";
 
 function Grid({ children, align, justify, style, className }) {
   const gridStyle = {
@@ -9,7 +8,7 @@ function Grid({ children, align, justify, style, className }) {
   };
 
   return (
-    <div className={`${styles.grid} ${className}`} style={gridStyle}>
+    <div className={`grid w-full grid-cols-12 gap-x-[var(--space-5)] ${className || ""}`} style={gridStyle}>
       {children}
     </div>
   );

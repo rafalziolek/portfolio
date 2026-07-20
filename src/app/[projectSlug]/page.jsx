@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./page.module.scss";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { loadCaseStudy } from "@/helpers/file-helpers";
 import { notFound } from "next/navigation";
@@ -57,7 +56,7 @@ async function ProjectPage({ params }) {
         live={frontmatter.live}
         header={HeadingComponent && <HeadingComponent />}
       ></ProjectHeader>
-      <Grid className={styles.content}>
+      <Grid className="max-[1170px]:flex max-[1170px]:flex-col">
         <MDXRemote source={content} components={components} />
       </Grid>
     </>

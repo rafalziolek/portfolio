@@ -1,5 +1,4 @@
 'use client';
-import styles from './MainNav.module.scss';
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -9,20 +8,18 @@ function MainNavItem({ children, glyphLetter, glyphColor, href }) {
   return (
     <Link
       href={href}
-      className={`${styles['main-nav-link']} ${isActive ? styles.active : ''}`}
+      className={`group relative flex items-center gap-[var(--space-xxs)] text-[var(--font-size-body)] font-[var(--font-weight-m)] text-[var(--color-foreground-primary-inverted)] ${isActive ? "[&_.link-label]:underline" : ""}`}
     >
       {glyphLetter ? (
         <span
-          className={`${styles['link-glyph']} ${
-            isActive ? styles[`link-glyph-${glyphColor}`] : ''
-          }`}
+          className={`inline-flex size-2 items-center justify-center rounded-full bg-white text-[var(--font-size-caption)] leading-6 ${isActive ? glyphColor === 'blue' ? 'bg-[var(--color-blue)] text-[var(--color-foreground-primary-inverted)]' : 'bg-[var(--color-orange)] text-[var(--color-foreground-primary-inverted)]' : ''}`}
         >
           {/* {glyphLetter} */}
         </span>
       ) : (
         ''
       )}
-      <span className={styles['link-label']}>{children}</span>
+      <span className="link-label group-hover:underline">{children}</span>
     </Link>
   );
 }

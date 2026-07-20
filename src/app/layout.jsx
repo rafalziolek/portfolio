@@ -1,5 +1,6 @@
 import "@/app/globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import SiteChrome from "@/components/portfolio/SiteChrome";
 
 export const metadata = {
   title: "Rafal J. Ziolek — Software Designer",
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="antialiased">
+        <SiteChrome />
         {children}
         <Analytics />
       </body>

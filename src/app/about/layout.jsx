@@ -1,11 +1,3 @@
-import MainNav from "@/components/main-nav/MainNav";
-function BioLayout({ children }) {
-  return (
-    <>
-      <MainNav></MainNav>
-      {children}
-    </>
-  );
+export default function AboutLayout({ children }) {
+  return children;
 }
-
-export default BioLayout;

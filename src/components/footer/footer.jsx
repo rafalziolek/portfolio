@@ -1,23 +1,12 @@
-import styles from './footer.module.scss';
 import Text from '@/components/Text/text';
 import Image from 'next/image';
 
-import { Stack } from '../Stack/Stack';
-import Grid from '../Grid/Grid';
-import GridItem from '../Grid/GridItem';
 
 function Footer() {
   return (
     <>
-      <footer className={styles.footer}>
-        {/* <Stack gap='xxs' className={styles.circles} direction='column'>
-          <Stack gap='xxs'>
-            <span className={`${styles.circle} ${styles.blue}`}></span>
-            <span className={`${styles.circle} ${styles.orange}`}></span>
-          </Stack>
-          <span className={`${styles.circle} ${styles.outline}`}></span>
-        </Stack> */}
-        <div className={styles.wrapper}>
+      <footer className="flex flex-col gap-[var(--space-xs)] px-[var(--space-s)] pt-[calc(4*var(--space-xxl))] pb-[var(--space-s)] max-[800px]:pt-[calc(2*var(--space-xxl))]">
+        <div className="flex flex-col gap-[var(--space-s)] [&_a]:break-words [&_a]:underline">
           <Text type='display-heading' as='h3'>
             <a href='https://twitter.com/rafal_ziolek'>Twitter</a>,{' '}
             <a href='https://www.linkedin.com/in/rafal-ziolek/'>LinkedIn</a>,{' '}
@@ -25,7 +14,7 @@ function Footer() {
               rafal.ziolek@icloud.com
             </a>
           </Text>
-          <div className={styles['footer-text']}>
+          <div className="flex flex-col gap-[var(--space-xxs)] [&_p]:max-w-[50ch] [&_span]:inline-block">
             <Text as='p' type='body'>
               Special thanks to my cats,{' '}
               <span>
@@ -34,7 +23,7 @@ function Footer() {
                   height={128}
                   width={128}
                   alt=''
-                  className={styles['cat-avatar']}
+                  className="mr-[var(--space-xxs)] size-5 rounded-full object-cover align-text-bottom"
                 />
                 Tesla
               </span>{' '}
@@ -45,7 +34,7 @@ function Footer() {
                   height={128}
                   width={128}
                   alt=''
-                  className={styles['cat-avatar']}
+                  className="mr-[var(--space-xxs)] size-5 rounded-full object-cover align-text-bottom"
                 />
                 Newton
               </span>
@@ -66,7 +55,7 @@ function VerticalLines() {
   const numOfLines = linesArr.length;
 
   return (
-    <div className={styles['lines-wrapper']}>
+    <div className="flex flex-col items-center justify-center overflow-hidden">
       {linesArr.map((num, index) => {
         const marginValue = Math.floor((numOfLines - index) / 2) - 1;
         return (
@@ -76,7 +65,7 @@ function VerticalLines() {
               borderBottomWidth: `${index / 2}px`,
               marginBlock: marginValue > 0 ? `${marginValue}px` : '0',
             }}
-            className={styles.line}
+            className="my-[10px] block w-full border-b-solid border-b-[var(--color-foreground-primary)] transition-all duration-100 hover:scale-y-110"
           ></span>
         );
       })}

@@ -1,83 +1,48 @@
-import styles from './page.module.scss';
-import AboutHeader from './Components/AboutHeader';
-import List from '@/components/List/List';
-import { Stack, StackItem } from '@/components/Stack/Stack';
-import Text from '@/components/Text/text';
-import AboutSection from './Components/AboutSection/AboutSection';
-import ProfilePhoto from './Components/ProfilePhoto/ProfilePhoto';
-function Bio() {
+import { homepageSections } from "@/data/portfolio.mjs";
+import Image from "next/image";
+
+export default function About() {
+  const [intro, workedWith, outsideDesign, connect] = homepageSections;
+
   return (
-    <div style={{ position: 'relative', overflow: 'hidden' }}>
-      <ProfilePhoto />
-      <AboutHeader />
-      <AboutSection title={{ title: 'My approach', number: '1' }}>
-        <Stack gap='l' wrap='wrap'>
-          <Text className={styles['section-text']}>
-            I'm a designer who loves getting into both the nitty-gritty details
-            and the big picture.
-            <br />
-            <br /> Design for me is not just about making things look good; it's
-            about crafting an experience that's intuitive, user-friendly, and
-            above all, honest. I aim for transparency, ensuring that what's good
-            for the business also benefits the person using it. <br />
-            <br />
-            Beyond the world of UI/UX, I draw inspiration from various
-            disciplines and arts, from photography to design as an art form. All
-            these feed into a design process that's as versatile as it is
-            focused.
-          </Text>
-          <Text className={styles['section-text']}>
-            Although I am first and foremost a designer, I do experiment with
-            code to give my designs an extra layer of polish. <br />
-            <br />
-            This hands-on approach helps me understand the possibilities and
-            limitations, ensuring that my design ideas are not just visually
-            appealing but also practically implementable.
-          </Text>
-        </Stack>
-      </AboutSection>
-      <AboutSection title={{ title: 'Who inspires me', number: '2' }}>
-        <Stack direction='column' gap='xxs'>
-          <a href='https://www.youtube.com/@FaizalWestcott' target='_blank'>
-            Faizal Westcott ↗︎
-          </a>
-          <a href='https://twitter.com/rsms' target='_blank'>
-            Rasmsus Andersson ↗︎
-          </a>
-          <a href='https://twitter.com/blankresident' target='_blank'>
-            Farzad Ban ↗︎
-          </a>
-          <a
-            href='https://music.apple.com/us/artist/tyler-the-creator/420368335'
-            target='_blank'
-          >
-            Tyler The Creator ↗︎
-          </a>
-        </Stack>
-      </AboutSection>
-      <AboutSection title={{ title: 'Learning now', number: '3' }}>
-        <Stack direction='column' gap='xxs'>
-          <Text>SwiftUI</Text>
-          <Text>React</Text>
-          <Text>Designing clothes</Text>
-        </Stack>
-      </AboutSection>
-      <AboutSection title={{ title: 'Random favs', number: '4' }}>
-        <Stack direction='column' gap='xxs'>
-          <a href='https://en.wikipedia.org/wiki/Star_Wars' target='_blank'>
-            Star Wars ↗︎
-          </a>
-          <a
-            href='https://open.spotify.com/album/7ycBtnsMtyVbbwTfJwRjSP?si=HtPpTLE3R-Grv-fTd_RBig'
-            target='_blank'
-          >
-            To Pimp a Butterfly ↗︎
-          </a>
-          <Text>Cooking</Text>
-        </Stack>
-      </AboutSection>
-    </div>
+    <main className="min-h-screen bg-white font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[14px] leading-[1.3] text-black">
+      <article className="mx-auto w-[min(536px,calc(100%-40px))] py-[208px] max-[620px]:pt-[190px] max-[620px]:pb-[168px]">
+        <div className="mb-12 [&_p]:m-0 [&_p+p]:mt-[18px]">
+          {intro.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+
+        <AboutSection section={workedWith} showMeta />
+        <AboutSection section={outsideDesign} />
+        <AboutSection section={connect} />
+
+        <figure className="mt-[92px] aspect-[274/352] w-[292px] overflow-hidden max-[620px]:w-[min(292px,100%)] [&_img]:block [&_img]:h-[128.03%] [&_img]:w-[123.36%] [&_img]:max-w-none [&_img]:-translate-y-[27.94%] [&_img]:object-cover">
+          <Image
+            src="/home/portrait-about.jpg"
+            alt="Rafał sitting by the sea"
+            width={1536}
+            height={2048}
+            sizes="292px"
+          />
+        </figure>
+      </article>
+    </main>
   );
 }
 
-export default Bio;
+function AboutSection({ section, showMeta = false }) {
+  return (
+    <section className="mb-12">
+      <h2 className="mb-3 font-['SFMono-Regular',Consolas,'Liberation_Mono',monospace] text-[10px] leading-[1.3] font-medium uppercase">{section.heading}</h2>
+      <div className="flex flex-col items-start gap-[2px]">
+        {section.items.map((item) => (
+          <div className="flex w-full gap-1" key={item.label}>
+            {item.href ? <a className="shrink-0 bg-[rgba(228,228,228,0.59)] text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6347]" href={item.href}>{item.label}</a> : <span>{item.label}</span>}
+            {showMeta && <span>{item.meta}</span>}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

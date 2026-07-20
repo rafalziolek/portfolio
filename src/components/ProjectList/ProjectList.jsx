@@ -1,4 +1,3 @@
-import styles from './ProjectList.module.scss';
 import Project from '../Project/project';
 import ProjectImage from '../Project/ProjectImage/ProjectImage';
 import Grid from '../Grid/Grid';
@@ -8,8 +7,8 @@ import Text from '../Text/text';
 function ProjectList() {
   return (
     <>
-      <div id='work' className={styles.work}>
-        <Grid className={styles.projects}>
+      <div id='work' className="px-[var(--space-s)] [scroll-padding-top:300px]">
+        <Grid className="grid grid-cols-12 grid-rows-[auto] items-start gap-x-[var(--space-xs)] gap-y-[calc(var(--space-xl)*2)] bg-[var(--color-background-primary)] pt-[var(--space-xl)] max-[1170px]:flex max-[1170px]:flex-col max-[1170px]:gap-[var(--space-xxl)]">
           <GridItem startColumn={3} endColumn={8}>
             <Stack direction='row' gap='none'>
               <Project

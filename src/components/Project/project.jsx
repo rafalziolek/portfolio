@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import styles from './project.module.scss';
 import Text from '../Text/text';
 import Link from 'next/link';
 
@@ -15,7 +14,7 @@ function Project({
   children,
 }) {
   return (
-    <article className={`${styles.project}`}>
+    <article className="group relative transition-all duration-200 max-[800px]:flex-col max-[800px]:gap-[var(--space-s)] [&_figure_div]:relative [&_figure_img]:z-1 [&_figure_img]:size-full [&_figure_img]:object-cover [&_figure_img]:opacity-60 [&_figure_img]:transition-all [&_figure_img]:duration-200 hover:[&_figure_img]:opacity-100 [@media(hover:none)_and_(pointer:coarse)]:[&_figure_img]:opacity-100 dark:[&_figure_img]:opacity-60 light:[&_figure_img]:opacity-90">
       {' '}
       <Link href={path ? path : ''}>
         <figure>
@@ -23,8 +22,9 @@ function Project({
             src={`/projects/${projectName}/image.png`}
             width={imgWidth}
             height={imgHeight}
+            alt=""
           />
-          <figcaption className={styles.description}>
+          <figcaption className="flex flex-col gap-[var(--space-xs)] py-[var(--space-xs)]">
             <Stack
               direction='row'
               gap='xs'
@@ -43,9 +43,9 @@ function Project({
                 <Pill>{badgeText}</Pill>
               </Stack>
               {path ? (
-                <span className={styles.arrow}>→</span>
+                <span className="whitespace-nowrap opacity-0 group-hover:opacity-100 max-[800px]:hidden">→</span>
               ) : (
-                <span className={styles['not-available']}>Coming soon</span>
+                <span className="whitespace-nowrap text-[var(--font-size-caption)] text-[var(--color-foreground-secondary)] opacity-0 group-hover:opacity-100 max-[800px]:hidden">Coming soon</span>
               )}
             </Stack>
             <Text type='body-support' style={{ maxWidth: '50ch' }}>

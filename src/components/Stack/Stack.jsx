@@ -1,5 +1,8 @@
 import React from 'react';
-import styles from './Stack.module.scss';
+
+const directionClasses = { row: 'flex-row', column: 'flex-col' };
+const alignmentClasses = { 'flex-start': 'items-start', start: 'items-start', 'flex-end': 'items-end', end: 'items-end', center: 'items-center' };
+const justificationClasses = { 'flex-start': 'justify-start', start: 'justify-start', 'flex-end': 'justify-end', end: 'justify-end', center: 'justify-center', 'space-between': 'justify-between' };
 
 // Stack component
 function Stack(props) {
@@ -20,11 +23,11 @@ function Stack(props) {
   };
 
   const containerClasses = [
-    styles.stack,
-    styles[`direction-${direction}`],
-    styles[`align-items-${alignItems}`],
-    styles[`justify-content-${justifyContent}`],
-    styles[`wrap-${wrap}`],
+    'flex',
+    directionClasses[direction],
+    alignmentClasses[alignItems],
+    justificationClasses[justifyContent],
+    wrap === 'wrap' ? 'flex-wrap' : 'flex-nowrap',
     className,
   ].join(' ');
 
@@ -43,7 +46,7 @@ function StackItem({ flex = '1', children, style }) {
   };
 
   return (
-    <div className={styles['stack-item']} style={itemStyles}>
+    <div className="min-w-fit" style={itemStyles}>
       {children}
     </div>
   );

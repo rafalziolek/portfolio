@@ -1,4 +1,3 @@
-import styles from './ProjectHeader.module.scss';
 import Text from '../Text/text';
 import React from 'react';
 import Grid from '../Grid/Grid';
@@ -8,27 +7,27 @@ import WatsonHeading from '@/app/[projectSlug]/Components/WatsonHeading';
 
 function ProjectHeader({ title, abstract, details, header }) {
   return (
-    <Grid className={styles['header-wrapper']}>
+    <Grid className="max-[1170px]:flex">
       <GridItem startColumn={3} endColumn={13}>
-        <header className={styles.header}>
-          <div className={`${styles['header-layout']}`}>
+        <header className="my-[var(--space-xl)] mb-[var(--space-xxl)]">
+          <div className="flex flex-col gap-[var(--space-s)]">
             {header ? (
               header
             ) : (
-              <div className={styles.title}>
+              <div>
                 <Text as='h1' type='display-heading'>
                   {title}
                 </Text>
               </div>
             )}
 
-            <div className={styles.details}>
+            <div className="flex w-fit flex-col gap-[var(--space-xxl)] [&>p]:max-w-[50ch] [&>p]:leading-[1.3]">
               <Text>{abstract}</Text>
-              <ul className={`${styles['details-list-wrapper']}`}>
+              <ul className="flex list-none flex-col gap-[var(--space-2)]">
                 {details.map((item, index) => {
                   return (
-                    <li key={index}>
-                      <h4 className={`${styles['list-title']}`}>
+                    <li className="flex items-start gap-[var(--space-2)] [&_a]:text-[var(--font-size-body)] [&_a]:font-[var(--font-weight-m)] [&_span]:text-[var(--font-size-body)] [&_span]:font-[var(--font-weight-m)]" key={index}>
+                      <h4 className="block w-1/5 min-w-[70px] text-[var(--font-size-xs)] leading-[var(--line-height-m)] font-[var(--font-weight-m)] text-[var(--color-foreground-secondary)] [font-variant-position:super]">
                         {item.title}
                       </h4>
                       {item.items.map((item, index) => (

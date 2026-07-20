@@ -1,5 +1,3 @@
-import styles from './MainNav.module.scss';
-
 import Link from 'next/link';
 import { Stack } from '../Stack/Stack';
 import Grid from '@/components/Grid/Grid';
@@ -9,7 +7,7 @@ import Text from '../Text/text';
 
 function MainNav() {
   return (
-    <nav className={styles['main-nav']}>
+    <nav className="sticky top-0 right-0 z-3 flex w-full flex-row justify-between p-[var(--space-s)] mix-blend-exclusion max-[800px]:[&>div]:flex max-[800px]:[&>div]:flex-row max-[800px]:[&>div]:justify-between">
       <Grid align='center'>
         <GridItem columnSpan={2}>
           <Stack direction='column' gap='2' alignItems='start'>
@@ -35,7 +33,7 @@ function MainNav() {
             >
               Menu
             </Text>
-            <ul>
+            <ul className="flex list-none flex-row gap-[var(--space-3)]">
               <MainNavItem glyphLetter='W' href='/work' glyphColor='blue'>
                 Work
               </MainNavItem>
@@ -59,7 +57,7 @@ function MainNav() {
               Contact
             </Text>
             <a
-              className={`${styles['main-nav-link']} ${styles.mail}`}
+              className="relative flex items-center gap-[var(--space-xxs)] justify-self-end text-[var(--font-size-body)] font-[var(--font-weight-m)] text-[var(--color-foreground-primary-inverted)] hover:underline"
               href='mailto://rafal.ziolek@icloud.com'
             >
               rafal.ziolek@icloud.com
@@ -73,8 +71,8 @@ function MainNav() {
 
 export function Logo() {
   return (
-    <div className={styles['logo']}>
-      <Link href='/'>Rafał Ziółek</Link>
+    <div>
+      <Link className="text-[var(--color-foreground-primary-inverted)]" href='/'>Rafał Ziółek</Link>
     </div>
   );
 }

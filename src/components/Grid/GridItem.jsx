@@ -1,5 +1,18 @@
 import React from 'react';
-import styles from './Grid.module.scss';
+
+const spans = {
+  1: 'col-span-1', 2: 'col-span-2', 3: 'col-span-3', 4: 'col-span-4',
+  5: 'col-span-5', 6: 'col-span-6', 7: 'col-span-7', 8: 'col-span-8',
+  9: 'col-span-9', 10: 'col-span-10', 11: 'col-span-11', 12: 'col-span-12',
+};
+const responsiveSpans = {
+  xs: { 8: 'min-[320px]:col-span-8' },
+  s: { 8: 'min-[480px]:col-span-8' },
+  m: { 8: 'min-[800px]:col-span-8' },
+  l: { 8: 'min-[1170px]:col-span-8' },
+  xl: { 8: 'min-[1440px]:col-span-8' },
+  xxl: { 8: 'min-[1920px]:col-span-8' },
+};
 
 function GridItem({
   columnSpan,
@@ -17,18 +30,18 @@ function GridItem({
     }
     if (typeof span === 'number' || typeof span === 'string') {
       if (span > 0) {
-        return styles[`colSpan-${span}`];
+        return spans[span];
       } else {
-        return styles[`colSpanEnd${span}`];
+        return spans[Math.abs(Number(span))];
       }
     } else {
       const classNames = [];
       for (const [size, columns] of Object.entries(span)) {
         if (columns) {
-          classNames.push(`colSpan-${size}-${columns}`);
+          classNames.push(responsiveSpans[size]?.[columns]);
         }
       }
-      return classNames.map((className) => styles[className]).join(' ');
+      return classNames.filter(Boolean).join(' ');
     }
   };
 
@@ -45,8 +58,8 @@ function GridItem({
   return (
     <div
       className={`${columnSpanClass} ${
-        justifySelf ? styles[`justify-self-${justifySelf}`] : ''
-      } ${alignSelf ? styles[`align-self-${alignSelf}`] : ''} ${className}`}
+        justifySelf ? `justify-self-${justifySelf}` : ''
+      } ${alignSelf ? `self-${alignSelf}` : ''} ${className}`}
       style={itemStyle}
     >
       {children}

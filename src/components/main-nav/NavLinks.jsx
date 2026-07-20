@@ -1,18 +1,15 @@
 "use client";
 import CustomLink from "../custom-link/CustomLink";
 import { usePathname } from "next/navigation";
-import styles from "./MainNav.module.scss";
 
 function NavLink({ children, href }) {
   //   const Id = React.useId();
   const pathname = usePathname();
   const isActive = pathname === href;
-  const navItemClasses = `${styles["nav-item"]}${
-    isActive === true ? " active" : ""
-  }`;
+  const navItemClasses = isActive ? "active" : "";
   return (
     <li className={navItemClasses}>
-      <CustomLink path={href} icon={false} className={`${styles["nav-link"]}`}>
+      <CustomLink path={href} icon={false}>
         {children}
       </CustomLink>
     </li>
