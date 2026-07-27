@@ -44,9 +44,27 @@ test("shared chrome and Bits layout stay fixed and masonry", async () => {
   assert.match(chrome, /border-\[#b7b7b7\]/);
   assert.match(chrome, /bg-\[#ededed\]/);
   assert.match(chrome, /isActive \? "font-bold" : ""/);
+  assert.match(chrome, /<AnimatePresence initial=\{false\}>/);
   assert.match(chrome, /exit=\{\{ opacity: 0, x: 2 \}\}/);
   assert.match(masonry, /columns-6/);
   assert.match(masonry, /break-inside-avoid/);
+});
+
+test("mobile chrome splits, follows scroll direction, and hides footer utilities", async () => {
+  const chrome = await readFile(
+    new URL("../src/components/portfolio/SiteChrome.jsx", import.meta.url),
+    "utf8",
+  );
+  const coordinates = await readFile(
+    new URL("../src/components/portfolio/MouseCoordinates.jsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(chrome, /setMobileChromeVisible\(delta < 0\)/);
+  assert.match(chrome, /top-1 right-\[10px\] left-\[10px\]/);
+  assert.match(chrome, /right-\[10px\] bottom-1 left-\[10px\]/);
+  assert.match(chrome, /max-\[620px\]:hidden" aria-label="Social links"/);
+  assert.match(coordinates, /max-\[620px\]:hidden/);
 });
 
 test("global CSS stays Tailwind-only without legacy design variables", async () => {
@@ -100,6 +118,9 @@ test("gallery controls use the scalable Figma icon component", async () => {
   assert.match(lightbox, /<Button/);
   assert.match(lightbox, /<Icon name=\{icon\} size=\{16\} \/>/);
   assert.match(lightbox, /borderClassName = "border-\[#b7b7b7\]"/);
+  assert.doesNotMatch(lightbox, /initialFocus=\{closeButtonRef\}/);
+  assert.match(lightbox, /initialFocus=\{popupRef\}/);
+  assert.match(lightbox, /fixed inset-0 z-151 outline-none/);
 });
 
 test("project preview frames are the hover and click target", async () => {
@@ -110,7 +131,7 @@ test("project preview frames are the hover and click target", async () => {
 
   assert.match(
     preview,
-    /<button\s+className=\{`relative flex [^`]*w-\[37\.5rem\][\s\S]*?type="button"\s+onClick=\{onOpen\}\s+onPointerEnter=\{handlePointerEnter\}/,
+    /<button\s+className=\{`relative flex [^`]*w-\[36\.25rem\][\s\S]*?type="button"\s+onClick=\{onOpen\}\s+onPointerEnter=\{handlePointerEnter\}/,
   );
   assert.doesNotMatch(preview, /className="flex h-full w-full cursor-pointer/);
 });
@@ -148,7 +169,7 @@ test("project previews use the menu-sized framed hover treatment", async () => {
     "utf8",
   );
 
-  assert.match(preview, /w-\[37\.5rem\]/);
+  assert.match(preview, /w-\[36\.25rem\]/);
   assert.match(preview, /h-\[37\.5rem\]/);
   assert.match(preview, /px-6 pt-10 pb-6/);
   assert.match(preview, /border-\[#b7b7b7\]/);
@@ -182,6 +203,7 @@ test("project images tilt toward fine-pointer movement", async () => {
   assert.match(preview, /rotateY\.set\(x \* 5\)/);
   assert.match(preview, /onPointerMove=\{handlePointerMove\}/);
   assert.match(preview, /reduceMotion \|\|/);
+  assert.doesNotMatch(preview, /focus-visible:/);
 });
 
 test("Who page links blink their background on hover", async () => {
@@ -228,8 +250,8 @@ test("projects avoid shared image layout animation while Bits keeps it", async (
   assert.doesNotMatch(gallery, /layoutId=/);
   assert.doesNotMatch(preview, /layoutId=/);
   assert.match(bits, /layoutId=/);
-  assert.match(bits, /loadedBits\.current\.has\(index\)/);
-  assert.match(bits, /onLoad=\{\(\) => finishPreloading\(preloadIndex\)\}/);
+  assert.equal((bits.match(/\bunoptimized\b/g) ?? []).length, 2);
+  assert.doesNotMatch(bits, /preloadIndex|loadedBits|finishPreloading/);
   assert.match(bits, /useReducer\(\s*bitsViewerReducer/);
   assert.match(bits, /viewer\.phase !== "switching"/);
   assert.match(

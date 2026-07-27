@@ -38,7 +38,7 @@ function AboutSection({ section, showMeta = false }) {
       <div className="flex flex-col items-start gap-[2px]">
         {section.items.map((item) => (
           <div className="flex w-full gap-1" key={item.label}>
-            {item.href ? <a className="shrink-0 text-black no-underline hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-black motion-reduce:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6347]" href={item.href}>{item.label}</a> : <span>{item.label}</span>}
+            {item.href ? <a className="shrink-0 text-black no-underline hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-black motion-reduce:hover:text-white focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black" href={item.href}>{item.label}</a> : <span>{item.label}</span>}
             {showMeta && <span>{item.meta}</span>}
           </div>
         ))}

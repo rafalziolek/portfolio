@@ -4,18 +4,10 @@ import Icon from "@/components/Icon/Icon";
 import { Button } from "@base-ui/react/button";
 import { Dialog } from "@base-ui/react/dialog";
 import { motion, useReducedMotion } from "framer-motion";
-import {
-  createContext,
-  forwardRef,
-  useContext,
-  useRef,
-  useState,
-} from "react";
+import { forwardRef, useRef, useState } from "react";
 
 const buttonClass =
-  "flex size-8 cursor-pointer items-center justify-center border bg-white/94 p-0 text-black backdrop-blur-[4.3px] transition-colors hover:bg-[#f3f3f3] focus-visible:z-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#0092e7]";
-
-const CloseButtonContext = createContext(null);
+  "flex size-8 cursor-pointer items-center justify-center border bg-white/94 p-0 text-black backdrop-blur-[4.3px] transition-colors hover:bg-[#f3f3f3] focus-visible:z-1 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#0092e7]";
 
 export default function Lightbox({
   children,
@@ -29,7 +21,7 @@ export default function Lightbox({
   closeOnOutsideClick = false,
 }) {
   const reduceMotion = useReducedMotion();
-  const closeButtonRef = useRef(null);
+  const popupRef = useRef(null);
   const [isClosing, setIsClosing] = useState(false);
 
   const requestClose = () => {
@@ -78,10 +70,11 @@ export default function Lightbox({
           }
         />
         <Dialog.Popup
-          className={`fixed inset-0 z-151 ${isClosing ? "pointer-events-none" : ""} ${className}`}
+          ref={popupRef}
+          className={`fixed inset-0 z-151 outline-none ${isClosing ? "pointer-events-none" : ""} ${className}`}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
-          initialFocus={closeButtonRef}
+          initialFocus={popupRef}
           onKeyDown={handleKeyDown}
           onPointerDown={(event) => {
             if (closeOnOutsideClick && event.target === event.currentTarget) {
@@ -89,16 +82,14 @@ export default function Lightbox({
             }
           }}
         >
-          <CloseButtonContext.Provider value={closeButtonRef}>
-            {children}
-            {!isClosing && (
-              <LightboxControls
-                {...controls}
-                onPrevious={onPrevious}
-                onNext={onNext}
-              />
-            )}
-          </CloseButtonContext.Provider>
+          {children}
+          {!isClosing && (
+            <LightboxControls
+              {...controls}
+              onPrevious={onPrevious}
+              onNext={onNext}
+            />
+          )}
         </Dialog.Popup>
       </Dialog.Portal>
     </Dialog.Root>
@@ -114,8 +105,6 @@ function LightboxControls({
   nextLabel,
   closeLabel,
 }) {
-  const closeButtonRef = useContext(CloseButtonContext);
-
   return (
     <div className={`flex gap-2 ${className}`}>
       <div className="flex">
@@ -136,7 +125,6 @@ function LightboxControls({
       <Dialog.Close
         render={
           <IconButton
-            ref={closeButtonRef}
             borderClassName={borderClassName}
             icon="close"
             label={closeLabel}
