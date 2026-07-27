@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body className="antialiased">
         <SiteChrome />
         {children}
-        <Analytics />
+        {process.env.VERCEL === "1" && <Analytics />}
       </body>
     </html>
   );

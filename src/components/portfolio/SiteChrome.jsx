@@ -2,7 +2,7 @@
 
 import MouseCoordinates from "./MouseCoordinates";
 import { homepageSocialLinks } from "@/data/homepage.mjs";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -23,10 +23,10 @@ export default function SiteChrome() {
   return (
     <>
       <header className="fixed top-[15px] left-1/2 z-100 w-[570px] -translate-x-1/2 overflow-hidden border border-[#c4c4c4] bg-white/94 font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[14px] leading-[1.3] text-black shadow-[0_11px_0_-6px_rgba(0,0,0,0.05)] backdrop-blur-[20px] max-[620px]:top-[10px] max-[620px]:w-[calc(100%-20px)]">
-        <Link className="block min-h-[63px] box-border border-b border-[#c4c4c4] px-4 pt-3 pb-4 text-inherit no-underline focus-visible:outline-2 focus-visible:-outline-offset-3 focus-visible:outline-[#0092e7] max-[620px]:min-h-0" href="/">
+        <p className="block min-h-[63px] box-border border-b border-[#c4c4c4] px-4 pt-3 pb-4 text-inherit max-[620px]:min-h-0">
           Rafał is a software designer. Currently working at Docplanner. He works
           across design and engineering. Building websites, apps and design systems
-        </Link>
+        </p>
 
         <nav className="relative flex h-10 items-stretch" aria-label="Main navigation">
           <motion.span
@@ -48,18 +48,26 @@ export default function SiteChrome() {
 
             return (
               <Link
-                className={`relative z-1 flex flex-1 items-center justify-center gap-[5px] px-3 py-2 text-inherit no-underline focus-visible:outline-2 focus-visible:-outline-offset-3 focus-visible:outline-[#0092e7] ${isActive ? "font-bold" : ""}`}
+                className={`relative z-1 flex flex-1 items-center justify-center px-3 py-2 text-inherit no-underline focus-visible:outline-2 focus-visible:-outline-offset-3 focus-visible:outline-[#0092e7] ${isActive ? "font-bold" : ""}`}
                 href={item.href}
                 aria-current={isActive ? "page" : undefined}
                 key={item.id}
               >
-                {isActive && (
-                  <span
-                    className={`size-[5px] rounded-full ${active === "about" ? "bg-[#ff6347]" : "bg-[#0092e7]"}`}
-                    aria-hidden="true"
-                  />
-                )}
-                <span>{item.label}</span>
+                <span className="relative">
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.span
+                        className={`absolute top-1/2 right-full mr-[5px] size-[5px] -translate-y-1/2 rounded-full ${item.id === "about" ? "bg-[#ff6347]" : "bg-[#0092e7]"}`}
+                        initial={reduceMotion ? false : { opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 10 }}
+                        transition={{ duration: reduceMotion ? 0 : 0.15, ease: "easeOut" }}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </AnimatePresence>
+                  {item.label}
+                </span>
               </Link>
             );
           })}

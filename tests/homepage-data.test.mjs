@@ -7,6 +7,7 @@ test("homepage project assets are local and have accessible descriptions", () =>
   assert.equal(homepageProjects.length, 3);
 
   for (const project of homepageProjects) {
+    assert.ok(project.name.length > 0);
     assert.match(project.image, /^\/home\/.+\.png$/);
     assert.ok(project.alt.length > 0);
     assert.ok(project.width > 0);
