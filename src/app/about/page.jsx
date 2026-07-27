@@ -5,7 +5,7 @@ export default function About() {
   const [intro, workedWith, outsideDesign, connect] = homepageSections;
 
   return (
-    <main className="min-h-screen bg-white font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[14px] leading-[1.3] text-black">
+    <main className="min-h-screen leading-[1.3] text-black">
       <article className="mx-auto w-[min(536px,calc(100%-40px))] py-[208px] max-[620px]:pt-[190px] max-[620px]:pb-[168px]">
         <div className="mb-12 [&_p]:m-0 [&_p+p]:mt-[18px]">
           {intro.body.map((paragraph) => (
@@ -38,7 +38,7 @@ function AboutSection({ section, showMeta = false }) {
       <div className="flex flex-col items-start gap-[2px]">
         {section.items.map((item) => (
           <div className="flex w-full gap-1" key={item.label}>
-            {item.href ? <a className="shrink-0 bg-[rgba(228,228,228,0.59)] text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6347]" href={item.href}>{item.label}</a> : <span>{item.label}</span>}
+            {item.href ? <a className="shrink-0 text-black no-underline hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-black motion-reduce:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6347]" href={item.href}>{item.label}</a> : <span>{item.label}</span>}
             {showMeta && <span>{item.meta}</span>}
           </div>
         ))}

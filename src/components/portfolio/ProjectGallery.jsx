@@ -1,14 +1,11 @@
 "use client";
 
 import { moveGalleryPosition } from "@/helpers/gallery-navigation.mjs";
-import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import Icon from "@/components/Icon/Icon";
+import { useCallback, useState } from "react";
+import Lightbox from "./Lightbox";
 import ProjectPreview from "./ProjectPreview";
-
-const buttonClass =
-  "flex size-8 cursor-pointer items-center justify-center border border-[#d9d9d9] bg-white/94 p-0 text-black backdrop-blur-[4.3px] transition-colors hover:bg-[#f3f3f3] focus-visible:z-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#0092e7]";
 
 const viewerImageClasses = [
   "h-[801px] w-[370px] rounded-[64px]",
@@ -20,7 +17,7 @@ export default function ProjectGallery({ projects }) {
   const [position, setPosition] = useState(null);
 
   return (
-    <LayoutGroup>
+    <>
       <section
         className="flex flex-col items-center gap-1 pt-[119px] pb-1 max-[620px]:pt-[164px]"
         aria-label="Projects"
@@ -45,13 +42,12 @@ export default function ProjectGallery({ projects }) {
           />
         )}
       </AnimatePresence>
-    </LayoutGroup>
+    </>
   );
 }
 
 function ProjectViewer({ projects, position, setPosition, onClose }) {
   const reduceMotion = useReducedMotion();
-  const closeButtonRef = useRef(null);
   const project = projects[position.projectIndex];
   const image = project.images[position.imageIndex];
   const move = useCallback(
@@ -63,50 +59,29 @@ function ProjectViewer({ projects, position, setPosition, onClose }) {
     [projects, setPosition],
   );
 
-  useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") onClose();
-      if (event.key === "ArrowLeft" || event.key === "ArrowUp") move(-1);
-      if (event.key === "ArrowRight" || event.key === "ArrowDown") move(1);
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [move, onClose]);
-
   const transition = reduceMotion
     ? { duration: 0 }
     : { duration: 0.24, ease: [0.215, 0.61, 0.355, 1] };
 
   return (
-    <motion.div
-      className="fixed inset-0 z-150 overflow-y-auto bg-white/11 font-['Helvetica_Neue',Helvetica,Arial,sans-serif] text-[14px] leading-[1.3] text-black backdrop-blur-[8.1px]"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="project-viewer-title"
-      initial={reduceMotion ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={transition}
+    <Lightbox
+      className="overflow-y-auto leading-[1.3] text-black"
+      ariaLabelledBy="project-viewer-title"
+      onClose={onClose}
+      onPrevious={() => move(-1)}
+      onNext={() => move(1)}
+      controls={{
+        className: "absolute top-4 right-4 z-1",
+        previousLabel: "Previous image",
+        nextLabel: "Next image",
+        closeLabel: "Close project",
+      }}
     >
       <div className="flex min-h-full items-start gap-4 p-4 max-[760px]:flex-col max-[760px]:gap-3 max-[760px]:p-3">
         <div className="flex min-h-[calc(100vh-32px)] min-w-0 flex-1 items-center justify-center pb-1 max-[760px]:min-h-[calc(100vh-150px)] max-[760px]:w-full">
           <motion.figure
             key={position.projectIndex}
             className={`relative m-0 flex max-h-[calc(100vh-48px)] max-w-full shrink-0 items-center justify-center overflow-hidden max-[760px]:h-auto max-[760px]:w-[min(396px,calc(100vw-24px))] max-[760px]:aspect-[396/859] max-[760px]:rounded-[36px] ${viewerImageClasses[position.projectIndex]}`}
-            layoutId={`project-${position.projectIndex}-image`}
-            transition={
-              reduceMotion
-                ? { duration: 0 }
-                : { type: "spring", bounce: 0, duration: 0.48 }
-            }
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
@@ -131,39 +106,9 @@ function ProjectViewer({ projects, position, setPosition, onClose }) {
           </motion.figure>
         </div>
 
-        <aside className="flex w-[326px] shrink-0 flex-col items-end gap-4 max-[760px]:w-full max-[760px]:items-stretch">
-          <div className="flex w-full justify-end gap-2">
-            <div className="flex">
-              <button
-                className={`${buttonClass} -mr-px`}
-                type="button"
-                onClick={() => move(-1)}
-                aria-label="Previous image"
-              >
-                <Icon name="chevron-left" size={16} />
-              </button>
-              <button
-                className={buttonClass}
-                type="button"
-                onClick={() => move(1)}
-                aria-label="Next image"
-              >
-                <Icon name="chevron-right" size={16} />
-              </button>
-            </div>
-            <button
-              ref={closeButtonRef}
-              className={buttonClass}
-              type="button"
-              onClick={onClose}
-              aria-label="Close project"
-            >
-              <Icon name="close" size={16} />
-            </button>
-          </div>
-
+        <aside className="flex w-[326px] shrink-0 flex-col items-end gap-4 pt-12 max-[760px]:w-full max-[760px]:items-stretch">
           <motion.div
-            className="w-full overflow-hidden border border-[#d9d9d9] bg-white/94 shadow-[0_11px_0_-6px_rgba(0,0,0,0.05)] backdrop-blur-[4.3px]"
+            className="w-full overflow-hidden border border-black bg-white/94 shadow-[0_11px_0_-6px_rgba(0,0,0,0.05)] backdrop-blur-[4.3px]"
             key={position.projectIndex}
             initial={reduceMotion ? false : { opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
@@ -178,7 +123,7 @@ function ProjectViewer({ projects, position, setPosition, onClose }) {
               <dl className="mt-4 mb-0">
                 {project.details.map(([label, value]) => (
                   <div
-                    className="flex items-center gap-2 border-b border-[#d9d9d9] py-3 last:border-b-0"
+                    className="flex items-center gap-2 border-b border-black py-3 last:border-b-0"
                     key={label}
                   >
                     <dt className="w-[92px] shrink-0 opacity-50">{label}</dt>
@@ -190,6 +135,6 @@ function ProjectViewer({ projects, position, setPosition, onClose }) {
           </motion.div>
         </aside>
       </div>
-    </motion.div>
+    </Lightbox>
   );
 }

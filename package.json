@@ -10,6 +10,7 @@
     "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
+    "@base-ui/react": "^1.6.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@vercel/analytics": "^1.1.1",
     "eslint": "8.42.0",
@@ -23,5 +24,9 @@
     "react-dom": "18.2.0",
     "sass": "^1.62.1",
     "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "dialkit": "^1.4.3",
+    "motion": "^12.42.2"
   }
 }

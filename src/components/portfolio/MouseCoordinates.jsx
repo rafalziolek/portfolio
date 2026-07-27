@@ -23,7 +23,7 @@ export default function MouseCoordinates() {
   }, []);
 
   return (
-    <output className="fixed bottom-6 left-8 z-100 flex items-center gap-4 whitespace-nowrap font-['SFMono-Regular',Consolas,'Liberation_Mono',monospace] text-[12px] text-black max-[620px]:bottom-[18px] max-[620px]:left-4" aria-label="Pointer coordinates">
+    <output className="fixed bottom-2 left-2 z-100 flex items-center gap-4 whitespace-nowrap font-['SFMono-Regular',Consolas,'Liberation_Mono',monospace] text-[12px] text-black" aria-label="Pointer coordinates">
       <span>X {coordinates?.x ?? "—"}</span>
       <span>Y {coordinates?.y ?? "—"}</span>
     </output>

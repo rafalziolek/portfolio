@@ -10,11 +10,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="font-sans">
+    <html lang="en" className="font-['Helvetica_Neue',Helvetica,Arial,sans-serif]">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="antialiased">
+      <body className="bg-white text-[13px] antialiased">
         <SiteChrome />
         {children}
         {process.env.VERCEL === "1" && <Analytics />}
