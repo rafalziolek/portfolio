@@ -98,7 +98,7 @@ export default function Lightbox({
 
 function LightboxControls({
   className = "",
-  borderClassName = "border-[#b7b7b7]",
+  borderClassName = "border-[var(--ui-border-color)]",
   onPrevious,
   onNext,
   previousLabel,
@@ -141,7 +141,7 @@ export const IconButton = forwardRef(function IconButton(
     label,
     onClick,
     className = "",
-    borderClassName = "border-[#b7b7b7]",
+    borderClassName = "border-[var(--ui-border-color)]",
     ...props
   },
   ref,

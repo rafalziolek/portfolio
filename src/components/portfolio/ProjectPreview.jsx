@@ -69,11 +69,11 @@ export default function ProjectPreview({ project, index, onOpen }) {
     : { duration: 0.2, ease: "easeOut" };
 
   return (
-    <article className="flex min-h-[51.25rem] w-full box-border items-center justify-center p-2 max-[620px]:min-h-[45.625rem]">
+    <article className="flex w-full box-border items-center justify-center px-2 py-8">
       <button
         className={`relative flex h-[40.625rem] w-[36.25rem] max-w-full cursor-pointer flex-col items-center justify-center overflow-hidden border bg-transparent p-0 text-left transition-colors duration-150 outline-none max-[620px]:h-[calc(100vw+30px)] ${
           isHovered
-            ? "border-[#b7b7b7]"
+            ? "border-[var(--ui-border-color)]"
             : "border-transparent"
         }`}
         type="button"
@@ -106,7 +106,7 @@ export default function ProjectPreview({ project, index, onOpen }) {
         </span>
 
         <motion.span
-          className="flex w-full items-center justify-between p-4 text-[13px] leading-[1.3]"
+          className="flex w-full items-center justify-between border-t border-[var(--ui-border-color)] p-4 text-[13px] leading-[1.3]"
           initial={false}
           animate={{
             opacity: isHovered ? 1 : 0,

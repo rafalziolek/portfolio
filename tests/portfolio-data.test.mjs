@@ -40,9 +40,12 @@ test("shared chrome and Bits layout stay fixed and masonry", async () => {
     "utf8",
   );
 
-  assert.match(chrome, /className="fixed /);
-  assert.match(chrome, /border-\[#b7b7b7\]/);
+  assert.match(chrome, /className="sticky top-\[-1px\]/);
+  assert.match(chrome, /w-\[36\.25rem\]/);
+  assert.match(chrome, /border-\[var\(--ui-border-color\)\]/);
+  assert.doesNotMatch(chrome, /shadow-\[/);
   assert.match(chrome, /bg-\[#ededed\]/);
+  assert.match(chrome, /rounded-\[3px\] bg-\[#ededed\]/);
   assert.match(chrome, /isActive \? "font-bold" : ""/);
   assert.match(chrome, /<AnimatePresence initial=\{false\}>/);
   assert.match(chrome, /exit=\{\{ opacity: 0, x: 2 \}\}/);
@@ -67,10 +70,11 @@ test("mobile chrome splits, follows scroll direction, and hides footer utilities
   assert.match(coordinates, /max-\[620px\]:hidden/);
 });
 
-test("global CSS stays Tailwind-only without legacy design variables", async () => {
+test("global CSS defines the shared UI border color", async () => {
   const css = await readFile(new URL("../src/app/globals.css", import.meta.url), "utf8");
 
-  assert.equal(css.trim(), '@import "tailwindcss";');
+  assert.match(css, /@import "tailwindcss";/);
+  assert.match(css, /--ui-border-color: #dddddd;/);
 });
 
 test("every page inherits the white background", async () => {
@@ -117,7 +121,7 @@ test("gallery controls use the scalable Figma icon component", async () => {
   assert.match(lightbox, /from "@base-ui\/react\/button"/);
   assert.match(lightbox, /<Button/);
   assert.match(lightbox, /<Icon name=\{icon\} size=\{16\} \/>/);
-  assert.match(lightbox, /borderClassName = "border-\[#b7b7b7\]"/);
+  assert.match(lightbox, /borderClassName = "border-\[var\(--ui-border-color\)\]"/);
   assert.doesNotMatch(lightbox, /initialFocus=\{closeButtonRef\}/);
   assert.match(lightbox, /initialFocus=\{popupRef\}/);
   assert.match(lightbox, /fixed inset-0 z-151 outline-none/);
@@ -171,8 +175,10 @@ test("project previews use the menu-sized framed hover treatment", async () => {
 
   assert.match(preview, /w-\[36\.25rem\]/);
   assert.match(preview, /h-\[37\.5rem\]/);
+  assert.match(preview, /items-center justify-center px-2 py-8/);
+  assert.doesNotMatch(preview, /min-h-\[/);
   assert.match(preview, /px-6 pt-10 pb-6/);
-  assert.match(preview, /border-\[#b7b7b7\]/);
+  assert.match(preview, /border-\[var\(--ui-border-color\)\]/);
   assert.doesNotMatch(preview, /shadow-\[0_11px_0_-6px/);
   assert.doesNotMatch(preview, /SidePreview/);
 });
@@ -184,6 +190,7 @@ test("project hover reveals the project footer", async () => {
   );
 
   assert.match(preview, /opacity: isHovered \? 1 : 0/);
+  assert.match(preview, /border-t border-\[var\(--ui-border-color\)\]/);
   assert.match(preview, /\{project\.name\}/);
   assert.match(preview, /See more/);
   assert.match(preview, /name="chevron-right"/);

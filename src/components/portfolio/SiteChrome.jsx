@@ -78,8 +78,11 @@ export default function SiteChrome() {
           }
         }
       `}</style>
-      <header className="fixed top-1 left-1/2 z-100 w-[36.25rem] -translate-x-1/2 overflow-hidden border border-[#b7b7b7] bg-white leading-[1.3] text-black shadow-[0_12px_0_-7px_rgba(0,0,0,0.05)] backdrop-blur-[4.3px] max-[620px]:hidden">
-        <Description className="border-b border-[#b7b7b7]" />
+      <div className="relative z-100 mx-auto mt-1 w-[36.25rem] border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] max-[620px]:hidden">
+        <Description />
+      </div>
+
+      <header className="sticky top-[-1px] z-100 mx-auto -mt-px w-[36.25rem] overflow-hidden border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] max-[620px]:hidden">
         <MainNavigation
           active={active}
           activeIndex={activeIndex}
@@ -88,7 +91,7 @@ export default function SiteChrome() {
       </header>
 
       <motion.div
-        className="fixed top-1 right-[10px] left-[10px] z-100 border border-[#b7b7b7] bg-white leading-[1.3] text-black shadow-[0_12px_0_-7px_rgba(0,0,0,0.05)] backdrop-blur-[4.3px] min-[621px]:hidden"
+        className="fixed top-1 right-[10px] left-[10px] z-100 border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] min-[621px]:hidden"
         initial={false}
         animate={{
           opacity: mobileChromeVisible ? 1 : 0,
@@ -100,7 +103,7 @@ export default function SiteChrome() {
       </motion.div>
 
       <motion.div
-        className="fixed right-[10px] bottom-1 left-[10px] z-100 overflow-hidden border border-[#b7b7b7] bg-white leading-[1.3] text-black shadow-[0_12px_0_-7px_rgba(0,0,0,0.05)] backdrop-blur-[4.3px] min-[621px]:hidden"
+        className="fixed right-[10px] bottom-1 left-[10px] z-100 overflow-hidden border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] min-[621px]:hidden"
         initial={false}
         animate={{
           opacity: mobileChromeVisible ? 1 : 0,
@@ -151,7 +154,7 @@ function MainNavigation({ active, activeIndex, reduceMotion }) {
         }
         aria-hidden="true"
       >
-        <span className="block size-full bg-[#ededed]" />
+        <span className="block size-full rounded-[3px] bg-[#ededed]" />
       </motion.span>
 
       {navigationItems.map((item) => {

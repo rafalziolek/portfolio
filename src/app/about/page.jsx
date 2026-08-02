@@ -6,7 +6,7 @@ export default function About() {
 
   return (
     <main className="min-h-screen leading-[1.3] text-black">
-      <article className="mx-auto w-[min(536px,calc(100%-40px))] py-[208px] max-[620px]:pt-[190px] max-[620px]:pb-[168px]">
+      <article className="mx-auto w-[min(536px,calc(100%-40px))] pt-[108px] pb-[208px] max-[620px]:pt-[190px] max-[620px]:pb-[168px]">
         <div className="mb-12 [&_p]:m-0 [&_p+p]:mt-[18px]">
           {intro.body.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
