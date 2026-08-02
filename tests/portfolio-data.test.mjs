@@ -41,7 +41,7 @@ test("shared chrome and Bits layout stay fixed and masonry", async () => {
   );
 
   assert.match(chrome, /className="sticky top-\[-1px\]/);
-  assert.match(chrome, /w-\[36\.25rem\]/);
+  assert.match(chrome, /w-\[32\.5rem\]/);
   assert.match(chrome, /border-\[var\(--ui-border-color\)\]/);
   assert.doesNotMatch(chrome, /shadow-\[/);
   assert.match(chrome, /bg-\[#ededed\]/);
@@ -135,7 +135,7 @@ test("project preview frames are the hover and click target", async () => {
 
   assert.match(
     preview,
-    /<button\s+className=\{`relative flex [^`]*w-\[36\.25rem\][\s\S]*?type="button"\s+onClick=\{onOpen\}\s+onPointerEnter=\{handlePointerEnter\}/,
+    /<button\s+className=\{`relative flex [^`]*w-\[32\.5rem\][\s\S]*?type="button"\s+onClick=\{onOpen\}\s+onPointerEnter=\{handlePointerEnter\}/,
   );
   assert.doesNotMatch(preview, /className="flex h-full w-full cursor-pointer/);
 });
@@ -173,7 +173,7 @@ test("project previews use the menu-sized framed hover treatment", async () => {
     "utf8",
   );
 
-  assert.match(preview, /w-\[36\.25rem\]/);
+  assert.match(preview, /w-\[32\.5rem\]/);
   assert.match(preview, /h-\[37\.5rem\]/);
   assert.match(preview, /items-center justify-center px-2 py-8/);
   assert.doesNotMatch(preview, /min-h-\[/);

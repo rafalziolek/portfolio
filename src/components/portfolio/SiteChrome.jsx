@@ -78,11 +78,11 @@ export default function SiteChrome() {
           }
         }
       `}</style>
-      <div className="relative z-100 mx-auto mt-1 w-[36.25rem] border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] max-[620px]:hidden">
+      <div className="relative z-100 mx-auto mt-1 w-[32.5rem] border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] max-[620px]:hidden">
         <Description />
       </div>
 
-      <header className="sticky top-[-1px] z-100 mx-auto -mt-px w-[36.25rem] overflow-hidden border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] max-[620px]:hidden">
+      <header className="sticky top-[-1px] z-100 mx-auto -mt-px w-[32.5rem] overflow-hidden border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] max-[620px]:hidden">
         <MainNavigation
           active={active}
           activeIndex={activeIndex}

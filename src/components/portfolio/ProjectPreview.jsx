@@ -71,7 +71,7 @@ export default function ProjectPreview({ project, index, onOpen }) {
   return (
     <article className="flex w-full box-border items-center justify-center px-2 py-8">
       <button
-        className={`relative flex h-[40.625rem] w-[36.25rem] max-w-full cursor-pointer flex-col items-center justify-center overflow-hidden border bg-transparent p-0 text-left transition-colors duration-150 outline-none max-[620px]:h-[calc(100vw+30px)] ${
+        className={`relative flex h-[40.625rem] w-[32.5rem] max-w-full cursor-pointer flex-col items-center justify-center overflow-hidden border bg-transparent p-0 text-left transition-colors duration-150 outline-none max-[620px]:h-[calc(100vw+30px)] ${
           isHovered
             ? "border-[var(--ui-border-color)]"
             : "border-transparent"
