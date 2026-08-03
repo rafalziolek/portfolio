@@ -2,67 +2,146 @@
 
 import MouseCoordinates from "./MouseCoordinates";
 import { homepageSocialLinks } from "@/data/homepage.mjs";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { arc, motion, useReducedMotion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 
 const navigationItems = [
   { id: "projects", label: "Projects", href: "/" },
   { id: "bits", label: "Bits", href: "/work" },
-  { id: "about", label: "Who?", href: "/about" },
 ];
+
+const avatarIndicatorX = 12.5;
+
+function getWrapTransition(path) {
+  return {
+    duration: 0.1,
+    ease: [0.215, 0.61, 0.355, 1],
+    path,
+  };
+}
 
 export default function SiteChrome() {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
-  const [mobileChromeVisible, setMobileChromeVisible] = useState(true);
-  const active = navigationItems.find((item) => item.href === pathname)?.id;
-  const activeIndex = navigationItems.findIndex((item) => item.id === active);
+  const navigationRef = useRef(null);
+  const navigationItemRefs = useRef({});
+  const avatarRef = useRef(null);
+  const previousActiveRef = useRef(null);
+  const lastMenuXRef = useRef(null);
+  const transitionSequenceRef = useRef(0);
+  const [indicatorX, setIndicatorX] = useState(null);
+  const [wrapAnimation, setWrapAnimation] = useState(null);
+  const active =
+    navigationItems.find((item) => item.href === pathname)?.id ??
+    (pathname === "/about" ? "about" : null);
+  const indicatorPath = useMemo(
+    () =>
+      arc({
+        strength: 0.3,
+        direction: active === "bits" ? "ccw" : "cw",
+      }),
+    [active],
+  );
+  const clockwiseWrapPath = useMemo(
+    () => arc({ strength: 0.3, direction: "cw" }),
+    [],
+  );
+  const counterClockwiseWrapPath = useMemo(
+    () => arc({ strength: 0.3, direction: "ccw" }),
+    [],
+  );
 
-  useEffect(() => {
-    const mobile = window.matchMedia("(max-width: 620px)");
-    let previousY = window.scrollY;
-    let frame;
+  useLayoutEffect(() => {
+    const navigation = navigationRef.current;
+    const avatar = avatarRef.current;
+    const previousActive = previousActiveRef.current;
+    const animationId = ++transitionSequenceRef.current;
 
-    const updateVisibility = () => {
-      if (!mobile.matches) {
-        setMobileChromeVisible(true);
-        previousY = window.scrollY;
+    if (!active || !navigation || !avatar) {
+      setWrapAnimation(null);
+      previousActiveRef.current = active;
+      return;
+    }
+
+    const navigationBounds = navigation.getBoundingClientRect();
+    const avatarBounds = avatar.getBoundingClientRect();
+    const menuEdgeX = -navigationBounds.left - 6;
+    const avatarEdgeX =
+      document.documentElement.clientWidth - avatarBounds.left + 1;
+    let nextIndicatorX = lastMenuXRef.current;
+
+    if (active !== "about") {
+      const activeItem = navigationItemRefs.current[active];
+
+      if (!activeItem) {
+        setWrapAnimation(null);
+        previousActiveRef.current = active;
         return;
       }
 
-      const currentY = window.scrollY;
-      const delta = currentY - previousY;
+      const activeItemBounds = activeItem.getBoundingClientRect();
+      nextIndicatorX =
+        activeItemBounds.left -
+        navigationBounds.left +
+        activeItemBounds.width / 2 -
+        2.5;
+      lastMenuXRef.current = nextIndicatorX;
+      setIndicatorX(nextIndicatorX);
+    }
 
-      if (currentY <= 8) {
-        setMobileChromeVisible(true);
-      } else if (Math.abs(delta) >= 4) {
-        setMobileChromeVisible(delta < 0);
-        previousY = currentY;
+    if (
+      !reduceMotion &&
+      active === "about" &&
+      previousActive &&
+      previousActive !== "about" &&
+      nextIndicatorX !== null
+    ) {
+      setWrapAnimation({
+        id: animationId,
+        phase: "menu-exit",
+        menuX: nextIndicatorX,
+        menuEdgeX,
+        avatarEdgeX,
+      });
+    } else if (
+      !reduceMotion &&
+      active !== "about" &&
+      previousActive === "about"
+    ) {
+      setWrapAnimation({
+        id: animationId,
+        phase: "avatar-exit",
+        menuX: nextIndicatorX,
+        menuEdgeX,
+        avatarEdgeX,
+      });
+    } else {
+      setWrapAnimation(null);
+    }
+
+    previousActiveRef.current = active;
+  }, [active, reduceMotion]);
+
+  function advanceWrapAnimation(animationId) {
+    setWrapAnimation((current) => {
+      if (!current || current.id !== animationId) return current;
+
+      if (current.phase === "menu-exit") {
+        return { ...current, phase: "avatar-enter" };
       }
-    };
 
-    const handleScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(updateVisibility);
-    };
+      if (current.phase === "avatar-exit") {
+        return { ...current, phase: "menu-enter" };
+      }
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    mobile.addEventListener("change", updateVisibility);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", handleScroll);
-      mobile.removeEventListener("change", updateVisibility);
-    };
-  }, []);
+      return null;
+    });
+  }
 
   if (!active) return null;
-
-  const mobileTransition = reduceMotion
-    ? { duration: 0 }
-    : { type: "spring", bounce: 0, duration: 0.28 };
 
   return (
     <>
@@ -78,51 +157,143 @@ export default function SiteChrome() {
           }
         }
       `}</style>
-      <div className="relative z-100 mx-auto mt-1 w-[32.5rem] border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] max-[620px]:hidden">
-        <Description />
+
+      <Description blurred={active === "about"} />
+
+      <nav
+        ref={navigationRef}
+        className="fixed top-4 left-4 z-100 flex items-center gap-[6px] leading-[1.3] tracking-[-0.14px] max-[620px]:top-2 max-[620px]:left-2"
+        aria-label="Main navigation"
+      >
+        {navigationItems.map((item) => {
+          const isActive = item.id === active;
+
+          return (
+            <Link
+              className={`relative flex h-[30px] items-center justify-center border px-[10px] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black ${
+                isActive
+                  ? "border-[rgba(112,153,255,0.5)] bg-[rgba(112,153,255,0.23)] text-[#2939c7]"
+                  : "border-[#e6e6e6] bg-white text-black"
+              }`}
+              href={item.href}
+              aria-current={isActive ? "page" : undefined}
+              key={item.id}
+              ref={(node) => {
+                navigationItemRefs.current[item.id] = node;
+              }}
+            >
+              <span aria-hidden="true" className="invisible font-medium">
+                {item.label}
+              </span>
+              <span className={`absolute ${isActive ? "font-medium" : "font-normal"}`}>
+                {item.label}
+              </span>
+            </Link>
+          );
+        })}
+        {indicatorX !== null && active !== "about" && !wrapAnimation && (
+          <ActiveIndicator
+            key="menu"
+            initial={false}
+            animate={{ x: indicatorX, y: 0 }}
+            transition={
+              reduceMotion
+                ? { duration: 0 }
+                : {
+                    duration: 0.2,
+                    ease: [0.215, 0.61, 0.355, 1],
+                    path: indicatorPath,
+                  }
+            }
+          />
+        )}
+        {wrapAnimation?.phase === "menu-exit" && (
+          <ActiveIndicator
+            key={`menu-exit-${wrapAnimation.id}`}
+            initial={{ x: wrapAnimation.menuX, y: 0 }}
+            animate={{ x: wrapAnimation.menuEdgeX, y: 0 }}
+            transition={getWrapTransition(clockwiseWrapPath)}
+            onAnimationComplete={() =>
+              advanceWrapAnimation(wrapAnimation.id)
+            }
+          />
+        )}
+        {wrapAnimation?.phase === "menu-enter" && (
+          <ActiveIndicator
+            key={`menu-enter-${wrapAnimation.id}`}
+            initial={{ x: wrapAnimation.menuEdgeX, y: 0 }}
+            animate={{ x: wrapAnimation.menuX, y: 0 }}
+            transition={getWrapTransition(counterClockwiseWrapPath)}
+            onAnimationComplete={() =>
+              advanceWrapAnimation(wrapAnimation.id)
+            }
+          />
+        )}
+      </nav>
+
+      <div
+        ref={avatarRef}
+        className="fixed top-4 right-4 z-100 size-[30px] max-[620px]:top-2 max-[620px]:right-2"
+      >
+        <Link
+          className="block size-full overflow-hidden bg-white focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black"
+          href="/about"
+          aria-label="About"
+          aria-current={active === "about" ? "page" : undefined}
+        >
+          <Image
+            className="block size-full scale-[1.1] object-cover"
+            src="/home/avatar.png"
+            alt=""
+            width={64}
+            height={64}
+            priority
+          />
+        </Link>
+        {active === "about" && !wrapAnimation && (
+          <ActiveIndicator
+            key="avatar"
+            initial={false}
+            animate={{ x: avatarIndicatorX, y: 0 }}
+            transition={{ duration: 0 }}
+          />
+        )}
+        {wrapAnimation?.phase === "avatar-enter" && (
+          <ActiveIndicator
+            key={`avatar-enter-${wrapAnimation.id}`}
+            initial={{ x: wrapAnimation.avatarEdgeX, y: 0 }}
+            animate={{ x: avatarIndicatorX, y: 0 }}
+            transition={getWrapTransition(clockwiseWrapPath)}
+            onAnimationComplete={() =>
+              advanceWrapAnimation(wrapAnimation.id)
+            }
+          />
+        )}
+        {wrapAnimation?.phase === "avatar-exit" && (
+          <ActiveIndicator
+            key={`avatar-exit-${wrapAnimation.id}`}
+            initial={{ x: avatarIndicatorX, y: 0 }}
+            animate={{ x: wrapAnimation.avatarEdgeX, y: 0 }}
+            transition={getWrapTransition(counterClockwiseWrapPath)}
+            onAnimationComplete={() =>
+              advanceWrapAnimation(wrapAnimation.id)
+            }
+          />
+        )}
       </div>
-
-      <header className="sticky top-[-1px] z-100 mx-auto -mt-px w-[32.5rem] overflow-hidden border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] max-[620px]:hidden">
-        <MainNavigation
-          active={active}
-          activeIndex={activeIndex}
-          reduceMotion={reduceMotion}
-        />
-      </header>
-
-      <motion.div
-        className="fixed top-1 right-[10px] left-[10px] z-100 border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] min-[621px]:hidden"
-        initial={false}
-        animate={{
-          opacity: mobileChromeVisible ? 1 : 0,
-          y: mobileChromeVisible ? 0 : "-120%",
-        }}
-        transition={mobileTransition}
-      >
-        <Description />
-      </motion.div>
-
-      <motion.div
-        className="fixed right-[10px] bottom-1 left-[10px] z-100 overflow-hidden border border-[var(--ui-border-color)] bg-white leading-[1.3] text-black backdrop-blur-[4.3px] min-[621px]:hidden"
-        initial={false}
-        animate={{
-          opacity: mobileChromeVisible ? 1 : 0,
-          y: mobileChromeVisible ? 0 : "120%",
-        }}
-        transition={mobileTransition}
-      >
-        <MainNavigation
-          active={active}
-          activeIndex={activeIndex}
-          reduceMotion={reduceMotion}
-        />
-      </motion.div>
 
       <MouseCoordinates />
 
-      <nav className="fixed right-2 bottom-2 z-100 flex items-center gap-3 whitespace-nowrap text-black max-[620px]:hidden" aria-label="Social links">
+      <nav
+        className="fixed right-4 bottom-4 z-100 flex items-center gap-3 whitespace-nowrap text-black max-[620px]:hidden"
+        aria-label="Social links"
+      >
         {homepageSocialLinks.map((link) => (
-          <a className="font-normal text-black no-underline hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-black motion-reduce:hover:text-white focus-visible:outline-1 focus-visible:-outline-offset-3 focus-visible:outline-black" href={link.href} key={link.label}>
+          <a
+            className="font-normal text-black no-underline hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-black motion-reduce:hover:text-white focus-visible:outline-1 focus-visible:-outline-offset-3 focus-visible:outline-black"
+            href={link.href}
+            key={link.label}
+          >
             {link.label}
           </a>
         ))}
@@ -131,60 +302,31 @@ export default function SiteChrome() {
   );
 }
 
-function Description({ className = "" }) {
+function ActiveIndicator({
+  animate,
+  initial,
+  transition,
+  onAnimationComplete,
+}) {
   return (
-    <p className={`block box-border px-4 py-3 text-inherit ${className}`}>
-      Rafa is a software designer. Currently working at Docplanner. He works
-      across design and engineering. Building websites, apps and design systems
-    </p>
+    <motion.span
+      className="pointer-events-none absolute top-[35px] left-0 size-[5px] rounded-full bg-[#2939c7] will-change-transform"
+      initial={initial}
+      animate={animate}
+      transition={transition}
+      onAnimationComplete={onAnimationComplete}
+      aria-hidden="true"
+    />
   );
 }
 
-function MainNavigation({ active, activeIndex, reduceMotion }) {
+function Description({ blurred }) {
   return (
-    <nav className="relative flex h-10 items-stretch" aria-label="Main navigation">
-      <motion.span
-        className="pointer-events-none absolute inset-y-0 left-0 z-0 box-border w-1/3 p-[5px]"
-        animate={{ x: `${activeIndex * 100}%` }}
-        initial={false}
-        transition={
-          reduceMotion
-            ? { duration: 0 }
-            : { type: "spring", bounce: 0, duration: 0.3 }
-        }
-        aria-hidden="true"
-      >
-        <span className="block size-full rounded-[3px] bg-[#ededed]" />
-      </motion.span>
-
-      {navigationItems.map((item) => {
-        const isActive = item.id === active;
-
-        return (
-          <Link
-            className={`relative z-1 flex flex-1 items-center justify-center px-3 py-2 text-inherit no-underline focus-visible:outline-1 focus-visible:-outline-offset-3 focus-visible:outline-black ${isActive ? "font-bold" : ""}`}
-            href={item.href}
-            aria-current={isActive ? "page" : undefined}
-            key={item.id}
-          >
-            <span className="relative">
-              <AnimatePresence initial={false}>
-                {isActive && (
-                  <motion.span
-                    className={`absolute top-1/2 right-full mr-[5px] size-[5px] -translate-y-1/2 rounded-full ${item.id === "about" ? "bg-[#ff6347]" : "bg-[#0092e7]"}`}
-                    initial={reduceMotion ? false : { opacity: 0, x: 2 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 2 }}
-                    transition={{ duration: reduceMotion ? 0 : 0.15, ease: "easeOut" }}
-                    aria-hidden="true"
-                  />
-                )}
-              </AnimatePresence>
-              {item.label}
-            </span>
-          </Link>
-        );
-      })}
-    </nav>
+    <p
+      className={`relative z-1 mx-auto mt-[19px] mb-0 w-[min(520px,calc(100%-32px))] text-center leading-[1.3] text-black max-[620px]:mt-[58px] ${blurred ? "blur-[6px]" : ""}`}
+    >
+      Rafa is a software designer. Currently working at Docplanner. He works
+      across design and engineering. Building websites, apps and design systems
+    </p>
   );
 }

@@ -74,7 +74,7 @@ export default function BitsGallery({ bits }) {
   return (
     <LayoutGroup>
       <section
-        className="columns-6 gap-[2px] pt-[50px] max-[960px]:columns-3 max-[620px]:columns-2 max-[620px]:pt-[166px]"
+        className="columns-6 gap-[2px] pt-[95px] max-[960px]:columns-3 max-[620px]:columns-2 max-[620px]:pt-8"
         aria-label="Design bits"
       >
         {bits.map((bit, index) => (

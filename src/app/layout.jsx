@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="bg-white text-[13px] antialiased">
+      <body className="bg-white text-[14px] antialiased">
         <SiteChrome />
         {children}
         {process.env.VERCEL === "1" && <Analytics />}

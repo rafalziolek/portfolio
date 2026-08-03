@@ -11,9 +11,9 @@ import Image from "next/image";
 import { useState } from "react";
 
 const imageClasses = [
-  "h-full w-auto max-w-full aspect-[370/801] rounded-[40px] border border-white/15 [&_img]:object-cover",
-  "h-full w-auto max-w-full aspect-[396/859] rounded-[40px] [&_img]:object-cover",
-  "h-full w-auto max-w-full aspect-[396/859] rounded-[40px] border border-white [&_img]:object-cover",
+  "h-full w-auto max-w-full aspect-[370/801] rounded-[30px] border border-black/10 shadow-[0_0_20px_rgba(0,0,0,0.08)] [&_img]:object-cover",
+  "h-full w-auto max-w-full aspect-[396/859] rounded-[30px] [&_img]:object-cover",
+  "h-full w-auto max-w-full aspect-[396/859] rounded-[30px] border border-white [&_img]:object-cover",
 ];
 
 const imageBaseClass =
@@ -69,9 +69,11 @@ export default function ProjectPreview({ project, index, onOpen }) {
     : { duration: 0.2, ease: "easeOut" };
 
   return (
-    <article className="flex w-full box-border items-center justify-center px-2 py-8">
+    <article
+      className={`flex w-full box-border items-center justify-center px-2 pb-2 ${index === 0 ? "pt-8" : "pt-[67px]"}`}
+    >
       <button
-        className={`relative flex h-[40.625rem] w-[32.5rem] max-w-full cursor-pointer flex-col items-center justify-center overflow-hidden border bg-transparent p-0 text-left transition-colors duration-150 outline-none max-[620px]:h-[calc(100vw+30px)] ${
+        className={`relative flex h-[50rem] w-[40.625rem] max-w-full cursor-pointer flex-col items-center justify-center overflow-hidden border bg-transparent p-0 text-left transition-colors duration-150 outline-none max-[680px]:h-[calc(100vw+150px)] ${
           isHovered
             ? "border-[var(--ui-border-color)]"
             : "border-transparent"
@@ -84,7 +86,7 @@ export default function ProjectPreview({ project, index, onOpen }) {
         aria-label={project.label}
       >
         <span
-          className="flex h-[37.5rem] w-full shrink-0 items-center justify-center overflow-hidden px-6 pt-10 pb-6 max-[620px]:min-h-0 max-[620px]:flex-1"
+          className="flex h-[46.875rem] w-full shrink-0 items-center justify-center overflow-hidden px-6 py-10 max-[680px]:min-h-0 max-[680px]:flex-1"
           style={{ perspective: "900px" }}
         >
           <motion.span
@@ -106,7 +108,7 @@ export default function ProjectPreview({ project, index, onOpen }) {
         </span>
 
         <motion.span
-          className="flex w-full items-center justify-between border-t border-[var(--ui-border-color)] p-4 text-[13px] leading-[1.3]"
+          className="flex w-full items-center justify-between border-t border-[var(--ui-border-color)] p-4 text-[14px] leading-[1.3]"
           initial={false}
           animate={{
             opacity: isHovered ? 1 : 0,
@@ -136,7 +138,7 @@ function ProjectImage({ project, index, priority = false }) {
         alt={project.alt}
         width={project.width}
         height={project.height}
-        sizes="(max-width: 620px) calc(100vw - 32px), 396px"
+        sizes="(max-width: 680px) calc(100vw - 64px), 396px"
         priority={priority}
       />
     </span>

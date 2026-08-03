@@ -23,9 +23,9 @@ export default function MouseCoordinates() {
   }, []);
 
   return (
-    <output className="fixed bottom-2 left-2 z-100 flex items-center gap-4 whitespace-nowrap font-['SFMono-Regular',Consolas,'Liberation_Mono',monospace] text-[12px] text-black max-[620px]:hidden" aria-label="Pointer coordinates">
-      <span>X {coordinates?.x ?? "—"}</span>
-      <span>Y {coordinates?.y ?? "—"}</span>
+    <output className="fixed bottom-4 left-4 z-100 flex items-center gap-2 whitespace-nowrap font-['SFMono-Regular',Consolas,'Liberation_Mono',monospace] text-[12px] text-black opacity-80 max-[620px]:hidden" aria-label="Pointer coordinates">
+      <span>{coordinates?.x ?? "—"}(X)</span>
+      <span>{coordinates?.y ?? "—"}(Y)</span>
     </output>
   );
 }

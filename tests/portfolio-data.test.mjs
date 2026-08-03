@@ -27,7 +27,7 @@ test("Bits includes every local Figma asset with intrinsic dimensions", () => {
   }
 });
 
-test("shared chrome and Bits layout stay fixed and masonry", async () => {
+test("shared chrome uses split navigation and a wrapped arcing active dot", async () => {
   const chrome = await readFile(
     new URL("../src/components/portfolio/SiteChrome.jsx", import.meta.url),
     "utf8",
@@ -40,20 +40,46 @@ test("shared chrome and Bits layout stay fixed and masonry", async () => {
     "utf8",
   );
 
-  assert.match(chrome, /className="sticky top-\[-1px\]/);
-  assert.match(chrome, /w-\[32\.5rem\]/);
-  assert.match(chrome, /border-\[var\(--ui-border-color\)\]/);
-  assert.doesNotMatch(chrome, /shadow-\[/);
-  assert.match(chrome, /bg-\[#ededed\]/);
-  assert.match(chrome, /rounded-\[3px\] bg-\[#ededed\]/);
-  assert.match(chrome, /isActive \? "font-bold" : ""/);
-  assert.match(chrome, /<AnimatePresence initial=\{false\}>/);
-  assert.match(chrome, /exit=\{\{ opacity: 0, x: 2 \}\}/);
+  assert.match(chrome, /import \{ arc, motion, useReducedMotion \} from "motion\/react"/);
+  assert.match(chrome, /fixed top-4 left-4/);
+  assert.match(chrome, /const \[indicatorX, setIndicatorX\] = useState\(null\)/);
+  assert.match(chrome, /activeItemBounds\.left -/);
+  assert.match(chrome, /fixed top-4 right-4/);
+  assert.match(chrome, /href="\/about"/);
+  assert.match(chrome, /src="\/home\/avatar\.png"/);
+  assert.match(chrome, /size-\[30px\]/);
+  assert.match(chrome, /width=\{64\}/);
+  assert.match(chrome, /height=\{64\}/);
+  assert.match(chrome, /scale-\[1\.1\] object-cover/);
+  assert.match(chrome, /const avatarIndicatorX = 12\.5/);
+  assert.doesNotMatch(chrome, /size-8 overflow-hidden border border-black\/10/);
+  assert.match(chrome, /bg-\[rgba\(112,153,255,0\.23\)\]/);
+  assert.match(chrome, /text-\[#2939c7\]/);
+  assert.doesNotMatch(chrome, /px-\[10px\] text-inherit/);
+  assert.match(chrome, /aria-hidden="true" className="invisible font-medium"/);
+  assert.match(chrome, /isActive \? "font-medium" : "font-normal"/);
+  assert.doesNotMatch(chrome, /layoutId="primary-nav-active-dot"/);
+  assert.match(chrome, /animate=\{\{ x: indicatorX, y: 0 \}\}/);
+  assert.match(chrome, /strength: 0\.3/);
+  assert.match(chrome, /duration: 0\.2/);
+  assert.match(chrome, /path: indicatorPath/);
+  assert.match(chrome, /direction: active === "bits" \? "ccw" : "cw"/);
+  assert.match(chrome, /const previousActiveRef = useRef\(null\)/);
+  assert.match(chrome, /const transitionSequenceRef = useRef\(0\)/);
+  assert.match(chrome, /const \[wrapAnimation, setWrapAnimation\] = useState\(null\)/);
+  assert.match(chrome, /direction: "cw"/);
+  assert.match(chrome, /direction: "ccw"/);
+  assert.match(chrome, /duration: 0\.1/);
+  assert.match(chrome, /phase: "menu-exit"/);
+  assert.match(chrome, /phase: "avatar-exit"/);
+  assert.match(chrome, /current\.id !== animationId/);
+  assert.match(chrome, /ref=\{avatarRef\}/);
+  assert.match(chrome, /active === "about" && !wrapAnimation/);
   assert.match(masonry, /columns-6/);
   assert.match(masonry, /break-inside-avoid/);
 });
 
-test("mobile chrome splits, follows scroll direction, and hides footer utilities", async () => {
+test("the centered description scrolls in page flow and footer utilities stay desktop-only", async () => {
   const chrome = await readFile(
     new URL("../src/components/portfolio/SiteChrome.jsx", import.meta.url),
     "utf8",
@@ -63,11 +89,15 @@ test("mobile chrome splits, follows scroll direction, and hides footer utilities
     "utf8",
   );
 
-  assert.match(chrome, /setMobileChromeVisible\(delta < 0\)/);
-  assert.match(chrome, /top-1 right-\[10px\] left-\[10px\]/);
-  assert.match(chrome, /right-\[10px\] bottom-1 left-\[10px\]/);
-  assert.match(chrome, /max-\[620px\]:hidden" aria-label="Social links"/);
+  assert.match(chrome, /mx-auto mt-\[19px\] mb-0 w-\[min\(520px/);
+  assert.match(chrome, /<Description blurred=\{active === "about"\} \/>/);
+  assert.match(chrome, /blurred \? "blur-\[6px\]" : ""/);
+  assert.doesNotMatch(chrome, /<Description[^>]*fixed/);
+  assert.doesNotMatch(chrome, /sticky/);
+  assert.match(chrome, /fixed right-4 bottom-4[^\n]*max-\[620px\]:hidden/);
   assert.match(coordinates, /max-\[620px\]:hidden/);
+  assert.match(coordinates, /\{coordinates\?\.x \?\? "—"\}\(X\)/);
+  assert.match(coordinates, /gap-2/);
 });
 
 test("global CSS defines the shared UI border color", async () => {
@@ -92,6 +122,7 @@ test("every page inherits the white background", async () => {
   );
 
   assert.match(layout, /bg-white/);
+  assert.match(layout, /text-\[14px\]/);
   assert.doesNotMatch(projects, /<main className="[^"]*bg-white/);
   assert.doesNotMatch(bits, /<main className="[^"]*bg-white/);
 });
@@ -135,7 +166,7 @@ test("project preview frames are the hover and click target", async () => {
 
   assert.match(
     preview,
-    /<button\s+className=\{`relative flex [^`]*w-\[32\.5rem\][\s\S]*?type="button"\s+onClick=\{onOpen\}\s+onPointerEnter=\{handlePointerEnter\}/,
+    /<button\s+className=\{`relative flex [^`]*w-\[40\.625rem\][\s\S]*?type="button"\s+onClick=\{onOpen\}\s+onPointerEnter=\{handlePointerEnter\}/,
   );
   assert.doesNotMatch(preview, /className="flex h-full w-full cursor-pointer/);
 });
@@ -173,11 +204,12 @@ test("project previews use the menu-sized framed hover treatment", async () => {
     "utf8",
   );
 
-  assert.match(preview, /w-\[32\.5rem\]/);
-  assert.match(preview, /h-\[37\.5rem\]/);
-  assert.match(preview, /items-center justify-center px-2 py-8/);
+  assert.match(preview, /h-\[50rem\] w-\[40\.625rem\]/);
+  assert.match(preview, /h-\[46\.875rem\]/);
+  assert.match(preview, /items-center justify-center px-2 pb-2/);
   assert.doesNotMatch(preview, /min-h-\[/);
-  assert.match(preview, /px-6 pt-10 pb-6/);
+  assert.match(preview, /px-6 py-10/);
+  assert.match(preview, /text-\[14px\]/);
   assert.match(preview, /border-\[var\(--ui-border-color\)\]/);
   assert.doesNotMatch(preview, /shadow-\[0_11px_0_-6px/);
   assert.doesNotMatch(preview, /SidePreview/);
