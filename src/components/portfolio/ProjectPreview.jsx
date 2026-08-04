@@ -11,15 +11,17 @@ import Image from "next/image";
 import { useState } from "react";
 
 const imageClasses = [
-  "h-full w-auto max-w-full aspect-[370/801] rounded-[30px] border border-black/10 shadow-[0_0_20px_rgba(0,0,0,0.08)] [&_img]:object-cover",
-  "h-full w-auto max-w-full aspect-[396/859] rounded-[30px] [&_img]:object-cover",
-  "h-full w-auto max-w-full aspect-[396/859] rounded-[30px] border border-white [&_img]:object-cover",
+  "h-full w-auto max-w-full aspect-[370/801] rounded-[44px] border border-black/10 shadow-[0_0_20px_rgba(0,0,0,0.08)] [&_img]:object-cover",
+  "h-full w-auto max-w-full aspect-[396/859] rounded-[44px] [&_img]:object-cover",
+  "h-full w-auto max-w-full aspect-[396/859] rounded-[44px] border border-white [&_img]:object-cover",
+  "h-auto w-full max-h-full aspect-[8/5] rounded-[44px] border border-black/10 shadow-[0_0_20px_rgba(0,0,0,0.08)] [&_img]:object-cover",
 ];
 
 const imageBaseClass =
   "relative block shrink-0 box-border overflow-hidden [&_img]:block [&_img]:size-full [&_img]:max-w-none";
 
 export default function ProjectPreview({ project, index, onOpen }) {
+  const isLandscape = project.width > project.height;
   const reduceMotion = useReducedMotion();
   const [isHovered, setIsHovered] = useState(false);
   const rotateX = useMotionValue(0);
@@ -50,10 +52,10 @@ export default function ProjectPreview({ project, index, onOpen }) {
     const x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
     const y = ((event.clientY - bounds.top) / bounds.height) * 2 - 1;
 
-    rotateX.set(y * -5);
-    rotateY.set(x * 5);
-    imageX.set(x * 4);
-    imageY.set(y * 4);
+    rotateX.set(y * -8);
+    rotateY.set(x * 8);
+    imageX.set(x * 1.5);
+    imageY.set(y * 1.5);
   };
 
   const handlePointerLeave = () => {
@@ -70,10 +72,10 @@ export default function ProjectPreview({ project, index, onOpen }) {
 
   return (
     <article
-      className={`flex w-full box-border items-center justify-center px-2 pb-2 ${index === 0 ? "pt-8" : "pt-[67px]"}`}
+      className="flex w-full box-border items-center justify-center pt-8 pb-2"
     >
       <button
-        className="relative flex h-[50rem] w-[40.625rem] max-w-full cursor-pointer flex-col items-center justify-center overflow-hidden border border-[var(--ui-border-color)] bg-transparent p-0 text-left outline-none max-[680px]:h-[calc(100vw+150px)]"
+        className="relative flex aspect-square w-full max-w-[660px] cursor-pointer flex-col items-center justify-center overflow-hidden border border-[var(--ui-border-color)] bg-transparent p-0 text-left outline-none"
         type="button"
         onClick={onOpen}
         onPointerEnter={handlePointerEnter}
@@ -82,29 +84,33 @@ export default function ProjectPreview({ project, index, onOpen }) {
         aria-label={project.label}
       >
         <span
-          className="flex h-[46.875rem] w-full shrink-0 items-center justify-center overflow-hidden px-6 py-10 max-[680px]:min-h-0 max-[680px]:flex-1"
-          style={{ perspective: "900px" }}
+          className="flex min-h-0 w-full flex-1 items-center justify-center overflow-hidden px-8 py-16"
+          style={{ perspective: "700px" }}
         >
-          <motion.span
-            className="block h-full will-change-transform"
-            style={{
-              rotateX: smoothRotateX,
-              rotateY: smoothRotateY,
-              x: smoothImageX,
-              y: smoothImageY,
-              transformStyle: "preserve-3d",
-            }}
+          <span
+            className={`flex h-full items-center will-change-transform ${isLandscape ? "w-full justify-center" : ""}`}
           >
-            <ProjectImage
-              project={project}
-              index={index}
-              priority={index === 0}
-            />
-          </motion.span>
+            <motion.span
+              className={`flex h-full items-center will-change-transform ${isLandscape ? "w-full justify-center" : ""}`}
+              style={{
+                rotateX: smoothRotateX,
+                rotateY: smoothRotateY,
+                x: smoothImageX,
+                y: smoothImageY,
+                transformStyle: "preserve-3d",
+              }}
+            >
+              <ProjectImage
+                project={project}
+                index={index}
+                priority={index === 0}
+              />
+            </motion.span>
+          </span>
         </span>
 
         <motion.span
-          className="flex w-full items-center justify-between border-t border-[var(--ui-border-color)] p-4 text-[14px] leading-[1.3]"
+          className="absolute right-0 bottom-0 left-0 block overflow-hidden"
           initial={false}
           animate={{
             opacity: isHovered ? 1 : 0,
@@ -113,9 +119,11 @@ export default function ProjectPreview({ project, index, onOpen }) {
           transition={footerTransition}
           aria-hidden="true"
         >
-          <span>{project.name}</span>
-          <span className="flex items-center">
-            <Icon name="chevron-right" size={13} />
+          <span className="flex w-full items-center justify-between border-t border-[var(--ui-border-color)] p-4 text-[14px] leading-[1.3]">
+            <span>{project.name}</span>
+            <span className="flex items-center">
+              <Icon name="chevron-right" size={13} />
+            </span>
           </span>
         </motion.span>
       </button>

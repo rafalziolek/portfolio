@@ -4,7 +4,7 @@ import test from "node:test";
 import { homepageProjects, homepageSocialLinks } from "../src/data/homepage.mjs";
 
 test("homepage project assets are local and have accessible descriptions", () => {
-  assert.equal(homepageProjects.length, 3);
+  assert.equal(homepageProjects.length, 4);
 
   for (const project of homepageProjects) {
     assert.ok(project.name.length > 0);
@@ -13,6 +13,15 @@ test("homepage project assets are local and have accessible descriptions", () =>
     assert.ok(project.width > 0);
     assert.ok(project.height > 0);
   }
+
+  const checkoutEditor = homepageProjects.find(
+    ({ name }) => name === "Checkout Editor",
+  );
+  assert.equal(checkoutEditor.image, "/home/checkout-editor.png");
+  assert.deepEqual(
+    [checkoutEditor.width, checkoutEditor.height],
+    [2880, 1800],
+  );
 });
 
 test("homepage social links point to usable destinations", () => {

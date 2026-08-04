@@ -27,7 +27,7 @@ test("Bits includes every local Figma asset with intrinsic dimensions", () => {
   }
 });
 
-test("shared chrome uses split navigation and a wrapped arcing active dot", async () => {
+test("shared chrome matches the compact Figma header and keeps the wrapped active dot", async () => {
   const chrome = await readFile(
     new URL("../src/components/portfolio/SiteChrome.jsx", import.meta.url),
     "utf8",
@@ -47,17 +47,20 @@ test("shared chrome uses split navigation and a wrapped arcing active dot", asyn
   assert.match(chrome, /fixed top-4 right-4/);
   assert.match(chrome, /href="\/about"/);
   assert.match(chrome, /src="\/home\/avatar\.png"/);
-  assert.match(chrome, /size-\[30px\]/);
+  assert.match(chrome, /size-7/);
   assert.match(chrome, /width=\{64\}/);
   assert.match(chrome, /height=\{64\}/);
-  assert.match(chrome, /scale-\[1\.1\] object-cover/);
-  assert.match(chrome, /const avatarIndicatorX = 12\.5/);
-  assert.doesNotMatch(chrome, /size-8 overflow-hidden border border-black\/10/);
-  assert.match(chrome, /bg-\[rgba\(112,153,255,0\.23\)\]/);
-  assert.match(chrome, /text-\[#2939c7\]/);
-  assert.doesNotMatch(chrome, /px-\[10px\] text-inherit/);
-  assert.match(chrome, /aria-hidden="true" className="invisible font-medium"/);
-  assert.match(chrome, /isActive \? "font-medium" : "font-normal"/);
+  assert.match(chrome, /className="block size-full object-cover"/);
+  assert.match(chrome, /const avatarIndicatorX = 11\.5/);
+  assert.match(chrome, /inset_0_0_0_1px_rgba\(0,0,0,0\.2\)/);
+  assert.match(chrome, /h-7 items-center/);
+  assert.match(chrome, /rounded-\[2px\]/);
+  assert.match(chrome, /bg-\[#f9f9f9\]/);
+  assert.match(chrome, /border-\[rgba\(0,0,0,0\.13\)\]/);
+  assert.doesNotMatch(chrome, /border-transparent/);
+  assert.match(chrome, /aria-hidden="true" className="invisible font-bold"/);
+  assert.match(chrome, /isActive \? "font-bold" : "font-normal tracking-\[0\.28px\]"/);
+  assert.match(chrome, /rounded-full bg-black/);
   assert.doesNotMatch(chrome, /layoutId="primary-nav-active-dot"/);
   assert.match(chrome, /animate=\{\{ x: indicatorX, y: 0 \}\}/);
   assert.match(chrome, /strength: 0\.3/);
@@ -91,8 +94,9 @@ test("the header description scrolls in page flow and footer utilities stay desk
 
   assert.match(
     chrome,
-    /mx-auto mt-4 mb-0 w-\[min\(40\.625rem,calc\(100%-16px\)\)\] text-left/,
+    /mx-auto mt-4 flex h-7 w-\[min\(40\.625rem,calc\(100%-16px\)\)\] items-center justify-center/,
   );
+  assert.match(chrome, /<strong>Docplanner<\/strong>/);
   assert.match(chrome, /<Description blurred=\{active === "about"\} \/>/);
   assert.match(chrome, /blurred \? "blur-\[6px\]" : ""/);
   assert.doesNotMatch(chrome, /<Description[^>]*fixed/);

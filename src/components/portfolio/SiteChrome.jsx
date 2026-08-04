@@ -13,7 +13,7 @@ const navigationItems = [
   { id: "bits", label: "Bits", href: "/work" },
 ];
 
-const avatarIndicatorX = 12.5;
+const avatarIndicatorX = 11.5;
 
 function getWrapTransition(path) {
   return {
@@ -162,7 +162,7 @@ export default function SiteChrome() {
 
       <nav
         ref={navigationRef}
-        className="fixed top-4 left-4 z-100 flex items-center gap-[6px] leading-[1.3] tracking-[-0.14px] max-[620px]:top-2 max-[620px]:left-2"
+        className="fixed top-4 left-4 z-100 flex items-center gap-[6px] leading-[1.3] max-[620px]:top-2 max-[620px]:left-2"
         aria-label="Main navigation"
       >
         {navigationItems.map((item) => {
@@ -170,10 +170,10 @@ export default function SiteChrome() {
 
           return (
             <Link
-              className={`relative flex h-[30px] items-center justify-center border px-[10px] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black ${
+              className={`relative flex h-7 items-center justify-center px-[10px] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black ${
                 isActive
-                  ? "border-[rgba(112,153,255,0.5)] bg-[rgba(112,153,255,0.23)] text-[#2939c7]"
-                  : "border-[#e6e6e6] bg-white text-black"
+                  ? "rounded-[2px] border border-[rgba(0,0,0,0.13)] bg-[#f9f9f9] text-black"
+                  : "rounded-[2px] border border-[#e6e6e6] text-black"
               }`}
               href={item.href}
               aria-current={isActive ? "page" : undefined}
@@ -182,10 +182,12 @@ export default function SiteChrome() {
                 navigationItemRefs.current[item.id] = node;
               }}
             >
-              <span aria-hidden="true" className="invisible font-medium">
+              <span aria-hidden="true" className="invisible font-bold">
                 {item.label}
               </span>
-              <span className={`absolute ${isActive ? "font-medium" : "font-normal"}`}>
+              <span
+                className={`absolute ${isActive ? "font-bold" : "font-normal tracking-[0.28px]"}`}
+              >
                 {item.label}
               </span>
             </Link>
@@ -233,16 +235,16 @@ export default function SiteChrome() {
 
       <div
         ref={avatarRef}
-        className="fixed top-4 right-4 z-100 size-[30px] max-[620px]:top-2 max-[620px]:right-2"
+        className="fixed top-4 right-4 z-100 size-7 max-[620px]:top-2 max-[620px]:right-2"
       >
         <Link
-          className="block size-full overflow-hidden bg-white focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black"
+          className="relative block size-full overflow-hidden rounded-[2px] bg-white after:pointer-events-none after:absolute after:inset-0 after:rounded-[2px] after:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.2)] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black"
           href="/about"
           aria-label="About"
           aria-current={active === "about" ? "page" : undefined}
         >
           <Image
-            className="block size-full scale-[1.1] object-cover"
+            className="block size-full object-cover"
             src="/home/avatar.png"
             alt=""
             width={64}
@@ -310,7 +312,7 @@ function ActiveIndicator({
 }) {
   return (
     <motion.span
-      className="pointer-events-none absolute top-[35px] left-0 size-[5px] rounded-full bg-[#2939c7] will-change-transform"
+      className="pointer-events-none absolute top-[35px] left-0 size-[5px] rounded-full bg-black will-change-transform"
       initial={initial}
       animate={animate}
       transition={transition}
@@ -322,11 +324,15 @@ function ActiveIndicator({
 
 function Description({ blurred }) {
   return (
-    <p
-      className={`relative z-1 mx-auto mt-4 mb-0 w-[min(40.625rem,calc(100%-16px))] text-left leading-[1.3] text-black max-[620px]:mt-[58px] ${blurred ? "blur-[6px]" : ""}`}
+    <div
+      className="relative z-1 mx-auto mt-4 flex h-7 w-[min(40.625rem,calc(100%-16px))] items-center justify-center max-[620px]:mt-[58px]"
     >
-      Rafa is a software designer. Currently working at Docplanner. He works
-      across design and engineering. Building websites, apps and design systems
-    </p>
+      <p
+        className={`m-0 text-center leading-[1.3] text-black ${blurred ? "blur-[6px]" : ""}`}
+      >
+        Rafa is a software designer. Currently working at{" "}
+        <strong>Docplanner</strong>.
+      </p>
+    </div>
   );
 }

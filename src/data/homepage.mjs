@@ -80,6 +80,25 @@ export const homepageProjects = [
       ["Year", "2025"],
     ],
   },
+  {
+    name: "Checkout Editor",
+    image: "/home/checkout-editor.png",
+    images: [
+      {
+        src: "/home/checkout-editor.png",
+        width: 2880,
+        height: 1800,
+        alt: "A checkout editor with configurable sections and a live checkout preview",
+      },
+    ],
+    width: 2880,
+    height: 1800,
+    alt: "A checkout editor with configurable sections and a live checkout preview",
+    label: "Open Checkout Editor project",
+    description:
+      "A visual editor for configuring checkout sections and previewing the customer experience.",
+    details: [["Scope", "Product Design"]],
+  },
 ];
 
 export const homepageSocialLinks = [

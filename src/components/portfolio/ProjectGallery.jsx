@@ -11,6 +11,7 @@ const viewerImageClasses = [
   "h-[801px] w-[370px] rounded-[64px]",
   "h-[859px] w-[396px] rounded-[64px]",
   "h-[859px] w-[396px] rounded-[65px]",
+  "h-auto w-[min(1200px,calc(100vw-390px))] aspect-[8/5] rounded-[12px]",
 ];
 
 export default function ProjectGallery({ projects }) {
@@ -50,6 +51,7 @@ function ProjectViewer({ projects, position, setPosition, onClose }) {
   const reduceMotion = useReducedMotion();
   const project = projects[position.projectIndex];
   const image = project.images[position.imageIndex];
+  const isLandscape = image.width > image.height;
   const move = useCallback(
     (direction) => {
       setPosition((current) =>
@@ -81,7 +83,11 @@ function ProjectViewer({ projects, position, setPosition, onClose }) {
         <div className="flex min-h-[calc(100vh-32px)] min-w-0 flex-1 items-center justify-center pb-1 max-[760px]:min-h-[calc(100vh-150px)] max-[760px]:w-full">
           <motion.figure
             key={position.projectIndex}
-            className={`relative m-0 flex max-h-[calc(100vh-48px)] max-w-full shrink-0 items-center justify-center overflow-hidden max-[760px]:h-auto max-[760px]:w-[min(396px,calc(100vw-24px))] max-[760px]:aspect-[396/859] max-[760px]:rounded-[36px] ${viewerImageClasses[position.projectIndex]}`}
+            className={`relative m-0 flex max-h-[calc(100vh-48px)] max-w-full shrink-0 items-center justify-center overflow-hidden ${
+              isLandscape
+                ? "max-[760px]:h-auto max-[760px]:w-[calc(100vw-24px)] max-[760px]:aspect-[8/5] max-[760px]:rounded-[12px]"
+                : "max-[760px]:h-auto max-[760px]:w-[min(396px,calc(100vw-24px))] max-[760px]:aspect-[396/859] max-[760px]:rounded-[36px]"
+            } ${viewerImageClasses[position.projectIndex]}`}
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
