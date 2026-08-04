@@ -34,7 +34,7 @@ export default function About() {
 function AboutSection({ section, showMeta = false }) {
   return (
     <section className="mb-12">
-      <h2 className="mb-3 font-['SFMono-Regular',Consolas,'Liberation_Mono',monospace] text-[10px] leading-[1.3] font-medium uppercase">{section.heading}</h2>
+      <h2 className="mb-3 font-['SFMono-Regular',Consolas,'Liberation_Mono',monospace] leading-[1.3] font-medium uppercase">{section.heading}</h2>
       <div className="flex flex-col items-start gap-[2px]">
         {section.items.map((item) => (
           <div className="flex w-full gap-1" key={item.label}>

@@ -73,11 +73,7 @@ export default function ProjectPreview({ project, index, onOpen }) {
       className={`flex w-full box-border items-center justify-center px-2 pb-2 ${index === 0 ? "pt-8" : "pt-[67px]"}`}
     >
       <button
-        className={`relative flex h-[50rem] w-[40.625rem] max-w-full cursor-pointer flex-col items-center justify-center overflow-hidden border bg-transparent p-0 text-left transition-colors duration-150 outline-none max-[680px]:h-[calc(100vw+150px)] ${
-          isHovered
-            ? "border-[var(--ui-border-color)]"
-            : "border-transparent"
-        }`}
+        className="relative flex h-[50rem] w-[40.625rem] max-w-full cursor-pointer flex-col items-center justify-center overflow-hidden border border-[var(--ui-border-color)] bg-transparent p-0 text-left outline-none max-[680px]:h-[calc(100vw+150px)]"
         type="button"
         onClick={onOpen}
         onPointerEnter={handlePointerEnter}
@@ -118,8 +114,7 @@ export default function ProjectPreview({ project, index, onOpen }) {
           aria-hidden="true"
         >
           <span>{project.name}</span>
-          <span className="flex items-center gap-1">
-            See more
+          <span className="flex items-center">
             <Icon name="chevron-right" size={13} />
           </span>
         </motion.span>

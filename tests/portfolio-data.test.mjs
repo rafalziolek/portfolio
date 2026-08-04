@@ -79,7 +79,7 @@ test("shared chrome uses split navigation and a wrapped arcing active dot", asyn
   assert.match(masonry, /break-inside-avoid/);
 });
 
-test("the centered description scrolls in page flow and footer utilities stay desktop-only", async () => {
+test("the header description scrolls in page flow and footer utilities stay desktop-only", async () => {
   const chrome = await readFile(
     new URL("../src/components/portfolio/SiteChrome.jsx", import.meta.url),
     "utf8",
@@ -89,13 +89,17 @@ test("the centered description scrolls in page flow and footer utilities stay de
     "utf8",
   );
 
-  assert.match(chrome, /mx-auto mt-\[19px\] mb-0 w-\[min\(520px/);
+  assert.match(
+    chrome,
+    /mx-auto mt-4 mb-0 w-\[min\(40\.625rem,calc\(100%-16px\)\)\] text-left/,
+  );
   assert.match(chrome, /<Description blurred=\{active === "about"\} \/>/);
   assert.match(chrome, /blurred \? "blur-\[6px\]" : ""/);
   assert.doesNotMatch(chrome, /<Description[^>]*fixed/);
   assert.doesNotMatch(chrome, /sticky/);
   assert.match(chrome, /fixed right-4 bottom-4[^\n]*max-\[620px\]:hidden/);
   assert.match(coordinates, /max-\[620px\]:hidden/);
+  assert.match(coordinates, /text-\[12px\]/);
   assert.match(coordinates, /\{coordinates\?\.x \?\? "—"\}\(X\)/);
   assert.match(coordinates, /gap-2/);
 });
@@ -107,7 +111,7 @@ test("global CSS defines the shared UI border color", async () => {
   assert.match(css, /--ui-border-color: #dddddd;/);
 });
 
-test("every page inherits the white background", async () => {
+test("every page inherits the white background and 14px base type", async () => {
   const layout = await readFile(
     new URL("../src/app/layout.jsx", import.meta.url),
     "utf8",
@@ -120,9 +124,14 @@ test("every page inherits the white background", async () => {
     new URL("../src/app/work/page.jsx", import.meta.url),
     "utf8",
   );
+  const about = await readFile(
+    new URL("../src/app/about/page.jsx", import.meta.url),
+    "utf8",
+  );
 
   assert.match(layout, /bg-white/);
   assert.match(layout, /text-\[14px\]/);
+  assert.doesNotMatch(about, /text-\[10px\]/);
   assert.doesNotMatch(projects, /<main className="[^"]*bg-white/);
   assert.doesNotMatch(bits, /<main className="[^"]*bg-white/);
 });
@@ -166,7 +175,7 @@ test("project preview frames are the hover and click target", async () => {
 
   assert.match(
     preview,
-    /<button\s+className=\{`relative flex [^`]*w-\[40\.625rem\][\s\S]*?type="button"\s+onClick=\{onOpen\}\s+onPointerEnter=\{handlePointerEnter\}/,
+    /<button\s+className="relative flex [^"]*w-\[40\.625rem\][\s\S]*?type="button"\s+onClick=\{onOpen\}\s+onPointerEnter=\{handlePointerEnter\}/,
   );
   assert.doesNotMatch(preview, /className="flex h-full w-full cursor-pointer/);
 });
@@ -215,17 +224,26 @@ test("project previews use the menu-sized framed hover treatment", async () => {
   assert.doesNotMatch(preview, /SidePreview/);
 });
 
-test("project hover reveals the project footer", async () => {
+test("project frames stay bordered and preserve hover alignment", async () => {
   const preview = await readFile(
     new URL("../src/components/portfolio/ProjectPreview.jsx", import.meta.url),
     "utf8",
   );
 
   assert.match(preview, /opacity: isHovered \? 1 : 0/);
-  assert.match(preview, /border-t border-\[var\(--ui-border-color\)\]/);
-  assert.match(preview, /\{project\.name\}/);
-  assert.match(preview, /See more/);
+  assert.match(preview, /border border-\[var\(--ui-border-color\)\]/);
+  assert.doesNotMatch(preview, /border-transparent/);
+  assert.match(
+    preview,
+    /items-center justify-between border-t border-\[var\(--ui-border-color\)\]/,
+  );
+  assert.match(
+    preview,
+    /<span>\{project\.name\}<\/span>\s*<span className="flex items-center">\s*<Icon name="chevron-right"/,
+  );
+  assert.doesNotMatch(preview, /See more/);
   assert.match(preview, /name="chevron-right"/);
+  assert.doesNotMatch(preview, /\{project\.description\}/);
   assert.doesNotMatch(preview, /project\.images\.map/);
 });
 

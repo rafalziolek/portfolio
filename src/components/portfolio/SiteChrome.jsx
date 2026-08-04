@@ -323,7 +323,7 @@ function ActiveIndicator({
 function Description({ blurred }) {
   return (
     <p
-      className={`relative z-1 mx-auto mt-[19px] mb-0 w-[min(520px,calc(100%-32px))] text-center leading-[1.3] text-black max-[620px]:mt-[58px] ${blurred ? "blur-[6px]" : ""}`}
+      className={`relative z-1 mx-auto mt-4 mb-0 w-[min(40.625rem,calc(100%-16px))] text-left leading-[1.3] text-black max-[620px]:mt-[58px] ${blurred ? "blur-[6px]" : ""}`}
     >
       Rafa is a software designer. Currently working at Docplanner. He works
       across design and engineering. Building websites, apps and design systems
