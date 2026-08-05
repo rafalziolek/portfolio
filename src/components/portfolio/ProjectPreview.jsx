@@ -58,74 +58,82 @@ export default function ProjectPreview({ project, index, onOpen }) {
     imageY.set(y * 1.5);
   };
 
-  const handlePointerLeave = () => {
-    setIsHovered(false);
+  const resetImageTransform = () => {
     rotateX.set(0);
     rotateY.set(0);
     imageX.set(0);
     imageY.set(0);
   };
 
+  const handlePointerLeave = () => {
+    setIsHovered(false);
+    resetImageTransform();
+  };
+
   const footerTransition = reduceMotion
     ? { duration: 0 }
-    : { duration: 0.2, ease: "easeOut" };
+    : { duration: 0.12, ease: "easeOut" };
 
   return (
-    <article
-      className="flex w-full box-border items-center justify-center pt-8 pb-2"
-    >
+    <article className="relative flex w-full box-border items-center justify-center">
       <button
-        className="relative flex aspect-square w-full max-w-[660px] cursor-pointer flex-col items-center justify-center overflow-hidden border border-[var(--ui-border-color)] bg-transparent p-0 text-left outline-none"
+        className="relative block w-full max-w-[660px] cursor-pointer border-0 bg-transparent p-0 text-left outline-none"
         type="button"
         onClick={onOpen}
         onPointerEnter={handlePointerEnter}
-        onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
         aria-label={project.label}
       >
         <span
-          className="flex min-h-0 w-full flex-1 items-center justify-center overflow-hidden px-8 py-16"
-          style={{ perspective: "700px" }}
+          className="flex aspect-square w-full flex-col items-center justify-center overflow-hidden border border-[var(--ui-border-color)]"
+          onPointerMove={handlePointerMove}
+          onPointerLeave={resetImageTransform}
         >
           <span
-            className={`flex h-full items-center will-change-transform ${isLandscape ? "w-full justify-center" : ""}`}
+            className="flex min-h-0 w-full flex-1 items-center justify-center overflow-hidden px-8 py-16"
+            style={{ perspective: "700px" }}
           >
-            <motion.span
+            <span
               className={`flex h-full items-center will-change-transform ${isLandscape ? "w-full justify-center" : ""}`}
-              style={{
-                rotateX: smoothRotateX,
-                rotateY: smoothRotateY,
-                x: smoothImageX,
-                y: smoothImageY,
-                transformStyle: "preserve-3d",
-              }}
             >
-              <ProjectImage
-                project={project}
-                index={index}
-                priority={index === 0}
-              />
-            </motion.span>
+              <motion.span
+                className={`flex h-full items-center will-change-transform ${isLandscape ? "w-full justify-center" : ""}`}
+                style={{
+                  rotateX: smoothRotateX,
+                  rotateY: smoothRotateY,
+                  x: smoothImageX,
+                  y: smoothImageY,
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                <ProjectImage
+                  project={project}
+                  index={index}
+                  priority={index === 0}
+                />
+              </motion.span>
+            </span>
           </span>
         </span>
 
-        <motion.span
-          className="absolute right-0 bottom-0 left-0 block overflow-hidden"
-          initial={false}
-          animate={{
-            opacity: isHovered ? 1 : 0,
-            y: isHovered ? 0 : 4,
-          }}
-          transition={footerTransition}
-          aria-hidden="true"
+        <span
+          className={`absolute top-full right-0 left-0 flex h-12 overflow-hidden ${isHovered ? "pointer-events-auto" : "pointer-events-none"}`}
         >
-          <span className="flex w-full items-center justify-between border-t border-[var(--ui-border-color)] p-4 text-[14px] leading-[1.3]">
+          <motion.span
+            className="flex h-12 w-full items-center justify-between border-x border-b border-[var(--ui-border-color)] px-4 text-[14px] leading-[1.3]"
+            initial={false}
+            animate={{
+              y: isHovered ? 0 : -48,
+            }}
+            transition={footerTransition}
+            aria-hidden="true"
+          >
             <span>{project.name}</span>
             <span className="flex items-center">
               <Icon name="chevron-right" size={13} />
             </span>
-          </span>
-        </motion.span>
+          </motion.span>
+        </span>
       </button>
     </article>
   );

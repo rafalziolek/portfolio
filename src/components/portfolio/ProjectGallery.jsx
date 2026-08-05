@@ -20,7 +20,7 @@ export default function ProjectGallery({ projects }) {
   return (
     <>
       <section
-        className="flex flex-col items-center gap-1 pt-16 pb-1 max-[620px]:pt-8"
+        className="flex flex-col items-center gap-[120px] pt-24 pb-1 max-[620px]:pt-16"
         aria-label="Projects"
       >
         {projects.map((project, index) => (
