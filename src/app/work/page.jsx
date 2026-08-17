@@ -3,7 +3,7 @@ import BitsGallery from "@/components/portfolio/BitsGallery";
 
 export default function Bits() {
   return (
-    <main className="min-h-screen text-black">
+    <main className="min-h-screen bg-black text-white">
       <BitsGallery bits={bits} />
     </main>
   );

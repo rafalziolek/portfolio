@@ -74,16 +74,16 @@ export default function BitsGallery({ bits }) {
   return (
     <LayoutGroup>
       <section
-        className="columns-6 gap-[2px] pt-[95px] max-[960px]:columns-3 max-[620px]:columns-2 max-[620px]:pt-8"
+        className="columns-6 gap-8 px-4 pt-[95px] max-[960px]:columns-3 max-[620px]:columns-2 max-[620px]:pt-8"
         aria-label="Design bits"
       >
         {bits.map((bit, index) => (
-          <figure className="mb-[2px] break-inside-avoid" key={bit.src}>
+          <figure className="mb-8 break-inside-avoid" key={bit.src}>
             <button
               ref={(node) => {
                 triggers.current[index] = node;
               }}
-              className="block w-full cursor-zoom-in border-0 bg-transparent p-0 focus-visible:outline-1 focus-visible:-outline-offset-2 focus-visible:outline-black"
+              className="block w-full cursor-zoom-in border-0 bg-transparent p-0 focus-visible:outline-1 focus-visible:-outline-offset-2 focus-visible:outline-white"
               type="button"
               onClick={() => open(index)}
               aria-label={`Open ${bit.alt}`}

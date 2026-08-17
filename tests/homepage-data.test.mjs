@@ -6,28 +6,27 @@ import { homepageProjects, homepageSocialLinks } from "../src/data/homepage.mjs"
 test("homepage project assets are local and have accessible descriptions", () => {
   assert.equal(homepageProjects.length, 4);
 
-  for (const project of homepageProjects) {
+  homepageProjects.forEach((project, index) => {
     assert.ok(project.name.length > 0);
-    assert.match(project.image, /^\/home\/.+\.png$/);
+    assert.equal(
+      project.image,
+      `/home/project-preview-0${index + 1}.png`,
+    );
+    assert.equal(project.images.length, 1);
+    assert.equal(project.images[0].src, project.image);
+    assert.equal(project.logo, "/home/project-logo.png");
+    assert.match(project.previewFit, /^(cover|contain)$/);
+    assert.ok(project.subtitle.length > 0);
     assert.ok(project.alt.length > 0);
     assert.ok(project.width > 0);
     assert.ok(project.height > 0);
-  }
-
-  const checkoutEditor = homepageProjects.find(
-    ({ name }) => name === "Checkout Editor",
-  );
-  assert.equal(checkoutEditor.image, "/home/checkout-editor.png");
-  assert.deepEqual(
-    [checkoutEditor.width, checkoutEditor.height],
-    [2880, 1800],
-  );
+  });
 });
 
 test("homepage social links point to usable destinations", () => {
   assert.deepEqual(
     homepageSocialLinks.map(({ label }) => label),
-    ["Are.na", "Email", "x.com"],
+    ["x.com", "Instagram", "Are.na", "Email"],
   );
 
   for (const link of homepageSocialLinks) {

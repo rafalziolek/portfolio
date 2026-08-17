@@ -1,36 +1,142 @@
 "use client";
 
+import {
+  getCenteredScrollPosition,
+  getLoopScrollAdjustment,
+  getResizedLoopPosition,
+} from "@/helpers/infinite-scroll.mjs";
 import { moveGalleryPosition } from "@/helpers/gallery-navigation.mjs";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import {
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import Lightbox from "./Lightbox";
+import IntroLinks from "./IntroLinks";
 import ProjectPreview from "./ProjectPreview";
 
-const viewerImageClasses = [
-  "h-[801px] w-[370px] rounded-[64px]",
-  "h-[859px] w-[396px] rounded-[64px]",
-  "h-[859px] w-[396px] rounded-[65px]",
-  "h-auto w-[min(1200px,calc(100vw-390px))] aspect-[8/5] rounded-[12px]",
-];
+const cycleCopies = ["before", "current", "after"];
 
 export default function ProjectGallery({ projects }) {
   const [position, setPosition] = useState(null);
+  const [isReady, setIsReady] = useState(false);
+  const cycleRefs = useRef([]);
+  const introRefs = useRef([]);
+  const metricsRef = useRef(null);
+  const scrollFrameRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+
+    const measureLoop = (initial = false) => {
+      const currentCycle = cycleRefs.current[1];
+      const nextCycle = cycleRefs.current[2];
+      const currentIntro = introRefs.current[1];
+
+      if (!currentCycle || !nextCycle || !currentIntro) return;
+
+      const cycleStart = currentCycle.offsetTop;
+      const cycleStep = nextCycle.offsetTop - cycleStart;
+
+      if (cycleStep <= 0) return;
+
+      const previousMetrics = metricsRef.current;
+      metricsRef.current = { cycleStart, cycleStep };
+
+      const nextScrollPosition =
+        initial || !previousMetrics
+          ? getCenteredScrollPosition(
+              currentIntro.offsetTop,
+              currentIntro.offsetHeight,
+              window.innerHeight,
+            )
+          : getResizedLoopPosition(
+              window.scrollY,
+              previousMetrics.cycleStart,
+              previousMetrics.cycleStep,
+              cycleStart,
+              cycleStep,
+            );
+
+      window.scrollTo(0, nextScrollPosition);
+      setIsReady(true);
+    };
+
+    const normalizeScroll = () => {
+      if (scrollFrameRef.current !== null) return;
+
+      scrollFrameRef.current = window.requestAnimationFrame(() => {
+        scrollFrameRef.current = null;
+        const metrics = metricsRef.current;
+
+        if (!metrics) return;
+
+        const adjustment = getLoopScrollAdjustment(
+          window.scrollY,
+          metrics.cycleStart,
+          metrics.cycleStep,
+        );
+
+        if (adjustment !== 0) {
+          window.scrollTo(0, window.scrollY + adjustment);
+        }
+      });
+    };
+
+    measureLoop(true);
+    const initialCenterFrame = window.requestAnimationFrame(() => {
+      measureLoop(true);
+    });
+
+    const handleResize = () => measureLoop(false);
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(cycleRefs.current[1]);
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", normalizeScroll, { passive: true });
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", normalizeScroll);
+      window.history.scrollRestoration = previousScrollRestoration;
+      window.cancelAnimationFrame(initialCenterFrame);
+
+      if (scrollFrameRef.current !== null) {
+        window.cancelAnimationFrame(scrollFrameRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
       <section
-        className="flex flex-col items-center gap-[120px] pt-24 pb-1 max-[620px]:pt-16"
-        aria-label="Projects"
+        className={`mx-auto flex w-[min(650px,calc(100%-32px))] flex-col gap-16 ${isReady ? "opacity-100" : "opacity-0"}`}
+        aria-label="Works"
       >
-        {projects.map((project, index) => (
-          <ProjectPreview
-            project={project}
-            index={index}
-            onOpen={() => setPosition({ projectIndex: index, imageIndex: 0 })}
-            key={project.image}
-          />
-        ))}
+        {cycleCopies.map((copy, copyIndex) => {
+          const isCurrent = copy === "current";
+
+          return (
+            <GalleryCycle
+              key={copy}
+              projects={projects}
+              interactive={isCurrent}
+              cycleRef={(node) => {
+                cycleRefs.current[copyIndex] = node;
+              }}
+              introRef={(node) => {
+                introRefs.current[copyIndex] = node;
+              }}
+              onOpen={(projectIndex) =>
+                setPosition({ projectIndex, imageIndex: 0 })
+              }
+            />
+          );
+        })}
       </section>
 
       <AnimatePresence>
@@ -47,11 +153,133 @@ export default function ProjectGallery({ projects }) {
   );
 }
 
+function GalleryCycle({
+  projects,
+  interactive,
+  cycleRef,
+  introRef,
+  onOpen,
+}) {
+  const cycleProps = interactive
+    ? {}
+    : {
+        "aria-hidden": true,
+        inert: "",
+      };
+
+  return (
+    <div
+      ref={cycleRef}
+      className={`flex flex-col items-start gap-8 ${interactive ? "" : "pointer-events-none select-none"}`}
+      {...cycleProps}
+    >
+      <div className="flex w-full flex-col gap-16">
+        {projects.slice(0, 2).map((project, index) => (
+          <ProjectPreview
+            project={project}
+            onOpen={() => onOpen(index)}
+            priority={interactive}
+            key={project.image}
+          />
+        ))}
+      </div>
+
+      <PortfolioIntro introElementRef={introRef} />
+
+      <div className="flex w-full flex-col gap-16">
+        {projects.slice(2).map((project, offset) => {
+          const index = offset + 2;
+
+          return (
+            <ProjectPreview
+              project={project}
+              onOpen={() => onOpen(index)}
+              key={project.image}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function PortfolioIntro({ introElementRef }) {
+  return (
+    <section
+      ref={introElementRef}
+      className="flex h-[95svh] w-full flex-col items-center justify-between px-5 text-white"
+      aria-label="Introduction"
+    >
+      <Image
+        className="size-6 rotate-90 invert opacity-30"
+        src="/home/compact-chevron.svg"
+        alt=""
+        width={24}
+        height={24}
+      />
+
+      <div className="flex w-full flex-col gap-6 text-[16px] leading-6 tracking-normal">
+        <p className="m-0">
+          I am a designer and engineer from Warsaw and currently a Senior
+          Product Designer at{" "}
+          <span className="relative mx-1 inline-block h-[1em] w-6 align-middle">
+            <Image
+              className="absolute top-1/2 left-0 size-6 -translate-y-1/2 rounded-[4px]"
+              src="/home/intro-docplanner.png"
+              alt=""
+              width={24}
+              height={24}
+            />
+          </span>{" "}
+          <a
+            className="text-white underline decoration-from-font [text-underline-position:from-font] hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-white motion-reduce:hover:text-black focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white"
+            href="https://www.docplanner.com/"
+          >
+            Docplanner
+          </a>, where I work across several products. My main focus is Watson,
+          our design system.
+        </p>
+
+        <div className="flex flex-col gap-[23px]">
+          <p className="m-0">
+            My work moves between design and engineering, with{" "}
+            <span className="relative mx-1 inline-block h-[1em] w-5 align-middle">
+              <Image
+                className="absolute top-1/2 left-0 h-[19px] w-5 -translate-y-1/2"
+                src="/home/intro-hci.png"
+                alt=""
+                width={20}
+                height={19}
+              />
+            </span>{" "}
+            <span>human-computer interaction</span>{" "}
+            at the center. I am interested in the mental models behind
+            interfaces, and in carrying them through interaction and form.
+          </p>
+          <p className="m-0">
+            I want form and function to strengthen one another, so that a
+            product serves its purpose with clarity and beauty.
+          </p>
+        </div>
+
+        <IntroLinks />
+      </div>
+
+      <Image
+        className="size-6 -rotate-90 invert opacity-30"
+        src="/home/compact-chevron.svg"
+        alt=""
+        width={24}
+        height={24}
+      />
+    </section>
+  );
+}
+
 function ProjectViewer({ projects, position, setPosition, onClose }) {
   const reduceMotion = useReducedMotion();
   const project = projects[position.projectIndex];
   const image = project.images[position.imageIndex];
-  const isLandscape = image.width > image.height;
   const move = useCallback(
     (direction) => {
       setPosition((current) =>
@@ -83,15 +311,11 @@ function ProjectViewer({ projects, position, setPosition, onClose }) {
         <div className="flex min-h-[calc(100vh-32px)] min-w-0 flex-1 items-center justify-center pb-1 max-[760px]:min-h-[calc(100vh-150px)] max-[760px]:w-full">
           <motion.figure
             key={position.projectIndex}
-            className={`relative m-0 flex max-h-[calc(100vh-48px)] max-w-full shrink-0 items-center justify-center overflow-hidden ${
-              isLandscape
-                ? "max-[760px]:h-auto max-[760px]:w-[calc(100vw-24px)] max-[760px]:aspect-[8/5] max-[760px]:rounded-[12px]"
-                : "max-[760px]:h-auto max-[760px]:w-[min(396px,calc(100vw-24px))] max-[760px]:aspect-[396/859] max-[760px]:rounded-[36px]"
-            } ${viewerImageClasses[position.projectIndex]}`}
+            className="relative m-0 flex max-h-[calc(100vh-48px)] max-w-full shrink-0 items-center justify-center overflow-hidden"
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
-                className="size-full"
+                className="flex max-h-[calc(100vh-48px)] max-w-full items-center justify-center"
                 key={image.src}
                 initial={reduceMotion ? false : { opacity: 0, scale: 0.985 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -99,7 +323,7 @@ function ProjectViewer({ projects, position, setPosition, onClose }) {
                 transition={transition}
               >
                 <Image
-                  className="block size-full object-cover"
+                  className="block h-auto max-h-[calc(100vh-48px)] w-auto max-w-full object-contain"
                   src={image.src}
                   alt={image.alt}
                   width={image.width}

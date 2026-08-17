@@ -1,7 +1,5 @@
 "use client";
 
-import MouseCoordinates from "./MouseCoordinates";
-import { homepageSocialLinks } from "@/data/homepage.mjs";
 import { arc, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,11 +7,11 @@ import { usePathname } from "next/navigation";
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 
 const navigationItems = [
-  { id: "projects", label: "Projects", href: "/" },
+  { id: "projects", label: "Works", href: "/" },
   { id: "bits", label: "Bits", href: "/work" },
 ];
 
-const avatarIndicatorX = 11.5;
+const avatarIndicatorX = 10.5;
 
 function getWrapTransition(path) {
   return {
@@ -128,15 +126,12 @@ export default function SiteChrome() {
   function advanceWrapAnimation(animationId) {
     setWrapAnimation((current) => {
       if (!current || current.id !== animationId) return current;
-
       if (current.phase === "menu-exit") {
         return { ...current, phase: "avatar-enter" };
       }
-
       if (current.phase === "avatar-exit") {
         return { ...current, phase: "menu-enter" };
       }
-
       return null;
     });
   }
@@ -145,24 +140,9 @@ export default function SiteChrome() {
 
   return (
     <>
-      <style>{`
-        @keyframes link-blink {
-          0%, 49.999% {
-            background-color: transparent;
-            color: black;
-          }
-          50%, 100% {
-            background-color: black;
-            color: white;
-          }
-        }
-      `}</style>
-
-      <Description blurred={active === "about"} />
-
       <nav
         ref={navigationRef}
-        className="fixed top-4 left-4 z-100 flex items-center gap-[6px] leading-[1.3] max-[620px]:top-2 max-[620px]:left-2"
+        className="fixed top-4 left-4 z-100 flex items-center gap-1 leading-[1.3]"
         aria-label="Main navigation"
       >
         {navigationItems.map((item) => {
@@ -170,11 +150,7 @@ export default function SiteChrome() {
 
           return (
             <Link
-              className={`relative flex h-7 items-center justify-center px-[10px] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black ${
-                isActive
-                  ? "rounded-[2px] border border-[rgba(0,0,0,0.13)] bg-[#f9f9f9] text-black"
-                  : "rounded-[2px] border border-[#e6e6e6] text-black"
-              }`}
+              className={`relative flex h-[26px] items-center justify-center rounded-[2px] bg-[#2a2a2a] px-2 text-[16px] leading-[15px] tracking-[-0.005em] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white ${isActive ? "text-white" : "text-[#a2a2a2]"}`}
               href={item.href}
               aria-current={isActive ? "page" : undefined}
               key={item.id}
@@ -182,17 +158,11 @@ export default function SiteChrome() {
                 navigationItemRefs.current[item.id] = node;
               }}
             >
-              <span aria-hidden="true" className="invisible font-bold">
-                {item.label}
-              </span>
-              <span
-                className={`absolute ${isActive ? "font-bold" : "font-normal tracking-[0.28px]"}`}
-              >
-                {item.label}
-              </span>
+              {item.label}
             </Link>
           );
         })}
+
         {indicatorX !== null && active !== "about" && !wrapAnimation && (
           <ActiveIndicator
             key="menu"
@@ -233,12 +203,9 @@ export default function SiteChrome() {
         )}
       </nav>
 
-      <div
-        ref={avatarRef}
-        className="fixed top-4 right-4 z-100 size-7 max-[620px]:top-2 max-[620px]:right-2"
-      >
+      <div ref={avatarRef} className="fixed top-4 right-4 z-100 size-[26px]">
         <Link
-          className="relative block size-full overflow-hidden rounded-[2px] bg-white after:pointer-events-none after:absolute after:inset-0 after:rounded-[2px] after:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.2)] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-black"
+          className="relative block size-full overflow-hidden rounded-[1px] bg-black focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white"
           href="/about"
           aria-label="About"
           aria-current={active === "about" ? "page" : undefined}
@@ -284,22 +251,6 @@ export default function SiteChrome() {
         )}
       </div>
 
-      <MouseCoordinates />
-
-      <nav
-        className="fixed right-4 bottom-4 z-100 flex items-center gap-3 whitespace-nowrap text-black max-[620px]:hidden"
-        aria-label="Social links"
-      >
-        {homepageSocialLinks.map((link) => (
-          <a
-            className="font-normal text-black no-underline hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-black motion-reduce:hover:text-white focus-visible:outline-1 focus-visible:-outline-offset-3 focus-visible:outline-black"
-            href={link.href}
-            key={link.label}
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
     </>
   );
 }
@@ -312,27 +263,12 @@ function ActiveIndicator({
 }) {
   return (
     <motion.span
-      className="pointer-events-none absolute top-[35px] left-0 size-[5px] rounded-full bg-black will-change-transform"
+      className="pointer-events-none absolute top-[35px] left-0 size-[5px] rounded-full bg-[#e90801] will-change-transform"
       initial={initial}
       animate={animate}
       transition={transition}
       onAnimationComplete={onAnimationComplete}
       aria-hidden="true"
     />
-  );
-}
-
-function Description({ blurred }) {
-  return (
-    <div
-      className="relative z-1 mx-auto mt-4 flex h-7 w-[min(40.625rem,calc(100%-16px))] items-center justify-center max-[620px]:mt-[58px]"
-    >
-      <p
-        className={`m-0 text-center leading-[1.3] text-black ${blurred ? "blur-[6px]" : ""}`}
-      >
-        Rafa is a software designer. Currently working at{" "}
-        <strong>Docplanner</strong>.
-      </p>
-    </div>
   );
 }

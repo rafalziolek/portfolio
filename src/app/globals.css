@@ -3,3 +3,76 @@
 :root {
   --ui-border-color: #dddddd;
 }
+
+.portfolio-font {
+  font-family: "Test Söhne", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-feature-settings: "ornm" 1, "liga" 0;
+}
+
+@keyframes link-blink {
+  0%,
+  49.999% {
+    background-color: transparent;
+    color: white;
+  }
+
+  50%,
+  100% {
+    background-color: white;
+    color: black;
+  }
+}
+
+.about-gallery {
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-gallery__scene {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  perspective-origin: 50% 50%;
+  touch-action: pan-y;
+}
+
+.about-gallery__scene:focus-visible {
+  outline: 1px solid white;
+  outline-offset: -1px;
+}
+
+.about-gallery__scene[data-dragging="true"] {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.about-gallery__cylinder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.about-gallery__slice {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-gallery__cylinder {
+    will-change: auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .about-page {
+    min-height: max(100svh, 234vw);
+  }
+}
