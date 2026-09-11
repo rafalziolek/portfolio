@@ -11,7 +11,7 @@ export default function ProjectPreview({
   return (
     <article className="w-full">
       <button
-        className="group relative block w-full cursor-pointer bg-black p-0 text-left text-[#d5d5d5] shadow-[0_0_0_1px_transparent] outline-none hover:shadow-[0_0_0_1px_#333] focus-visible:shadow-[0_0_0_1px_#333]"
+        className="group relative block w-full cursor-pointer bg-black p-0 text-left text-[#d5d5d5] shadow-[0_0_0_1px_transparent] outline-none focus-visible:shadow-[0_0_0_1px_#333]"
         type="button"
         onClick={onOpen}
         aria-label={project.label}
@@ -35,7 +35,7 @@ export default function ProjectPreview({
         </span>
 
         <span
-          className={`flex h-[34px] items-start gap-3 overflow-hidden px-5 pb-4 text-[12.5px] leading-[14px] transition-opacity duration-150 ${expanded ? "opacity-0" : "opacity-100"}`}
+          className={`flex h-[34px] items-start gap-3 overflow-hidden px-5 pb-4 text-[12.5px] leading-[14px] opacity-0 transition-opacity duration-150 ${expanded ? "" : "group-hover:opacity-100 group-focus-visible:opacity-100"}`}
           aria-hidden={expanded}
         >
           <span className="flex min-w-0 flex-1 items-center gap-[6px] whitespace-nowrap">

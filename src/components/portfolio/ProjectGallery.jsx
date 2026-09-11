@@ -9,6 +9,7 @@ import {
 } from "@/helpers/infinite-scroll.mjs";
 import { portfolioContentTop } from "@/helpers/portfolio-layout.mjs";
 import {
+  advanceScrollEffects,
   canOpenProject,
   getChainedProgress,
   getProjectCamera,
@@ -22,13 +23,12 @@ import Image from "next/image";
 import {
   animate,
   motion,
+  useAnimationFrame,
   useMotionValue,
   useReducedMotion,
-  useSpring,
   useTransform,
-  useVelocity,
 } from "motion/react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import Lightbox from "./Lightbox";
 import ProjectPreview from "./ProjectPreview";
 
@@ -74,16 +74,13 @@ export default function ProjectGallery({ projects }) {
         },
       },
       scrollDistortion: {
-        threshold: [500, 0, 10000, 50],
-        stretch: [6, 0, 50, 0.5],
-        squeeze: [4, 0, 50, 0.5],
-        velocityRange: [2000, 500, 20000, 100],
-        spring: {
-          type: "spring",
-          stiffness: 180,
-          damping: 28,
-          mass: 0.7,
-        },
+        impulseThreshold: [1400, 0, 10000, 50],
+        maxStretch: [6, 0, 50, 0.5],
+        velocityRange: [2800, 500, 20000, 100],
+        blurThreshold: [900, 0, 10000, 50],
+        maxBlur: [2, 0, 8, 0.1],
+        decayMs: [110, 20, 500, 5],
+        responseMs: [35, 10, 200, 5],
       },
     },
     { id: "works-gallery-springboard", persist: true },
@@ -118,8 +115,35 @@ export default function ProjectGallery({ projects }) {
   });
   const distortionOrigin = useMotionValue("50% 50%");
   const visualScrollPosition = useMotionValue(0);
-  const scrollVelocity = useVelocity(visualScrollPosition);
-  const velocity = useSpring(scrollVelocity, params.scrollDistortion.spring);
+  const deformation = useMotionValue(0);
+  const blur = useMotionValue(0);
+  const scrollEffectsRef = useRef({ impulse: 0, stretch: 0, blur: 0 });
+  const sampledScrollRef = useRef(0);
+  const blurId = `works-blur-${useId().replace(/:/g, "")}`;
+  const blurDeviation = useTransform(blur, (value) =>
+    horizontal ? `${value} 0` : `0 ${value}`,
+  );
+  const galleryBlur = useTransform(blur, (value) =>
+    value === 0 ? "none" : `url(#${blurId})`,
+  );
+
+  useAnimationFrame((_, elapsedMs) => {
+    const current = visualScrollPosition.get();
+    const delta = current - sampledScrollRef.current;
+    sampledScrollRef.current = current;
+    if (position || reduceMotion) {
+      scrollEffectsRef.current = { impulse: 0, stretch: 0, blur: 0 };
+      deformation.set(0);
+      blur.set(0);
+      return;
+    }
+    const next = advanceScrollEffects(scrollEffectsRef.current, {
+      ...params.scrollDistortion, delta, elapsedMs,
+    });
+    scrollEffectsRef.current = next;
+    deformation.set(next.stretch);
+    blur.set(next.blur);
+  });
   const cameraTransform = useTransform(
     [
       progress,
@@ -146,26 +170,18 @@ export default function ProjectGallery({ projects }) {
       from + (to - from) * latestProgress,
   );
   const projectHandoff = getProjectHandoffFrame(phase);
-  const horizontalDistortion = useTransform(velocity, (latestVelocity) =>
+  const horizontalDistortion = useTransform(deformation, (stretch) =>
     getDistortionTransform(
       getScrollDistortion({
-        velocity: latestVelocity,
-        threshold: params.scrollDistortion.threshold,
-        velocityRange: params.scrollDistortion.velocityRange,
-        stretch: params.scrollDistortion.stretch,
-        squeeze: params.scrollDistortion.squeeze,
+        stretch,
         direction: "Horizontal",
       }),
     ),
   );
-  const verticalDistortion = useTransform(velocity, (latestVelocity) =>
+  const verticalDistortion = useTransform(deformation, (stretch) =>
     getDistortionTransform(
       getScrollDistortion({
-        velocity: latestVelocity,
-        threshold: params.scrollDistortion.threshold,
-        velocityRange: params.scrollDistortion.velocityRange,
-        stretch: params.scrollDistortion.stretch,
-        squeeze: params.scrollDistortion.squeeze,
+        stretch,
         direction: "Vertical",
       }),
     ),
@@ -372,9 +388,12 @@ export default function ProjectGallery({ projects }) {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("keydown", handleKeyDown);
       userScrollActiveRef.current = false;
-      velocity.jump(0);
+      sampledScrollRef.current = visualScrollPosition.get();
+      scrollEffectsRef.current = { impulse: 0, stretch: 0, blur: 0 };
+      deformation.jump(0);
+      blur.jump(0);
     };
-  }, [horizontal, position, velocity]);
+  }, [blur, deformation, horizontal, position, visualScrollPosition]);
 
   const setProjectPhase = (nextPhase) => {
     phaseRef.current = nextPhase;
@@ -575,6 +594,13 @@ export default function ProjectGallery({ projects }) {
 
   return (
     <>
+      <svg width="0" height="0" aria-hidden="true" className="absolute">
+        <defs>
+          <filter id={blurId} x="-5%" y="-5%" width="110%" height="110%" colorInterpolationFilters="sRGB">
+            <motion.feGaussianBlur stdDeviation={blurDeviation} />
+          </filter>
+        </defs>
+      </svg>
       <motion.section
         ref={stageRef}
         className={`flex ${horizontal ? "w-max flex-row" : "mx-auto w-[min(650px,calc(100%-32px))] flex-col"} ${horizontal ? "min-h-screen items-center" : ""}`}
@@ -609,6 +635,7 @@ export default function ProjectGallery({ projects }) {
               fadeStart={params.openView.fadeStart / 100}
               chainDecay={params.openView.chainDecay / 100}
               reduceMotion={reduceMotion}
+              scrollFilter={position || reduceMotion ? "none" : galleryBlur}
               cycleRef={(node) => {
                 cycleRefs.current[copyIndex] = node;
               }}
@@ -651,6 +678,7 @@ function GalleryCycle({
   fadeStart,
   chainDecay,
   reduceMotion,
+  scrollFilter,
   cycleRef,
   onOpen,
 }) {
@@ -684,6 +712,7 @@ function GalleryCycle({
           fadeStart={fadeStart}
           chainDecay={chainDecay}
           reduceMotion={reduceMotion}
+          scrollFilter={scrollFilter}
           onOpen={onOpen}
         />
       ))}
@@ -708,6 +737,7 @@ function GalleryProject({
   fadeStart,
   chainDecay,
   reduceMotion,
+  scrollFilter,
   onOpen,
 }) {
   const selected = focusedCard?.cardOrder === cardOrder;
@@ -756,6 +786,7 @@ function GalleryProject({
       }
       style={{
         opacity: siblingOpacity,
+        filter: scrollFilter,
         position: selected ? "relative" : undefined,
         transform: siblingTransform,
         transformOrigin: "center center",

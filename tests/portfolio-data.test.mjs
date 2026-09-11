@@ -276,10 +276,11 @@ test("Works exposes wide scroll distortion ranges in DialKit", async () => {
     "src/components/portfolio/ProjectGallery.jsx",
   );
 
-  assert.match(gallery, /threshold: \[500, 0, 10000, 50\]/);
-  assert.match(gallery, /stretch: \[6, 0, 50, 0\.5\]/);
-  assert.match(gallery, /squeeze: \[4, 0, 50, 0\.5\]/);
-  assert.match(gallery, /velocityRange: \[2000, 500, 20000, 100\]/);
+  assert.match(gallery, /impulseThreshold: \[1400, 0, 10000, 50\]/);
+  assert.match(gallery, /maxStretch: \[6, 0, 50, 0\.5\]/);
+  assert.match(gallery, /velocityRange: \[2800, 500, 20000, 100\]/);
+  assert.match(gallery, /blurThreshold: \[900, 0, 10000, 50\]/);
+  assert.match(gallery, /maxBlur: \[2, 0, 8, 0\.1\]/);
 });
 
 test("Works keeps its black canvas across the horizontal scroll area", async () => {
@@ -288,13 +289,16 @@ test("Works keeps its black canvas across the horizontal scroll area", async () 
   assert.match(page, /w-max min-w-full/);
 });
 
-test("project cards keep captions visible and swap their logo for a caret", async () => {
+test("project cards reveal captions on hover or focus without a hover border", async () => {
   const preview = await readSource(
     "src/components/portfolio/ProjectPreview.jsx",
   );
 
   assert.match(preview, /aspect-\[573\/680\]/);
   assert.match(preview, /shadow-\[0_0_0_1px_#333\]/);
+  assert.doesNotMatch(preview, /hover:shadow-/);
+  assert.match(preview, /opacity-0 transition-opacity/);
+  assert.match(preview, /expanded \? "" : "group-hover:opacity-100 group-focus-visible:opacity-100"/);
   assert.match(preview, /\{project\.name\}/);
   assert.match(preview, /\{project\.subtitle\}/);
   assert.match(preview, /src=\{project\.logo\}/);

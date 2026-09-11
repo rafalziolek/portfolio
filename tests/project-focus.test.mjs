@@ -118,56 +118,54 @@ test("moves sibling projects outward before they disappear", () => {
   );
 });
 
-test("stretches and squeezes the whole gallery along the active scroll axis", () => {
-  assert.equal(typeof projectFocus.getScrollDistortion, "function");
-  assert.deepEqual(
-    projectFocus.getScrollDistortion({
-      velocity: 1250,
-      threshold: 250,
-      velocityRange: 2500,
-      stretch: 8,
-      squeeze: 4,
-      direction: "Horizontal",
-    }),
-    {
-      scaleX: 1.032,
-      scaleY: 0.984,
-    },
-  );
+test("deformation preserves area through stretch and spring recoil on either axis", () => {
+  for (const stretch of [-1, 0, 5, 10, 50]) {
+    for (const direction of ["Horizontal", "Vertical"]) {
+      const frame = projectFocus.getScrollDistortion({ stretch, direction });
+      assert.ok(Math.abs(frame.scaleX * frame.scaleY - 1) < 1e-12);
+      assert.equal(direction === "Horizontal" ? frame.scaleX : frame.scaleY, 1 + stretch / 100);
+    }
+  }
 });
 
 test("keeps scroll distortion neutral below its speed threshold", () => {
-  assert.deepEqual(
-    projectFocus.getScrollDistortion({
+  assert.equal(
+    projectFocus.getScrollStretchTarget({
       velocity: 499,
       threshold: 500,
       velocityRange: 2500,
-      stretch: 8,
-      squeeze: 4,
-      direction: "Horizontal",
+      maxStretch: 10,
     }),
-    {
-      scaleX: 1,
-      scaleY: 1,
-    },
+    0,
   );
 });
 
 test("keeps distortion interpolated when the threshold exceeds the old velocity cap", () => {
-  assert.deepEqual(
-    projectFocus.getScrollDistortion({
+  assert.equal(
+    projectFocus.getScrollStretchTarget({
       velocity: 11000,
       threshold: 10000,
       velocityRange: 2000,
-      stretch: 50,
-      squeeze: 50,
-      direction: "Horizontal",
+      maxStretch: 50,
     }),
-    {
-      scaleX: 1.25,
-      scaleY: 0.75,
-    },
+    25,
   );
+});
+
+test("stretch target eases into the threshold and cap and follows deceleration", () => {
+  const target = (velocity) => projectFocus.getScrollStretchTarget({
+    velocity, threshold: 500, velocityRange: 2000, maxStretch: 10,
+  });
+  assert.equal(target(0), 0);
+  assert.equal(target(500), 0);
+  assert.ok(target(520) < 0.01);
+  assert.equal(target(1500), 5);
+  assert.ok(10 - target(2480) < 0.01);
+  assert.equal(target(2500), 10);
+  assert.equal(target(10000), 10);
+  assert.equal(target(-1500), target(1500));
+  assert.ok(target(2000) > target(1500));
+  assert.ok(target(1500) > target(1000));
 });
 
 test("hands the project image over only after opening finishes", () => {
@@ -183,4 +181,64 @@ test("hands the project image over only after opening finishes", () => {
     heroOpacity: 0,
     stageOpacity: 1,
   });
+});
+
+const scrollSettings = {
+  impulseThreshold: 1400, velocityRange: 2800, maxStretch: 6,
+  blurThreshold: 900, maxBlur: 2, decayMs: 110, responseMs: 35,
+};
+const restingScroll = { impulse: 0, stretch: 0, blur: 0 };
+
+test("slow continuous input stays completely sharp and undeformed", () => {
+  let frame = restingScroll;
+  for (let i = 0; i < 120; i++) {
+    frame = projectFocus.advanceScrollEffects(frame, {
+      ...scrollSettings, delta: 5, elapsedMs: 1000 / 60,
+    });
+    assert.deepEqual({ stretch: frame.stretch, blur: frame.blur }, { stretch: 0, blur: 0 });
+  }
+});
+
+test("blur has its own threshold, below the deformation threshold", () => {
+  const frame = projectFocus.advanceScrollEffects(restingScroll, {
+    ...scrollSettings, delta: 20, elapsedMs: 1000 / 60,
+  });
+  assert.equal(frame.stretch, 0);
+  assert.ok(frame.blur > 0);
+});
+
+test("fast input is capped and settles to exact rest without recoil", () => {
+  let frame = projectFocus.advanceScrollEffects(restingScroll, {
+    ...scrollSettings, delta: 10000, elapsedMs: 1000 / 60,
+  });
+  assert.ok(frame.stretch > 0 && frame.stretch < scrollSettings.maxStretch);
+  assert.ok(frame.blur > 0 && frame.blur < scrollSettings.maxBlur);
+  assert.ok(frame.impulse <= scrollSettings.impulseThreshold + scrollSettings.velocityRange);
+  for (let i = 0; i < 180; i++) {
+    frame = projectFocus.advanceScrollEffects(frame, {
+      ...scrollSettings, delta: 0, elapsedMs: 1000 / 60,
+    });
+    assert.ok(frame.stretch >= 0 && frame.stretch <= scrollSettings.maxStretch);
+    assert.ok(frame.blur >= 0 && frame.blur <= scrollSettings.maxBlur);
+  }
+  assert.deepEqual(frame, restingScroll);
+});
+
+test("scroll response is direction-independent and stable at different refresh rates", () => {
+  const simulate = (hz, sign) => {
+    let frame = restingScroll;
+    for (let i = 0; i < hz; i++) {
+      frame = projectFocus.advanceScrollEffects(frame, {
+        ...scrollSettings, delta: sign * 2800 / hz, elapsedMs: 1000 / hz,
+      });
+    }
+    return frame;
+  };
+  const normal = simulate(60, 1);
+  assert.deepEqual(normal, simulate(60, -1));
+  for (const hz of [30, 120, 144]) {
+    const frame = simulate(hz, 1);
+    assert.ok(Math.abs(frame.stretch - normal.stretch) < 0.001);
+    assert.ok(Math.abs(frame.blur - normal.blur) < 0.001);
+  }
 });

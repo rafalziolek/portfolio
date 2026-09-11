@@ -89,24 +89,55 @@ export function getProjectHandoffFrame(phase) {
   };
 }
 
-export function getScrollDistortion({
+export function getScrollStretchTarget({
   velocity,
   threshold,
   velocityRange,
-  stretch,
-  squeeze,
-  direction,
+  maxStretch,
 }) {
   const speed = Math.abs(velocity);
   const activeSpeed = Math.max(speed - threshold, 0);
   const availableSpeed = Math.max(velocityRange, 1);
   const ratio = clamp(activeSpeed / availableSpeed, 0, 1);
-  const axisScale = 1 + Math.abs(ratio) * (stretch / 100);
-  const crossAxisScale = 1 - Math.abs(ratio) * (squeeze / 100);
+  // Smoothstep meets both the dead zone and the cap with zero slope.
+  return ratio * ratio * (3 - 2 * ratio) * maxStretch;
+}
+
+export function getScrollDistortion({ stretch, direction }) {
+  const axisScale = 1 + stretch / 100;
+  const crossAxisScale = 1 / axisScale;
 
   return {
     scaleX: direction === "Horizontal" ? axisScale : crossAxisScale,
     scaleY: direction === "Vertical" ? axisScale : crossAxisScale,
+  };
+}
+
+export function advanceScrollEffects(state, {
+  delta, elapsedMs, impulseThreshold, velocityRange, maxStretch,
+  blurThreshold, maxBlur, decayMs, responseMs,
+}) {
+  // Sample displacement once per frame, not event-to-event velocity spikes.
+  const elapsed = Math.max(elapsedMs, 1);
+  const input = Math.abs(delta) * 1000 / elapsed;
+  const cap = Math.max(impulseThreshold, blurThreshold) + velocityRange;
+  const impulse = Math.min(cap, Math.max(
+    input, state.impulse * Math.exp(-elapsed / Math.max(decayMs, 1)),
+  ));
+  const stretchTarget = getScrollStretchTarget({
+    velocity: impulse, threshold: impulseThreshold, velocityRange, maxStretch,
+  });
+  const blurTarget = getScrollStretchTarget({
+    velocity: impulse, threshold: blurThreshold, velocityRange, maxStretch: maxBlur,
+  });
+  const blend = 1 - Math.exp(-elapsed / Math.max(responseMs, 1));
+  const stretch = state.stretch + (stretchTarget - state.stretch) * blend;
+  const blur = state.blur + (blurTarget - state.blur) * blend;
+
+  return {
+    impulse: impulse < 0.001 ? 0 : impulse,
+    stretch: stretch < 0.001 && stretchTarget === 0 ? 0 : stretch,
+    blur: blur < 0.001 && blurTarget === 0 ? 0 : blur,
   };
 }
 
