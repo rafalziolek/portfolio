@@ -26,7 +26,7 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "dialkit": "^1.4.3",
+    "dialkit": "^2.0.2",
     "motion": "^12.42.2"
   }
 }
