@@ -63,3 +63,21 @@ export function getResizedLoopPosition(
 
   return nextCycleStart + progress * nextCycleStep;
 }
+
+export function getScrollInputDelta(deltaX, deltaY) {
+  return Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
+}
+
+export function getVisualScrollDelta({ current, previous, cycleStep }) {
+  const delta = current - previous;
+
+  if (
+    Number.isFinite(cycleStep) &&
+    cycleStep > 0 &&
+    Math.abs(Math.abs(delta) - cycleStep) < 1
+  ) {
+    return 0;
+  }
+
+  return delta;
+}

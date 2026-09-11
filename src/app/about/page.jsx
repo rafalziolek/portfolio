@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { homepageSocialLinks } from "@/data/homepage.mjs";
+import { portfolioContentTop } from "@/helpers/portfolio-layout.mjs";
 // Cylinder version preserved for later in AboutPhotoGallery.jsx.
 
 const outsideDesign = [
   {
-    src: "/about/tinkering.png",
-    alt: "Color experiments on a laptop and tablet",
-    label: "Tinkering with colors",
+    src: "/about/photography.jpg",
+    alt: "A photography shoot in a studio",
+    label: "Photography",
     aspect: "aspect-[276/300]",
   },
   {
@@ -31,14 +32,13 @@ const outsideDesign = [
 
 export default function About() {
   return (
-    <main className="about-page min-h-screen bg-black pt-[168px] text-white">
+    <main
+      className="about-page min-h-screen bg-black text-white"
+      style={{ paddingTop: portfolioContentTop }}
+    >
       <div className="mx-auto flex min-h-[1703px] w-[min(600px,100%)] flex-col gap-16">
         <section className="w-full px-4">
           <div className="flex w-full flex-col items-start gap-12">
-            <h1 className="m-0 w-full text-center text-[40px] leading-[1.5] font-medium tracking-[-0.8px]">
-              Info
-            </h1>
-
             <div className="flex w-full flex-col items-start gap-6 text-[16px] leading-6 font-normal tracking-normal">
               <p className="m-0">
                 I am a designer and developer from Warsaw, working primarily
@@ -60,8 +60,8 @@ export default function About() {
                 </p>
               </div>
 
-              <span className="flex h-[26px] items-center gap-1 rounded-[2px] border border-[#191919] bg-[#191919] px-2 text-[16px] leading-[15px] tracking-[-0.005em]">
-                Resume
+              <span className="flex items-center gap-2 rounded-[4px] border border-[#191919] bg-[#191919] p-3 text-[16px] leading-[15px] font-bold tracking-[-0.005em]">
+                <span className="font-[Arial]">Resume</span>
                 <span className="text-[14px] leading-none" aria-hidden="true">
                   ↓
                 </span>
@@ -74,26 +74,6 @@ export default function About() {
           <OutsideDesign />
           <Connect />
         </div>
-
-        <footer className="mt-auto px-4 pb-[18px] text-[12.5px] leading-[18px] text-[#a2a2a2]">
-          Shout out to{" "}
-          <Image
-            className="mx-1 inline-block h-[17px] w-6 rounded-[1px] object-cover align-middle opacity-90"
-            src="/tesla.jpg"
-            alt=""
-            width={24}
-            height={17}
-          />
-          Tesla and{" "}
-          <Image
-            className="mx-1 inline-block h-[17px] w-6 rounded-[1px] object-cover align-middle opacity-90"
-            src="/newton.jpg"
-            alt=""
-            width={24}
-            height={17}
-          />
-          Newton, for providing emotional support while building this website.
-        </footer>
       </div>
     </main>
   );

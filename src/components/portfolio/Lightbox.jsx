@@ -19,6 +19,7 @@ export default function Lightbox({
   onNext,
   controls,
   closeOnOutsideClick = false,
+  backdropClassName = "bg-white/70 backdrop-blur-[16px]",
 }) {
   const reduceMotion = useReducedMotion();
   const popupRef = useRef(null);
@@ -30,12 +31,18 @@ export default function Lightbox({
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+    if (
+      onPrevious &&
+      (event.key === "ArrowLeft" || event.key === "ArrowUp")
+    ) {
       event.preventDefault();
       onPrevious();
     }
 
-    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+    if (
+      onNext &&
+      (event.key === "ArrowRight" || event.key === "ArrowDown")
+    ) {
       event.preventDefault();
       onNext();
     }
@@ -52,7 +59,7 @@ export default function Lightbox({
     >
       <Dialog.Portal>
         <Dialog.Backdrop
-          className={`fixed inset-0 z-150 bg-white/70 backdrop-blur-[16px] ${isClosing ? "pointer-events-none" : ""}`}
+          className={`fixed inset-0 z-150 ${backdropClassName} ${isClosing ? "pointer-events-none" : ""}`}
           render={
             <motion.div
               initial={reduceMotion ? false : { opacity: 0 }}
@@ -107,21 +114,23 @@ function LightboxControls({
 }) {
   return (
     <div className={`flex gap-2 ${className}`}>
-      <div className="flex">
-        <IconButton
-          className="-mr-px"
-          borderClassName={borderClassName}
-          icon="chevron-left"
-          label={previousLabel}
-          onClick={onPrevious}
-        />
-        <IconButton
-          borderClassName={borderClassName}
-          icon="chevron-right"
-          label={nextLabel}
-          onClick={onNext}
-        />
-      </div>
+      {onPrevious && onNext && (
+        <div className="flex">
+          <IconButton
+            className="-mr-px"
+            borderClassName={borderClassName}
+            icon="chevron-left"
+            label={previousLabel}
+            onClick={onPrevious}
+          />
+          <IconButton
+            borderClassName={borderClassName}
+            icon="chevron-right"
+            label={nextLabel}
+            onClick={onNext}
+          />
+        </div>
+      )}
       <Dialog.Close
         render={
           <IconButton

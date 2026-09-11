@@ -5,8 +5,17 @@
 }
 
 .portfolio-font {
-  font-family: "Test Söhne", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-feature-settings: "ornm" 1, "liga" 0;
+}
+
+[data-site-chrome] {
+  transition: opacity 180ms ease;
+}
+
+body[data-project-open="true"] [data-site-chrome] {
+  pointer-events: none;
+  opacity: 0;
 }
 
 @keyframes link-blink {
@@ -66,6 +75,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  [data-site-chrome] {
+    transition-duration: 0ms;
+  }
+
   .about-gallery__cylinder {
     will-change: auto;
   }

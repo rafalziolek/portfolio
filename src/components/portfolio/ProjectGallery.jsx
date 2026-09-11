@@ -4,117 +4,588 @@ import {
   getCenteredScrollPosition,
   getLoopScrollAdjustment,
   getResizedLoopPosition,
+  getScrollInputDelta,
+  getVisualScrollDelta,
 } from "@/helpers/infinite-scroll.mjs";
-import { moveGalleryPosition } from "@/helpers/gallery-navigation.mjs";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { portfolioContentTop } from "@/helpers/portfolio-layout.mjs";
+import {
+  canOpenProject,
+  getChainedProgress,
+  getProjectCamera,
+  getProjectHandoffFrame,
+  getProjectSiblingFrame,
+  getProjectTransitionFrame,
+  getScrollDistortion,
+} from "@/helpers/project-focus.mjs";
+import { useDialKit } from "dialkit";
 import Image from "next/image";
 import {
-  useCallback,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+  animate,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+  useVelocity,
+} from "motion/react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Lightbox from "./Lightbox";
-import IntroLinks from "./IntroLinks";
 import ProjectPreview from "./ProjectPreview";
 
 const cycleCopies = ["before", "current", "after"];
+const restingCamera = { scale: 1, x: 0, y: 0 };
+const restingCard = { opacity: 1, scale: 1, x: 0, y: 0 };
+const scrollKeys = new Set([
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowUp",
+  "End",
+  "Home",
+  "PageDown",
+  "PageUp",
+  " ",
+]);
 
 export default function ProjectGallery({ projects }) {
+  const params = useDialKit(
+    "Works gallery",
+    {
+      direction: {
+        type: "select",
+        options: ["Horizontal", "Vertical"],
+        default: "Horizontal",
+      },
+      openView: {
+        projectHeight: [90, 60, 100, 1],
+        projectWidth: [97, 70, 100, 1],
+        otherProjectsOpacity: [0, 0, 100, 5],
+        siblingTravel: [420, 0, 1200, 20],
+        siblingScale: [70, 20, 100, 5],
+        fadeStart: [85, 0, 95, 5],
+        chainDecay: [8, 0, 20, 1],
+      },
+      motion: {
+        masterSpring: {
+          type: "spring",
+          stiffness: 300,
+          damping: 35,
+          mass: 1,
+        },
+      },
+      scrollDistortion: {
+        threshold: [500, 0, 10000, 50],
+        stretch: [6, 0, 50, 0.5],
+        squeeze: [4, 0, 50, 0.5],
+        velocityRange: [2000, 500, 20000, 100],
+        spring: {
+          type: "spring",
+          stiffness: 180,
+          damping: 28,
+          mass: 0.7,
+        },
+      },
+    },
+    { id: "works-gallery-springboard", persist: true },
+  );
+  const horizontal = params.direction === "Horizontal";
+  const reduceMotion = useReducedMotion();
   const [position, setPosition] = useState(null);
+  const [focusedCard, setFocusedCard] = useState(null);
+  const [phase, setPhase] = useState("idle");
+  const [viewerKey, setViewerKey] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  const stageRef = useRef(null);
+  const focusedCardRef = useRef(null);
+  const phaseRef = useRef("idle");
   const cycleRefs = useRef([]);
-  const introRefs = useRef([]);
   const metricsRef = useRef(null);
-  const scrollFrameRef = useRef(null);
+  const userScrollActiveRef = useRef(false);
+  const lastScrollPositionRef = useRef(null);
+  const animationRef = useRef(null);
+  const progress = useMotionValue(0);
+  const cameraFromX = useMotionValue(0);
+  const cameraFromY = useMotionValue(0);
+  const cameraFromScale = useMotionValue(1);
+  const cameraToX = useMotionValue(0);
+  const cameraToY = useMotionValue(0);
+  const cameraToScale = useMotionValue(1);
+  const viewerFrom = useMotionValue(0);
+  const viewerTo = useMotionValue(0);
+  const cardTransition = useMotionValue({
+    fromFrames: new Map(),
+    targetCardOrder: null,
+  });
+  const distortionOrigin = useMotionValue("50% 50%");
+  const visualScrollPosition = useMotionValue(0);
+  const scrollVelocity = useVelocity(visualScrollPosition);
+  const velocity = useSpring(scrollVelocity, params.scrollDistortion.spring);
+  const cameraTransform = useTransform(
+    [
+      progress,
+      cameraFromX,
+      cameraFromY,
+      cameraFromScale,
+      cameraToX,
+      cameraToY,
+      cameraToScale,
+    ],
+    ([latestProgress, fromX, fromY, fromScale, toX, toY, toScale]) => {
+      const frame = getProjectTransitionFrame({
+        from: { x: fromX, y: fromY, scale: fromScale },
+        to: { x: toX, y: toY, scale: toScale },
+        progress: latestProgress,
+      });
 
+      return `translate3d(${frame.x}px, ${frame.y}px, 0) scale(${frame.scale})`;
+    },
+  );
+  const viewerProgress = useTransform(
+    [progress, viewerFrom, viewerTo],
+    ([latestProgress, from, to]) =>
+      from + (to - from) * latestProgress,
+  );
+  const projectHandoff = getProjectHandoffFrame(phase);
+  const horizontalDistortion = useTransform(velocity, (latestVelocity) =>
+    getDistortionTransform(
+      getScrollDistortion({
+        velocity: latestVelocity,
+        threshold: params.scrollDistortion.threshold,
+        velocityRange: params.scrollDistortion.velocityRange,
+        stretch: params.scrollDistortion.stretch,
+        squeeze: params.scrollDistortion.squeeze,
+        direction: "Horizontal",
+      }),
+    ),
+  );
+  const verticalDistortion = useTransform(velocity, (latestVelocity) =>
+    getDistortionTransform(
+      getScrollDistortion({
+        velocity: latestVelocity,
+        threshold: params.scrollDistortion.threshold,
+        velocityRange: params.scrollDistortion.velocityRange,
+        stretch: params.scrollDistortion.stretch,
+        squeeze: params.scrollDistortion.squeeze,
+        direction: "Vertical",
+      }),
+    ),
+  );
+  const galleryDistortion = horizontal
+    ? horizontalDistortion
+    : verticalDistortion;
   useLayoutEffect(() => {
     const previousScrollRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
 
+    const getAxis = () => ({
+      offset: horizontal ? "offsetLeft" : "offsetTop",
+      position: horizontal ? window.scrollX : window.scrollY,
+    });
+
+    const setDistortionOrigin = (value) => {
+      const origin = horizontal
+        ? `${value + window.innerWidth / 2}px 50%`
+        : `50% ${value + window.innerHeight / 2}px`;
+
+      distortionOrigin.jump(origin);
+
+      if (!focusedCardRef.current && stageRef.current) {
+        stageRef.current.style.transformOrigin = origin;
+      }
+    };
+
+    const scrollToPosition = (value) => {
+      lastScrollPositionRef.current = value;
+      setDistortionOrigin(value);
+
+      if (horizontal) {
+        window.scrollTo(value, 0);
+      } else {
+        window.scrollTo(0, value);
+      }
+    };
+
     const measureLoop = (initial = false) => {
+      if (focusedCardRef.current) return;
+
       const currentCycle = cycleRefs.current[1];
       const nextCycle = cycleRefs.current[2];
-      const currentIntro = introRefs.current[1];
 
-      if (!currentCycle || !nextCycle || !currentIntro) return;
+      if (!currentCycle || !nextCycle) return;
 
-      const cycleStart = currentCycle.offsetTop;
-      const cycleStep = nextCycle.offsetTop - cycleStart;
+      const axis = getAxis();
+      const currentProject = currentCycle.firstElementChild;
+      const cycleStart =
+        horizontal && currentProject
+          ? getCenteredScrollPosition(
+              currentProject.offsetLeft,
+              currentProject.offsetWidth,
+              window.innerWidth,
+            )
+          : currentCycle[axis.offset];
+      const cycleStep =
+        nextCycle[axis.offset] - currentCycle[axis.offset];
 
       if (cycleStep <= 0) return;
 
       const previousMetrics = metricsRef.current;
       metricsRef.current = { cycleStart, cycleStep };
 
-      const nextScrollPosition =
-        initial || !previousMetrics
-          ? getCenteredScrollPosition(
-              currentIntro.offsetTop,
-              currentIntro.offsetHeight,
-              window.innerHeight,
-            )
-          : getResizedLoopPosition(
-              window.scrollY,
-              previousMetrics.cycleStart,
-              previousMetrics.cycleStep,
-              cycleStart,
-              cycleStep,
-            );
+      if (initial || !previousMetrics) {
+        scrollToPosition(cycleStart);
+      } else {
+        scrollToPosition(
+          getResizedLoopPosition(
+            axis.position,
+            previousMetrics.cycleStart,
+            previousMetrics.cycleStep,
+            cycleStart,
+            cycleStep,
+          ),
+        );
+      }
 
-      window.scrollTo(0, nextScrollPosition);
       setIsReady(true);
     };
 
-    const normalizeScroll = () => {
-      if (scrollFrameRef.current !== null) return;
+    const handleScroll = () => {
+      const axis = getAxis();
+      const previousPosition = lastScrollPositionRef.current;
+      lastScrollPositionRef.current = axis.position;
+      setDistortionOrigin(axis.position);
 
-      scrollFrameRef.current = window.requestAnimationFrame(() => {
-        scrollFrameRef.current = null;
-        const metrics = metricsRef.current;
+      if (userScrollActiveRef.current && previousPosition !== null) {
+        const delta = getVisualScrollDelta({
+          current: axis.position,
+          previous: previousPosition,
+          cycleStep: metricsRef.current?.cycleStep,
+        });
 
-        if (!metrics) return;
-
-        const adjustment = getLoopScrollAdjustment(
-          window.scrollY,
-          metrics.cycleStart,
-          metrics.cycleStep,
-        );
-
-        if (adjustment !== 0) {
-          window.scrollTo(0, window.scrollY + adjustment);
+        if (delta !== 0) {
+          visualScrollPosition.set(visualScrollPosition.get() + delta);
         }
-      });
+      }
+
+      const metrics = metricsRef.current;
+
+      if (!metrics || focusedCardRef.current) return;
+
+      const adjustment = getLoopScrollAdjustment(
+        axis.position,
+        metrics.cycleStart,
+        metrics.cycleStep,
+      );
+
+      if (adjustment !== 0) {
+        scrollToPosition(axis.position + adjustment);
+      }
     };
 
+    userScrollActiveRef.current = false;
+    lastScrollPositionRef.current = getAxis().position;
     measureLoop(true);
     const initialCenterFrame = window.requestAnimationFrame(() => {
       measureLoop(true);
     });
-
     const handleResize = () => measureLoop(false);
     const resizeObserver = new ResizeObserver(handleResize);
-    resizeObserver.observe(cycleRefs.current[1]);
+
+    for (const cycle of cycleRefs.current) {
+      if (cycle) resizeObserver.observe(cycle);
+    }
     window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", normalizeScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       resizeObserver.disconnect();
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", normalizeScroll);
+      window.removeEventListener("scroll", handleScroll);
       window.history.scrollRestoration = previousScrollRestoration;
       window.cancelAnimationFrame(initialCenterFrame);
-
-      if (scrollFrameRef.current !== null) {
-        window.cancelAnimationFrame(scrollFrameRef.current);
-      }
+      userScrollActiveRef.current = false;
+      lastScrollPositionRef.current = null;
     };
-  }, []);
+  }, [distortionOrigin, horizontal, visualScrollPosition]);
+
+  useEffect(() => {
+    if (!position) return undefined;
+
+    const siteChrome = document.querySelector("[data-site-chrome]");
+    document.body.dataset.projectOpen = "true";
+    siteChrome?.setAttribute("inert", "");
+    siteChrome?.setAttribute("aria-hidden", "true");
+
+    return () => {
+      delete document.body.dataset.projectOpen;
+      siteChrome?.removeAttribute("inert");
+      siteChrome?.removeAttribute("aria-hidden");
+    };
+  }, [position]);
+
+  useEffect(
+    () => () => {
+      animationRef.current?.stop();
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (position) return;
+
+    const handleWheel = (event) => {
+      if (
+        event.target instanceof Element &&
+        event.target.closest(".dialkit-root")
+      ) {
+        return;
+      }
+
+      const delta = horizontal
+        ? getScrollInputDelta(event.deltaX, event.deltaY)
+        : event.deltaY;
+
+      if (delta === 0) return;
+      userScrollActiveRef.current = true;
+
+      if (!horizontal) return;
+
+      event.preventDefault();
+      window.scrollTo(window.scrollX + delta, 0);
+    };
+
+    const handleTouchStart = () => {
+      userScrollActiveRef.current = true;
+    };
+
+    const handleKeyDown = (event) => {
+      if (scrollKeys.has(event.key)) userScrollActiveRef.current = true;
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("keydown", handleKeyDown);
+      userScrollActiveRef.current = false;
+      velocity.jump(0);
+    };
+  }, [horizontal, position, velocity]);
+
+  const setProjectPhase = (nextPhase) => {
+    phaseRef.current = nextPhase;
+    setPhase(nextPhase);
+  };
+
+  const getCurrentCamera = () =>
+    getProjectTransitionFrame({
+      from: {
+        x: cameraFromX.get(),
+        y: cameraFromY.get(),
+        scale: cameraFromScale.get(),
+      },
+      to: {
+        x: cameraToX.get(),
+        y: cameraToY.get(),
+        scale: cameraToScale.get(),
+      },
+      progress: progress.get(),
+    });
+
+  const getCurrentViewerProgress = () =>
+    viewerFrom.get() +
+    (viewerTo.get() - viewerFrom.get()) * progress.get();
+
+  const captureCardFrames = () => {
+    const frames = new Map();
+
+    for (let cardOrder = 0; cardOrder < projects.length * 3; cardOrder += 1) {
+      frames.set(
+        cardOrder,
+        getGalleryCardFrame({
+          cardOrder,
+          transition: cardTransition.get(),
+          progress: progress.get(),
+          cameraScale: cameraToScale.get(),
+          direction: params.direction,
+          siblingTravel: params.openView.siblingTravel,
+          siblingScale: params.openView.siblingScale,
+          dimmedOpacity: params.openView.otherProjectsOpacity / 100,
+          fadeStart: params.openView.fadeStart / 100,
+          chainDecay: params.openView.chainDecay / 100,
+        }),
+      );
+    }
+
+    return frames;
+  };
+
+  const openProject = (copyIndex, projectIndex, event) => {
+    const stage = stageRef.current;
+    const frame = event.currentTarget.querySelector("[data-project-image]");
+
+    if (!stage || !frame || !canOpenProject(phaseRef.current)) return;
+
+    const stagePosition = getLayoutPosition(stage);
+    const framePosition = getLayoutPosition(frame);
+
+    const measurements = {
+      cardOrder: copyIndex * projects.length + projectIndex,
+      frameWidth: frame.offsetWidth,
+      frameHeight: frame.offsetHeight,
+      localCenterX:
+        framePosition.x - stagePosition.x + frame.offsetWidth / 2,
+      localCenterY:
+        framePosition.y - stagePosition.y + frame.offsetHeight / 2,
+      stageLeft: stagePosition.x - window.scrollX,
+      stageTop: stagePosition.y - window.scrollY,
+      viewportWidth: window.innerWidth,
+      viewportHeight: window.innerHeight,
+    };
+    const targetCamera = getProjectCamera({
+      ...measurements,
+      projectWidth: params.openView.projectWidth,
+      projectHeight: params.openView.projectHeight,
+    });
+    const focusedMeasurements = {
+      ...measurements,
+      heroWidth: measurements.frameWidth * targetCamera.scale,
+      heroHeight: measurements.frameHeight * targetCamera.scale,
+    };
+    const currentCamera = getCurrentCamera();
+    const currentViewerProgress = getCurrentViewerProgress();
+    const currentCardFrames = captureCardFrames();
+
+    animationRef.current?.stop();
+    progress.jump(0);
+    cameraFromX.set(currentCamera.x);
+    cameraFromY.set(currentCamera.y);
+    cameraFromScale.set(currentCamera.scale);
+    cameraToX.set(targetCamera.x);
+    cameraToY.set(targetCamera.y);
+    cameraToScale.set(targetCamera.scale);
+    viewerFrom.set(currentViewerProgress);
+    viewerTo.set(1);
+    cardTransition.set({
+      fromFrames: currentCardFrames,
+      targetCardOrder: measurements.cardOrder,
+    });
+    focusedCardRef.current = focusedMeasurements;
+    setFocusedCard(focusedMeasurements);
+    setPosition({ projectIndex, imageIndex: 0 });
+    setViewerKey((current) => current + 1);
+    setProjectPhase("opening");
+
+    if (reduceMotion) {
+      progress.jump(1);
+      setProjectPhase("open");
+    } else {
+      animationRef.current = animate(progress, 1, {
+        ...params.motion.masterSpring,
+        onComplete: () => {
+          if (phaseRef.current === "opening") setProjectPhase("open");
+        },
+      });
+    }
+  };
+
+  const closeProject = () => {
+    if (
+      !focusedCard ||
+      (phaseRef.current !== "opening" && phaseRef.current !== "open")
+    ) {
+      return;
+    }
+
+    const currentCamera = getCurrentCamera();
+    const currentViewerProgress = getCurrentViewerProgress();
+    const currentCardFrames = captureCardFrames();
+
+    const finishClosing = () => {
+      progress.jump(0);
+      cameraFromX.set(restingCamera.x);
+      cameraFromY.set(restingCamera.y);
+      cameraFromScale.set(restingCamera.scale);
+      cameraToX.set(restingCamera.x);
+      cameraToY.set(restingCamera.y);
+      cameraToScale.set(restingCamera.scale);
+      viewerFrom.set(0);
+      viewerTo.set(0);
+      cardTransition.set({
+        fromFrames: new Map(),
+        targetCardOrder: null,
+      });
+      focusedCardRef.current = null;
+      setPosition(null);
+      setFocusedCard(null);
+      setProjectPhase("idle");
+    };
+
+    animationRef.current?.stop();
+    progress.jump(0);
+    cameraFromX.set(currentCamera.x);
+    cameraFromY.set(currentCamera.y);
+    cameraFromScale.set(currentCamera.scale);
+    cameraToX.set(restingCamera.x);
+    cameraToY.set(restingCamera.y);
+    cameraToScale.set(restingCamera.scale);
+    viewerFrom.set(currentViewerProgress);
+    viewerTo.set(0);
+    cardTransition.set({
+      fromFrames: currentCardFrames,
+      targetCardOrder: null,
+    });
+    setProjectPhase("closing");
+
+    if (reduceMotion) {
+      finishClosing();
+    } else {
+      animationRef.current = animate(progress, 1, {
+        ...params.motion.masterSpring,
+        onComplete: finishClosing,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (!focusedCard || phase === "closing") return;
+
+    const targetCamera = getProjectCamera({
+      ...focusedCard,
+      projectWidth: params.openView.projectWidth,
+      projectHeight: params.openView.projectHeight,
+    });
+
+    cameraToX.set(targetCamera.x);
+    cameraToY.set(targetCamera.y);
+    cameraToScale.set(targetCamera.scale);
+  }, [
+    cameraToScale,
+    cameraToX,
+    cameraToY,
+    focusedCard,
+    phase,
+    params.openView.projectHeight,
+    params.openView.projectWidth,
+  ]);
 
   return (
     <>
-      <section
-        className={`mx-auto flex w-[min(650px,calc(100%-32px))] flex-col gap-16 ${isReady ? "opacity-100" : "opacity-0"}`}
+      <motion.section
+        ref={stageRef}
+        className={`flex ${horizontal ? "w-max flex-row" : "mx-auto w-[min(650px,calc(100%-32px))] flex-col"} ${horizontal ? "min-h-screen items-center" : ""}`}
+        style={{
+          opacity: isReady ? projectHandoff.stageOpacity : 0,
+          transform:
+            position || reduceMotion ? cameraTransform : galleryDistortion,
+          transformOrigin:
+            position || reduceMotion ? "0 0" : distortionOrigin,
+        }}
+        data-gallery-stage
         aria-label="Works"
       >
         {cycleCopies.map((copy, copyIndex) => {
@@ -124,247 +595,344 @@ export default function ProjectGallery({ projects }) {
             <GalleryCycle
               key={copy}
               projects={projects}
+              copyIndex={copyIndex}
+              horizontal={horizontal}
               interactive={isCurrent}
+              focusedCard={focusedCard}
+              progress={progress}
+              cardTransition={cardTransition}
+              cameraScale={cameraToScale}
+              direction={params.direction}
+              siblingTravel={params.openView.siblingTravel}
+              siblingScale={params.openView.siblingScale}
+              dimmedOpacity={params.openView.otherProjectsOpacity / 100}
+              fadeStart={params.openView.fadeStart / 100}
+              chainDecay={params.openView.chainDecay / 100}
+              reduceMotion={reduceMotion}
               cycleRef={(node) => {
                 cycleRefs.current[copyIndex] = node;
               }}
-              introRef={(node) => {
-                introRefs.current[copyIndex] = node;
-              }}
-              onOpen={(projectIndex) =>
-                setPosition({ projectIndex, imageIndex: 0 })
+              onOpen={(projectIndex, event) =>
+                openProject(copyIndex, projectIndex, event)
               }
             />
           );
         })}
-      </section>
+      </motion.section>
 
-      <AnimatePresence>
-        {position && (
-          <ProjectViewer
-            projects={projects}
-            position={position}
-            setPosition={setPosition}
-            onClose={() => setPosition(null)}
-          />
-        )}
-      </AnimatePresence>
+      {position && (
+        <ProjectViewer
+          key={viewerKey}
+          project={projects[position.projectIndex]}
+          heroFrame={focusedCard}
+          heroOpacity={projectHandoff.heroOpacity}
+          reduceMotion={reduceMotion}
+          progress={viewerProgress}
+          onClose={closeProject}
+        />
+      )}
     </>
   );
 }
 
 function GalleryCycle({
   projects,
+  copyIndex,
+  horizontal,
   interactive,
+  focusedCard,
+  progress,
+  cardTransition,
+  cameraScale,
+  direction,
+  siblingTravel,
+  siblingScale,
+  dimmedOpacity,
+  fadeStart,
+  chainDecay,
+  reduceMotion,
   cycleRef,
-  introRef,
   onOpen,
 }) {
-  const cycleProps = interactive
-    ? {}
-    : {
-        "aria-hidden": true,
-        inert: "",
-      };
-
   return (
     <div
       ref={cycleRef}
-      className={`flex flex-col items-start gap-8 ${interactive ? "" : "pointer-events-none select-none"}`}
-      {...cycleProps}
+      className={`flex gap-16 ${horizontal ? "flex-row" : "flex-col"} ${horizontal ? "w-max" : "w-full"}`}
+      style={
+        horizontal
+          ? { paddingLeft: portfolioContentTop }
+          : { paddingTop: portfolioContentTop }
+      }
+      aria-hidden={interactive ? undefined : true}
     >
-      <div className="flex w-full flex-col gap-16">
-        {projects.slice(0, 2).map((project, index) => (
-          <ProjectPreview
-            project={project}
-            onOpen={() => onOpen(index)}
-            priority={interactive}
-            key={project.image}
-          />
-        ))}
-      </div>
-
-      <PortfolioIntro introElementRef={introRef} />
-
-      <div className="flex w-full flex-col gap-16">
-        {projects.slice(2).map((project, offset) => {
-          const index = offset + 2;
-
-          return (
-            <ProjectPreview
-              project={project}
-              onOpen={() => onOpen(index)}
-              key={project.image}
-            />
-          );
-        })}
-      </div>
+      {projects.map((project, index) => (
+        <GalleryProject
+          key={project.image}
+          project={project}
+          cardOrder={copyIndex * projects.length + index}
+          projectIndex={index}
+          horizontal={horizontal}
+          interactive={interactive}
+          focusedCard={focusedCard}
+          progress={progress}
+          cardTransition={cardTransition}
+          cameraScale={cameraScale}
+          direction={direction}
+          siblingTravel={siblingTravel}
+          siblingScale={siblingScale}
+          dimmedOpacity={dimmedOpacity}
+          fadeStart={fadeStart}
+          chainDecay={chainDecay}
+          reduceMotion={reduceMotion}
+          onOpen={onOpen}
+        />
+      ))}
     </div>
   );
 }
 
-function PortfolioIntro({ introElementRef }) {
+function GalleryProject({
+  project,
+  cardOrder,
+  projectIndex,
+  horizontal,
+  interactive,
+  focusedCard,
+  progress,
+  cardTransition,
+  cameraScale,
+  direction,
+  siblingTravel,
+  siblingScale,
+  dimmedOpacity,
+  fadeStart,
+  chainDecay,
+  reduceMotion,
+  onOpen,
+}) {
+  const selected = focusedCard?.cardOrder === cardOrder;
+  const siblingTransform = useTransform(
+    [progress, cardTransition, cameraScale],
+    ([masterProgress, transition, targetCameraScale]) => {
+      const frame = getGalleryCardFrame({
+        cardOrder,
+        transition,
+        progress: reduceMotion ? 1 : masterProgress,
+        cameraScale: targetCameraScale,
+        direction,
+        siblingTravel,
+        siblingScale,
+        dimmedOpacity,
+        fadeStart,
+        chainDecay,
+      });
+
+      return `translate3d(${frame.x}px, ${frame.y}px, 0) scale(${frame.scale})`;
+    },
+  );
+  const siblingOpacity = useTransform(
+    [progress, cardTransition, cameraScale],
+    ([masterProgress, transition, targetCameraScale]) =>
+      getGalleryCardFrame({
+        cardOrder,
+        transition,
+        progress: reduceMotion ? 1 : masterProgress,
+        cameraScale: targetCameraScale,
+        direction,
+        siblingTravel,
+        siblingScale,
+        dimmedOpacity,
+        fadeStart,
+        chainDecay,
+      }).opacity,
+  );
+
   return (
-    <section
-      ref={introElementRef}
-      className="flex h-[95svh] w-full flex-col items-center justify-between px-5 text-white"
-      aria-label="Introduction"
+    <motion.div
+      className={
+        horizontal
+          ? "w-[min(650px,calc(100vw-32px))] shrink-0"
+          : "w-full"
+      }
+      style={{
+        opacity: siblingOpacity,
+        position: selected ? "relative" : undefined,
+        transform: siblingTransform,
+        transformOrigin: "center center",
+        zIndex: selected ? 1 : undefined,
+      }}
     >
-      <Image
-        className="size-6 rotate-90 invert opacity-30"
-        src="/home/compact-chevron.svg"
-        alt=""
-        width={24}
-        height={24}
+      <ProjectPreview
+        project={project}
+        expanded={Boolean(focusedCard) && selected}
+        onOpen={(event) => onOpen(projectIndex, event)}
+        priority={interactive && projectIndex < 2}
+        tabIndex={interactive ? undefined : -1}
       />
-
-      <div className="flex w-full flex-col gap-6 text-[16px] leading-6 tracking-normal">
-        <p className="m-0">
-          I am a designer and engineer from Warsaw and currently a Senior
-          Product Designer at{" "}
-          <span className="relative mx-1 inline-block h-[1em] w-6 align-middle">
-            <Image
-              className="absolute top-1/2 left-0 size-6 -translate-y-1/2 rounded-[4px]"
-              src="/home/intro-docplanner.png"
-              alt=""
-              width={24}
-              height={24}
-            />
-          </span>{" "}
-          <a
-            className="text-white underline decoration-from-font [text-underline-position:from-font] hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-white motion-reduce:hover:text-black focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white"
-            href="https://www.docplanner.com/"
-          >
-            Docplanner
-          </a>, where I work across several products. My main focus is Watson,
-          our design system.
-        </p>
-
-        <div className="flex flex-col gap-[23px]">
-          <p className="m-0">
-            My work moves between design and engineering, with{" "}
-            <span className="relative mx-1 inline-block h-[1em] w-5 align-middle">
-              <Image
-                className="absolute top-1/2 left-0 h-[19px] w-5 -translate-y-1/2"
-                src="/home/intro-hci.png"
-                alt=""
-                width={20}
-                height={19}
-              />
-            </span>{" "}
-            <span>human-computer interaction</span>{" "}
-            at the center. I am interested in the mental models behind
-            interfaces, and in carrying them through interaction and form.
-          </p>
-          <p className="m-0">
-            I want form and function to strengthen one another, so that a
-            product serves its purpose with clarity and beauty.
-          </p>
-        </div>
-
-        <IntroLinks />
-      </div>
-
-      <Image
-        className="size-6 -rotate-90 invert opacity-30"
-        src="/home/compact-chevron.svg"
-        alt=""
-        width={24}
-        height={24}
-      />
-    </section>
+    </motion.div>
   );
 }
 
-function ProjectViewer({ projects, position, setPosition, onClose }) {
-  const reduceMotion = useReducedMotion();
-  const project = projects[position.projectIndex];
-  const image = project.images[position.imageIndex];
-  const move = useCallback(
-    (direction) => {
-      setPosition((current) =>
-        moveGalleryPosition(projects, current, direction),
-      );
-    },
-    [projects, setPosition],
-  );
+function getGalleryCardFrame({
+  cardOrder,
+  transition,
+  progress,
+  cameraScale,
+  direction,
+  siblingTravel,
+  siblingScale,
+  dimmedOpacity,
+  fadeStart,
+  chainDecay,
+}) {
+  const from = transition.fromFrames.get(cardOrder) ?? restingCard;
+  const targetCardOrder = transition.targetCardOrder;
+  let target = restingCard;
+  let transitionProgress = progress;
 
-  const transition = reduceMotion
-    ? { duration: 0 }
-    : { duration: 0.24, ease: [0.215, 0.61, 0.355, 1] };
+  if (targetCardOrder !== null && targetCardOrder !== cardOrder) {
+    const distance = Math.abs(cardOrder - targetCardOrder);
+    transitionProgress = getChainedProgress({
+      progress,
+      distance,
+      decay: chainDecay,
+    });
+    target = getProjectSiblingFrame({
+      progress: 1,
+      direction,
+      side: Math.sign(cardOrder - targetCardOrder),
+      travel: siblingTravel,
+      cameraScale,
+      finalScale: siblingScale,
+      finalOpacity: dimmedOpacity,
+      fadeStart,
+    });
+  }
+
+  const frame = getProjectTransitionFrame({
+    from,
+    to: target,
+    progress: transitionProgress,
+  });
+
+  return {
+    ...frame,
+    opacity:
+      from.opacity + (target.opacity - from.opacity) * transitionProgress,
+  };
+}
+
+function ProjectViewer({
+  project,
+  heroFrame,
+  heroOpacity,
+  reduceMotion,
+  progress,
+  onClose,
+}) {
+  const caseStudyOpacity = useTransform(
+    progress,
+    reduceMotion ? [0, 1] : [0, 0.75, 1],
+    reduceMotion ? [1, 1] : [0, 0, 1],
+  );
 
   return (
     <Lightbox
-      className="overflow-y-auto leading-[1.3] text-black"
+      className="overflow-y-auto overscroll-contain leading-[1.3] text-black"
+      backdropClassName="bg-transparent"
       ariaLabelledBy="project-viewer-title"
       onClose={onClose}
-      onPrevious={() => move(-1)}
-      onNext={() => move(1)}
       controls={{
-        className: "absolute top-4 right-4 z-1",
-        previousLabel: "Previous image",
-        nextLabel: "Next image",
+        className: "fixed top-4 left-4 z-10",
         closeLabel: "Close project",
       }}
     >
-      <div className="flex min-h-full items-start gap-4 p-4 max-[760px]:flex-col max-[760px]:gap-3 max-[760px]:p-3">
-        <div className="flex min-h-[calc(100vh-32px)] min-w-0 flex-1 items-center justify-center pb-1 max-[760px]:min-h-[calc(100vh-150px)] max-[760px]:w-full">
-          <motion.figure
-            key={position.projectIndex}
-            className="relative m-0 flex max-h-[calc(100vh-48px)] max-w-full shrink-0 items-center justify-center overflow-hidden"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                className="flex max-h-[calc(100vh-48px)] max-w-full items-center justify-center"
-                key={image.src}
-                initial={reduceMotion ? false : { opacity: 0, scale: 0.985 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.985 }}
-                transition={transition}
-              >
-                <Image
-                  className="block h-auto max-h-[calc(100vh-48px)] w-auto max-w-full object-contain"
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  sizes="(max-width: 760px) calc(100vw - 24px), calc(100vw - 390px)"
-                  priority
-                />
-              </motion.div>
-            </AnimatePresence>
-          </motion.figure>
+      <figure
+        className="relative m-0 flex min-h-dvh items-center justify-center overflow-hidden"
+        data-project-hero
+      >
+        <motion.div
+          className="absolute inset-0 bg-black"
+          style={{ opacity: heroOpacity }}
+        />
+        <motion.div
+          className="relative overflow-hidden bg-[#f7f7f7]"
+          style={{
+            height: heroFrame.heroHeight,
+            opacity: heroOpacity,
+            width: heroFrame.heroWidth,
+          }}
+        >
+          <Image
+            className={`block size-full ${project.previewFit === "contain" ? "object-contain" : "object-cover"}`}
+            src={project.image}
+            alt={project.alt}
+            fill
+            sizes="100vw"
+            priority
+          />
+        </motion.div>
+      </figure>
+
+      <motion.article
+        className="relative min-h-dvh bg-black px-[var(--case-study-padding,51px)] py-24 text-white max-[760px]:px-4"
+        style={{ opacity: caseStudyOpacity }}
+      >
+        <div className="mx-auto grid w-full max-w-[1200px] grid-cols-[minmax(0,1fr)_minmax(260px,420px)] gap-16 max-[760px]:grid-cols-1">
+          <header>
+            <h2 className="m-0 text-[clamp(36px,6vw,96px)] leading-[0.95] font-bold">
+              {project.name}
+            </h2>
+          </header>
+
+          <div>
+            <p className="m-0 text-[clamp(20px,2vw,32px)] leading-[1.15]">
+              {project.description}
+            </p>
+            <dl className="mt-12 mb-0">
+              {project.details.map(([label, value]) => (
+                <div
+                  className="flex items-center gap-4 border-t border-white/30 py-3"
+                  key={label}
+                >
+                  <dt className="opacity-50">{label}</dt>
+                  <dd className="m-0 ml-auto text-right">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
 
-        <aside className="flex w-[326px] shrink-0 flex-col items-end gap-4 pt-12 max-[760px]:w-full max-[760px]:items-stretch">
-          <motion.div
-            className="w-full overflow-hidden border border-black bg-white/94 shadow-[0_11px_0_-6px_rgba(0,0,0,0.05)] backdrop-blur-[4.3px]"
-            key={position.projectIndex}
-            initial={reduceMotion ? false : { opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={transition}
-            aria-live="polite"
-          >
-            <div className="px-5 pt-5 pb-2">
-              <h2 className="m-0 font-bold" id="project-viewer-title">
-                {project.name}
-              </h2>
-              <p className="mt-4 mb-0">{project.description}</p>
-              <dl className="mt-4 mb-0">
-                {project.details.map(([label, value]) => (
-                  <div
-                    className="flex items-center gap-2 border-b border-black py-3 last:border-b-0"
-                    key={label}
-                  >
-                    <dt className="w-[92px] shrink-0 opacity-50">{label}</dt>
-                    <dd className="m-0 min-w-0 flex-1 text-right">{value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </motion.div>
-        </aside>
-      </div>
+        {project.images.slice(1).map((image) => (
+          <Image
+            className="mx-auto mt-24 block h-auto w-full max-w-[1600px]"
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            sizes="100vw"
+            key={image.src}
+          />
+        ))}
+      </motion.article>
     </Lightbox>
   );
+}
+
+function getDistortionTransform({ scaleX, scaleY }) {
+  return `scaleX(${scaleX}) scaleY(${scaleY})`;
+}
+
+function getLayoutPosition(element) {
+  let current = element;
+  let x = 0;
+  let y = 0;
+
+  while (current) {
+    x += current.offsetLeft;
+    y += current.offsetTop;
+    current = current.offsetParent;
+  }
+
+  return { x, y };
 }

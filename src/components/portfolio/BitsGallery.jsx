@@ -5,6 +5,7 @@ import {
   initialBitsViewerState,
 } from "@/helpers/bits-viewer-state.mjs";
 import { moveCarouselIndex } from "@/helpers/gallery-navigation.mjs";
+import { portfolioContentTop } from "@/helpers/portfolio-layout.mjs";
 import {
   AnimatePresence,
   LayoutGroup,
@@ -16,6 +17,7 @@ import { useEffect, useReducer, useRef } from "react";
 import Lightbox from "./Lightbox";
 
 export default function BitsGallery({ bits }) {
+  const displayedBits = [...bits, ...bits.slice(6), ...bits.slice(0, 6)];
   const [viewer, dispatch] = useReducer(
     bitsViewerReducer,
     initialBitsViewerState,
@@ -55,7 +57,7 @@ export default function BitsGallery({ bits }) {
 
   const move = (direction) => {
     const index = moveCarouselIndex(
-      bits.length,
+      displayedBits.length,
       viewer.activeIndex,
       direction,
     );
@@ -74,11 +76,15 @@ export default function BitsGallery({ bits }) {
   return (
     <LayoutGroup>
       <section
-        className="columns-6 gap-8 px-4 pt-[95px] max-[960px]:columns-3 max-[620px]:columns-2 max-[620px]:pt-8"
+        className="columns-6 gap-8 px-4 max-[960px]:columns-3 max-[620px]:columns-2"
+        style={{ paddingTop: portfolioContentTop }}
         aria-label="Design bits"
       >
-        {bits.map((bit, index) => (
-          <figure className="mb-8 break-inside-avoid" key={bit.src}>
+        {displayedBits.map((bit, index) => (
+          <figure
+            className="mb-8 break-inside-avoid"
+            key={`${bit.src}-${index}`}
+          >
             <button
               ref={(node) => {
                 triggers.current[index] = node;
@@ -122,7 +128,7 @@ export default function BitsGallery({ bits }) {
       >
         {viewerVisible && (
           <BitViewer
-            bit={bits[viewer.activeIndex]}
+            bit={displayedBits[viewer.activeIndex]}
             activeIndex={viewer.activeIndex}
             layoutAnimationsEnabled={layoutAnimationsEnabled}
             onPrevious={() => move(-1)}

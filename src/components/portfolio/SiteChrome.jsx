@@ -1,274 +1,252 @@
 "use client";
 
-import { arc, motion, useReducedMotion } from "motion/react";
+import {
+  getScrollDistance,
+  portfolioHeaderPaddingX,
+  portfolioMenuItemStep,
+  portfolioNavTop,
+} from "@/helpers/portfolio-layout.mjs";
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import SocialNavLinks from "./SocialNavLinks";
 
 const navigationItems = [
   { id: "projects", label: "Works", href: "/" },
   { id: "bits", label: "Bits", href: "/work" },
 ];
 
-const avatarIndicatorX = 10.5;
+const headerPaddingX = portfolioHeaderPaddingX;
+const menuItemStep = portfolioMenuItemStep;
+const navTop = portfolioNavTop;
+const scrollFadeThreshold = 200;
+const scrollRevealDelay = 500;
+const menuProximity = 32;
 
-function getWrapTransition(path) {
-  return {
-    duration: 0.1,
-    ease: [0.215, 0.61, 0.355, 1],
-    path,
-  };
+const getScrollPosition = () => ({
+  x: window.scrollX,
+  y: window.scrollY,
+});
+
+function isPointerNearMenu(nav, clientX, clientY) {
+  const rect = nav.getBoundingClientRect();
+
+  return (
+    clientX >= rect.left - menuProximity &&
+    clientX <= rect.right + menuProximity &&
+    clientY >= rect.top - menuProximity &&
+    clientY <= rect.bottom + menuProximity
+  );
 }
 
 export default function SiteChrome() {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
-  const navigationRef = useRef(null);
-  const navigationItemRefs = useRef({});
-  const avatarRef = useRef(null);
-  const previousActiveRef = useRef(null);
-  const lastMenuXRef = useRef(null);
-  const transitionSequenceRef = useRef(0);
-  const [indicatorX, setIndicatorX] = useState(null);
-  const [wrapAnimation, setWrapAnimation] = useState(null);
+  const [menuIdle, setMenuIdle] = useState(true);
+  const [menuEngaged, setMenuEngaged] = useState(false);
+  const navRef = useRef(null);
+  const scrollRevealTimeoutRef = useRef(null);
+  const scrollAnchorRef = useRef({ x: 0, y: 0 });
+  const hasPassedThresholdRef = useRef(false);
+  const navigationLockRef = useRef(false);
   const active =
     navigationItems.find((item) => item.href === pathname)?.id ??
     (pathname === "/about" ? "about" : null);
-  const indicatorPath = useMemo(
-    () =>
-      arc({
-        strength: 0.3,
-        direction: active === "bits" ? "ccw" : "cw",
-      }),
-    [active],
-  );
-  const clockwiseWrapPath = useMemo(
-    () => arc({ strength: 0.3, direction: "cw" }),
-    [],
-  );
-  const counterClockwiseWrapPath = useMemo(
-    () => arc({ strength: 0.3, direction: "ccw" }),
-    [],
+
+  const menuActiveIndex = navigationItems.findIndex(
+    (item) => item.id === active,
   );
 
-  useLayoutEffect(() => {
-    const navigation = navigationRef.current;
-    const avatar = avatarRef.current;
-    const previousActive = previousActiveRef.current;
-    const animationId = ++transitionSequenceRef.current;
+  useEffect(() => {
+    setMenuIdle(true);
+    hasPassedThresholdRef.current = false;
+    scrollAnchorRef.current = getScrollPosition();
+    window.clearTimeout(scrollRevealTimeoutRef.current);
+    navigationLockRef.current = true;
 
-    if (!active || !navigation || !avatar) {
-      setWrapAnimation(null);
-      previousActiveRef.current = active;
-      return;
-    }
+    const unlockTimer = window.setTimeout(() => {
+      navigationLockRef.current = false;
+      scrollAnchorRef.current = getScrollPosition();
+    }, scrollRevealDelay);
 
-    const navigationBounds = navigation.getBoundingClientRect();
-    const avatarBounds = avatar.getBoundingClientRect();
-    const menuEdgeX = -navigationBounds.left - 6;
-    const avatarEdgeX =
-      document.documentElement.clientWidth - avatarBounds.left + 1;
-    let nextIndicatorX = lastMenuXRef.current;
+    return () => {
+      window.clearTimeout(unlockTimer);
+    };
+  }, [pathname]);
 
-    if (active !== "about") {
-      const activeItem = navigationItemRefs.current[active];
+  useEffect(() => {
+    scrollAnchorRef.current = getScrollPosition();
 
-      if (!activeItem) {
-        setWrapAnimation(null);
-        previousActiveRef.current = active;
-        return;
+    if (reduceMotion) return;
+
+    const handleScroll = () => {
+      if (navigationLockRef.current) return;
+
+      if (!hasPassedThresholdRef.current) {
+        const distance = getScrollDistance(
+          scrollAnchorRef.current,
+          getScrollPosition(),
+        );
+
+        if (distance < scrollFadeThreshold) return;
+
+        hasPassedThresholdRef.current = true;
       }
 
-      const activeItemBounds = activeItem.getBoundingClientRect();
-      nextIndicatorX =
-        activeItemBounds.left -
-        navigationBounds.left +
-        activeItemBounds.width / 2 -
-        2.5;
-      lastMenuXRef.current = nextIndicatorX;
-      setIndicatorX(nextIndicatorX);
-    }
+      setMenuIdle(false);
+      window.clearTimeout(scrollRevealTimeoutRef.current);
+      scrollRevealTimeoutRef.current = window.setTimeout(() => {
+        hasPassedThresholdRef.current = false;
+        scrollAnchorRef.current = getScrollPosition();
+        setMenuIdle(true);
+      }, scrollRevealDelay);
+    };
 
-    if (
-      !reduceMotion &&
-      active === "about" &&
-      previousActive &&
-      previousActive !== "about" &&
-      nextIndicatorX !== null
-    ) {
-      setWrapAnimation({
-        id: animationId,
-        phase: "menu-exit",
-        menuX: nextIndicatorX,
-        menuEdgeX,
-        avatarEdgeX,
-      });
-    } else if (
-      !reduceMotion &&
-      active !== "about" &&
-      previousActive === "about"
-    ) {
-      setWrapAnimation({
-        id: animationId,
-        phase: "avatar-exit",
-        menuX: nextIndicatorX,
-        menuEdgeX,
-        avatarEdgeX,
-      });
-    } else {
-      setWrapAnimation(null);
-    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    previousActiveRef.current = active;
-  }, [active, reduceMotion]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.clearTimeout(scrollRevealTimeoutRef.current);
+    };
+  }, [reduceMotion]);
 
-  function advanceWrapAnimation(animationId) {
-    setWrapAnimation((current) => {
-      if (!current || current.id !== animationId) return current;
-      if (current.phase === "menu-exit") {
-        return { ...current, phase: "avatar-enter" };
-      }
-      if (current.phase === "avatar-exit") {
-        return { ...current, phase: "menu-enter" };
-      }
-      return null;
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    const updateMenuEngagement = (event) => {
+      const nav = navRef.current;
+
+      if (!nav) return;
+
+      setMenuEngaged(isPointerNearMenu(nav, event.clientX, event.clientY));
+    };
+
+    window.addEventListener("pointermove", updateMenuEngagement, {
+      passive: true,
     });
-  }
+
+    return () => {
+      window.removeEventListener("pointermove", updateMenuEngagement);
+    };
+  }, [reduceMotion]);
 
   if (!active) return null;
 
+  const showMenuExtras = menuIdle || menuEngaged || reduceMotion;
+  const showSlash = active !== "about" || showMenuExtras;
+
+  const fadeTransition = reduceMotion
+    ? { duration: 0 }
+    : { duration: 0.2, ease: [0.645, 0.045, 0.355, 1] };
+
   return (
-    <>
-      <nav
-        ref={navigationRef}
-        className="fixed top-4 left-4 z-100 flex items-center gap-1 leading-[1.3]"
-        aria-label="Main navigation"
+    <nav
+      ref={navRef}
+      className="fixed inset-x-0 z-100 flex items-start gap-3 overflow-visible font-[Arial] font-bold text-white"
+      data-site-chrome
+      style={{
+        top: navTop,
+        marginTop: -menuItemStep,
+        paddingTop: menuItemStep,
+        paddingLeft: headerPaddingX,
+        paddingRight: headerPaddingX,
+      }}
+      aria-label="Main navigation"
+      onPointerEnter={() => setMenuEngaged(true)}
+      onPointerLeave={(event) => {
+        const nav = navRef.current;
+
+        if (!nav) {
+          setMenuEngaged(false);
+          return;
+        }
+
+        setMenuEngaged(
+          isPointerNearMenu(nav, event.clientX, event.clientY),
+        );
+      }}
+    >
+      <span className="flex h-[26px] items-center">
+        <span
+          className={`inline-flex size-[24px] rounded-full ${
+            active === "about"
+              ? "shadow-[0_0_0_1px_#000000,0_0_0_4px_#024DF4]"
+              : ""
+          }`}
+        >
+          <Link
+            className="size-[24px] overflow-hidden rounded-full focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white"
+            href="/about"
+            aria-label="About"
+            aria-current={active === "about" ? "page" : undefined}
+          >
+            <Image
+              className="block size-full object-cover"
+              src="/home/avatar.png"
+              alt=""
+              width={64}
+              height={64}
+              priority
+            />
+          </Link>
+        </span>
+      </span>
+
+      <motion.span
+        className="text-[21px] leading-[125%] text-[#5a5a5a]"
+        initial={false}
+        animate={{ opacity: showSlash ? 1 : 0 }}
+        transition={fadeTransition}
+        aria-hidden="true"
+      >
+        /
+      </motion.span>
+
+      <motion.div
+        className="flex min-w-0 flex-1 flex-col gap-0 overflow-visible"
+        initial={false}
+        animate={{
+          y: menuActiveIndex >= 0 ? menuActiveIndex * -menuItemStep : 0,
+        }}
+        transition={
+          reduceMotion
+            ? { duration: 0 }
+            : { duration: 0.2, ease: [0.645, 0.045, 0.355, 1] }
+        }
       >
         {navigationItems.map((item) => {
           const isActive = item.id === active;
+          const showInactiveLink = isActive || showMenuExtras;
+          const shouldAnimateOpacity = !isActive && !reduceMotion;
 
           return (
-            <Link
-              className={`relative flex h-[26px] items-center justify-center rounded-[2px] bg-[#2a2a2a] px-2 text-[16px] leading-[15px] tracking-[-0.005em] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white ${isActive ? "text-white" : "text-[#a2a2a2]"}`}
-              href={item.href}
-              aria-current={isActive ? "page" : undefined}
+            <motion.div
+              className="h-[27px] last:h-[26px]"
+              initial={false}
+              animate={{ opacity: showInactiveLink ? 1 : 0 }}
+              transition={shouldAnimateOpacity ? fadeTransition : { duration: 0 }}
               key={item.id}
-              ref={(node) => {
-                navigationItemRefs.current[item.id] = node;
-              }}
             >
-              {item.label}
-            </Link>
+              <Link
+                className={`w-max text-[24px] leading-[110%] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white ${isActive ? "text-white" : "text-[#5a5a5a]"}`}
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                tabIndex={showInactiveLink ? undefined : -1}
+                aria-hidden={showInactiveLink ? undefined : true}
+              >
+                {item.label}
+              </Link>
+            </motion.div>
           );
         })}
+      </motion.div>
 
-        {indicatorX !== null && active !== "about" && !wrapAnimation && (
-          <ActiveIndicator
-            key="menu"
-            initial={false}
-            animate={{ x: indicatorX, y: 0 }}
-            transition={
-              reduceMotion
-                ? { duration: 0 }
-                : {
-                    duration: 0.2,
-                    ease: [0.215, 0.61, 0.355, 1],
-                    path: indicatorPath,
-                  }
-            }
-          />
-        )}
-        {wrapAnimation?.phase === "menu-exit" && (
-          <ActiveIndicator
-            key={`menu-exit-${wrapAnimation.id}`}
-            initial={{ x: wrapAnimation.menuX, y: 0 }}
-            animate={{ x: wrapAnimation.menuEdgeX, y: 0 }}
-            transition={getWrapTransition(clockwiseWrapPath)}
-            onAnimationComplete={() =>
-              advanceWrapAnimation(wrapAnimation.id)
-            }
-          />
-        )}
-        {wrapAnimation?.phase === "menu-enter" && (
-          <ActiveIndicator
-            key={`menu-enter-${wrapAnimation.id}`}
-            initial={{ x: wrapAnimation.menuEdgeX, y: 0 }}
-            animate={{ x: wrapAnimation.menuX, y: 0 }}
-            transition={getWrapTransition(counterClockwiseWrapPath)}
-            onAnimationComplete={() =>
-              advanceWrapAnimation(wrapAnimation.id)
-            }
-          />
-        )}
-      </nav>
-
-      <div ref={avatarRef} className="fixed top-4 right-4 z-100 size-[26px]">
-        <Link
-          className="relative block size-full overflow-hidden rounded-[1px] bg-black focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white"
-          href="/about"
-          aria-label="About"
-          aria-current={active === "about" ? "page" : undefined}
-        >
-          <Image
-            className="block size-full object-cover"
-            src="/home/avatar.png"
-            alt=""
-            width={64}
-            height={64}
-            priority
-          />
-        </Link>
-        {active === "about" && !wrapAnimation && (
-          <ActiveIndicator
-            key="avatar"
-            initial={false}
-            animate={{ x: avatarIndicatorX, y: 0 }}
-            transition={{ duration: 0 }}
-          />
-        )}
-        {wrapAnimation?.phase === "avatar-enter" && (
-          <ActiveIndicator
-            key={`avatar-enter-${wrapAnimation.id}`}
-            initial={{ x: wrapAnimation.avatarEdgeX, y: 0 }}
-            animate={{ x: avatarIndicatorX, y: 0 }}
-            transition={getWrapTransition(clockwiseWrapPath)}
-            onAnimationComplete={() =>
-              advanceWrapAnimation(wrapAnimation.id)
-            }
-          />
-        )}
-        {wrapAnimation?.phase === "avatar-exit" && (
-          <ActiveIndicator
-            key={`avatar-exit-${wrapAnimation.id}`}
-            initial={{ x: avatarIndicatorX, y: 0 }}
-            animate={{ x: wrapAnimation.avatarEdgeX, y: 0 }}
-            transition={getWrapTransition(counterClockwiseWrapPath)}
-            onAnimationComplete={() =>
-              advanceWrapAnimation(wrapAnimation.id)
-            }
-          />
-        )}
-      </div>
-
-    </>
-  );
-}
-
-function ActiveIndicator({
-  animate,
-  initial,
-  transition,
-  onAnimationComplete,
-}) {
-  return (
-    <motion.span
-      className="pointer-events-none absolute top-[35px] left-0 size-[5px] rounded-full bg-[#e90801] will-change-transform"
-      initial={initial}
-      animate={animate}
-      transition={transition}
-      onAnimationComplete={onAnimationComplete}
-      aria-hidden="true"
-    />
+      <SocialNavLinks
+        visible={showMenuExtras}
+        fadeTransition={fadeTransition}
+      />
+    </nav>
   );
 }

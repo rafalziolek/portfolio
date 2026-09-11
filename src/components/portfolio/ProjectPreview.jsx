@@ -5,6 +5,8 @@ export default function ProjectPreview({
   project,
   onOpen,
   priority = false,
+  tabIndex,
+  expanded = false,
 }) {
   return (
     <article className="w-full">
@@ -13,9 +15,13 @@ export default function ProjectPreview({
         type="button"
         onClick={onOpen}
         aria-label={project.label}
+        tabIndex={tabIndex}
       >
         <span className="block px-5 pt-5 pb-4">
-          <span className="relative block aspect-[573/680] w-full overflow-hidden bg-[#f7f7f7]">
+          <span
+            className="relative block aspect-[573/680] w-full overflow-hidden bg-[#f7f7f7]"
+            data-project-image
+          >
             <Image
               className={`block size-full ${project.previewFit === "contain" ? "object-contain" : "object-cover"}`}
               src={project.image}
@@ -28,7 +34,10 @@ export default function ProjectPreview({
           </span>
         </span>
 
-        <span className="flex h-[34px] items-start gap-3 overflow-hidden px-5 pb-4 text-[12.5px] leading-[14px]">
+        <span
+          className={`flex h-[34px] items-start gap-3 overflow-hidden px-5 pb-4 text-[12.5px] leading-[14px] transition-opacity duration-150 ${expanded ? "opacity-0" : "opacity-100"}`}
+          aria-hidden={expanded}
+        >
           <span className="flex min-w-0 flex-1 items-center gap-[6px] whitespace-nowrap">
             <span className="truncate">{project.name}</span>
             <span className="truncate opacity-50">{project.subtitle}</span>
