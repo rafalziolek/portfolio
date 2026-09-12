@@ -75,7 +75,8 @@ export default function ProjectGallery({ projects }) {
         },
       },
       scrollDistortion: {
-        impulseThreshold: [1400, 0, 10000, 50],
+        enabled: true,
+        impulseThreshold: [1400, 0, 20000, 50],
         maxStretch: [6, 0, 50, 0.5],
         velocityRange: [2800, 500, 20000, 100],
         blurThreshold: [900, 0, 10000, 50],
@@ -127,11 +128,14 @@ export default function ProjectGallery({ projects }) {
   const galleryBlur = useTransform(blur, (value) =>
     value === 0 ? "none" : `url(#${blurId})`,
   );
+  const scrollEffectsEnabled =
+    params.scrollDistortion.enabled && !position && !reduceMotion;
+
   useAnimationFrame((_, elapsedMs) => {
     const current = visualScrollPosition.get();
     const delta = current - sampledScrollRef.current;
     sampledScrollRef.current = current;
-    if (position || reduceMotion) {
+    if (!scrollEffectsEnabled) {
       scrollEffectsRef.current = { impulse: 0, stretch: 0, blur: 0 };
       deformation.set(0);
       blur.set(0);
@@ -611,8 +615,11 @@ export default function ProjectGallery({ projects }) {
         className={`flex ${horizontal ? "w-max flex-row" : "mx-auto w-[min(650px,calc(100%-32px))] flex-col"} ${horizontal ? "min-h-screen items-center" : ""}`}
         style={{
           opacity: isReady ? projectHandoff.stageOpacity : 0,
-          transform:
-            position || reduceMotion ? cameraTransform : galleryDistortion,
+          transform: position
+            ? cameraTransform
+            : scrollEffectsEnabled
+              ? galleryDistortion
+              : "none",
           transformOrigin:
             position || reduceMotion ? "0 0" : distortionOrigin,
         }}
@@ -640,7 +647,7 @@ export default function ProjectGallery({ projects }) {
               fadeStart={params.openView.fadeStart / 100}
               chainDecay={params.openView.chainDecay / 100}
               reduceMotion={reduceMotion}
-              scrollFilter={position || reduceMotion ? "none" : galleryBlur}
+              scrollFilter={scrollEffectsEnabled ? galleryBlur : "none"}
               cycleRef={(node) => {
                 cycleRefs.current[copyIndex] = node;
               }}

@@ -276,11 +276,14 @@ test("Works exposes wide scroll distortion ranges in DialKit", async () => {
     "src/components/portfolio/ProjectGallery.jsx",
   );
 
-  assert.match(gallery, /impulseThreshold: \[1400, 0, 10000, 50\]/);
+  assert.match(gallery, /enabled: true/);
+  assert.match(gallery, /impulseThreshold: \[1400, 0, 20000, 50\]/);
   assert.match(gallery, /maxStretch: \[6, 0, 50, 0\.5\]/);
   assert.match(gallery, /velocityRange: \[2800, 500, 20000, 100\]/);
   assert.match(gallery, /blurThreshold: \[900, 0, 10000, 50\]/);
   assert.match(gallery, /maxBlur: \[2, 0, 8, 0\.1\]/);
+  assert.match(gallery, /params\.scrollDistortion\.enabled/);
+  assert.match(gallery, /scrollEffectsEnabled \? galleryBlur : "none"/);
 });
 
 test("Works keeps its black canvas across the horizontal scroll area", async () => {
