@@ -271,17 +271,29 @@ test("Works can switch between horizontal and vertical infinite scrolling", asyn
   assert.match(layout, /process\.env\.NODE_ENV !== "production" && <DialRoot/);
 });
 
-test("Works exposes wide scroll distortion ranges in DialKit", async () => {
+test("Works uses the selected gallery defaults in DialKit", async () => {
   const gallery = await readSource(
     "src/components/portfolio/ProjectGallery.jsx",
   );
 
+  assert.match(gallery, /projectHeight: \[93, 60, 100, 1\]/);
+  assert.match(gallery, /projectWidth: \[89, 70, 100, 1\]/);
+  assert.match(gallery, /otherProjectsOpacity: \[60, 0, 100, 5\]/);
+  assert.match(gallery, /siblingTravel: \[420, 0, 1200, 20\]/);
+  assert.match(gallery, /siblingScale: \[60, 20, 100, 5\]/);
+  assert.match(gallery, /fadeStart: \[85, 0, 95, 5\]/);
+  assert.match(gallery, /chainDecay: \[10, 0, 20, 1\]/);
+  assert.match(gallery, /stiffness: 400/);
+  assert.match(gallery, /damping: 35/);
+  assert.match(gallery, /mass: 1/);
   assert.match(gallery, /enabled: true/);
-  assert.match(gallery, /impulseThreshold: \[1400, 0, 20000, 50\]/);
-  assert.match(gallery, /maxStretch: \[6, 0, 50, 0\.5\]/);
-  assert.match(gallery, /velocityRange: \[2800, 500, 20000, 100\]/);
-  assert.match(gallery, /blurThreshold: \[900, 0, 10000, 50\]/);
-  assert.match(gallery, /maxBlur: \[2, 0, 8, 0\.1\]/);
+  assert.match(gallery, /impulseThreshold: \[10000, 0, 20000, 50\]/);
+  assert.match(gallery, /maxStretch: \[10, 0, 50, 0\.5\]/);
+  assert.match(gallery, /velocityRange: \[2500, 500, 20000, 100\]/);
+  assert.match(gallery, /blurThreshold: \[10000, 0, 10000, 50\]/);
+  assert.match(gallery, /maxBlur: \[6\.4, 0, 8, 0\.1\]/);
+  assert.match(gallery, /decayMs: \[500, 20, 500, 5\]/);
+  assert.match(gallery, /responseMs: \[50, 10, 200, 5\]/);
   assert.match(gallery, /params\.scrollDistortion\.enabled/);
   assert.match(gallery, /scrollEffectsEnabled \? galleryBlur : "none"/);
 });
