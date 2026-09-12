@@ -32,10 +32,13 @@ import {
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import Lightbox from "./Lightbox";
 import ProjectPreview from "./ProjectPreview";
+import { CompactMenu, PillMenu } from "./SiteChrome";
 
 const cycleCopies = ["before", "current", "after"];
 const restingCamera = { scale: 1, x: 0, y: 0 };
 const restingCard = { opacity: 1, scale: 1, x: 0, y: 0 };
+const projectMenuScrollThreshold = 200;
+const projectMenuRevealDelay = 500;
 const scrollKeys = new Set([
   "ArrowDown",
   "ArrowLeft",
@@ -57,6 +60,12 @@ export default function ProjectGallery({ projects }) {
         options: ["Horizontal", "Vertical"],
         default: "Horizontal",
       },
+      verticalAlignment: {
+        type: "select",
+        options: ["Bottom", "Center"],
+        default: "Bottom",
+      },
+      projectSize: [600, 300, 900, 10],
       openView: {
         projectHeight: [93, 60, 100, 1],
         projectWidth: [89, 70, 100, 1],
@@ -335,17 +344,25 @@ export default function ProjectGallery({ projects }) {
   useEffect(() => {
     if (!position) return undefined;
 
-    const siteChrome = document.querySelector("[data-site-chrome]");
+    const project = projects[position.projectIndex];
     document.body.dataset.projectOpen = "true";
-    siteChrome?.setAttribute("inert", "");
-    siteChrome?.setAttribute("aria-hidden", "true");
+    document.body.dataset.projectName = project.name;
+    window.dispatchEvent(
+      new CustomEvent("portfolio:project-change", {
+        detail: { name: project.name },
+      }),
+    );
 
     return () => {
       delete document.body.dataset.projectOpen;
-      siteChrome?.removeAttribute("inert");
-      siteChrome?.removeAttribute("aria-hidden");
+      delete document.body.dataset.projectName;
+      window.dispatchEvent(
+        new CustomEvent("portfolio:project-change", {
+          detail: { name: null },
+        }),
+      );
     };
-  }, [position]);
+  }, [position, projects]);
 
   useEffect(
     () => () => {
@@ -567,6 +584,12 @@ export default function ProjectGallery({ projects }) {
       fromFrames: currentCardFrames,
       targetCardOrder: null,
     });
+    delete document.body.dataset.projectName;
+    window.dispatchEvent(
+      new CustomEvent("portfolio:project-change", {
+        detail: { name: null },
+      }),
+    );
     setProjectPhase("closing");
 
     if (reduceMotion) {
@@ -612,9 +635,12 @@ export default function ProjectGallery({ projects }) {
       </svg>
       <motion.section
         ref={stageRef}
-        className={`flex ${horizontal ? "w-max flex-row" : "mx-auto w-[min(650px,calc(100%-32px))] flex-col"} ${horizontal ? "min-h-screen items-center" : ""}`}
+        className={`flex ${horizontal ? "w-max flex-row" : "mx-auto flex-col"} ${horizontal ? `min-h-screen ${params.verticalAlignment === "Bottom" ? "items-end" : "items-center"}` : ""}`}
         style={{
           opacity: isReady ? projectHandoff.stageOpacity : 0,
+          width: horizontal
+            ? undefined
+            : `min(${params.projectSize}px, calc(100vw - 32px))`,
           transform: position
             ? cameraTransform
             : scrollEffectsEnabled
@@ -635,6 +661,7 @@ export default function ProjectGallery({ projects }) {
               projects={projects}
               copyIndex={copyIndex}
               horizontal={horizontal}
+              projectSize={params.projectSize}
               interactive={isCurrent}
               focusedCard={focusedCard}
               progress={progress}
@@ -667,6 +694,7 @@ export default function ProjectGallery({ projects }) {
           heroOpacity={projectHandoff.heroOpacity}
           reduceMotion={reduceMotion}
           progress={viewerProgress}
+          closing={phase === "closing"}
           onClose={closeProject}
         />
       )}
@@ -678,6 +706,7 @@ function GalleryCycle({
   projects,
   copyIndex,
   horizontal,
+  projectSize,
   interactive,
   focusedCard,
   progress,
@@ -697,7 +726,7 @@ function GalleryCycle({
   return (
     <div
       ref={cycleRef}
-      className={`flex gap-16 ${horizontal ? "flex-row" : "flex-col"} ${horizontal ? "w-max" : "w-full"}`}
+      className={`flex gap-4 ${horizontal ? "flex-row" : "flex-col"} ${horizontal ? "w-max" : "w-full"}`}
       style={
         horizontal
           ? { paddingLeft: portfolioContentTop }
@@ -712,6 +741,7 @@ function GalleryCycle({
           cardOrder={copyIndex * projects.length + index}
           projectIndex={index}
           horizontal={horizontal}
+          projectSize={projectSize}
           interactive={interactive}
           focusedCard={focusedCard}
           progress={progress}
@@ -737,6 +767,7 @@ function GalleryProject({
   cardOrder,
   projectIndex,
   horizontal,
+  projectSize,
   interactive,
   focusedCard,
   progress,
@@ -793,10 +824,13 @@ function GalleryProject({
     <motion.div
       className={
         horizontal
-          ? "w-[min(650px,calc(100vw-32px))] shrink-0"
+          ? "shrink-0"
           : "w-full"
       }
       style={{
+        width: horizontal
+          ? `min(${projectSize}px, calc(100vw - 32px))`
+          : undefined,
         opacity: siblingOpacity,
         filter: scrollFilter,
         position: selected ? "relative" : undefined,
@@ -871,13 +905,52 @@ function ProjectViewer({
   heroOpacity,
   reduceMotion,
   progress,
+  closing,
   onClose,
 }) {
+  const [projectMenuIdle, setProjectMenuIdle] = useState(true);
+  const projectMenuScrollAnchorRef = useRef(0);
+  const projectMenuHasScrolledRef = useRef(false);
+  const projectMenuRevealTimeoutRef = useRef(null);
   const caseStudyOpacity = useTransform(
     progress,
     reduceMotion ? [0, 1] : [0, 0.75, 1],
     reduceMotion ? [1, 1] : [0, 0, 1],
   );
+  const fadeTransition = reduceMotion
+    ? { duration: 0 }
+    : { duration: 0.2, ease: [0.645, 0.045, 0.355, 1] };
+
+  useEffect(
+    () => () => {
+      window.clearTimeout(projectMenuRevealTimeoutRef.current);
+    },
+    [],
+  );
+
+  const handleProjectScroll = (event) => {
+    if (reduceMotion) return;
+
+    const scrollTop = event.currentTarget.scrollTop;
+
+    if (!projectMenuHasScrolledRef.current) {
+      const distance = Math.abs(
+        scrollTop - projectMenuScrollAnchorRef.current,
+      );
+
+      if (distance < projectMenuScrollThreshold) return;
+
+      projectMenuHasScrolledRef.current = true;
+    }
+
+    setProjectMenuIdle(false);
+    window.clearTimeout(projectMenuRevealTimeoutRef.current);
+    projectMenuRevealTimeoutRef.current = window.setTimeout(() => {
+      projectMenuHasScrolledRef.current = false;
+      projectMenuScrollAnchorRef.current = scrollTop;
+      setProjectMenuIdle(true);
+    }, projectMenuRevealDelay);
+  };
 
   return (
     <Lightbox
@@ -885,11 +958,29 @@ function ProjectViewer({
       backdropClassName="bg-transparent"
       ariaLabelledBy="project-viewer-title"
       onClose={onClose}
+      onScroll={handleProjectScroll}
+      showControls={false}
       controls={{
         className: "fixed top-4 left-4 z-10",
         closeLabel: "Close project",
       }}
     >
+      <PillMenu
+        active="projects"
+        projectName={closing ? null : project.name}
+        onWorksClick={onClose}
+        inDialog
+        showMenuExtras={projectMenuIdle || reduceMotion}
+        fadeTransition={fadeTransition}
+      />
+      <CompactMenu
+        active="projects"
+        projectName={closing ? null : project.name}
+        onWorksClick={onClose}
+        inDialog
+        showMenuExtras={projectMenuIdle || reduceMotion}
+        fadeTransition={fadeTransition}
+      />
       <figure
         className="relative m-0 flex min-h-dvh items-center justify-center overflow-hidden"
         data-project-hero

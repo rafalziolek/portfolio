@@ -11,15 +11,15 @@ export default function ProjectPreview({
   return (
     <article className="w-full">
       <button
-        className="group relative block w-full cursor-pointer bg-black p-0 text-left text-[#d5d5d5] shadow-[0_0_0_1px_transparent] outline-none focus-visible:shadow-[0_0_0_1px_#333]"
+        className="group relative block w-full cursor-pointer bg-black p-0 text-left text-[#d5d5d5] outline-none"
         type="button"
         onClick={onOpen}
         aria-label={project.label}
         tabIndex={tabIndex}
       >
-        <span className="block px-5 pt-5 pb-4">
+        <span className="block">
           <span
-            className="relative block aspect-[573/680] w-full overflow-hidden bg-[#f7f7f7]"
+            className="relative block aspect-[573/680] w-full overflow-hidden rounded-[3px] bg-[#f7f7f7]"
             data-project-image
           >
             <Image
@@ -35,7 +35,7 @@ export default function ProjectPreview({
         </span>
 
         <span
-          className={`flex h-[34px] items-start gap-3 overflow-hidden px-5 pb-4 text-[12.5px] leading-[14px] opacity-0 transition-opacity duration-150 ${expanded ? "" : "group-hover:opacity-100 group-focus-visible:opacity-100"}`}
+          className={`flex h-[50px] items-start gap-3 overflow-hidden pt-4 pb-4 text-[12.5px] leading-[14px] opacity-0 transition-opacity duration-150 ${expanded ? "" : "group-hover:opacity-100 group-focus-visible:opacity-100"}`}
           aria-hidden={expanded}
         >
           <span className="flex min-w-0 flex-1 items-center gap-[6px] whitespace-nowrap">

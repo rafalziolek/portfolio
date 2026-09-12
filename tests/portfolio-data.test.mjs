@@ -24,6 +24,20 @@ test("about and Bits retain their content", () => {
   }
 });
 
+test("works gallery uses unpadded previews with a 16px gap", async () => {
+  const [gallery, preview] = await Promise.all([
+    readSource("src/components/portfolio/ProjectGallery.jsx"),
+    readSource("src/components/portfolio/ProjectPreview.jsx"),
+  ]);
+
+  assert.match(gallery, /className=\{`flex gap-4 /);
+  assert.match(preview, /<span className="block">/);
+  assert.match(preview, /overflow-hidden rounded-\[3px\] bg-\[#f7f7f7\]/);
+  assert.match(preview, /flex h-\[50px\].*pt-4 pb-4/);
+  assert.doesNotMatch(preview, /overflow-hidden px-5 pb-4 text-\[12\.5px\]/);
+  assert.doesNotMatch(preview, /<span className="block px-5 pt-5 pb-4">/);
+});
+
 test("shared chrome keeps the avatar fixed while the active link moves into place", async () => {
   const chrome = await readSource(
     "src/components/portfolio/SiteChrome.jsx",
@@ -33,6 +47,7 @@ test("shared chrome keeps the avatar fixed while the active link moves into plac
   assert.match(chrome, /label: "Bits"/);
   assert.doesNotMatch(chrome, />RZ</);
   assert.match(chrome, /fixed inset-x-0/);
+  assert.match(chrome, /font-\[Arial\] font-normal/);
   assert.match(chrome, /style=\{\{\s*top: navTop,/);
   assert.match(chrome, /SocialNavLinks/);
   assert.match(chrome, /flex min-w-0 flex-1 flex-col gap-0/);
@@ -78,6 +93,68 @@ test("shared chrome keeps the avatar fixed while the active link moves into plac
   assert.match(chrome, /tabIndex=\{showInactiveLink \? undefined : -1\}/);
 });
 
+test("site menu switches between the Figma pills and the existing vertical menu", async () => {
+  const [chrome, gallery, css] = await Promise.all([
+    readSource("src/components/portfolio/SiteChrome.jsx"),
+    readSource("src/components/portfolio/ProjectGallery.jsx"),
+    readSource("src/app/globals.css"),
+  ]);
+
+  assert.match(chrome, /useDialKit\(\s*"Site menu"/);
+  assert.match(chrome, /options: \["Pills", "Compact", "Vertical"\]/);
+  assert.match(chrome, /default: "Compact"/);
+  assert.match(chrome, />\s*Rafał Ziółek\s*</);
+  assert.match(chrome, /projectName \? `Works \/ \$\{projectName\}` : "Works"/);
+  assert.match(chrome, /h-\[36px\].*rounded-\[99px\]/);
+  assert.match(chrome, /bg-white text-black/);
+  assert.match(chrome, /bg-\[#1d1d1d\] text-white/);
+  assert.match(chrome, /portfolio:project-change/);
+  assert.match(chrome, /export function PillMenu/);
+  assert.match(chrome, /onWorksClick/);
+  assert.match(chrome, /showMenuExtras/);
+  assert.match(chrome, /animate=\{\{ opacity: showName \? 1 : 0 \}\}/);
+  assert.match(chrome, /animate=\{\{ opacity: showWorks \? 1 : 0 \}\}/);
+  assert.match(chrome, /animate=\{\{ opacity: showBits \? 1 : 0 \}\}/);
+  assert.match(gallery, /new CustomEvent\("portfolio:project-change"/);
+  assert.match(gallery, /detail: \{ name: project\.name \}/);
+  assert.match(gallery, /<PillMenu\s+active="projects"/);
+  assert.match(gallery, /closing=\{phase === "closing"\}/);
+  assert.match(gallery, /projectName=\{closing \? null : project\.name\}/);
+  assert.match(gallery, /delete document\.body\.dataset\.projectName/);
+  assert.match(gallery, /showControls=\{false\}/);
+  assert.match(gallery, /onScroll=\{handleProjectScroll\}/);
+  assert.match(gallery, /showMenuExtras=\{projectMenuIdle \|\| reduceMotion\}/);
+  assert.match(css, /\[data-site-chrome\]\[data-menu-style="Vertical"\]/);
+  assert.match(css, /data-menu-style="Pills".*:not\(\[data-project-menu\]\)/s);
+  assert.match(css, /body:not\(\[data-menu-style="Pills"\]\)/);
+});
+
+test("compact menu matches the Figma navigation and social footer", async () => {
+  const [chrome, social, gallery, css] = await Promise.all([
+    readSource("src/components/portfolio/SiteChrome.jsx"),
+    readSource("src/components/portfolio/SocialNavLinks.jsx"),
+    readSource("src/components/portfolio/ProjectGallery.jsx"),
+    readSource("src/app/globals.css"),
+  ]);
+
+  assert.match(chrome, /export function CompactMenu/);
+  assert.match(chrome, /Rafal Ziolek/);
+  assert.match(chrome, /Designer at Netflix/);
+  assert.doesNotMatch(chrome, /animate=\{\{ opacity: showMenuExtras \? 1 : 0 \}\}/);
+  assert.match(chrome, /gap-\[5px\] p-3 font-\[Arial\] font-bold/);
+  assert.match(chrome, /rounded-\[3px\] bg-\[#303030\] px-\[10px\] py-\[5px\]/);
+  assert.match(chrome, /projectName \? `Work \/ \$\{projectName\}` : "Work"/);
+  assert.match(chrome, /variant="compact"/);
+  assert.match(social, /fixed right-3 bottom-3/);
+  assert.match(social, /rounded-\[3px\] bg-\[#303030\] px-\[10px\] py-\[6px\]/);
+  assert.match(social, />\s*Are\.na\s*</);
+  assert.match(social, />\s*x\.com\s*</);
+  assert.match(social, />\s*Email\s*</);
+  assert.match(gallery, /<CompactMenu\s+active="projects"/);
+  assert.match(css, /data-menu-style="Compact"/);
+  assert.match(css, /data-project-footer/);
+});
+
 test("header scroll distance includes horizontal and vertical movement", () => {
   assert.equal(
     portfolioLayout.getScrollDistance({ x: 0, y: 0 }, { x: 250, y: 0 }),
@@ -102,6 +179,7 @@ test("social nav links match the Paper header row", async () => {
   );
   assert.match(social, /Are\.na/);
   assert.match(social, /text-\[24px\] leading-\[110%\]/);
+  assert.match(social, /font-\[Arial\] font-normal/);
   assert.match(social, /homepageSocialLinks/);
   assert.match(social, /navigator\.clipboard\.writeText/);
   assert.match(social, /animate=\{\{ opacity: visible \? 1 : 0 \}\}/);
@@ -118,6 +196,9 @@ test("top-level portfolio pages use the dark theme and Arial", async () => {
   ]);
 
   assert.match(layout, /className="portfolio-font"/);
+  assert.match(layout, /<body className="bg-black text-\[16px\] antialiased">/);
+  assert.match(layout, /import \{ Agentation \} from "agentation"/);
+  assert.match(layout, /process\.env\.NODE_ENV === "development" && <Agentation \/>/);
   assert.match(layout, /text-\[16px\]/);
   assert.match(css, /font-family: Arial, sans-serif/);
   assert.doesNotMatch(css, /Test Söhne|Helvetica Neue/);
@@ -139,7 +220,12 @@ test("about page matches the Paper info composition", async () => {
   assert.doesNotMatch(about, />\s*Info\s*</);
   assert.match(about, /src: "\/about\/photography\.jpg"/);
   assert.match(about, /label: "Photography"/);
-  assert.match(about, /items-center gap-2 rounded-\[4px\].*p-3/);
+  assert.match(about, /w-\[min\(800px,100%\)\]/);
+  assert.match(about, /gap-8 text-\[24px\] leading-\[30px\]/);
+  assert.match(about, /leading-\[33px\]/);
+  assert.match(about, /text-\[15px\] leading-\[18\.75px\] font-bold/);
+  assert.match(about, /text-\[17px\] leading-\[21\.25px\]/);
+  assert.match(about, /items-center gap-\[10px\] rounded-\[5px\]/);
   assert.doesNotMatch(about, /SF_Pro/);
   assert.doesNotMatch(about, /<footer/);
 });
@@ -203,9 +289,10 @@ test("shared layout matches the refined Paper header on every page", async () =>
 });
 
 test("Works renders a measured three-copy loop containing only projects", async () => {
-  const gallery = await readSource(
-    "src/components/portfolio/ProjectGallery.jsx",
-  );
+  const [gallery, css] = await Promise.all([
+    readSource("src/components/portfolio/ProjectGallery.jsx"),
+    readSource("src/app/globals.css"),
+  ]);
 
   assert.match(gallery, /const cycleCopies = \["before", "current", "after"\]/);
   assert.match(gallery, /new ResizeObserver\(handleResize\)/);
@@ -213,7 +300,9 @@ test("Works renders a measured three-copy loop containing only projects", async 
   assert.match(gallery, /getResizedLoopPosition/);
   assert.match(gallery, /window\.history\.scrollRestoration = "manual"/);
   assert.match(gallery, /scrollToPosition\(cycleStart\)/);
-  assert.match(gallery, /w-\[min\(650px,calc\(100%-32px\)\)\]/);
+  assert.doesNotMatch(gallery, /w-\[min\(600px/);
+  assert.match(gallery, /projectSize=\{params\.projectSize\}/);
+  assert.match(gallery, /min\(\$\{projectSize\}px, calc\(100vw - 32px\)\)/);
   assert.match(gallery, /projects\.map\(/);
   assert.match(gallery, /portfolioContentTop/);
   assert.match(gallery, /paddingTop: portfolioContentTop/);
@@ -225,6 +314,9 @@ test("Works renders a measured three-copy loop containing only projects", async 
   assert.match(gallery, /tabIndex=\{interactive \? undefined : -1\}/);
   assert.doesNotMatch(gallery, /pointer-events-none|inert=/);
   assert.doesNotMatch(gallery, /interactive \? "" : "hidden"/);
+  assert.match(css, /html:has\(\[data-gallery-stage\]\) \{/);
+  assert.match(css, /scrollbar-width: none/);
+  assert.match(css, /html:has\(\[data-gallery-stage\]\)::-webkit-scrollbar/);
 });
 
 test("Works wraps the infinite gallery before the next paint", async () => {
@@ -260,10 +352,14 @@ test("Works can switch between horizontal and vertical infinite scrolling", asyn
   assert.match(gallery, /useDialKit/);
   assert.match(gallery, /options: \["Horizontal", "Vertical"\]/);
   assert.match(gallery, /default: "Horizontal"/);
+  assert.match(gallery, /options: \["Bottom", "Center"\]/);
+  assert.match(gallery, /default: "Bottom"/);
+  assert.match(gallery, /projectSize: \[600, 300, 900, 10\]/);
   assert.match(gallery, /getScrollInputDelta\(event\.deltaX, event\.deltaY\)/);
   assert.match(gallery, /addEventListener\("wheel", handleWheel, \{ passive: false \}\)/);
   assert.match(gallery, /horizontal \? "flex-row" : "flex-col"/);
-  assert.match(gallery, /horizontal \? "min-h-screen items-center"/);
+  assert.match(gallery, /params\.verticalAlignment === "Bottom"/);
+  assert.match(gallery, /"items-end" : "items-center"/);
   assert.match(gallery, /offset: horizontal \? "offsetLeft" : "offsetTop"/);
   assert.match(gallery, /position: horizontal \? window\.scrollX : window\.scrollY/);
   assert.match(gallery, /getCenteredScrollPosition/);
@@ -304,14 +400,13 @@ test("Works keeps its black canvas across the horizontal scroll area", async () 
   assert.match(page, /w-max min-w-full/);
 });
 
-test("project cards reveal captions on hover or focus without a hover border", async () => {
+test("project cards reveal captions on hover or focus without a border", async () => {
   const preview = await readSource(
     "src/components/portfolio/ProjectPreview.jsx",
   );
 
   assert.match(preview, /aspect-\[573\/680\]/);
-  assert.match(preview, /shadow-\[0_0_0_1px_#333\]/);
-  assert.doesNotMatch(preview, /hover:shadow-/);
+  assert.doesNotMatch(preview, /shadow-/);
   assert.match(preview, /opacity-0 transition-opacity/);
   assert.match(preview, /expanded \? "" : "group-hover:opacity-100 group-focus-visible:opacity-100"/);
   assert.match(preview, /\{project\.name\}/);

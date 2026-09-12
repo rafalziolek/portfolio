@@ -1,6 +1,7 @@
 import "@/app/globals.css";
 import "dialkit/styles.css";
 import { Analytics } from "@vercel/analytics/react";
+import { Agentation } from "agentation";
 import { DialRoot } from "dialkit";
 import SiteChrome from "@/components/portfolio/SiteChrome";
 
@@ -16,9 +17,10 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="bg-white text-[16px] antialiased">
+      <body className="bg-black text-[16px] antialiased">
         <SiteChrome />
         {children}
+        {process.env.NODE_ENV === "development" && <Agentation />}
         {process.env.NODE_ENV !== "production" && <DialRoot position="bottom-right" theme="dark" />}
         {process.env.VERCEL === "1" && <Analytics />}
       </body>

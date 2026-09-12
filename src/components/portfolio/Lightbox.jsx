@@ -15,9 +15,11 @@ export default function Lightbox({
   ariaLabel,
   ariaLabelledBy,
   onClose,
+  onScroll,
   onPrevious,
   onNext,
   controls,
+  showControls = true,
   closeOnOutsideClick = false,
   backdropClassName = "bg-white/70 backdrop-blur-[16px]",
 }) {
@@ -83,6 +85,7 @@ export default function Lightbox({
           aria-labelledby={ariaLabelledBy}
           initialFocus={popupRef}
           onKeyDown={handleKeyDown}
+          onScroll={onScroll}
           onPointerDown={(event) => {
             if (closeOnOutsideClick && event.target === event.currentTarget) {
               requestClose();
@@ -90,7 +93,7 @@ export default function Lightbox({
           }}
         >
           {children}
-          {!isClosing && (
+          {showControls && !isClosing && (
             <LightboxControls
               {...controls}
               onPrevious={onPrevious}

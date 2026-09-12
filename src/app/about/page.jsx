@@ -36,10 +36,10 @@ export default function About() {
       className="about-page min-h-screen bg-black text-white"
       style={{ paddingTop: portfolioContentTop }}
     >
-      <div className="mx-auto flex min-h-[1703px] w-[min(600px,100%)] flex-col gap-16">
+      <div className="mx-auto flex min-h-[1703px] w-[min(800px,100%)] flex-col gap-16">
         <section className="w-full px-4">
           <div className="flex w-full flex-col items-start gap-12">
-            <div className="flex w-full flex-col items-start gap-6 text-[16px] leading-6 font-normal tracking-normal">
+            <div className="flex w-full flex-col items-start gap-8 text-[24px] leading-[30px] font-normal tracking-[-0.025em] [text-wrap:pretty]">
               <p className="m-0">
                 I am a designer and developer from Warsaw, working primarily
                 with software. Currently I’m a Senior Product Designer at
@@ -47,22 +47,21 @@ export default function About() {
                 focus is Watson, our design system.
               </p>
 
-              <div>
-                <p className="m-0">
-                  My work moves between design and engineering, with
-                  human-computer interaction at the center. I am interested in
-                  the mental models behind interfaces, and in carrying them
-                  through interaction, visual form, and implementation.
-                </p>
-                <p className="mt-6 mb-0">
-                  I want form and function to strengthen one another, so that a
-                  product serves its purpose with clarity and beauty.
-                </p>
-              </div>
+              <p className="m-0">
+                My work moves between design and engineering, with
+                human-computer interaction at the center. I am interested in
+                the mental models behind interfaces, and in carrying them
+                through interaction, visual form, and implementation.
+              </p>
 
-              <span className="flex items-center gap-2 rounded-[4px] border border-[#191919] bg-[#191919] p-3 text-[16px] leading-[15px] font-bold tracking-[-0.005em]">
+              <p className="m-0 leading-[33px]">
+                I want form and function to strengthen one another, so that a
+                product serves its purpose with clarity and beauty.
+              </p>
+
+              <span className="flex items-center gap-[10px] rounded-[5px] border border-[#222] bg-[#222] py-[5px] pr-[14px] pl-4 text-[19px] leading-[27px] font-normal tracking-normal">
                 <span className="font-[Arial]">Resume</span>
-                <span className="text-[14px] leading-none" aria-hidden="true">
+                <span className="text-[12px] leading-[14px]" aria-hidden="true">
                   ↓
                 </span>
               </span>
@@ -82,7 +81,7 @@ export default function About() {
 function OutsideDesign() {
   return (
     <section className="flex w-full flex-col gap-4 px-4">
-      <h2 className="m-0 text-[12.5px] leading-[21px] font-normal tracking-[-0.0007em] text-[#a2a2a2]">
+      <h2 className="m-0 text-[15px] leading-[18.75px] font-bold text-white/50">
         Outside of design
       </h2>
 
@@ -111,10 +110,10 @@ function OutsideDesignPhoto({ item }) {
           src={item.src}
           alt={item.alt}
           fill
-          sizes="(max-width: 600px) calc((100vw - 48px) / 2), 276px"
+          sizes="(max-width: 800px) calc((100vw - 48px) / 2), 376px"
         />
       </div>
-      <figcaption className="text-[12.5px] leading-[23px] tracking-[-0.0007em]">
+      <figcaption className="text-[15px] leading-[18.75px]">
         {item.label}
       </figcaption>
     </figure>
@@ -124,10 +123,10 @@ function OutsideDesignPhoto({ item }) {
 function Connect() {
   return (
     <section className="flex w-full flex-col gap-2 px-4">
-      <h2 className="m-0 text-[12.5px] leading-[21px] font-normal tracking-[-0.0007em] text-[#a2a2a2]">
+      <h2 className="m-0 text-[15px] leading-[18.75px] font-bold text-white/50">
         Connect
       </h2>
-      <div className="flex flex-col text-[16px] leading-6">
+      <div className="flex flex-col text-[17px] leading-[21.25px]">
         {homepageSocialLinks.map((item) => (
           <a
             className="w-fit text-white no-underline hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-white motion-reduce:hover:text-black focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white"
