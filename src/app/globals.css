@@ -13,6 +13,10 @@
   transition: opacity 180ms ease;
 }
 
+body[data-project-open="true"] {
+  background-color: black;
+}
+
 body[data-project-open="true"] [data-site-chrome] {
   pointer-events: none;
   opacity: 0;

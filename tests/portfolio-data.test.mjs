@@ -310,9 +310,10 @@ test("project cards reveal captions on hover or focus without a hover border", a
 });
 
 test("viewer stays keyboard accessible and independent of loop layout", async () => {
-  const [gallery, lightbox] = await Promise.all([
+  const [gallery, lightbox, globals] = await Promise.all([
     readSource("src/components/portfolio/ProjectGallery.jsx"),
     readSource("src/components/portfolio/Lightbox.jsx"),
+    readSource("src/app/globals.css"),
   ]);
 
   assert.match(gallery, /min-h-dvh items-center justify-center/);
@@ -323,6 +324,8 @@ test("viewer stays keyboard accessible and independent of loop layout", async ()
   assert.match(lightbox, /event\.key === "ArrowLeft"/);
   assert.match(lightbox, /event\.key === "ArrowRight"/);
   assert.match(lightbox, /initialFocus=\{popupRef\}/);
+  assert.match(gallery, /canScrollGallery\(phase\)/);
+  assert.match(globals, /body\[data-project-open="true"\][^{]*\{[^}]*background-color: black/s);
 });
 
 test("the opened project image leads the scrollable case study", async () => {

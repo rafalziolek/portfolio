@@ -85,6 +85,14 @@ test("accepts a new project only while idle or canceling", () => {
   assert.equal(projectFocus.canOpenProject("open"), false);
 });
 
+test("restores gallery scrolling as soon as project closing begins", () => {
+  assert.equal(typeof projectFocus.canScrollGallery, "function");
+  assert.equal(projectFocus.canScrollGallery("idle"), true);
+  assert.equal(projectFocus.canScrollGallery("closing"), true);
+  assert.equal(projectFocus.canScrollGallery("opening"), false);
+  assert.equal(projectFocus.canScrollGallery("open"), false);
+});
+
 test("chains distant projects behind the selected project's progress", () => {
   assert.equal(typeof projectFocus.getChainedProgress, "function");
   const progress = projectFocus.getChainedProgress({

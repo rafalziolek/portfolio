@@ -11,6 +11,7 @@ import { portfolioContentTop } from "@/helpers/portfolio-layout.mjs";
 import {
   advanceScrollEffects,
   canOpenProject,
+  canScrollGallery,
   getChainedProgress,
   getProjectCamera,
   getProjectHandoffFrame,
@@ -126,7 +127,6 @@ export default function ProjectGallery({ projects }) {
   const galleryBlur = useTransform(blur, (value) =>
     value === 0 ? "none" : `url(#${blurId})`,
   );
-
   useAnimationFrame((_, elapsedMs) => {
     const current = visualScrollPosition.get();
     const delta = current - sampledScrollRef.current;
@@ -284,7 +284,12 @@ export default function ProjectGallery({ projects }) {
 
       const metrics = metricsRef.current;
 
-      if (!metrics || focusedCardRef.current) return;
+      if (
+        !metrics ||
+        (focusedCardRef.current && phaseRef.current !== "closing")
+      ) {
+        return;
+      }
 
       const adjustment = getLoopScrollAdjustment(
         axis.position,
@@ -346,7 +351,7 @@ export default function ProjectGallery({ projects }) {
   );
 
   useEffect(() => {
-    if (position) return;
+    if (!canScrollGallery(phase)) return;
 
     const handleWheel = (event) => {
       if (
@@ -393,7 +398,7 @@ export default function ProjectGallery({ projects }) {
       deformation.jump(0);
       blur.jump(0);
     };
-  }, [blur, deformation, horizontal, position, visualScrollPosition]);
+  }, [blur, deformation, horizontal, phase, visualScrollPosition]);
 
   const setProjectPhase = (nextPhase) => {
     phaseRef.current = nextPhase;

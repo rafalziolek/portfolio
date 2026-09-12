@@ -48,6 +48,10 @@ export function canOpenProject(phase) {
   return phase === "idle" || phase === "closing";
 }
 
+export function canScrollGallery(phase) {
+  return phase === "idle" || phase === "closing";
+}
+
 export function getChainedProgress({ progress, distance, decay }) {
   const delay = Math.min(Math.max(distance, 0) * decay, 0.8);
 
