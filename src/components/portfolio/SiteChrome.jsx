@@ -6,6 +6,7 @@ import {
   portfolioMenuItemStep,
   portfolioNavTop,
 } from "@/helpers/portfolio-layout.mjs";
+import { homepageSocialLinks } from "@/data/homepage.mjs";
 import { useDialKit } from "dialkit";
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
@@ -19,6 +20,18 @@ const navigationItems = [
   { id: "bits", label: "Bits", href: "/work" },
 ];
 
+const socialLinksByLabel = Object.fromEntries(
+  homepageSocialLinks.map((link) => [link.label, link]),
+);
+
+const aboutNavigationItems = [
+  { label: "Are.na", href: socialLinksByLabel["Are.na"].href, marked: true },
+  { label: "Instagram", href: socialLinksByLabel.Instagram.href },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/rafal-ziolek/" },
+  { label: "Twitter", href: socialLinksByLabel["x.com"].href },
+  { label: "Email", href: socialLinksByLabel.Email.href },
+];
+
 const headerPaddingX = portfolioHeaderPaddingX;
 const menuItemStep = portfolioMenuItemStep;
 const navTop = portfolioNavTop;
@@ -26,10 +39,10 @@ const scrollFadeThreshold = 200;
 const scrollRevealDelay = 500;
 const menuProximity = 32;
 
-const getScrollPosition = () => ({
-  x: window.scrollX,
-  y: window.scrollY,
-});
+const getScrollPosition = (event) =>
+  event?.type === "portfolio:virtual-scroll"
+    ? event.detail.position
+    : { x: window.scrollX, y: window.scrollY };
 
 function isPointerNearMenu(nav, clientX, clientY) {
   const rect = nav.getBoundingClientRect();
@@ -60,7 +73,7 @@ export function PillMenu({
 
   return (
     <nav
-      className="fixed left-0 top-0 z-100 flex items-center gap-[6px] p-4 font-[Arial] font-normal"
+      className="fixed left-0 top-0 z-100 flex items-center gap-[6px] p-4 font-[450]"
       data-site-chrome
       data-menu-style="Pills"
       data-project-menu={inDialog ? "" : undefined}
@@ -147,17 +160,57 @@ export function PillMenu({
 }
 
 const compactItemClassName =
-  "flex items-center justify-center rounded-[3px] px-[10px] py-[5px] text-[15px] leading-[1.33] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white";
+  "flex items-start rounded-[1px] px-[8px] py-[5px] text-[16px] leading-[1.33] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white";
+const compactActiveItemClassName = "bg-[#c8cac9] text-black";
+const compactInactiveItemClassName = "bg-[#191919] text-[#c8cac9]";
+
+function CompactStaggerItem({
+  children,
+  delayOffsetMs = 0,
+  enabled = true,
+  index,
+  reduceMotion,
+  staggerMs,
+}) {
+  const shouldStagger = useRef(enabled).current;
+  const delayMs = useRef(delayOffsetMs + index * staggerMs).current;
+  const [visible, setVisible] = useState(
+    !shouldStagger || reduceMotion || delayMs === 0,
+  );
+
+  useEffect(() => {
+    if (!shouldStagger || visible || reduceMotion || delayMs === 0) {
+      setVisible(true);
+      return undefined;
+    }
+
+    const revealTimeout = window.setTimeout(() => setVisible(true), delayMs);
+
+    return () => window.clearTimeout(revealTimeout);
+  }, [delayMs, reduceMotion, shouldStagger, visible]);
+
+  return (
+    <div style={{ visibility: visible ? "visible" : "hidden" }}>
+      {children}
+    </div>
+  );
+}
 
 export function CompactMenu({
   active,
+  listeningHistory = false,
   projectName,
   onWorksClick,
   inDialog = false,
+  initialDelayMs = 80,
+  revealInitialMenu = false,
   showMenuExtras = true,
+  staggerMs = 80,
   fadeTransition = { duration: 0.2, ease: [0.645, 0.045, 0.355, 1] },
 }) {
-  const workLabel = projectName ? `Work / ${projectName}` : "Work";
+  const reduceMotion = useReducedMotion();
+  const revealInitialItems = useRef(revealInitialMenu).current;
+  const contextStartIndex = revealInitialMenu ? 4 : 0;
   const showWork = active === "projects" || Boolean(projectName) || showMenuExtras;
   const showBits = active === "bits" || showMenuExtras;
   const showAbout = active === "about" || showMenuExtras;
@@ -165,29 +218,46 @@ export function CompactMenu({
   return (
     <>
       <nav
-        className="fixed left-0 top-0 z-100 flex flex-col items-start gap-[5px] p-3 font-[Arial] font-bold"
+        className="fixed inset-x-0 top-0 z-100 flex flex-col items-start gap-[5px] px-[12px] pt-[12px] pb-[16px] font-[450]"
         data-site-chrome
         data-menu-style="Compact"
         data-project-menu={inDialog ? "" : undefined}
         aria-label="Main navigation"
       >
-        <div className="flex items-center justify-center rounded-[3px] bg-[#303030] px-[10px] py-[5px] text-[15px] leading-[1.33] text-white">
-          <span className="flex items-center gap-1 whitespace-nowrap">
-            <span>Rafal Ziolek</span>
-            <span aria-hidden="true">/</span>
-            <span>Designer at Netflix</span>
-          </span>
-        </div>
+        <CompactStaggerItem
+          delayOffsetMs={initialDelayMs}
+          enabled={revealInitialItems}
+          index={0}
+          reduceMotion={reduceMotion}
+          staggerMs={staggerMs}
+        >
+          <Link
+            className={`${compactItemClassName} ${compactActiveItemClassName}`}
+            href="/about"
+          >
+            Rafal Ziolek
+          </Link>
+        </CompactStaggerItem>
 
-        <div className="flex items-center gap-[5px]">
-          {projectName ? (
-            <div
-              className={`${compactItemClassName} gap-1 bg-white text-black`}
-              aria-label={workLabel}
+        <div className="flex items-end gap-[5px]">
+          <CompactStaggerItem
+            delayOffsetMs={initialDelayMs}
+            enabled={revealInitialItems}
+            index={1}
+            reduceMotion={reduceMotion}
+            staggerMs={staggerMs}
+          >
+            <motion.div
+              initial={false}
+              animate={{ opacity: showWork ? 1 : 0 }}
+              transition={fadeTransition}
+              aria-hidden={showWork ? undefined : true}
             >
               <Link
-                className="text-inherit no-underline"
+                className={`${compactItemClassName} ${active === "projects" ? compactActiveItemClassName : compactInactiveItemClassName}`}
                 href="/"
+                aria-current={active === "projects" && !projectName ? "page" : undefined}
+                tabIndex={showWork ? undefined : -1}
                 onClick={(event) => {
                   if (!onWorksClick) return;
 
@@ -197,67 +267,126 @@ export function CompactMenu({
               >
                 Work
               </Link>
-              <span aria-hidden="true">/</span>
-              <span>{projectName}</span>
-            </div>
-          ) : (
-            <>
-              <motion.div
-                initial={false}
-                animate={{ opacity: showWork ? 1 : 0 }}
-                transition={fadeTransition}
-                aria-hidden={showWork ? undefined : true}
+            </motion.div>
+          </CompactStaggerItem>
+
+          <CompactStaggerItem
+            delayOffsetMs={initialDelayMs}
+            enabled={revealInitialItems}
+            index={2}
+            reduceMotion={reduceMotion}
+            staggerMs={staggerMs}
+          >
+            <motion.div
+              initial={false}
+              animate={{ opacity: showBits ? 1 : 0 }}
+              transition={fadeTransition}
+              aria-hidden={showBits ? undefined : true}
+            >
+              <Link
+                className={`${compactItemClassName} ${active === "bits" ? compactActiveItemClassName : compactInactiveItemClassName}`}
+                href="/work"
+                aria-current={active === "bits" ? "page" : undefined}
+                tabIndex={showBits ? undefined : -1}
               >
-                <Link
-                  className={`${compactItemClassName} ${active === "projects" ? "bg-white text-black" : "bg-[#303030] text-white"}`}
-                  href="/"
-                  aria-current={active === "projects" ? "page" : undefined}
-                  tabIndex={showWork ? undefined : -1}
-                >
-                  Work
-                </Link>
-              </motion.div>
-              <motion.div
-                initial={false}
-                animate={{ opacity: showBits ? 1 : 0 }}
-                transition={fadeTransition}
-                aria-hidden={showBits ? undefined : true}
+                Explorations
+              </Link>
+            </motion.div>
+          </CompactStaggerItem>
+
+          <CompactStaggerItem
+            delayOffsetMs={initialDelayMs}
+            enabled={revealInitialItems}
+            index={3}
+            reduceMotion={reduceMotion}
+            staggerMs={staggerMs}
+          >
+            <motion.div
+              initial={false}
+              animate={{ opacity: showAbout ? 1 : 0 }}
+              transition={fadeTransition}
+              aria-hidden={showAbout ? undefined : true}
+            >
+              <Link
+                className={`${compactItemClassName} ${active === "about" ? compactActiveItemClassName : compactInactiveItemClassName}`}
+                href="/about"
+                aria-current={active === "about" ? "page" : undefined}
+                tabIndex={showAbout ? undefined : -1}
               >
-                <Link
-                  className={`${compactItemClassName} ${active === "bits" ? "bg-white text-black" : "bg-[#303030] text-white"}`}
-                  href="/work"
-                  aria-current={active === "bits" ? "page" : undefined}
-                  tabIndex={showBits ? undefined : -1}
-                >
-                  Bits
-                </Link>
-              </motion.div>
-              <motion.div
-                initial={false}
-                animate={{ opacity: showAbout ? 1 : 0 }}
-                transition={fadeTransition}
-                aria-hidden={showAbout ? undefined : true}
-              >
-                <Link
-                  className={`${compactItemClassName} ${active === "about" ? "bg-white text-black" : "bg-[#303030] text-white"}`}
-                  href="/about"
-                  aria-current={active === "about" ? "page" : undefined}
-                  tabIndex={showAbout ? undefined : -1}
-                >
-                  About
-                </Link>
-              </motion.div>
-            </>
-          )}
+                About
+              </Link>
+            </motion.div>
+          </CompactStaggerItem>
         </div>
+
+        {active === "about" && !listeningHistory && (
+          <motion.div
+            className="flex items-center gap-[5px]"
+            initial={false}
+            animate={{ opacity: showMenuExtras ? 1 : 0 }}
+            transition={fadeTransition}
+            aria-hidden={showMenuExtras ? undefined : true}
+          >
+            {aboutNavigationItems.map((item, index) => (
+              <CompactStaggerItem
+                delayOffsetMs={revealInitialItems ? initialDelayMs : 0}
+                index={contextStartIndex + index}
+                key={item.label}
+                reduceMotion={reduceMotion}
+                staggerMs={staggerMs}
+              >
+                <a
+                  className={`${compactItemClassName} ${compactInactiveItemClassName}`}
+                  href={item.href}
+                  rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  tabIndex={showMenuExtras ? undefined : -1}
+                >
+                  {item.marked && <span aria-hidden="true">&nbsp;</span>}
+                  {item.label}
+                </a>
+              </CompactStaggerItem>
+            ))}
+          </motion.div>
+        )}
+
+        {listeningHistory && (
+          <div className="flex items-end">
+            <CompactStaggerItem
+              delayOffsetMs={revealInitialItems ? initialDelayMs : 0}
+              index={contextStartIndex}
+              reduceMotion={reduceMotion}
+              staggerMs={staggerMs}
+            >
+              <span className={`${compactItemClassName} ${compactActiveItemClassName}`}>
+                Listening history
+              </span>
+            </CompactStaggerItem>
+          </div>
+        )}
+
+        {projectName && (
+          <div className="flex items-end">
+            <CompactStaggerItem
+              index={contextStartIndex}
+              reduceMotion={reduceMotion}
+              staggerMs={staggerMs}
+            >
+              <span className={`${compactItemClassName} ${compactActiveItemClassName}`}>
+                {projectName}
+              </span>
+            </CompactStaggerItem>
+          </div>
+        )}
       </nav>
 
-      <SocialNavLinks
-        variant="compact"
-        visible={showMenuExtras}
-        fadeTransition={fadeTransition}
-        inDialog={inDialog}
-      />
+      {!inDialog && !projectName && active !== "about" && (
+        <SocialNavLinks
+          variant="compact"
+          visible={showMenuExtras}
+          fadeTransition={fadeTransition}
+        />
+      )}
     </>
   );
 }
@@ -282,15 +411,22 @@ export default function SiteChrome() {
   const navRef = useRef(null);
   const scrollRevealTimeoutRef = useRef(null);
   const scrollAnchorRef = useRef({ x: 0, y: 0 });
+  const latestScrollPositionRef = useRef({ x: 0, y: 0 });
   const hasPassedThresholdRef = useRef(false);
   const navigationLockRef = useRef(false);
+  const initialCompactRevealRef = useRef(true);
+  const isListeningHistory = pathname === "/listening-history";
   const active =
     navigationItems.find((item) => item.href === pathname)?.id ??
-    (pathname === "/about" ? "about" : null);
+    (pathname === "/about" || isListeningHistory ? "about" : null);
 
   const menuActiveIndex = navigationItems.findIndex(
     (item) => item.id === active,
   );
+
+  useEffect(() => {
+    initialCompactRevealRef.current = false;
+  }, []);
 
   useEffect(() => {
     document.body.dataset.menuStyle = params.menuStyle;
@@ -318,12 +454,13 @@ export default function SiteChrome() {
     setMenuIdle(true);
     hasPassedThresholdRef.current = false;
     scrollAnchorRef.current = getScrollPosition();
+    latestScrollPositionRef.current = scrollAnchorRef.current;
     window.clearTimeout(scrollRevealTimeoutRef.current);
     navigationLockRef.current = true;
 
     const unlockTimer = window.setTimeout(() => {
       navigationLockRef.current = false;
-      scrollAnchorRef.current = getScrollPosition();
+      scrollAnchorRef.current = latestScrollPositionRef.current;
     }, scrollRevealDelay);
 
     return () => {
@@ -336,13 +473,19 @@ export default function SiteChrome() {
 
     if (reduceMotion) return;
 
-    const handleScroll = () => {
-      if (navigationLockRef.current) return;
+    const handleScroll = (event) => {
+      const currentPosition = getScrollPosition(event);
+      latestScrollPositionRef.current = currentPosition;
+
+      if (navigationLockRef.current) {
+        scrollAnchorRef.current = currentPosition;
+        return;
+      }
 
       if (!hasPassedThresholdRef.current) {
         const distance = getScrollDistance(
           scrollAnchorRef.current,
-          getScrollPosition(),
+          currentPosition,
         );
 
         if (distance < scrollFadeThreshold) return;
@@ -354,15 +497,17 @@ export default function SiteChrome() {
       window.clearTimeout(scrollRevealTimeoutRef.current);
       scrollRevealTimeoutRef.current = window.setTimeout(() => {
         hasPassedThresholdRef.current = false;
-        scrollAnchorRef.current = getScrollPosition();
+        scrollAnchorRef.current = latestScrollPositionRef.current;
         setMenuIdle(true);
       }, scrollRevealDelay);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("portfolio:virtual-scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("portfolio:virtual-scroll", handleScroll);
       window.clearTimeout(scrollRevealTimeoutRef.current);
     };
   }, [reduceMotion]);
@@ -411,7 +556,9 @@ export default function SiteChrome() {
     return (
       <CompactMenu
         active={active}
+        listeningHistory={isListeningHistory}
         projectName={projectName}
+        revealInitialMenu={initialCompactRevealRef.current}
         showMenuExtras={showMenuExtras}
         fadeTransition={fadeTransition}
       />
@@ -421,7 +568,7 @@ export default function SiteChrome() {
   return (
     <nav
       ref={navRef}
-      className="fixed inset-x-0 z-100 flex items-start gap-3 overflow-visible font-[Arial] font-normal text-white"
+      className="fixed inset-x-0 z-100 flex items-start gap-3 overflow-visible font-[450] text-white"
       data-site-chrome
       data-menu-style="Vertical"
       style={{

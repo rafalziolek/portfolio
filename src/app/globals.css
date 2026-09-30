@@ -1,12 +1,25 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "ABC Areal";
+  src: url("/fonts/ABCArealSuperfamilyVariable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root {
   --ui-border-color: #dddddd;
 }
 
 .portfolio-font {
-  font-family: Arial, sans-serif;
+  font-family: "ABC Areal", Arial, sans-serif;
   font-feature-settings: "ornm" 1, "liga" 0;
+  font-weight: 450;
+}
+
+.portfolio-mono {
+  font-variation-settings: "MONO" 1, "wght" 450;
 }
 
 [data-site-chrome] {
@@ -110,11 +123,5 @@ body:not([data-menu-style="Compact"]) [data-project-footer] {
 
   .about-gallery__cylinder {
     will-change: auto;
-  }
-}
-
-@media (min-width: 900px) {
-  .about-page {
-    min-height: max(100svh, 234vw);
   }
 }

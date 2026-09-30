@@ -47,7 +47,7 @@ test("shared chrome keeps the avatar fixed while the active link moves into plac
   assert.match(chrome, /label: "Bits"/);
   assert.doesNotMatch(chrome, />RZ</);
   assert.match(chrome, /fixed inset-x-0/);
-  assert.match(chrome, /font-\[Arial\] font-normal/);
+  assert.match(chrome, /font-\[450\]/);
   assert.match(chrome, /style=\{\{\s*top: navTop,/);
   assert.match(chrome, /SocialNavLinks/);
   assert.match(chrome, /flex min-w-0 flex-1 flex-col gap-0/);
@@ -75,7 +75,7 @@ test("shared chrome keeps the avatar fixed while the active link moves into plac
   assert.match(chrome, /distance < scrollFadeThreshold/);
   assert.match(chrome, /scrollRevealDelay\)/);
   assert.match(chrome, /navigationLockRef/);
-  assert.match(chrome, /navigationLockRef\.current\) return/);
+  assert.match(chrome, /if \(navigationLockRef\.current\) \{/);
   assert.match(chrome, /\}, \[pathname\]\)/);
   assert.match(chrome, /shouldAnimateOpacity \? fadeTransition/);
   assert.match(chrome, /menuProximity/);
@@ -129,7 +129,7 @@ test("site menu switches between the Figma pills and the existing vertical menu"
   assert.match(css, /body:not\(\[data-menu-style="Pills"\]\)/);
 });
 
-test("compact menu matches the Figma navigation and social footer", async () => {
+test("compact menu matches the segmented Figma navigation", async () => {
   const [chrome, social, gallery, css] = await Promise.all([
     readSource("src/components/portfolio/SiteChrome.jsx"),
     readSource("src/components/portfolio/SocialNavLinks.jsx"),
@@ -138,21 +138,38 @@ test("compact menu matches the Figma navigation and social footer", async () => 
   ]);
 
   assert.match(chrome, /export function CompactMenu/);
-  assert.match(chrome, /Rafal Ziolek/);
-  assert.match(chrome, /Designer at Netflix/);
-  assert.doesNotMatch(chrome, /animate=\{\{ opacity: showMenuExtras \? 1 : 0 \}\}/);
-  assert.match(chrome, /gap-\[5px\] p-3 font-\[Arial\] font-bold/);
-  assert.match(chrome, /rounded-\[3px\] bg-\[#303030\] px-\[10px\] py-\[5px\]/);
-  assert.match(chrome, /projectName \? `Work \/ \$\{projectName\}` : "Work"/);
+  assert.match(chrome, />\s*Rafal Ziolek\s*</);
+  assert.doesNotMatch(chrome, /Designer at/);
+  assert.match(chrome, /gap-\[5px\]/);
+  assert.match(chrome, /px-\[12px\] pt-\[12px\] pb-\[16px\]/);
+  assert.match(chrome, /rounded-\[1px\] px-\[8px\] py-\[5px\]/);
+  assert.match(chrome, /text-\[16px\] leading-\[1\.33\]/);
+  assert.match(chrome, /compactInactiveItemClassName = "bg-\[#191919\] text-\[#c8cac9\]"/);
+  assert.match(chrome, />\s*Explorations\s*</);
+  assert.match(chrome, /active === "about" &&/);
+  assert.match(chrome, /aboutNavigationItems\.map/);
+  assert.match(chrome, /projectName &&/);
+  assert.match(chrome, /initialDelayMs = 80/);
+  assert.match(chrome, /staggerMs = 80/);
+  assert.doesNotMatch(chrome, /menuStaggerMs/);
+  assert.doesNotMatch(chrome, /menuInitialDelayMs/);
+  assert.match(chrome, /window\.setTimeout\(\(\) => setVisible\(true\), delayMs\)/);
+  assert.match(chrome, /const delayMs = useRef\(delayOffsetMs \+ index \* staggerMs\)\.current/);
+  assert.match(chrome, /visibility: visible \? "visible" : "hidden"/);
+  assert.doesNotMatch(chrome, /clipPath/);
+  assert.doesNotMatch(chrome, /initial=\{\{ opacity: 0/);
+  assert.match(chrome, /const initialCompactRevealRef = useRef\(true\)/);
+  assert.match(chrome, /initialCompactRevealRef\.current = false/);
+  assert.match(chrome, /revealInitialMenu=\{initialCompactRevealRef\.current\}/);
   assert.match(chrome, /variant="compact"/);
-  assert.match(social, /fixed right-3 bottom-3/);
-  assert.match(social, /rounded-\[3px\] bg-\[#303030\] px-\[10px\] py-\[6px\]/);
+  assert.match(social, /fixed right-4 bottom-4/);
+  assert.match(social, /rounded-\[1px\] bg-\[#191919\] px-\[8px\] py-\[5px\]/);
+  assert.match(social, /text-\[16px\].*text-\[#c8cac9\]/);
   assert.match(social, />\s*Are\.na\s*</);
   assert.match(social, />\s*x\.com\s*</);
   assert.match(social, />\s*Email\s*</);
   assert.match(gallery, /<CompactMenu\s+active="projects"/);
   assert.match(css, /data-menu-style="Compact"/);
-  assert.match(css, /data-project-footer/);
 });
 
 test("header scroll distance includes horizontal and vertical movement", () => {
@@ -179,14 +196,14 @@ test("social nav links match the Paper header row", async () => {
   );
   assert.match(social, /Are\.na/);
   assert.match(social, /text-\[24px\] leading-\[110%\]/);
-  assert.match(social, /font-\[Arial\] font-normal/);
+  assert.match(social, /font-\[450\]/);
   assert.match(social, /homepageSocialLinks/);
   assert.match(social, /navigator\.clipboard\.writeText/);
   assert.match(social, /animate=\{\{ opacity: visible \? 1 : 0 \}\}/);
   assert.match(social, /tabIndex=\{visible \? undefined : -1\}/);
 });
 
-test("top-level portfolio pages use the dark theme and Arial", async () => {
+test("top-level portfolio pages use the dark theme and local ABC Areal", async () => {
   const [layout, works, bitsPage, about, css] = await Promise.all([
     readSource("src/app/layout.jsx"),
     readSource("src/app/page.jsx"),
@@ -200,34 +217,143 @@ test("top-level portfolio pages use the dark theme and Arial", async () => {
   assert.match(layout, /import \{ Agentation \} from "agentation"/);
   assert.match(layout, /process\.env\.NODE_ENV === "development" && <Agentation \/>/);
   assert.match(layout, /text-\[16px\]/);
-  assert.match(css, /font-family: Arial, sans-serif/);
-  assert.doesNotMatch(css, /Test Söhne|Helvetica Neue/);
+  assert.match(css, /@font-face/);
+  assert.match(css, /url\("\/fonts\/ABCArealSuperfamilyVariable\.ttf"\)/);
+  assert.match(css, /font-family: "ABC Areal", Arial, sans-serif/);
+  assert.match(css, /font-weight: 450/);
+  assert.match(css, /"MONO" 1, "wght" 450/);
+  assert.doesNotMatch(layout, /font-\[Arial\]/);
+  const font = await readFile(
+    new URL("../public/fonts/ABCArealSuperfamilyVariable.ttf", import.meta.url),
+  );
+  assert.ok(font.byteLength > 0);
   assert.match(css, /@keyframes link-blink/);
   assert.match(works, /bg-black/);
   assert.match(works, /text-white/);
   assert.match(bitsPage, /bg-black/);
   assert.match(bitsPage, /text-white/);
-  assert.match(about, /portfolioContentTop/);
-  assert.match(about, /paddingTop: portfolioContentTop/);
-  assert.doesNotMatch(about, /pt-\[168px\]/);
+  assert.match(about, /pt-\[195px\]/);
 });
 
-test("about page matches the Paper info composition", async () => {
-  const about = await readSource("src/app/about/page.jsx");
+test("about page matches the hierarchical Figma composition", async () => {
+  const [about, listeningHistory, layout, listeningPage] = await Promise.all([
+    readSource("src/app/about/page.jsx"),
+    readSource("src/components/portfolio/ListeningHistoryExperience.jsx"),
+    readSource("src/app/layout.jsx"),
+    readSource("src/app/listening-history/page.jsx"),
+  ]);
 
-  assert.doesNotMatch(about, />\s*Hi :\)\s*</);
-  assert.doesNotMatch(about, /<h1/);
-  assert.doesNotMatch(about, />\s*Info\s*</);
   assert.match(about, /src: "\/about\/photography\.jpg"/);
   assert.match(about, /label: "Photography"/);
-  assert.match(about, /w-\[min\(800px,100%\)\]/);
-  assert.match(about, /gap-8 text-\[24px\] leading-\[30px\]/);
-  assert.match(about, /leading-\[33px\]/);
-  assert.match(about, /text-\[15px\] leading-\[18\.75px\] font-bold/);
-  assert.match(about, /text-\[17px\] leading-\[21\.25px\]/);
-  assert.match(about, /items-center gap-\[10px\] rounded-\[5px\]/);
-  assert.doesNotMatch(about, /SF_Pro/);
-  assert.doesNotMatch(about, /<footer/);
+  assert.match(about, /label: "Learning 日本語"/);
+  assert.match(about, /label: "Working out"/);
+  assert.match(about, /max-w-\[600px\].*text-\[16px\].*leading-\[1\.5\]/s);
+  assert.match(about, /max-w-\[650px\]/);
+  assert.match(about, />\s*Outside of work\s*</);
+  assert.match(about, /portfolio-mono/);
+  assert.match(listeningHistory, /Loading listening history/);
+  assert.match(listeningHistory, /function ListeningHistoryLoading/);
+  assert.doesNotMatch(listeningHistory, /const mockTracks/);
+  assert.match(listeningHistory, /layoutId="listening-history-cover"/);
+  assert.match(listeningHistory, /animate=\{\{ rotateY: rotation \* 360 \}\}/);
+  assert.match(listeningHistory, /style=\{\{ perspective: 1000 \}\}/);
+  assert.match(listeningHistory, /setCoverTurns\(\(turns\) => turns \+ 1\)/);
+  assert.match(listeningHistory, /href="\/listening-history"/);
+  assert.match(listeningHistory, /const \{ scrollY \} = useScroll/);
+  assert.match(listeningHistory, /const trackScrollStep = 96/);
+  assert.match(
+    listeningHistory,
+    /height: `calc\(100svh \+ \$\{\(tracks\.length - 1\) \* trackScrollStep\}px\)`/,
+  );
+  assert.match(listeningHistory, /container: scrollRef/);
+  assert.match(listeningHistory, /portfolio:virtual-scroll/);
+  assert.match(listeningHistory, /setActivePosition\(Math\.round\(position\)\)/);
+  assert.match(listeningHistory, /useMotionValue/);
+  assert.match(listeningHistory, /maskImage: historyFadeMask/);
+  assert.match(listeningHistory, /WebkitMaskImage: historyFadeMask/);
+  assert.match(listeningHistory, /contrast-color\(\$\{activeColor\}\)/);
+  assert.match(
+    listeningHistory,
+    /left-\[calc\(50%\+133px\)\] right-0 h-svh/,
+  );
+  assert.doesNotMatch(listeningHistory, /h-\[320px\]/);
+  assert.doesNotMatch(
+    listeningHistory,
+    /Math\.max\(0, 1 - Math\.abs\(index - activeIndex\) \* 0\.2\)/,
+  );
+  assert.match(listeningHistory, /onClick=\{\(\) => onSelect\(index\)\}/);
+  assert.match(listeningHistory, /href=\{track\.url\}/);
+  assert.match(listeningHistory, /target="_blank"/);
+  assert.doesNotMatch(listeningHistory, /track\.artist/);
+  assert.match(listeningHistory, /max-w-\[min\(720px,100%\)\]/);
+  assert.match(listeningHistory, /min-w-0 truncate/);
+  assert.doesNotMatch(listeningHistory, /Recently played/);
+  assert.match(listeningHistory, /<AnimatePresence initial=\{false\}>/);
+  assert.doesNotMatch(listeningHistory, /\/listening-history\/hot-one\.jpg/);
+  assert.match(listeningHistory, /backgroundColor: active \? activeColor : "#252525"/);
+  assert.match(listeningHistory, /context\.getImageData/);
+  assert.match(listeningHistory, /coverColorCache/);
+  assert.match(listeningHistory, /extractCoverColor\(activeTrack\.cover\)/);
+  assert.match(
+    listeningHistory,
+    /fetch\(`\/api\/apple-music\/history\$\{query\}`/,
+  );
+  assert.match(listeningHistory, /Connect Apple Music/);
+  assert.match(listeningHistory, /https:\/\/js-cdn\.music\.apple\.com\/musickit\/v3\/musickit\.js/);
+  assert.match(listeningHistory, /music = await MusicKit\.configure\(/);
+  assert.match(
+    listeningHistory,
+    /const userToken = authorizationToken \|\| music\.musicUserToken/,
+  );
+  assert.match(layout, /<ListeningHistoryExperience \/>/);
+  assert.match(listeningPage, /title: "Listening History — Rafal Ziolek"/);
+  assert.doesNotMatch(about, /function NowPlaying/);
+  assert.doesNotMatch(about, />\s*Resume\s*</);
+  assert.doesNotMatch(about, /function Connect/);
+});
+
+test("listening history adds its compact navigation level", async () => {
+  const chrome = await readSource("src/components/portfolio/SiteChrome.jsx");
+
+  assert.match(chrome, /const isListeningHistory = pathname === "\/listening-history"/);
+  assert.match(chrome, /portfolio:virtual-scroll/);
+  assert.match(chrome, /listeningHistory=\{isListeningHistory\}/);
+  assert.match(chrome, />\s*Listening history\s*</);
+  assert.match(chrome, /active === "about" && !listeningHistory/);
+});
+
+test("Apple Music history forwards its request origin", async () => {
+  const route = await readSource("src/app/api/apple-music/history/route.js");
+
+  assert.match(route, /export async function GET\(request\)/);
+  assert.match(route, /Origin: request\.nextUrl\.origin/);
+});
+
+test("listening history progressively prepends older Apple Music pages", async () => {
+  const [listeningHistory, route] = await Promise.all([
+    readSource("src/components/portfolio/ListeningHistoryExperience.jsx"),
+    readSource("src/app/api/apple-music/history/route.js"),
+  ]);
+
+  assert.match(route, /nextOffset: getAppleMusicNextOffset\(payload\.next\)/);
+  assert.match(listeningHistory, /requestListeningHistory\(nextOffset\)/);
+  assert.match(
+    listeningHistory,
+    /historyKey: `\$\{offset \?\? "0"\}:\$\{index\}:\$\{track\.id\}`/,
+  );
+  assert.match(listeningHistory, /return \[\.\.\.olderTracks, \.\.\.currentTracks\]/);
+  assert.doesNotMatch(listeningHistory, /pendingPrependCount/);
+  assert.match(listeningHistory, /historyPosition: index/);
+  assert.match(listeningHistory, /const firstHistoryPosition =/);
+  assert.match(
+    listeningHistory,
+    /historyPosition:\s*firstHistoryPosition - page\.tracks\.length \+ index/,
+  );
+  assert.match(listeningHistory, /const historyRequestedRef = useRef\(false\)/);
+  assert.match(
+    listeningHistory,
+    /if \(!needsListeningHistory \|\| historyRequestedRef\.current\) return/,
+  );
 });
 
 test("Bits gallery starts below the active nav row with standard page gap", async () => {
@@ -254,12 +380,11 @@ test("Bits gallery repeats its source set to create scroll depth", async () => {
   assert.match(gallery, /bit=\{displayedBits\[viewer\.activeIndex\]\}/);
 });
 
-test("shared layout matches the refined Paper header on every page", async () => {
-  const [chrome, works, bitsPage, about] = await Promise.all([
+test("shared layout keeps the legacy menu offsets where they are still used", async () => {
+  const [chrome, works, bitsPage] = await Promise.all([
     readSource("src/components/portfolio/SiteChrome.jsx"),
     readSource("src/components/portfolio/ProjectGallery.jsx"),
     readSource("src/components/portfolio/BitsGallery.jsx"),
-    readSource("src/app/about/page.jsx"),
   ]);
 
   assert.deepEqual(
@@ -285,7 +410,6 @@ test("shared layout matches the refined Paper header on every page", async () =>
   assert.match(chrome, /h-\[27px\] last:h-\[26px\]/);
   assert.match(works, /paddingTop: portfolioContentTop/);
   assert.match(bitsPage, /paddingTop: portfolioContentTop/);
-  assert.match(about, /paddingTop: portfolioContentTop/);
 });
 
 test("Works renders a measured three-copy loop containing only projects", async () => {

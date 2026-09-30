@@ -12,7 +12,7 @@ const socialLinksByLabel = Object.fromEntries(
 const linkClassName =
   "w-max text-[24px] leading-[110%] no-underline text-white hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-white motion-reduce:hover:text-black focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white";
 const compactLinkClassName =
-  "flex items-center justify-center rounded-[3px] bg-[#303030] px-[10px] py-[6px] text-[15px] leading-[1.33] text-white no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white";
+  "flex items-start rounded-[1px] bg-[#191919] px-[8px] py-[5px] text-[16px] leading-[1.33] text-[#c8cac9] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white";
 
 export default function SocialNavLinks({
   visible = true,
@@ -43,7 +43,7 @@ export default function SocialNavLinks({
   if (variant === "compact") {
     return (
       <motion.footer
-        className="fixed right-3 bottom-3 z-100 flex gap-[5px] font-[Arial] font-bold"
+        className="fixed right-4 bottom-4 z-100 flex gap-[5px] font-[450]"
         data-compact-footer
         data-project-footer={inDialog ? "" : undefined}
         aria-label="Social links"
@@ -104,7 +104,7 @@ export default function SocialNavLinks({
       <span className="flex items-center">
         <Tooltip.Root open={emailCopied}>
           <Tooltip.Trigger
-            className={`cursor-pointer border-0 bg-transparent p-0 font-[Arial] font-normal ${linkClassName}`}
+            className={`cursor-pointer border-0 bg-transparent p-0 font-[450] ${linkClassName}`}
             closeOnClick={false}
             onClick={copyEmail}
             aria-label="Copy email address"

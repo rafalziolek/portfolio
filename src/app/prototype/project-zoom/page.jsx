@@ -1172,7 +1172,7 @@ function DismissButton({
       </svg>
       <span className="pointer-events-none absolute top-1/2 left-[calc(100%+10px)] -translate-y-1/2">
         <motion.span
-          className="block whitespace-nowrap text-[12.5px] font-normal text-white/70"
+          className="block whitespace-nowrap text-[12.5px] font-[450] text-white/70"
           style={{ opacity: labelOpacity, x: labelX }}
           aria-hidden="true"
         >

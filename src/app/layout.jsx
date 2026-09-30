@@ -3,6 +3,7 @@ import "dialkit/styles.css";
 import { Analytics } from "@vercel/analytics/react";
 import { Agentation } from "agentation";
 import { DialRoot } from "dialkit";
+import ListeningHistoryExperience from "@/components/portfolio/ListeningHistoryExperience";
 import SiteChrome from "@/components/portfolio/SiteChrome";
 
 export const metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body className="bg-black text-[16px] antialiased">
         <SiteChrome />
         {children}
+        <ListeningHistoryExperience />
         {process.env.NODE_ENV === "development" && <Agentation />}
         {process.env.NODE_ENV !== "production" && <DialRoot position="bottom-right" theme="dark" />}
         {process.env.VERCEL === "1" && <Analytics />}
