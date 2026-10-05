@@ -8,14 +8,10 @@ const outsideWork = [
     aspect: "aspect-[317/300]",
   },
   {
-    src: "/about/running-01.png",
-    alt: "Prints and artwork arranged in a studio",
     label: "Learning 日本語",
     aspect: "aspect-[317/393]",
   },
   {
-    src: "/about/running-02.png",
-    alt: "Rafał running outdoors",
     label: "Working out",
     aspect: "aspect-[317/393]",
   },
@@ -72,12 +68,12 @@ function OutsideWork() {
       <div className="grid grid-cols-2 items-start gap-4 px-4">
         <div className="flex flex-col gap-10">
           {outsideWork.slice(0, 2).map((item) => (
-            <OutsideWorkPhoto item={item} key={item.src} />
+            <OutsideWorkPhoto item={item} key={item.label} />
           ))}
         </div>
         <div className="flex flex-col gap-[35px]">
           {outsideWork.slice(2).map((item) => (
-            <OutsideWorkPhoto item={item} key={item.src} />
+            <OutsideWorkPhoto item={item} key={item.label} />
           ))}
         </div>
       </div>
@@ -88,14 +84,16 @@ function OutsideWork() {
 function OutsideWorkPhoto({ item }) {
   return (
     <figure className="m-0 flex w-full flex-col gap-1">
-      <div className={`relative w-full overflow-hidden ${item.aspect}`}>
-        <Image
-          className="object-cover"
-          src={item.src}
-          alt={item.alt}
-          fill
-          sizes="(max-width: 682px) calc((100vw - 48px) / 2), 317px"
-        />
+      <div className={`relative w-full overflow-hidden ${item.aspect} ${item.src ? "" : "bg-[#252525]"}`}>
+        {item.src && (
+          <Image
+            className="object-cover"
+            src={item.src}
+            alt={item.alt}
+            fill
+            sizes="(max-width: 682px) calc((100vw - 48px) / 2), 317px"
+          />
+        )}
       </div>
       <figcaption className="portfolio-mono text-[12.5px] leading-[21px] uppercase text-[#a2a2a2]">
         {item.label}

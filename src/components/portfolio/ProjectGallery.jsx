@@ -63,9 +63,9 @@ export default function ProjectGallery({ projects }) {
       verticalAlignment: {
         type: "select",
         options: ["Bottom", "Center"],
-        default: "Bottom",
+        default: "Center",
       },
-      projectSize: [600, 300, 900, 10],
+      projectSize: [430, 300, 900, 10],
       openView: {
         projectHeight: [93, 60, 100, 1],
         projectWidth: [89, 70, 100, 1],
@@ -94,7 +94,7 @@ export default function ProjectGallery({ projects }) {
         responseMs: [50, 10, 200, 5],
       },
     },
-    { id: "works-gallery-springboard", persist: true },
+    { id: "works-gallery-springboard-v2", persist: process.env.NODE_ENV !== "production" },
   );
   const horizontal = params.direction === "Horizontal";
   const reduceMotion = useReducedMotion();

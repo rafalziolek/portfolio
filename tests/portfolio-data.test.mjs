@@ -249,6 +249,8 @@ test("about page matches the hierarchical Figma composition", async () => {
   assert.match(about, /label: "Photography"/);
   assert.match(about, /label: "Learning 日本語"/);
   assert.match(about, /label: "Working out"/);
+  assert.doesNotMatch(about, /\/about\/running-0[12]\.png/);
+  assert.match(about, /item\.src \? "" : "bg-\[#252525\]"/);
   assert.match(about, /max-w-\[600px\].*text-\[16px\].*leading-\[1\.5\]/s);
   assert.match(about, /className="flex w-full max-w-\[682px\] flex-col gap-16"/);
   assert.match(about, /className="w-full max-w-\[600px\] pl-3 text-\[16px\] leading-\[1\.5\]"/);
@@ -480,8 +482,10 @@ test("Works can switch between horizontal and vertical infinite scrolling", asyn
   assert.match(gallery, /options: \["Horizontal", "Vertical"\]/);
   assert.match(gallery, /default: "Horizontal"/);
   assert.match(gallery, /options: \["Bottom", "Center"\]/);
-  assert.match(gallery, /default: "Bottom"/);
-  assert.match(gallery, /projectSize: \[600, 300, 900, 10\]/);
+  assert.match(gallery, /default: "Center"/);
+  assert.match(gallery, /projectSize: \[430, 300, 900, 10\]/);
+  assert.match(gallery, /id: "works-gallery-springboard-v2"/);
+  assert.match(gallery, /persist: process\.env\.NODE_ENV !== "production"/);
   assert.match(gallery, /getScrollInputDelta\(event\.deltaX, event\.deltaY\)/);
   assert.match(gallery, /addEventListener\("wheel", handleWheel, \{ passive: false \}\)/);
   assert.match(gallery, /horizontal \? "flex-row" : "flex-col"/);
