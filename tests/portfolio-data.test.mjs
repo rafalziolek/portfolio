@@ -32,7 +32,7 @@ test("works gallery uses unpadded previews with a 16px gap", async () => {
 
   assert.match(gallery, /className=\{`flex gap-4 /);
   assert.match(preview, /<span className="block">/);
-  assert.match(preview, /overflow-hidden rounded-\[3px\] bg-\[#f7f7f7\]/);
+  assert.match(preview, /aspect-square w-full overflow-hidden rounded-\[3px\]/);
   assert.match(preview, /flex h-\[50px\].*pt-4 pb-4/);
   assert.doesNotMatch(preview, /overflow-hidden px-5 pb-4 text-\[12\.5px\]/);
   assert.doesNotMatch(preview, /<span className="block px-5 pt-5 pb-4">/);
@@ -144,7 +144,7 @@ test("compact menu matches the segmented Figma navigation", async () => {
   assert.match(chrome, /px-\[12px\] pt-\[12px\] pb-\[16px\]/);
   assert.match(chrome, /rounded-\[1px\] px-\[8px\] py-\[5px\]/);
   assert.match(chrome, /text-\[16px\] leading-\[1\.33\]/);
-  assert.match(chrome, /compactInactiveItemClassName = "bg-\[#191919\] text-\[#c8cac9\]"/);
+  assert.match(chrome, /compactInactiveItemClassName =\s*"bg-\[#191919\] text-\[#c8cac9\] hover:bg-\[color-mix\(in_oklab,#191919_92%,white\)\]"/);
   assert.match(chrome, />\s*Explorations\s*</);
   assert.match(chrome, /active === "about" &&/);
   assert.match(chrome, /aboutNavigationItems\.map/);
@@ -220,8 +220,10 @@ test("top-level portfolio pages use the dark theme and local ABC Areal", async (
   assert.match(css, /@font-face/);
   assert.match(css, /url\("\/fonts\/ABCArealSuperfamilyVariable\.ttf"\)/);
   assert.match(css, /font-family: "ABC Areal", Arial, sans-serif/);
+  assert.match(css, /"ss05" 1, "ss11" 1/);
+  assert.match(css, /font-variation-settings: "DRKM" 1/);
   assert.match(css, /font-weight: 450/);
-  assert.match(css, /"MONO" 1, "wght" 450/);
+  assert.match(css, /"MONO" 100, "wght" 450, "DRKM" 1/);
   assert.doesNotMatch(layout, /font-\[Arial\]/);
   const font = await readFile(
     new URL("../public/fonts/ABCArealSuperfamilyVariable.ttf", import.meta.url),
@@ -248,7 +250,8 @@ test("about page matches the hierarchical Figma composition", async () => {
   assert.match(about, /label: "Learning 日本語"/);
   assert.match(about, /label: "Working out"/);
   assert.match(about, /max-w-\[600px\].*text-\[16px\].*leading-\[1\.5\]/s);
-  assert.match(about, /max-w-\[650px\]/);
+  assert.match(about, /className="flex w-full max-w-\[682px\] flex-col gap-16"/);
+  assert.match(about, /className="w-full max-w-\[600px\] pl-3 text-\[16px\] leading-\[1\.5\]"/);
   assert.match(about, />\s*Outside of work\s*</);
   assert.match(about, /portfolio-mono/);
   assert.match(listeningHistory, /Loading listening history/);
@@ -529,7 +532,8 @@ test("project cards reveal captions on hover or focus without a border", async (
     "src/components/portfolio/ProjectPreview.jsx",
   );
 
-  assert.match(preview, /aspect-\[573\/680\]/);
+  assert.match(preview, /aspect-square/);
+  assert.doesNotMatch(preview, /bg-\[#f7f7f7\]/);
   assert.doesNotMatch(preview, /shadow-/);
   assert.match(preview, /opacity-0 transition-opacity/);
   assert.match(preview, /expanded \? "" : "group-hover:opacity-100 group-focus-visible:opacity-100"/);
@@ -539,7 +543,7 @@ test("project cards reveal captions on hover or focus without a border", async (
   assert.match(preview, /group-hover:hidden/);
   assert.match(preview, /group-hover:flex/);
   assert.match(preview, /name="chevron-right"/);
-  assert.match(preview, /project\.previewFit === "contain"/);
+  assert.match(preview, /object-cover \$\{project\.previewFit === "contain" \? "scale-\[1\.3\]" : ""\}/);
   assert.doesNotMatch(preview, /useMotionValue|useSpring|rotateX|rotateY/);
 });
 

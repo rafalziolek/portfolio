@@ -29,9 +29,9 @@ const outsideWork = [
 
 export default function About() {
   return (
-    <main className="about-page min-h-screen bg-black px-4 pt-[195px] pb-24 text-white">
-      <div className="mx-auto flex w-full max-w-[650px] flex-col gap-16">
-        <section className="mx-auto w-full max-w-[600px] text-[16px] leading-[1.5]">
+    <main className="about-page min-h-screen bg-black pt-[195px] pb-24 text-white">
+      <div className="flex w-full max-w-[682px] flex-col gap-16">
+        <section className="w-full max-w-[600px] pl-3 text-[16px] leading-[1.5]">
           <div className="flex flex-col gap-6">
             <p className="m-0">
               I am a designer and developer from Warsaw, working primarily with
@@ -63,13 +63,13 @@ export default function About() {
 function OutsideWork() {
   return (
     <section className="flex w-full flex-col gap-4">
-      <div className="w-full px-4 pt-4 pb-2">
-        <h2 className="mx-auto m-0 w-full max-w-[600px] text-[16px] leading-[1.5] font-[450]">
+      <div className="w-full pl-3 pt-4 pb-2">
+        <h2 className="m-0 w-full max-w-[600px] text-[16px] leading-[1.5] font-[450]">
           Outside of work
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 items-start gap-4">
+      <div className="grid grid-cols-2 items-start gap-4 px-4">
         <div className="flex flex-col gap-10">
           {outsideWork.slice(0, 2).map((item) => (
             <OutsideWorkPhoto item={item} key={item.src} />

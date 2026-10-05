@@ -14,12 +14,13 @@
 
 .portfolio-font {
   font-family: "ABC Areal", Arial, sans-serif;
-  font-feature-settings: "ornm" 1, "liga" 0;
+  font-feature-settings: "ornm" 1, "liga" 0, "ss05" 1, "ss11" 1;
+  font-variation-settings: "DRKM" 1;
   font-weight: 450;
 }
 
 .portfolio-mono {
-  font-variation-settings: "MONO" 1, "wght" 450;
+  font-variation-settings: "MONO" 100, "wght" 450, "DRKM" 1;
 }
 
 [data-site-chrome] {

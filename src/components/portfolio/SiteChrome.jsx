@@ -86,7 +86,7 @@ export function PillMenu({
         aria-hidden={showName ? undefined : true}
       >
         <Link
-          className={`${pillClassName} ${active === "about" ? "bg-white text-black" : "bg-[#1d1d1d] text-white"}`}
+          className={`${pillClassName} ${active === "about" ? "bg-white text-black" : "bg-[#1d1d1d] text-white hover:bg-[color-mix(in_oklab,#1d1d1d_92%,white)]"}`}
           href="/about"
           aria-current={active === "about" ? "page" : undefined}
           tabIndex={showName ? undefined : -1}
@@ -130,7 +130,7 @@ export function PillMenu({
             aria-hidden={showWorks ? undefined : true}
           >
             <Link
-              className={`${pillClassName} ${active === "projects" ? "bg-white text-black" : "bg-[#1d1d1d] text-white"}`}
+              className={`${pillClassName} ${active === "projects" ? "bg-white text-black" : "bg-[#1d1d1d] text-white hover:bg-[color-mix(in_oklab,#1d1d1d_92%,white)]"}`}
               href="/"
               aria-current={active === "projects" ? "page" : undefined}
               tabIndex={showWorks ? undefined : -1}
@@ -145,7 +145,7 @@ export function PillMenu({
             aria-hidden={showBits ? undefined : true}
           >
             <Link
-              className={`${pillClassName} ${active === "bits" ? "bg-white text-black" : "bg-[#1d1d1d] text-white"}`}
+              className={`${pillClassName} ${active === "bits" ? "bg-white text-black" : "bg-[#1d1d1d] text-white hover:bg-[color-mix(in_oklab,#1d1d1d_92%,white)]"}`}
               href="/work"
               aria-current={active === "bits" ? "page" : undefined}
               tabIndex={showBits ? undefined : -1}
@@ -161,8 +161,10 @@ export function PillMenu({
 
 const compactItemClassName =
   "flex items-start rounded-[1px] px-[8px] py-[5px] text-[16px] leading-[1.33] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white";
-const compactActiveItemClassName = "bg-[#c8cac9] text-black";
-const compactInactiveItemClassName = "bg-[#191919] text-[#c8cac9]";
+const compactActiveItemClassName =
+  "bg-[#c8cac9] text-black hover:bg-[color-mix(in_oklab,#c8cac9_90%,white)]";
+const compactInactiveItemClassName =
+  "bg-[#191919] text-[#c8cac9] hover:bg-[color-mix(in_oklab,#191919_92%,white)]";
 
 function CompactStaggerItem({
   children,

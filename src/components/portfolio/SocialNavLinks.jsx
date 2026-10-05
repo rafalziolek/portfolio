@@ -12,7 +12,7 @@ const socialLinksByLabel = Object.fromEntries(
 const linkClassName =
   "w-max text-[24px] leading-[110%] no-underline text-white hover:animate-[link-blink_500ms_steps(1,end)_infinite] motion-reduce:hover:animate-none motion-reduce:hover:bg-white motion-reduce:hover:text-black focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white";
 const compactLinkClassName =
-  "flex items-start rounded-[1px] bg-[#191919] px-[8px] py-[5px] text-[16px] leading-[1.33] text-[#c8cac9] no-underline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white";
+  "flex items-start rounded-[1px] bg-[#191919] px-[8px] py-[5px] text-[16px] leading-[1.33] text-[#c8cac9] no-underline hover:bg-[color-mix(in_oklab,#191919_92%,white)] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-white";
 
 export default function SocialNavLinks({
   visible = true,

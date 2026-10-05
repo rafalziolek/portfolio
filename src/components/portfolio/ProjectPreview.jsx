@@ -19,11 +19,11 @@ export default function ProjectPreview({
       >
         <span className="block">
           <span
-            className="relative block aspect-[573/680] w-full overflow-hidden rounded-[3px] bg-[#f7f7f7]"
+            className="relative block aspect-square w-full overflow-hidden rounded-[3px]"
             data-project-image
           >
             <Image
-              className={`block size-full ${project.previewFit === "contain" ? "object-contain" : "object-cover"}`}
+              className={`block size-full object-cover ${project.previewFit === "contain" ? "scale-[1.3]" : ""}`}
               src={project.image}
               alt={project.alt}
               width={project.width}

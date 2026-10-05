@@ -990,7 +990,7 @@ function ProjectViewer({
           style={{ opacity: heroOpacity }}
         />
         <motion.div
-          className="relative overflow-hidden bg-[#f7f7f7]"
+          className="relative overflow-hidden"
           style={{
             height: heroFrame.heroHeight,
             opacity: heroOpacity,
@@ -998,7 +998,7 @@ function ProjectViewer({
           }}
         >
           <Image
-            className={`block size-full ${project.previewFit === "contain" ? "object-contain" : "object-cover"}`}
+            className={`block size-full object-cover ${project.previewFit === "contain" ? "scale-[1.3]" : ""}`}
             src={project.image}
             alt={project.alt}
             fill
