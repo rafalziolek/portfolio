@@ -27,8 +27,8 @@ function Footer() {
           <Text type='display-heading' as='h3'>
             <a href='https://twitter.com/rafal_ziolek'>Twitter</a>,{' '}
             <a href='https://www.linkedin.com/in/rafal-ziolek/'>LinkedIn</a>,{' '}
-            <a href='mailto://rafal.ziolek@icloud.com'>
-              rafal.ziolek@icloud.com
+            <a href='mailto:rafal.j.ziolek@gmail.com'>
+              rafal.j.ziolek@gmail.com
             </a>
           </Text>
           <div className={styles['footer-text']}>

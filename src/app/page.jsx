@@ -30,7 +30,7 @@ export default function Home() {
         <section aria-labelledby='connect-heading'>
           <h2 id='connect-heading' className={styles.sectionHeading}>Connect:</h2>
           <ol className={styles.links}>
-            <li><WaveLink href='mailto:rafal.ziolek@icloud.com'>rafal.ziolek@icloud.com</WaveLink></li>
+            <li><WaveLink href='mailto:rafal.j.ziolek@gmail.com'>rafal.j.ziolek@gmail.com</WaveLink></li>
             <li><WaveLink href='https://x.com/rafal_ziolek'>x.com</WaveLink></li>
             <li><WaveLink href='https://www.are.na/rafal-ziolek'><span aria-hidden='true'>{'\uE000'} </span>Are.na</WaveLink></li>
           </ol>

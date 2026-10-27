@@ -60,9 +60,9 @@ function MainNav() {
             </Text>
             <a
               className={`${styles['main-nav-link']} ${styles.mail}`}
-              href='mailto://rafal.ziolek@icloud.com'
+              href='mailto:rafal.j.ziolek@gmail.com'
             >
-              rafal.ziolek@icloud.com
+              rafal.j.ziolek@gmail.com
             </a>
           </Stack>
         </GridItem>
