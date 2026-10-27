@@ -58,7 +58,7 @@ async function ProjectPage({ params }) {
         header={HeadingComponent && <HeadingComponent />}
       ></ProjectHeader>
       <Grid className={styles.content}>
-        <MDXRemote source={content} components={components} />
+        <MDXRemote source={content} components={components} options={{ blockJS: false }} />
       </Grid>
     </>
   );
