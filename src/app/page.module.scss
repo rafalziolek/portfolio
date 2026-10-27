@@ -1,0 +1,84 @@
+.page {
+  --portfolio-background: #fff;
+  --portfolio-text: #333;
+  --portfolio-underline: color-mix(in oklch, var(--portfolio-text) 30%, transparent);
+  --portfolio-netflix: oklch(0.72 0.17 25);
+  --portfolio-docplanner: oklch(0.72 0.137 173);
+  --portfolio-docplanner-glow-strength: 85%;
+  --portfolio-link-core-strength: 35%;
+  --portfolio-link-glow-strength: 55%;
+  --portfolio-link-halo-strength: 25%;
+  --portfolio-contact-glow-strength: 100%;
+  --areal-dark-mode: 0;
+  color-scheme: light;
+  min-height: 100svh;
+  padding: 16px;
+  color: var(--portfolio-text);
+  background: var(--portfolio-background);
+  font-size: 18px;
+  font-weight: 500;
+  font-synthesis: none;
+  font-variation-settings: 'wght' 500, 'MONO' 0, 'slnt' 0, 'DRKM' var(--areal-dark-mode);
+  letter-spacing: -0.01em;
+  line-height: 22px;
+
+  h1, h2 { font-size: inherit; font-weight: inherit; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --portfolio-background: #000;
+    --portfolio-text: #fff;
+    --portfolio-underline: #ffffff80;
+    --portfolio-netflix: oklch(0.7 0.19 25);
+    --portfolio-docplanner: oklch(0.84 0.16 173);
+    --portfolio-docplanner-glow-strength: 50%;
+    --portfolio-link-core-strength: 70%;
+    --portfolio-link-glow-strength: 100%;
+    --portfolio-link-halo-strength: 100%;
+    --portfolio-contact-glow-strength: 60%;
+    --areal-dark-mode: 1;
+    color-scheme: dark;
+  }
+}
+
+.content { width: min(100%, 368px); }
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 7.5px;
+  padding-bottom: 24px;
+}
+
+.sectionHeading {
+  padding-bottom: 9px;
+}
+
+.links {
+  list-style: none;
+  counter-reset: contact;
+
+  li {
+    counter-increment: contact;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    padding-bottom: 7.5px;
+
+    &::before {
+      content: counter(contact) '.';
+      flex: 0 0 19px;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
+
+@media (pointer: coarse) {
+  .links li { min-height: 44px; }
+  .links a::after {
+    content: '';
+    position: absolute;
+    inset: -10px 0;
+  }
+}

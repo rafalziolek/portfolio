@@ -1,0 +1,52 @@
+.link {
+  --link-color: var(--portfolio-text);
+  --link-glow-color: color-mix(in oklch, var(--portfolio-underline) var(--portfolio-contact-glow-strength), transparent);
+  --link-glow:
+    0 0 3px color-mix(in oklch, var(--link-glow-color) var(--portfolio-link-core-strength), transparent),
+    0 0 8px color-mix(in oklch, var(--link-glow-color) var(--portfolio-link-glow-strength), transparent),
+    0 0 18px color-mix(in oklch, var(--link-glow-color) var(--portfolio-link-halo-strength), transparent);
+  position: relative;
+  display: inline-block;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: var(--portfolio-underline);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+
+  &[data-brand='netflix'] {
+    --link-color: var(--portfolio-netflix);
+    --link-glow-color: var(--link-color);
+  }
+  &[data-brand='docplanner'] {
+    --link-color: var(--portfolio-docplanner);
+    --link-glow-color: color-mix(in oklch, var(--link-color) var(--portfolio-docplanner-glow-strength), transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--portfolio-text);
+    outline-offset: 5px;
+    border-radius: 1px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    text-decoration-style: wavy;
+    text-decoration-color: var(--link-color);
+    text-underline-offset: 3px;
+    text-shadow: var(--link-glow);
+  }
+}
+
+.link:focus-visible {
+  text-decoration-style: wavy;
+  text-decoration-color: var(--link-color);
+  text-shadow: var(--link-glow);
+}
+
+@media (forced-colors: active) {
+  .link {
+    text-decoration-color: LinkText;
+    text-shadow: none;
+  }
+}

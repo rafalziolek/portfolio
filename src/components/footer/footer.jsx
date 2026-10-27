@@ -1,3 +1,6 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import styles from './footer.module.scss';
 import Text from '@/components/Text/text';
 import Image from 'next/image';
@@ -7,6 +10,9 @@ import Grid from '../Grid/Grid';
 import GridItem from '../Grid/GridItem';
 
 function Footer() {
+  const pathname = usePathname();
+  if (pathname === '/') return null;
+
   return (
     <>
       <footer className={styles.footer}>
