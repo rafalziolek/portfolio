@@ -27,7 +27,7 @@ export default function Home() {
             <WaveLink href='https://www.docplanner.com/' brand='docplanner'>Docplanner</WaveLink>.
           </p>
         </header>
-        <section aria-labelledby='connect-heading'>
+        <section className={styles.connect} aria-labelledby='connect-heading'>
           <h2 id='connect-heading' className={styles.sectionHeading}>Connect:</h2>
           <ol className={styles.links}>
             <li><WaveLink href='mailto:rafal.j.ziolek@gmail.com'>rafal.j.ziolek@gmail.com</WaveLink></li>
